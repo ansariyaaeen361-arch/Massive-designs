@@ -1,0 +1,7 @@
+<!-- start Simple Custom CSS and JS -->
+<style type="text/css">
+.rwl-faq-item { border-bottom: 1px solid #ddd; padding: 12px 0; cursor: pointer; }
+.rwl-faq-q { font-weight: bold; display: flex; justify-content: space-between; }
+.rwl-faq-a { display: none; padding-top: 8px; }
+.rwl-faq-a.open { display: block; }</style>
+<!-- end Simple Custom CSS and JS -->

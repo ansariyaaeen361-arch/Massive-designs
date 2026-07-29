@@ -1,0 +1,82 @@
+<!-- start Simple Custom CSS and JS -->
+<style type="text/css">
+footer#site-footer {
+    display: none !important;
+}
+
+body{
+	background-color: #000000;
+}
+
+div#header {
+    display: none;
+}
+
+.elementor-188 .elementor-element.elementor-element-7b21dce .gradient-overlay.gradient-overlay-1 .thumb a::before{
+	background-color: #00000075;
+}
+/* .gradient-overlay.gradient-overlay-1,
+.gradient-overlay.gradient-overlay-2,
+.gradient-overlay.gradient-overlay-3,
+.gradient-overlay.gradient-overlay-4,
+.gradient-overlay.gradient-overlay-5,
+.gradient-overlay.gradient-overlay-1 .thumb a::before,
+.gradient-overlay.gradient-overlay-2 .thumb a::before,
+.gradient-overlay.gradient-overlay-3 .thumb a::before,
+.gradient-overlay.gradient-overlay-4 .thumb a::before,
+.gradient-overlay.gradient-overlay-5 .thumb a::before {
+	background-image: unset !important;
+	background-color: #00000075;
+	
+}
+
+.eael-grid-post-holder {
+  position: relative;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 8px;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.eael-grid-post-holder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -5px;
+    margin: auto;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #F0FDDD 0%, #BDF764 100% );
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.eael-grid-post-holder::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #BDF764 0%, #F0FDDD 100% );
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(15px);
+}
+
+
+.eael-grid-post-holder:hover::after {
+  filter: blur(20px);
+}
+
+.eael-grid-post-holder:hover::before {
+  transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
+ */
+	
+/* form css */
+
+</style>
+<!-- end Simple Custom CSS and JS -->

@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.48ed3098.css",
+    "main.js": "/static/js/main.a2369e49.js",
+    "static/js/453.0b8826e7.chunk.js": "/static/js/453.0b8826e7.chunk.js",
+    "static/media/hero-image.png": "/static/media/hero-image.c251f946683979fdab75.png",
+    "static/media/quantum-finance.jpg": "/static/media/quantum-finance.d6ccd62bcd087d864f63.jpg",
+    "static/media/neon-market.jpg": "/static/media/neon-market.9bd4962f84dfac9aa26f.jpg",
+    "static/media/aura-dynamics.jpg": "/static/media/aura-dynamics.6f757872a79772cc3d63.jpg",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.48ed3098.css.map": "/static/css/main.48ed3098.css.map",
+    "main.a2369e49.js.map": "/static/js/main.a2369e49.js.map",
+    "453.0b8826e7.chunk.js.map": "/static/js/453.0b8826e7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48ed3098.css",
+    "static/js/main.a2369e49.js"
+  ]
+}

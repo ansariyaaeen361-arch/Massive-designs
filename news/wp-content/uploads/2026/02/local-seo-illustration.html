@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local SEO Consistency Illustration</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f5f0e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    padding: 24px;
+  }
+
+  .card {
+    background: #1a1f2e;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 860px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+  }
+
+  .illustration-wrap {
+    width: 100%;
+    position: relative;
+    background: linear-gradient(160deg, #0f1623 0%, #1a2540 50%, #0d1e35 100%);
+    padding: 48px 40px 36px;
+  }
+
+  svg.main-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .caption-area {
+    padding: 28px 40px 32px;
+    background: #1a1f2e;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .caption-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #e8a94a;
+    margin-bottom: 8px;
+  }
+
+  .caption-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: #f0ece2;
+    line-height: 1.35;
+    max-width: 560px;
+  }
+
+  .caption-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(240,236,226,0.5);
+    margin-top: 10px;
+    line-height: 1.6;
+    max-width: 500px;
+    font-weight: 300;
+  }
+
+  /* Pulse animations */
+  @keyframes pulse-ring {
+    0% { opacity: 0.7; r: 14; }
+    100% { opacity: 0; r: 26; }
+  }
+  @keyframes flow-dash {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -40; }
+  }
+  @keyframes glow-bob {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+  @keyframes badge-appear {
+    0% { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .flow-line {
+    animation: flow-dash 1.8s linear infinite;
+    stroke-dasharray: 6 5;
+  }
+  .pulse-ring {
+    animation: pulse-ring 2s ease-out infinite;
+    fill: none;
+  }
+  .glow-node { animation: glow-bob 2.6s ease-in-out infinite; }
+  .glow-node-b { animation: glow-bob 2.6s ease-in-out infinite 0.4s; }
+  .glow-node-c { animation: glow-bob 2.6s ease-in-out infinite 0.8s; }
+  .glow-node-d { animation: glow-bob 2.6s ease-in-out infinite 1.2s; }
+
+  .badge-1 { animation: badge-appear 0.6s ease 0.3s both; }
+  .badge-2 { animation: badge-appear 0.6s ease 0.7s both; }
+  .badge-3 { animation: badge-appear 0.6s ease 1.1s both; }
+  .badge-4 { animation: badge-appear 0.6s ease 1.5s both; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="illustration-wrap">
+
+    <svg class="main-svg" viewBox="0 0 780 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Illustration showing consistent local SEO signals converging around a unified business identity">
+
+      <!-- Background grid -->
+      <defs>
+        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#0d1e35" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#e8a94a" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#e8a94a" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="softGlow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.0"/>
+          <stop offset="50%" stop-color="#3b82f6" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#e8a94a" stop-opacity="0.8"/>
+        </linearGradient>
+        <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#10b981" stop-opacity="0.0"/>
+          <stop offset="50%" stop-color="#10b981" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#e8a94a" stop-opacity="0.8"/>
+        </linearGradient>
+        <linearGradient id="lineGrad3" x1="100%" y1="0%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.0"/>
+          <stop offset="50%" stop-color="#a78bfa" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#e8a94a" stop-opacity="0.8"/>
+        </linearGradient>
+        <linearGradient id="lineGrad4" x1="100%" y1="0%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#f87171" stop-opacity="0.0"/>
+          <stop offset="50%" stop-color="#f87171" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#e8a94a" stop-opacity="0.8"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Subtle grid lines -->
+      <g opacity="0.04" stroke="#aec6ff" stroke-width="0.5">
+        <line x1="0" y1="70" x2="780" y2="70"/>
+        <line x1="0" y1="140" x2="780" y2="140"/>
+        <line x1="0" y1="210" x2="780" y2="210"/>
+        <line x1="0" y1="280" x2="780" y2="280"/>
+        <line x1="0" y1="350" x2="780" y2="350"/>
+        <line x1="100" y1="0" x2="100" y2="420"/>
+        <line x1="200" y1="0" x2="200" y2="420"/>
+        <line x1="300" y1="0" x2="300" y2="420"/>
+        <line x1="480" y1="0" x2="480" y2="420"/>
+        <line x1="580" y1="0" x2="580" y2="420"/>
+        <line x1="680" y1="0" x2="680" y2="420"/>
+      </g>
+
+      <!-- City skyline silhouette - Houston feel -->
+      <g opacity="0.18" fill="#3b82f6">
+        <!-- Downtown buildings -->
+        <rect x="0" y="300" width="28" height="120"/>
+        <rect x="32" y="270" width="22" height="150"/>
+        <rect x="58" y="285" width="18" height="135"/>
+        <rect x="80" y="250" width="30" height="170"/>
+        <rect x="114" y="260" width="16" height="160"/>
+        <rect x="134" y="230" width="26" height="190"/><!-- tall -->
+        <rect x="164" y="248" width="20" height="172"/>
+        <rect x="188" y="270" width="14" height="150"/>
+        <rect x="206" y="310" width="22" height="110"/>
+        <rect x="232" y="295" width="16" height="125"/>
+        <rect x="252" y="340" width="20" height="80"/>
+        <rect x="276" y="360" width="14" height="60"/>
+        <!-- right side -->
+        <rect x="500" y="350" width="16" height="70"/>
+        <rect x="520" y="320" width="22" height="100"/>
+        <rect x="546" y="295" width="18" height="125"/>
+        <rect x="568" y="260" width="28" height="160"/>
+        <rect x="600" y="275" width="20" height="145"/>
+        <rect x="624" y="240" width="32" height="180"/><!-- tall -->
+        <rect x="660" y="265" width="18" height="155"/>
+        <rect x="682" y="282" width="24" height="138"/>
+        <rect x="710" y="300" width="16" height="120"/>
+        <rect x="730" y="318" width="22" height="102"/>
+        <rect x="756" y="335" width="24" height="85"/>
+      </g>
+
+      <!-- Center ambient glow -->
+      <ellipse cx="390" cy="210" rx="180" ry="140" fill="url(#centerGlow)"/>
+      <ellipse cx="390" cy="210" rx="80" ry="60" fill="url(#hubGlow)"/>
+
+      <!-- === FLOW LINES from nodes to hub === -->
+      <!-- GBP node (top-left) → hub -->
+      <path d="M148 108 C220 130, 310 160, 370 198" stroke="url(#lineGrad1)" stroke-width="1.5" class="flow-line"/>
+      <!-- Service Pages (bottom-left) → hub -->
+      <path d="M148 312 C220 290, 310 250, 370 218" stroke="url(#lineGrad2)" stroke-width="1.5" class="flow-line"/>
+      <!-- Citations (top-right) → hub -->
+      <path d="M632 108 C560 130, 470 160, 410 198" stroke="url(#lineGrad3)" stroke-width="1.5" class="flow-line"/>
+      <!-- Title Tags (bottom-right) → hub -->
+      <path d="M632 312 C560 290, 470 250, 410 218" stroke="url(#lineGrad4)" stroke-width="1.5" class="flow-line"/>
+
+      <!-- Secondary softer lines -->
+      <path d="M148 108 C220 130, 310 160, 370 198" stroke="#3b82f6" stroke-width="0.5" opacity="0.25"/>
+      <path d="M148 312 C220 290, 310 250, 370 218" stroke="#10b981" stroke-width="0.5" opacity="0.25"/>
+      <path d="M632 108 C560 130, 470 160, 410 198" stroke="#a78bfa" stroke-width="0.5" opacity="0.25"/>
+      <path d="M632 312 C560 290, 470 250, 410 218" stroke="#f87171" stroke-width="0.5" opacity="0.25"/>
+
+      <!-- ===  HUB CENTER === -->
+      <!-- Outer rings -->
+      <circle cx="390" cy="210" r="50" stroke="#e8a94a" stroke-width="0.6" opacity="0.18"/>
+      <circle cx="390" cy="210" r="36" stroke="#e8a94a" stroke-width="0.8" opacity="0.3"/>
+      <!-- Pulse rings -->
+      <circle cx="390" cy="210" class="pulse-ring" stroke="#e8a94a" stroke-width="1.5" opacity="0.5" r="24" style="animation-delay:0s"/>
+      <circle cx="390" cy="210" class="pulse-ring" stroke="#e8a94a" stroke-width="1" opacity="0.3" r="24" style="animation-delay:1s"/>
+      <!-- Hub fill -->
+      <circle cx="390" cy="210" r="24" fill="#1a2540" stroke="#e8a94a" stroke-width="1.5"/>
+      <circle cx="390" cy="210" r="18" fill="#e8a94a" opacity="0.12"/>
+      <!-- Hub icon: checkmark/location hybrid -->
+      <g filter="url(#softGlow)">
+        <!-- map pin shape -->
+        <path d="M390 198 C386 198, 382 202, 382 207 C382 213, 390 222, 390 222 C390 222, 398 213, 398 207 C398 202, 394 198, 390 198Z" fill="#e8a94a" opacity="0.9"/>
+        <circle cx="390" cy="207" r="2.5" fill="#1a2540"/>
+        <!-- tick/check inside the pin -->
+        <polyline points="387,207 389,209 393,204" stroke="#1a2540" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </g>
+      <!-- Hub label -->
+      <text x="390" y="240" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="7.5" font-weight="500" fill="#e8a94a" letter-spacing="0.12em" text-transform="uppercase">UNIFIED IDENTITY</text>
+
+      <!-- === NODE: GBP (top-left) === -->
+      <g class="badge-1">
+        <rect x="78" y="72" width="140" height="72" rx="10" fill="#0f1a2e" stroke="#3b82f6" stroke-width="1.2"/>
+        <rect x="78" y="72" width="140" height="72" rx="10" fill="#3b82f6" opacity="0.06"/>
+        <!-- GBP icon - map pin styled -->
+        <circle cx="108" cy="108" r="14" fill="#3b82f6" opacity="0.15"/>
+        <circle class="glow-node" cx="108" cy="108" r="14" fill="#3b82f6" opacity="0.1"/>
+        <path d="M108 100 C105 100, 102 103, 102 106.5 C102 111 108 117 108 117 C108 117, 114 111, 114 106.5 C114 103, 111 100, 108 100Z" fill="#3b82f6"/>
+        <circle cx="108" cy="106.5" r="2.2" fill="#0f1a2e"/>
+        <!-- Labels -->
+        <text x="130" y="103" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#f0ece2" letter-spacing="0.05em">GBP Profile</text>
+        <text x="130" y="115" font-family="DM Sans, sans-serif" font-size="7.5" fill="rgba(240,236,226,0.5)" letter-spacing="0.02em">Name · Address · Hours</text>
+        <!-- Verified dot -->
+        <circle cx="204" cy="80" r="5" fill="#10b981"/>
+        <text x="204" y="83.5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="7" fill="#0f1a2e" font-weight="700">✓</text>
+      </g>
+
+      <!-- === NODE: Service Pages (bottom-left) === -->
+      <g class="badge-2">
+        <rect x="78" y="276" width="140" height="72" rx="10" fill="#0f1a2e" stroke="#10b981" stroke-width="1.2"/>
+        <rect x="78" y="276" width="140" height="72" rx="10" fill="#10b981" opacity="0.06"/>
+        <!-- document icon -->
+        <circle cx="108" cy="312" r="14" fill="#10b981" opacity="0.15"/>
+        <rect x="102" y="304" width="12" height="16" rx="2" fill="#10b981" opacity="0.8"/>
+        <line x1="104.5" y1="308" x2="111.5" y2="308" stroke="#0f1a2e" stroke-width="1.2"/>
+        <line x1="104.5" y1="311" x2="111.5" y2="311" stroke="#0f1a2e" stroke-width="1.2"/>
+        <line x1="104.5" y1="314" x2="109" y2="314" stroke="#0f1a2e" stroke-width="1.2"/>
+        <!-- fold corner -->
+        <path d="M110 304 L114 308 L110 308Z" fill="#0a1520"/>
+        <!-- Labels -->
+        <text x="130" y="307" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#f0ece2" letter-spacing="0.05em">Service Pages</text>
+        <text x="130" y="319" font-family="DM Sans, sans-serif" font-size="7.5" fill="rgba(240,236,226,0.5)" letter-spacing="0.02em">Houston context · Areas served</text>
+        <!-- Verified dot -->
+        <circle cx="204" cy="284" r="5" fill="#10b981"/>
+        <text x="204" y="287.5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="7" fill="#0f1a2e" font-weight="700">✓</text>
+      </g>
+
+      <!-- === NODE: Citations (top-right) === -->
+      <g class="badge-3">
+        <rect x="562" y="72" width="140" height="72" rx="10" fill="#0f1a2e" stroke="#a78bfa" stroke-width="1.2"/>
+        <rect x="562" y="72" width="140" height="72" rx="10" fill="#a78bfa" opacity="0.06"/>
+        <!-- link/citation icon -->
+        <circle cx="592" cy="108" r="14" fill="#a78bfa" opacity="0.15"/>
+        <g stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" fill="none">
+          <path d="M586 112 C584 110, 584 106, 587 103 L590 100 C593 97, 597 97, 600 100 C603 103, 603 107, 600 110 L598 112"/>
+          <path d="M589 104 L598 112"/>
+        </g>
+        <!-- Labels -->
+        <text x="612" y="103" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#f0ece2" letter-spacing="0.05em">Citations</text>
+        <text x="612" y="115" font-family="DM Sans, sans-serif" font-size="7.5" fill="rgba(240,236,226,0.5)" letter-spacing="0.02em">Directories · Listings match</text>
+        <!-- Verified dot -->
+        <circle cx="570" cy="80" r="5" fill="#10b981"/>
+        <text x="570" y="83.5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="7" fill="#0f1a2e" font-weight="700">✓</text>
+      </g>
+
+      <!-- === NODE: Title Tags (bottom-right) === -->
+      <g class="badge-4">
+        <rect x="562" y="276" width="140" height="72" rx="10" fill="#0f1a2e" stroke="#f87171" stroke-width="1.2"/>
+        <rect x="562" y="276" width="140" height="72" rx="10" fill="#f87171" opacity="0.06"/>
+        <!-- code/tag icon -->
+        <circle cx="592" cy="312" r="14" fill="#f87171" opacity="0.15"/>
+        <g stroke="#f87171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <polyline points="586,309 583,312 586,315"/>
+          <polyline points="598,309 601,312 598,315"/>
+          <line x1="590" y1="315" x2="594" y2="309"/>
+        </g>
+        <!-- Labels -->
+        <text x="612" y="307" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#f0ece2" letter-spacing="0.05em">Title Tags</text>
+        <text x="612" y="319" font-family="DM Sans, sans-serif" font-size="7.5" fill="rgba(240,236,226,0.5)" letter-spacing="0.02em">Service + Location · Clear</text>
+        <!-- Verified dot -->
+        <circle cx="570" cy="284" r="5" fill="#10b981"/>
+        <text x="570" y="287.5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="7" fill="#0f1a2e" font-weight="700">✓</text>
+      </g>
+
+      <!-- Small scatter dots along flow lines (decorative) -->
+      <g opacity="0.5">
+        <circle cx="240" cy="152" r="1.5" fill="#3b82f6"/>
+        <circle cx="290" cy="168" r="1" fill="#3b82f6"/>
+        <circle cx="335" cy="186" r="1.5" fill="#3b82f6"/>
+        <circle cx="240" cy="270" r="1.5" fill="#10b981"/>
+        <circle cx="290" cy="254" r="1" fill="#10b981"/>
+        <circle cx="335" cy="236" r="1.5" fill="#10b981"/>
+        <circle cx="540" cy="152" r="1.5" fill="#a78bfa"/>
+        <circle cx="490" cy="168" r="1" fill="#a78bfa"/>
+        <circle cx="445" cy="186" r="1.5" fill="#a78bfa"/>
+        <circle cx="540" cy="270" r="1.5" fill="#f87171"/>
+        <circle cx="490" cy="254" r="1" fill="#f87171"/>
+        <circle cx="445" cy="236" r="1.5" fill="#f87171"/>
+      </g>
+
+      <!-- Bottom label strip -->
+      <text x="390" y="400" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="rgba(240,236,226,0.22)" letter-spacing="0.14em">CONSISTENT SIGNALS → TRUSTED VISIBILITY → REAL CUSTOMERS</text>
+
+    </svg>
+  </div>
+
+  <div class="caption-area">
+    <div class="caption-label">Local SEO · Identity Alignment</div>
+    <div class="caption-text">When every signal points to the same source,<br>search engines — and customers — finally trust you.</div>
+    <div class="caption-sub">Your GBP, citations, service pages, and title tags should all speak the same language. Consistency isn't just good practice — it's the clearest path to being found by the right people in Houston.</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+.elementor-486 .elementor-element.elementor-element-3f05f9c{--display:flex;--gap:10px 10px;--row-gap:10px;--column-gap:10px;}.elementor-widget-image-box .elementor-image-box-title{font-family:var( --e-global-typography-primary-font-family ), Sans-serif;font-weight:var( --e-global-typography-primary-font-weight );color:var( --e-global-color-primary );}.elementor-widget-image-box:has(:hover) .elementor-image-box-title,
+					 .elementor-widget-image-box:has(:focus) .elementor-image-box-title{color:var( --e-global-color-primary );}.elementor-widget-image-box .elementor-image-box-description{font-family:var( --e-global-typography-text-font-family ), Sans-serif;font-weight:var( --e-global-typography-text-font-weight );color:var( --e-global-color-text );}.elementor-486 .elementor-element.elementor-element-1af3428 .elementor-image-box-title{font-family:"Marcellus", Sans-serif;font-size:18px;font-weight:400;line-height:25px;color:#FFFFFF;}.elementor-486 .elementor-element.elementor-element-1af3428:has(:hover) .elementor-image-box-title,
+					 .elementor-486 .elementor-element.elementor-element-1af3428:has(:focus) .elementor-image-box-title{color:#B5F652;}@media(max-width:1024px) and (min-width:768px){.elementor-486 .elementor-element.elementor-element-3f05f9c{--content-width:100%;}}@media(max-width:1024px){.elementor-486 .elementor-element.elementor-element-1af3428{width:var( --container-widget-width, 70% );max-width:70%;margin:0px 0px calc(var(--kit-widget-spacing, 0px) + 0px) 60px;--container-widget-width:70%;--container-widget-flex-grow:0;}.elementor-486 .elementor-element.elementor-element-1af3428.elementor-element{--align-self:center;}.elementor-486 .elementor-element.elementor-element-1af3428 .elementor-image-box-title{margin-bottom:27px;font-size:19px;}}@media(max-width:767px){.elementor-486 .elementor-element.elementor-element-1af3428 .elementor-image-box-title{margin-bottom:10px;font-size:16px;line-height:20px;}}/* Start custom CSS for image-box, class: .elementor-element-1af3428 */.popular {
+    overflow: hidden;
+    display: flex !important;
+}
+
+.popular img {
+    transition: transform 0.8s ease-in-out;
+}
+
+.popular:hover {
+    transform: scale(1.04);
+}
+
+
+@media(max-width:426px){
+    .popular .elementor-image-box-wrapper {
+    display: flex;
+    text-align: left !important;
+    row-gap: 25px !important;
+}
+}/* End custom CSS */

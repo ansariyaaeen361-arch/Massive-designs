@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+frontend/dist/
+
+# Environment secrets
+.env
+.env.local
+*.env
+
+# WordPress secrets (cms/ and news/ installs)
+**/wp-config.php
+
+# WordPress cache / logs
+**/wp-content/cache/
+**/wp-content/debug.log
+**/*.log
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
