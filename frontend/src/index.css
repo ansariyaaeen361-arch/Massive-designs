@@ -105,13 +105,6 @@
     background-size: 64px 64px;
   }
 
-  .has-custom-cursor,
-  .has-custom-cursor a,
-  .has-custom-cursor button,
-  .has-custom-cursor [role='button'] {
-    cursor: none;
-  }
-
   .animate-marquee {
     animation: marquee 30s linear infinite;
   }

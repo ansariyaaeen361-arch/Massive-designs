@@ -4,30 +4,26 @@ import ServiceHero from '../../components/service-page/ServiceHero';
 import FeatureGrid from '../../components/service-page/FeatureGrid';
 import ProcessSteps from '../../components/service-page/ProcessSteps';
 import AreaMapHighlight from '../../components/service-page/AreaMapHighlight';
-import PortfolioGrid from '../../components/service-page/PortfolioGrid';
+import PortfolioHoverGrid from '../../components/service-page/PortfolioHoverGrid';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import OrderModal from '../../components/forms/OrderModal';
 import { Link } from 'react-router-dom';
 import { brand } from '../../lib/brand';
 
-import site1 from '../../assets/img/services/webdesign-portfolio/site1.webp';
-import site2 from '../../assets/img/services/webdesign-portfolio/site2.webp';
-import site3 from '../../assets/img/services/webdesign-portfolio/site3.webp';
-import site4 from '../../assets/img/services/webdesign-portfolio/site4.webp';
-import site5 from '../../assets/img/services/webdesign-portfolio/site5.webp';
-import site6 from '../../assets/img/services/webdesign-portfolio/site6.webp';
-import site7 from '../../assets/img/services/webdesign-portfolio/site7.webp';
-import site8 from '../../assets/img/services/webdesign-portfolio/site8.webp';
+import web13 from '../../assets/img/web-projects/optimized/web-project-13.webp';
+import web14 from '../../assets/img/web-projects/optimized/web-project-14.webp';
+import web15 from '../../assets/img/web-projects/optimized/web-project-15.webp';
+import web16 from '../../assets/img/web-projects/optimized/web-project-16.webp';
+import web17 from '../../assets/img/web-projects/optimized/web-project-17.webp';
+import web19 from '../../assets/img/web-projects/optimized/web-project-19.webp';
 
 const portfolioItems = [
-  { src: site1, alt: 'Mental Forge', href: 'https://mentalforge.ai/' },
-  { src: site2, alt: 'Leanops AI', href: 'https://abc.massive-designs.com/' },
-  { src: site3, alt: 'Nickolas Shymar', href: 'https://nickolasshymar.com/' },
-  { src: site4, alt: 'Enhanced Bears', href: 'https://enhancedbears.massive-designs.com/' },
-  { src: site5, alt: 'Crazy Strong Sarms', href: 'https://crazystrongsarms.massive-designs.com/' },
-  { src: site6, alt: 'Kendras Meals LLC', href: 'https://kendrasmealsllc.com/' },
-  { src: site7, alt: 'SRrealty Brokerage', href: 'https://srrealtybrokerage.com/' },
-  { src: site8, alt: 'Bonney Building', href: 'https://bonneybuilding.com/' },
+  { src: web13, alt: 'Global Desk News' },
+  { src: web14, alt: 'Elevate VR' },
+  { src: web15, alt: 'Carpet Repair Nevada' },
+  { src: web16, alt: 'Baldovinos General Construction' },
+  { src: web17, alt: 'Dana McGuffin CPA' },
+  { src: web19, alt: 'AtlasLearners', href: 'https://atlaslearners.com/' },
 ];
 
 export default function Houston() {
@@ -127,7 +123,7 @@ export default function Houston() {
         ]}
       />
 
-      <PortfolioGrid
+      <PortfolioHoverGrid
         heading="Our Work Across Houston and Southeast Texas"
         description="A look at the kind of design, branding, and marketing work we've built for businesses operating across Houston's range of industries."
         items={portfolioItems}

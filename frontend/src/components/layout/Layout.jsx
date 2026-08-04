@@ -6,7 +6,6 @@ import Footer from './Footer';
 import BackToTop from './BackToTop';
 import LocalBusinessSchema from './LocalBusinessSchema';
 import GridSpotlight from '../motion/GridSpotlight';
-import CustomCursor from '../motion/CustomCursor';
 import useSmoothScroll from '../../hooks/useSmoothScroll';
 import { gsap, ScrollTrigger } from '../../lib/gsap';
 
@@ -61,7 +60,6 @@ export default function Layout() {
         className="pointer-events-none fixed inset-0 z-[200] hidden bg-black"
       />
       <GridSpotlight />
-      <CustomCursor />
       <Header />
       <main className="flex-1">{displayedOutlet}</main>
       <Footer />

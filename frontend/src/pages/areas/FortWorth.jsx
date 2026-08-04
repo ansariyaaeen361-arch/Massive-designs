@@ -5,29 +5,21 @@ import ServiceHero from '../../components/service-page/ServiceHero';
 import FeatureGrid from '../../components/service-page/FeatureGrid';
 import ProcessSteps from '../../components/service-page/ProcessSteps';
 import AreaMapHighlight from '../../components/service-page/AreaMapHighlight';
-import PortfolioGrid from '../../components/service-page/PortfolioGrid';
+import PortfolioHoverGrid from '../../components/service-page/PortfolioHoverGrid';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import OrderModal from '../../components/forms/OrderModal';
 import { brand } from '../../lib/brand';
 
-import site1 from '../../assets/img/services/webdesign-portfolio/site1.webp';
-import site2 from '../../assets/img/services/webdesign-portfolio/site2.webp';
-import site3 from '../../assets/img/services/webdesign-portfolio/site3.webp';
-import site4 from '../../assets/img/services/webdesign-portfolio/site4.webp';
-import site5 from '../../assets/img/services/webdesign-portfolio/site5.webp';
-import site6 from '../../assets/img/services/webdesign-portfolio/site6.webp';
-import site7 from '../../assets/img/services/webdesign-portfolio/site7.webp';
-import site8 from '../../assets/img/services/webdesign-portfolio/site8.webp';
+import web20 from '../../assets/img/web-projects/optimized/web-project-20.webp';
+import web21 from '../../assets/img/web-projects/optimized/web-project-21.webp';
+import web22 from '../../assets/img/web-projects/optimized/web-project-22.webp';
+import web23 from '../../assets/img/web-projects/optimized/web-project-23.webp';
 
 const portfolioItems = [
-  { src: site1, alt: 'Mental Forge', href: 'https://mentalforge.ai/' },
-  { src: site2, alt: 'Leanops AI', href: 'https://abc.massive-designs.com/' },
-  { src: site3, alt: 'Nickolas Shymar', href: 'https://nickolasshymar.com/' },
-  { src: site4, alt: 'Enhanced Bears', href: 'https://enhancedbears.massive-designs.com/' },
-  { src: site5, alt: 'Crazy Strong Sarms', href: 'https://crazystrongsarms.massive-designs.com/' },
-  { src: site6, alt: 'Kendras Meals LLC', href: 'https://kendrasmealsllc.com/' },
-  { src: site7, alt: 'SRrealty Brokerage', href: 'https://srrealtybrokerage.com/' },
-  { src: site8, alt: 'Bonney Building', href: 'https://bonneybuilding.com/' },
+  { src: web20, alt: 'MentalForge Media' },
+  { src: web21, alt: 'TopFreeTools' },
+  { src: web22, alt: 'VertexTechHub' },
+  { src: web23, alt: 'SaaSComparely' },
 ];
 
 export default function FortWorth() {
@@ -130,7 +122,7 @@ export default function FortWorth() {
         ]}
       />
 
-      <PortfolioGrid
+      <PortfolioHoverGrid
         heading="Work From Around Fort Worth and Tarrant County"
         description="Examples of the design and marketing work we've done for businesses growing alongside Fort Worth itself."
         items={portfolioItems}

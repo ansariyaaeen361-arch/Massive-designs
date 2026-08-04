@@ -5,29 +5,25 @@ import ServiceHero from '../../components/service-page/ServiceHero';
 import FeatureGrid from '../../components/service-page/FeatureGrid';
 import ProcessSteps from '../../components/service-page/ProcessSteps';
 import AreaMapHighlight from '../../components/service-page/AreaMapHighlight';
-import PortfolioGrid from '../../components/service-page/PortfolioGrid';
+import PortfolioHoverGrid from '../../components/service-page/PortfolioHoverGrid';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import OrderModal from '../../components/forms/OrderModal';
 import { brand } from '../../lib/brand';
 
-import site1 from '../../assets/img/services/webdesign-portfolio/site1.webp';
-import site2 from '../../assets/img/services/webdesign-portfolio/site2.webp';
-import site3 from '../../assets/img/services/webdesign-portfolio/site3.webp';
-import site4 from '../../assets/img/services/webdesign-portfolio/site4.webp';
-import site5 from '../../assets/img/services/webdesign-portfolio/site5.webp';
-import site6 from '../../assets/img/services/webdesign-portfolio/site6.webp';
-import site7 from '../../assets/img/services/webdesign-portfolio/site7.webp';
-import site8 from '../../assets/img/services/webdesign-portfolio/site8.webp';
+import web7 from '../../assets/img/web-projects/optimized/web-project-7.webp';
+import web8 from '../../assets/img/web-projects/optimized/web-project-8.webp';
+import web9 from '../../assets/img/web-projects/optimized/web-project-9.webp';
+import web10 from '../../assets/img/web-projects/optimized/web-project-10.webp';
+import web11 from '../../assets/img/web-projects/optimized/web-project-11.webp';
+import web12 from '../../assets/img/web-projects/optimized/web-project-12.webp';
 
 const portfolioItems = [
-  { src: site1, alt: 'Mental Forge', href: 'https://mentalforge.ai/' },
-  { src: site2, alt: 'Leanops AI', href: 'https://abc.massive-designs.com/' },
-  { src: site3, alt: 'Nickolas Shymar', href: 'https://nickolasshymar.com/' },
-  { src: site4, alt: 'Enhanced Bears', href: 'https://enhancedbears.massive-designs.com/' },
-  { src: site5, alt: 'Crazy Strong Sarms', href: 'https://crazystrongsarms.massive-designs.com/' },
-  { src: site6, alt: 'Kendras Meals LLC', href: 'https://kendrasmealsllc.com/' },
-  { src: site7, alt: 'SRrealty Brokerage', href: 'https://srrealtybrokerage.com/' },
-  { src: site8, alt: 'Bonney Building', href: 'https://bonneybuilding.com/' },
+  { src: web7, alt: "Pete's Dumpster Rentals" },
+  { src: web8, alt: 'Mustard Seed Yard Care' },
+  { src: web9, alt: 'MFM Designs' },
+  { src: web10, alt: 'Mental Forge AI Automation' },
+  { src: web11, alt: 'Jedi Atlantis' },
+  { src: web12, alt: 'Happy Homes LLP' },
 ];
 
 export default function Dallas() {
@@ -122,7 +118,7 @@ export default function Dallas() {
         ]}
       />
 
-      <PortfolioGrid
+      <PortfolioHoverGrid
         heading="Our work across Dallas and DFW"
         description="A look at the kind of design, branding, and marketing work we've built for businesses across the Dallas–Fort Worth area."
         items={portfolioItems}

@@ -5,29 +5,25 @@ import ServiceHero from '../../components/service-page/ServiceHero';
 import FeatureGrid from '../../components/service-page/FeatureGrid';
 import ProcessSteps from '../../components/service-page/ProcessSteps';
 import AreaMapHighlight from '../../components/service-page/AreaMapHighlight';
-import PortfolioGrid from '../../components/service-page/PortfolioGrid';
+import PortfolioHoverGrid from '../../components/service-page/PortfolioHoverGrid';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import OrderModal from '../../components/forms/OrderModal';
 import { brand } from '../../lib/brand';
 
-import site1 from '../../assets/img/services/webdesign-portfolio/site1.webp';
-import site2 from '../../assets/img/services/webdesign-portfolio/site2.webp';
-import site3 from '../../assets/img/services/webdesign-portfolio/site3.webp';
-import site4 from '../../assets/img/services/webdesign-portfolio/site4.webp';
-import site5 from '../../assets/img/services/webdesign-portfolio/site5.webp';
-import site6 from '../../assets/img/services/webdesign-portfolio/site6.webp';
-import site7 from '../../assets/img/services/webdesign-portfolio/site7.webp';
-import site8 from '../../assets/img/services/webdesign-portfolio/site8.webp';
+import web1 from '../../assets/img/web-projects/optimized/web-project-1.webp';
+import web2 from '../../assets/img/web-projects/optimized/web-project-2.webp';
+import web3 from '../../assets/img/web-projects/optimized/web-project-3.webp';
+import web4 from '../../assets/img/web-projects/optimized/web-project-4.webp';
+import web5 from '../../assets/img/web-projects/optimized/web-project-5.webp';
+import web6 from '../../assets/img/web-projects/optimized/web-project-6.webp';
 
 const portfolioItems = [
-  { src: site1, alt: 'Mental Forge', href: 'https://mentalforge.ai/' },
-  { src: site2, alt: 'Leanops AI', href: 'https://abc.massive-designs.com/' },
-  { src: site3, alt: 'Nickolas Shymar', href: 'https://nickolasshymar.com/' },
-  { src: site4, alt: 'Enhanced Bears', href: 'https://enhancedbears.massive-designs.com/' },
-  { src: site5, alt: 'Crazy Strong Sarms', href: 'https://crazystrongsarms.massive-designs.com/' },
-  { src: site6, alt: 'Kendras Meals LLC', href: 'https://kendrasmealsllc.com/' },
-  { src: site7, alt: 'SRrealty Brokerage', href: 'https://srrealtybrokerage.com/' },
-  { src: site8, alt: 'Bonney Building', href: 'https://bonneybuilding.com/' },
+  { src: web1, alt: "Aguilera's Home Repair" },
+  { src: web2, alt: 'Yates Services of Memphis' },
+  { src: web3, alt: 'Santos Landscape' },
+  { src: web4, alt: 'Top Notch Drywall and Painting' },
+  { src: web5, alt: 'VIP Renovation' },
+  { src: web6, alt: 'Rima Beauty Spa' },
 ];
 
 export default function Austin() {
@@ -126,7 +122,7 @@ export default function Austin() {
         ]}
       />
 
-      <PortfolioGrid
+      <PortfolioHoverGrid
         heading="A Sample of Our Austin-Area Work"
         description="A look at recent design and marketing projects for businesses competing in and around the Austin market."
         items={portfolioItems}

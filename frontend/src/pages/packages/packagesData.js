@@ -7,7 +7,7 @@ export const pricingTabs = [
         badge: 'Best Value',
         title: 'Startup Website Package',
         oldPrice: '$400 ONLY',
-        price: '$159.00',
+        price: '$299.00',
         features: [
           '1 to 3 Pages Website Design',
           '2 Stock Images',
@@ -29,7 +29,7 @@ export const pricingTabs = [
         badge: 'Popular',
         title: 'Professional Website Package',
         oldPrice: '$1000 ONLY',
-        price: '$299.00',
+        price: '$699.00',
         highlight: true,
         features: [
           '5 to 8 Pages Website Design',

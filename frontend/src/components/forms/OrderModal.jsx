@@ -173,12 +173,21 @@ export default function OrderModal({ open, onClose }) {
                 <label htmlFor="order-service" className="mb-2 block text-xs uppercase tracking-wide text-white/50">
                   Select Service
                 </label>
-                <select id="order-service" name="our_service" value={form.our_service} onChange={handleChange} className={fieldClass}>
-                  <option value="">Choose a service</option>
+                <select
+                  id="order-service"
+                  name="our_service"
+                  value={form.our_service}
+                  onChange={handleChange}
+                  className={fieldClass}
+                  style={{ colorScheme: 'dark' }}
+                >
+                  <option value="" className="bg-[#0b0c10] text-white">
+                    Choose a service
+                  </option>
                   {serviceGroups.map((group) => (
-                    <optgroup key={group.label} label={group.label}>
+                    <optgroup key={group.label} label={group.label} className="bg-[#0b0c10] text-white">
                       {group.options.map((opt) => (
-                        <option key={opt} value={opt}>
+                        <option key={opt} value={opt} className="bg-[#0b0c10] text-white">
                           {opt}
                         </option>
                       ))}
