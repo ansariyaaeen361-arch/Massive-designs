@@ -28,3 +28,26 @@ export async function sendContactEmail({ name, email, phone, company, message })
     `,
   });
 }
+
+export async function sendAuditReportEmail({ to, url, overallScore, pdfBuffer }) {
+  await transporter.sendMail({
+    from: `"${process.env.MAIL_FROM_NAME}" <${process.env.MAIL_FROM_EMAIL}>`,
+    to,
+    subject: `Your Website Audit Report for ${url}`,
+    html: `
+      <p>Hi,</p>
+      <p>Thanks for running a free website audit with Massive Designs. Your site scored
+        <strong>${overallScore}/100</strong>. Your full detailed report is attached as a PDF.</p>
+      <p>Want help fixing the issues we found? <a href="https://massive-designs.com/contact">Book a free consultation</a>
+        and our team will walk you through it.</p>
+      <p>&mdash; Massive Designs</p>
+    `,
+    attachments: [
+      {
+        filename: 'massive-designs-website-audit.pdf',
+        content: pdfBuffer,
+        contentType: 'application/pdf',
+      },
+    ],
+  });
+}

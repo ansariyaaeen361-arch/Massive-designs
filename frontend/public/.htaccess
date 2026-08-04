@@ -1,0 +1,9 @@
+# React Router (client-side routing) fallback: any request that isn't a
+# real file or folder on disk gets served index.html so routes like
+# /about or /contact don't 404 on a hard refresh or direct link.
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]

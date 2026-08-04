@@ -15,6 +15,7 @@ const MobileAppDevelopment = lazy(() => import('./pages/services/MobileAppDevelo
 const Projects = lazy(() => import('./pages/Projects'));
 const Packages = lazy(() => import('./pages/Packages'));
 const Contact = lazy(() => import('./pages/Contact'));
+const AuditTool = lazy(() => import('./pages/AuditTool'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsConditions = lazy(() => import('./pages/TermsConditions'));
 const AreasWeServe = lazy(() => import('./pages/AreasWeServe'));
@@ -55,6 +56,7 @@ export default function App() {
             <Route path="/projects" element={route(Projects)} />
             <Route path="/packages" element={route(Packages)} />
             <Route path="/contact" element={route(Contact)} />
+            <Route path="/website-audit" element={route(AuditTool)} />
             <Route path="/privacy-policy" element={route(PrivacyPolicy)} />
             <Route path="/terms-conditions" element={route(TermsConditions)} />
             <Route path="/areas-we-serve" element={route(AreasWeServe)} />

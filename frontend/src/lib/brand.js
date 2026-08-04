@@ -45,6 +45,7 @@ export const navLinks = [
       { label: 'San Antonio', href: '/areas-we-serve/san-antonio' },
     ],
   },
+  { label: 'Website Audit', href: '/website-audit' },
 ];
 
 export const footerQuickLinks = [
