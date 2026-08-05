@@ -1,5 +1,5 @@
-import axios from 'axios';
 import * as cheerio from 'cheerio';
+import puppeteer from 'puppeteer';
 import { runPageSpeedChecks } from './pagespeed.js';
 import { runSslCheck } from './ssl.js';
 import { analyzeSeo, checkRobotsAndSitemap } from './seo.js';
@@ -54,23 +54,38 @@ const fallbackSsl = (message) => ({
 const fallbackHtmlValidation = (message) => ({ errorCount: 0, warningCount: 0, totalMessages: 0, error: message });
 
 async function fetchHomepageHtml(url) {
-  let response;
+  // Many sites (including this one) are client-side-rendered React/Vue apps
+  // where the real content, H1s, and nav links only exist after JS runs, not
+  // in the raw server response. A headless browser renders the page the same
+  // way a real visitor's browser would, so checks reflect what's actually on
+  // screen instead of the near-empty <div id="root"> shell.
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  });
+
   try {
-    response = await axios.get(url, {
-      timeout: 15000,
-      maxRedirects: 5,
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MassiveDesignsAuditTool/1.0; +https://massive-designs.com)' },
-      validateStatus: (status) => status < 500,
-    });
-  } catch {
-    throw new Error('We could not reach that website. Please check the URL and try again.');
-  }
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (compatible; MassiveDesignsAuditTool/1.0; +https://massive-designs.com)');
 
-  if (response.status >= 400) {
-    throw new Error(`The site responded with an error (HTTP ${response.status}). Please check the URL and try again.`);
-  }
+    let response;
+    try {
+      response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+    } catch {
+      throw new Error('We could not reach that website. Please check the URL and try again.');
+    }
 
-  return response.data;
+    if (!response || response.status() >= 400) {
+      throw new Error(
+        `The site responded with an error (HTTP ${response ? response.status() : 'unknown'}). Please check the URL and try again.`,
+      );
+    }
+
+    return await page.content();
+  } finally {
+    await browser.close();
+  }
 }
 
 export async function runAudit(rawUrl) {
