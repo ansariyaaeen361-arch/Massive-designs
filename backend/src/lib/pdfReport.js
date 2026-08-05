@@ -19,11 +19,18 @@ const MUTED = '#6B6B6B';
 const TRACK = '#EDEDED';
 const RED = '#D64545';
 const AMBER = '#C98A1A';
+const CTA_BG = '#F2F9E7';
+const CTA_BORDER = '#CFE8A8';
 
 const PAGE_WIDTH = 595.28;
 const MARGIN = 50;
 const CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2;
 const FOOTER_TEXT = 'Fixed by Massive Designs — book a free consultation at https://massive-designs.com/contact';
+
+const CONTACT_EMAIL = 'info@massive-designs.com';
+const CONTACT_PHONE_DISPLAY = '+1 786 936 4483';
+const CONTACT_PHONE_TEL = 'tel:+17869364483';
+const CONTACT_URL = 'https://massive-designs.com/contact';
 
 function tierColor(score) {
   if (score >= 80) return PRIMARY;
@@ -63,6 +70,71 @@ function drawScoreBar(doc, x, y, width, score) {
   doc.roundedRect(x, y, width, height, height / 2).fill(TRACK);
   const fillWidth = Math.max(height, (width * score) / 100);
   doc.roundedRect(x, y, fillWidth, height, height / 2).fill(tierColor(score));
+}
+
+function drawCtaSection(doc) {
+  const padding = 20;
+  const innerWidth = CONTENT_WIDTH - padding * 2;
+  const heading = 'Want These Issues Fixed For You?';
+  const body =
+    "You don't have to tackle this alone. Massive Designs can handle everything in this report — performance, SEO, security, and every issue in between — so your website works the way it should. Reach out and we'll take it from here.";
+  const buttonHeight = 30;
+
+  doc.font('Helvetica-Bold').fontSize(14);
+  const headingHeight = doc.heightOfString(heading, { width: innerWidth });
+  doc.font('Helvetica').fontSize(10.5);
+  const bodyHeight = doc.heightOfString(body, { width: innerWidth });
+
+  const boxHeight = padding * 2 + headingHeight + 8 + bodyHeight + 18 + buttonHeight + 28;
+
+  if (doc.y + boxHeight > doc.page.height - 90) {
+    doc.addPage();
+  }
+
+  const boxTop = doc.y;
+  doc.roundedRect(MARGIN, boxTop, CONTENT_WIDTH, boxHeight, 12).fillAndStroke(CTA_BG, CTA_BORDER);
+
+  let cursorY = boxTop + padding;
+  doc.fillColor(HEADING).font('Helvetica-Bold').fontSize(14).text(heading, MARGIN + padding, cursorY, {
+    width: innerWidth,
+  });
+  cursorY += headingHeight + 8;
+
+  doc.fillColor(MUTED).font('Helvetica').fontSize(10.5).text(body, MARGIN + padding, cursorY, { width: innerWidth });
+  cursorY += bodyHeight + 18;
+
+  const emailLabel = `Email Us: ${CONTACT_EMAIL}`;
+  const bookLabel = 'Book a Free Consultation';
+  doc.font('Helvetica-Bold').fontSize(10.5);
+  const emailBtnWidth = doc.widthOfString(emailLabel) + 32;
+  const bookBtnWidth = doc.widthOfString(bookLabel) + 32;
+
+  const emailBtnX = MARGIN + padding;
+  doc.roundedRect(emailBtnX, cursorY, emailBtnWidth, buttonHeight, buttonHeight / 2).fill(PRIMARY);
+  doc
+    .fillColor('#FFFFFF')
+    .text(emailLabel, emailBtnX, cursorY + 9, { width: emailBtnWidth, align: 'center', lineBreak: false });
+  doc.link(emailBtnX, cursorY, emailBtnWidth, buttonHeight, `mailto:${CONTACT_EMAIL}`);
+
+  const bookBtnX = emailBtnX + emailBtnWidth + 12;
+  doc
+    .roundedRect(bookBtnX, cursorY, bookBtnWidth, buttonHeight, buttonHeight / 2)
+    .lineWidth(1.2)
+    .stroke(PRIMARY);
+  doc
+    .fillColor(PRIMARY)
+    .text(bookLabel, bookBtnX, cursorY + 9, { width: bookBtnWidth, align: 'center', lineBreak: false });
+  doc.link(bookBtnX, cursorY, bookBtnWidth, buttonHeight, CONTACT_URL);
+
+  cursorY += buttonHeight + 16;
+
+  const phoneLabel = `Or call us: ${CONTACT_PHONE_DISPLAY}`;
+  doc.font('Helvetica').fontSize(10);
+  const phoneWidth = doc.widthOfString(phoneLabel);
+  doc.fillColor(HEADING).text(phoneLabel, MARGIN + padding, cursorY, { lineBreak: false });
+  doc.link(MARGIN + padding, cursorY - 2, phoneWidth, 14, CONTACT_PHONE_TEL);
+
+  doc.y = boxTop + boxHeight + 12;
 }
 
 export function generateAuditPdf({ url, overallScore, scores, issues }) {
@@ -192,6 +264,9 @@ export function generateAuditPdf({ url, overallScore, scores, issues }) {
         doc.moveDown(0.9);
       });
     }
+
+    doc.moveDown(0.4);
+    drawCtaSection(doc);
 
     const range = doc.bufferedPageRange();
     for (let i = 0; i < range.count; i += 1) {
