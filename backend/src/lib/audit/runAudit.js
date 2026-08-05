@@ -37,6 +37,7 @@ const fallbackPagespeed = (message) => ({
   performanceScore: 0,
   mobilePerformanceScore: 0,
   desktopPerformanceScore: 0,
+  accessibilityScore: 0,
   mobileFriendlyScore: 0,
   coreWebVitals: { mobile: { lcp: null, cls: null, inp: null }, desktop: { lcp: null, cls: null, inp: null } },
   error: message,
@@ -120,7 +121,7 @@ export async function runAudit(rawUrl) {
     seo: computeSeoScore(seo, robotsSitemap),
     mobile: computeMobileScore(pagespeed, seo),
     security: ssl.score,
-    accessibility: computeAccessibilityScore(htmlValidation, brokenLinks),
+    accessibility: computeAccessibilityScore(pagespeed, htmlValidation, brokenLinks),
   };
 
   const overallScore = computeOverallScore(scores);

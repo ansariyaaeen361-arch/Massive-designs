@@ -9,6 +9,7 @@ async function fetchPageSpeed(url, strategy) {
   params.append('strategy', strategy.toUpperCase());
   params.append('category', 'PERFORMANCE');
   params.append('category', 'SEO');
+  params.append('category', 'ACCESSIBILITY');
   if (process.env.GOOGLE_PAGESPEED_API_KEY) {
     params.append('key', process.env.GOOGLE_PAGESPEED_API_KEY);
   }
@@ -47,11 +48,13 @@ export async function runPageSpeedChecks(url) {
 
   const mobilePerformanceScore = Math.round((mobile.lighthouseResult?.categories?.performance?.score ?? 0) * 100);
   const desktopPerformanceScore = Math.round((desktop.lighthouseResult?.categories?.performance?.score ?? 0) * 100);
+  const accessibilityScore = Math.round((mobile.lighthouseResult?.categories?.accessibility?.score ?? 0) * 100);
 
   return {
     performanceScore: Math.round((mobilePerformanceScore + desktopPerformanceScore) / 2),
     mobilePerformanceScore,
     desktopPerformanceScore,
+    accessibilityScore,
     mobileFriendlyScore: extractMobileFriendlyScore(mobile.lighthouseResult),
     coreWebVitals: {
       mobile: extractCoreWebVitals(mobile.lighthouseResult, mobile.loadingExperience),

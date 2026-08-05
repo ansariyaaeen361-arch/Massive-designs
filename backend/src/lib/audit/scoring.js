@@ -37,12 +37,16 @@ export function computeMobileScore(pagespeed, seo) {
   return clamp(pagespeed.mobileFriendlyScore * 0.7 + viewportScore * 0.3);
 }
 
-export function computeAccessibilityScore(htmlValidation, brokenLinks) {
-  let score = 100;
-  score -= Math.min(50, htmlValidation.errorCount * 3);
-  score -= Math.min(20, htmlValidation.warningCount * 1);
-  score -= Math.min(30, brokenLinks.brokenCount * 6);
-  return clamp(score);
+export function computeAccessibilityScore(pagespeed, htmlValidation, brokenLinks) {
+  let siteHealthScore = 100;
+  siteHealthScore -= Math.min(50, htmlValidation.errorCount * 3);
+  siteHealthScore -= Math.min(20, htmlValidation.warningCount * 1);
+  siteHealthScore -= Math.min(30, brokenLinks.brokenCount * 6);
+
+  // Lighthouse's real accessibility audit (color contrast, ARIA, labels,
+  // etc.) carries most of the weight since it's what "accessibility"
+  // actually means; HTML validity/broken links remain a smaller factor.
+  return clamp(pagespeed.accessibilityScore * 0.75 + clamp(siteHealthScore) * 0.25);
 }
 
 export function computeOverallScore(scores) {
