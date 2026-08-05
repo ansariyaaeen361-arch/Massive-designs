@@ -27,8 +27,7 @@ const sendReportLimiter = rateLimit({
   message: { success: false, error: 'Too many requests. Please try again in an hour.' },
 });
 
-// TEMP: rate limiter disabled for testing, re-add `auditLimiter` as the second arg to re-enable
-router.post('/', async (req, res) => {
+router.post('/', auditLimiter, async (req, res) => {
   const { url } = req.body ?? {};
 
   if (!url || typeof url !== 'string') {
@@ -67,8 +66,7 @@ router.post('/', async (req, res) => {
   });
 });
 
-// TEMP: rate limiter disabled for testing, re-add `sendReportLimiter` as the second arg to re-enable
-router.post('/send-report', async (req, res) => {
+router.post('/send-report', sendReportLimiter, async (req, res) => {
   const { email, auditId } = req.body ?? {};
 
   if (!email || typeof email !== 'string' || !EMAIL_RE.test(email.trim())) {

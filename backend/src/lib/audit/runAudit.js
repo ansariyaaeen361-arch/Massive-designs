@@ -100,7 +100,7 @@ export async function runAudit(rawUrl) {
     runPageSpeedChecks(url),
     runSslCheck(parsedUrl.hostname),
     checkRobotsAndSitemap(url),
-    runHtmlValidation(url),
+    runHtmlValidation(html),
   ]);
 
   const pagespeed =
@@ -113,7 +113,7 @@ export async function runAudit(rawUrl) {
       ? htmlValidationResult.value
       : fallbackHtmlValidation(htmlValidationResult.reason?.message);
 
-  const seo = analyzeSeo($);
+  const seo = analyzeSeo($, url);
   const brokenLinks = await checkBrokenLinks($, url);
 
   const scores = {

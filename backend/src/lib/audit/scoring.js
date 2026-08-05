@@ -28,6 +28,10 @@ export function computeSeoScore(seo, robotsSitemap) {
   if (!seo.hasFavicon) score -= 5;
   if (!robotsSitemap.robotsExists) score -= 8;
   if (!robotsSitemap.sitemapExists) score -= 8;
+  if (!seo.hasHtmlLang) score -= 5;
+  if (!seo.hasCanonical) score -= 5;
+  if (!seo.hasOpenGraph) score -= 6;
+  score -= Math.min(10, seo.mixedContentCount * 3);
 
   return clamp(score);
 }
@@ -42,11 +46,17 @@ export function computeAccessibilityScore(pagespeed, htmlValidation, brokenLinks
   siteHealthScore -= Math.min(50, htmlValidation.errorCount * 3);
   siteHealthScore -= Math.min(20, htmlValidation.warningCount * 1);
   siteHealthScore -= Math.min(30, brokenLinks.brokenCount * 6);
+  siteHealthScore = clamp(siteHealthScore);
+
+  // If PageSpeed failed outright, treating its fallback accessibilityScore
+  // of 0 as real data would understate a site's actual accessibility.
+  // Fall back to the HTML-validity/broken-links signal alone instead.
+  if (pagespeed.error) return siteHealthScore;
 
   // Lighthouse's real accessibility audit (color contrast, ARIA, labels,
   // etc.) carries most of the weight since it's what "accessibility"
   // actually means; HTML validity/broken links remain a smaller factor.
-  return clamp(pagespeed.accessibilityScore * 0.75 + clamp(siteHealthScore) * 0.25);
+  return clamp(pagespeed.accessibilityScore * 0.75 + siteHealthScore * 0.25);
 }
 
 export function computeOverallScore(scores) {
@@ -66,8 +76,22 @@ function pushIssue(issues, condition, issue) {
 
 export function buildIssues({ pagespeed, seo, robotsSitemap, ssl, brokenLinks, htmlValidation }) {
   const issues = [];
+  // If the PageSpeed API call failed (quota, timeout, network error), we
+  // have zero real performance/mobile/accessibility data for this run.
+  // Reporting "loads too slowly" etc. off a fallback score of 0 would be a
+  // confident claim about something we never actually measured, so those
+  // checks are skipped entirely and replaced with an honest notice instead.
+  const pagespeedOk = !pagespeed.error;
 
-  pushIssue(issues, pagespeed.performanceScore < 50, {
+  pushIssue(issues, !pagespeedOk, {
+    category: 'Performance',
+    severity: 60,
+    title: "We couldn't fully measure your site's performance this time",
+    description:
+      "Google's PageSpeed service didn't return a result during this scan, so performance, mobile-friendliness, and accessibility scores below are incomplete for this run.",
+    fix: 'Run the audit again in a few minutes — this is usually a temporary hiccup on the measurement service, not an issue with your site.',
+  });
+  pushIssue(issues, pagespeedOk && pagespeed.performanceScore < 50, {
     category: 'Performance',
     severity: 90,
     title: 'Your website loads too slowly',
@@ -75,7 +99,7 @@ export function buildIssues({ pagespeed, seo, robotsSitemap, ssl, brokenLinks, h
       'Visitors are likely leaving before your page finishes loading. Slow-loading pages hurt both user experience and search rankings.',
     fix: 'Compress and resize images, enable browser caching, and remove unused JavaScript/CSS to cut load time.',
   });
-  pushIssue(issues, pagespeed.performanceScore >= 50 && pagespeed.performanceScore < 80, {
+  pushIssue(issues, pagespeedOk && pagespeed.performanceScore >= 50 && pagespeed.performanceScore < 80, {
     category: 'Performance',
     severity: 55,
     title: 'Your website could load faster',
@@ -83,7 +107,7 @@ export function buildIssues({ pagespeed, seo, robotsSitemap, ssl, brokenLinks, h
       'Your page loads, but not as quickly as it could. Shaving off load time can meaningfully improve conversions.',
     fix: 'Optimize your largest images to modern formats (WebP/AVIF) and defer any scripts that are not needed immediately.',
   });
-  pushIssue(issues, pagespeed.coreWebVitals.mobile.lcp != null && pagespeed.coreWebVitals.mobile.lcp > 2.5, {
+  pushIssue(issues, pagespeedOk && pagespeed.coreWebVitals.mobile.lcp != null && pagespeed.coreWebVitals.mobile.lcp > 2.5, {
     category: 'Performance',
     severity: 70,
     title: 'Your main content takes too long to appear on mobile',
@@ -91,7 +115,7 @@ export function buildIssues({ pagespeed, seo, robotsSitemap, ssl, brokenLinks, h
       'Mobile visitors have to wait too long before the main content of your page shows up on screen, a common reason people bounce.',
     fix: 'Compress your hero image/banner and make sure it starts loading immediately, before other page scripts.',
   });
-  pushIssue(issues, pagespeed.coreWebVitals.mobile.cls != null && pagespeed.coreWebVitals.mobile.cls > 0.1, {
+  pushIssue(issues, pagespeedOk && pagespeed.coreWebVitals.mobile.cls != null && pagespeed.coreWebVitals.mobile.cls > 0.1, {
     category: 'Performance',
     severity: 50,
     title: 'Your page layout shifts around while loading',
@@ -99,7 +123,7 @@ export function buildIssues({ pagespeed, seo, robotsSitemap, ssl, brokenLinks, h
       'Elements on your page move around as it loads, which can frustrate visitors and cause accidental clicks or taps.',
     fix: 'Set explicit width and height on images and embeds so the browser reserves space for them before they load.',
   });
-  pushIssue(issues, pagespeed.coreWebVitals.mobile.inp != null && pagespeed.coreWebVitals.mobile.inp > 200, {
+  pushIssue(issues, pagespeedOk && pagespeed.coreWebVitals.mobile.inp != null && pagespeed.coreWebVitals.mobile.inp > 200, {
     category: 'Performance',
     severity: 45,
     title: 'Your site feels sluggish to interact with on mobile',
@@ -180,6 +204,34 @@ export function buildIssues({ pagespeed, seo, robotsSitemap, ssl, brokenLinks, h
     title: 'No sitemap.xml file was found',
     description: 'A sitemap makes it easier for search engines to discover and index all of your pages.',
     fix: 'Generate a sitemap.xml listing your pages and submit it in Google Search Console.',
+  });
+  pushIssue(issues, !seo.hasHtmlLang, {
+    category: 'SEO',
+    severity: 25,
+    title: 'Your page is missing a language declaration',
+    description: 'Without a declared language, screen readers and translation tools may guess wrong, and search engines lose a useful signal.',
+    fix: 'Add a lang attribute to your <html> tag, e.g. <html lang="en">.',
+  });
+  pushIssue(issues, !seo.hasCanonical, {
+    category: 'SEO',
+    severity: 30,
+    title: 'Your page is missing a canonical tag',
+    description: 'Without a canonical URL, search engines can split ranking signals across duplicate or parameterized versions of the same page.',
+    fix: 'Add <link rel="canonical" href="..."> pointing to the preferred URL for this page.',
+  });
+  pushIssue(issues, !seo.hasOpenGraph, {
+    category: 'SEO',
+    severity: 40,
+    title: 'Your page is missing social sharing tags',
+    description: 'Without Open Graph tags, links to your site look broken or blank when shared on Facebook, LinkedIn, WhatsApp, and similar apps.',
+    fix: 'Add og:title, og:description, and og:image meta tags so shared links show a proper preview.',
+  });
+  pushIssue(issues, seo.mixedContentCount > 0, {
+    category: 'Security',
+    severity: Math.min(70, 35 + seo.mixedContentCount * 5),
+    title: `${seo.mixedContentCount} resource${seo.mixedContentCount === 1 ? '' : 's'} loading over an insecure connection`,
+    description: 'Your page is served over HTTPS but loads some images/scripts/styles over plain HTTP, which browsers flag as a security risk and may block.',
+    fix: 'Update those resource URLs to HTTPS (or protocol-relative) so nothing loads over an insecure connection.',
   });
 
   pushIssue(issues, ssl.status !== 'READY' || ssl.score < 50, {
