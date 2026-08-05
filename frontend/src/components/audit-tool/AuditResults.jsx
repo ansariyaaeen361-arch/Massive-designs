@@ -27,6 +27,7 @@ function scoreRingColor(score) {
 
 export default function AuditResults({ result }) {
   const { url, overallScore, scores, issues, auditId } = result;
+  const topIssues = issues.slice(0, 5);
   const ringColor = scoreRingColor(overallScore);
   const circumference = 2 * Math.PI * 54;
   const offset = circumference - (overallScore / 100) * circumference;
@@ -69,12 +70,12 @@ export default function AuditResults({ result }) {
         <p className="mt-2 text-sm text-white/50">In plain language, here&rsquo;s what&rsquo;s holding your site back.</p>
 
         <ul className="mt-6 space-y-4">
-          {issues.length === 0 && (
+          {topIssues.length === 0 && (
             <li className="rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-white/60">
               No major issues found, your site is in great shape.
             </li>
           )}
-          {issues.map((issue) => (
+          {topIssues.map((issue) => (
             <li key={issue.title} className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-5">
               <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <HiOutlineExclamationCircle className="text-lg" />

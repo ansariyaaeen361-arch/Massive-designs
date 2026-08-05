@@ -4,6 +4,7 @@ const issueSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
+    fix: { type: String, required: true },
     severity: { type: Number, required: true },
     category: { type: String, required: true },
   },
