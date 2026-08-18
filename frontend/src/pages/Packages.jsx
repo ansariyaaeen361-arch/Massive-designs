@@ -9,8 +9,18 @@ import PricingCard from '../pages/packages/PricingCard';
 import { pricingTabs } from '../pages/packages/packagesData';
 import { brand } from '../lib/brand';
 import { gsap } from '../lib/gsap';
+import { SITE_URL } from '../lib/schema';
 
 import packagesMain from '../assets/img/packages/packages-main.webp';
+
+const PACKAGE_LIST = [
+  'Web Design & Development',
+  'Branding & Logo Design',
+  'SEO Services',
+  'Mobile App Development',
+  'Content Marketing',
+  'Social Media Marketing',
+];
 
 export default function Packages() {
   const [activeTab, setActiveTab] = useState(pricingTabs[0].id);
@@ -29,6 +39,32 @@ export default function Packages() {
         title="Packages - Massive Designs"
         description="Massive Designs offers scalable packages in North Richland Hills, TX for web, e-commerce, branding and logo services designed for growth and impact."
         path="/packages"
+        schemaGraph={[
+          {
+            '@type': 'CollectionPage',
+            '@id': `${SITE_URL}/packages/#webpage`,
+            url: `${SITE_URL}/packages/`,
+            name: 'Packages | Massive Designs',
+            description:
+              'Explore web design, SEO, branding, digital marketing, and other service packages from Massive Designs for businesses across Texas.',
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            about: { '@id': `${SITE_URL}/#organization` },
+            mainEntity: { '@id': `${SITE_URL}/packages/#packages` },
+            inLanguage: 'en-US',
+          },
+          {
+            '@type': 'ItemList',
+            '@id': `${SITE_URL}/packages/#packages`,
+            name: 'Massive Designs Service Packages',
+            itemListOrder: 'https://schema.org/ItemListOrderAscending',
+            numberOfItems: PACKAGE_LIST.length,
+            itemListElement: PACKAGE_LIST.map((name, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name,
+            })),
+          },
+        ]}
       />
       <PageHeader title="Packages" crumb="Packages" />
 

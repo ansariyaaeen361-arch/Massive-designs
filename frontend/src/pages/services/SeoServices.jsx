@@ -6,6 +6,7 @@ import ProcessSteps from '../../components/service-page/ProcessSteps';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import Reveal from '../../components/motion/Reveal';
 import { brand } from '../../lib/brand';
+import { getServicePageNodes } from '../../lib/schema';
 
 import beforeAfter from '../../assets/img/services/seo/before-after-seo.webp';
 import galleryOne from '../../assets/img/services/seo/seo-gallery-1.webp';
@@ -25,6 +26,25 @@ export default function SeoServices() {
         title="SEO Services in North Richland Hills Texas – Massive Designs"
         description="Expert SEO services in North Richland Hills, TX local SEO, technical optimisation, and content strategies to grow your business online."
         path="/seo-services"
+        schemaGraph={getServicePageNodes({
+          slug: 'seo-services',
+          serviceName: 'SEO Services',
+          serviceDescription:
+            'SEO services for businesses in Texas, including search engine optimization strategies designed to improve organic visibility, search rankings, website traffic, and long-term online growth.',
+          serviceTypes: [
+            'Search Engine Optimization',
+            'SEO Services',
+            'Local SEO',
+            'On-Page SEO',
+            'Technical SEO',
+            'SEO Content Optimization',
+            'Keyword Research',
+            'Organic Search Optimization',
+          ],
+          pageName: 'SEO Services in Texas | Massive Designs',
+          pageDescription:
+            'Massive Designs provides SEO services for Texas businesses to improve search visibility, organic rankings, website traffic, and long-term online growth.',
+        })}
       />
       <ServiceHero
         title="SEO Services in North Richland Hills Texas"

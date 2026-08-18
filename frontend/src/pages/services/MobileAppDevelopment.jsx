@@ -6,6 +6,7 @@ import ProcessSteps from '../../components/service-page/ProcessSteps';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import Reveal from '../../components/motion/Reveal';
 import { brand } from '../../lib/brand';
+import { getServicePageNodes } from '../../lib/schema';
 
 import beforeAfter from '../../assets/img/services/mobile-app/before-after-app.webp';
 import galleryOne from '../../assets/img/services/mobile-app/app-gallery-1.webp';
@@ -25,6 +26,24 @@ export default function MobileAppDevelopment() {
         title="Mobile App Development North Richland Hills TX – Massive Designs"
         description="We create mobile apps in North Richland Hills, TX that combine creativity, strategy, and performance to drive growth and user engagement."
         path="/mobile-app-development"
+        schemaGraph={getServicePageNodes({
+          slug: 'mobile-app-development',
+          serviceName: 'Mobile App Development',
+          serviceDescription:
+            'Mobile app development services for businesses in Texas, including custom mobile application design and development focused on performance, usability, scalability, and business needs.',
+          serviceTypes: [
+            'Mobile App Development',
+            'Custom App Development',
+            'iOS App Development',
+            'Android App Development',
+            'Mobile Application Design',
+            'Cross-Platform App Development',
+            'App UI/UX Design',
+          ],
+          pageName: 'Mobile App Development in Texas | Massive Designs',
+          pageDescription:
+            'Massive Designs provides custom mobile app development services for Texas businesses, creating scalable, user-friendly applications designed around business goals and customer needs.',
+        })}
       />
       <ServiceHero
         title="Texas Mobile App Development for Growing Businesses"

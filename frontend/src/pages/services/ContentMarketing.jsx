@@ -6,6 +6,7 @@ import ProcessSteps from '../../components/service-page/ProcessSteps';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import Reveal from '../../components/motion/Reveal';
 import { brand } from '../../lib/brand';
+import { getServicePageNodes } from '../../lib/schema';
 
 import beforeAfter from '../../assets/img/services/content-marketing/before-after-content.webp';
 import galleryOne from '../../assets/img/services/content-marketing/content-writting-services-one.webp';
@@ -25,6 +26,24 @@ export default function ContentMarketing() {
         title="Content Writing Services North Richland Hills TX – Massive Designs"
         description="Professional content writing services in North Richland Hills, TX. Massive Designs crafts compelling content to enhance your brand and online presence."
         path="/content-marketing"
+        schemaGraph={getServicePageNodes({
+          slug: 'content-marketing',
+          serviceName: 'Content Marketing',
+          serviceDescription:
+            'Content marketing services for businesses in Texas, including strategic content planning, SEO content creation, website content, blog content, and other content designed to attract, engage, and convert target audiences.',
+          serviceTypes: [
+            'Content Marketing',
+            'Content Strategy',
+            'SEO Content Writing',
+            'Blog Content',
+            'Website Content',
+            'Content Creation',
+            'Content Optimization',
+          ],
+          pageName: 'Content Marketing in Texas | Massive Designs',
+          pageDescription:
+            'Massive Designs provides content marketing services for Texas businesses, creating strategic, SEO-focused content that attracts audiences, builds brand authority, and supports business growth.',
+        })}
       />
       <ServiceHero
         title="Content Writing Services North Richland Hills TX"

@@ -4,7 +4,6 @@ import { useGSAP } from '@gsap/react';
 import Header from './Header';
 import Footer from './Footer';
 import BackToTop from './BackToTop';
-import LocalBusinessSchema from './LocalBusinessSchema';
 import GridSpotlight from '../motion/GridSpotlight';
 import useSmoothScroll from '../../hooks/useSmoothScroll';
 import { gsap, ScrollTrigger } from '../../lib/gsap';
@@ -53,7 +52,6 @@ export default function Layout() {
 
   return (
     <div ref={rootRef} className="flex min-h-screen flex-col overflow-x-hidden">
-      <LocalBusinessSchema />
       <div
         ref={curtainRef}
         aria-hidden="true"

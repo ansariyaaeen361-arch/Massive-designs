@@ -1,12 +1,21 @@
 import { Helmet } from 'react-helmet-async';
 import { brand } from '../../lib/brand';
+import { SITE_URL, getOrganizationNode, getWebsiteNode } from '../../lib/schema';
 
-const SITE_URL = 'https://massive-designs.com';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
-export default function Seo({ title, description, path = '/', image = DEFAULT_OG_IMAGE, type = 'website' }) {
-  const canonical = `${SITE_URL}${path === '/' ? '' : path}`;
+export default function Seo({
+  title,
+  description,
+  path = '/',
+  image = DEFAULT_OG_IMAGE,
+  type = 'website',
+  schemaGraph,
+}) {
+  const normalizedPath = path === '/' ? '/' : `${path.replace(/\/+$/, '')}/`;
+  const canonical = `${SITE_URL}${normalizedPath}`;
   const ogImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
+  const graph = [getOrganizationNode(), getWebsiteNode(), ...(schemaGraph ?? [])];
 
   return (
     <Helmet>
@@ -25,6 +34,8 @@ export default function Seo({ title, description, path = '/', image = DEFAULT_OG
       <meta name="twitter:title" content={title} />
       {description && <meta name="twitter:description" content={description} />}
       <meta name="twitter:image" content={ogImage} />
+
+      <script type="application/ld+json">{JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>
     </Helmet>
   );
 }

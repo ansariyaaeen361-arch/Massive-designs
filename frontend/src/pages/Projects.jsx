@@ -3,6 +3,7 @@ import Seo from '../components/layout/Seo';
 import PageHeader from '../components/layout/PageHeader';
 import Lightbox from '../components/motion/Lightbox';
 import { gsap } from '../lib/gsap';
+import { SITE_URL } from '../lib/schema';
 
 const CATEGORY_ORDER = ['logo', 'business-card', 'flyer', 'merchandise', 'delivered-product', 'website', 'animation'];
 
@@ -192,6 +193,19 @@ export default function Projects() {
         title="Projects - Massive Designs"
         description="Discover Massive Design's client work in Texas web, app, brand & marketing projects built to elevate businesses and drive results."
         path="/projects"
+        schemaGraph={[
+          {
+            '@type': 'CollectionPage',
+            '@id': `${SITE_URL}/projects/#webpage`,
+            url: `${SITE_URL}/projects/`,
+            name: 'Projects | Massive Designs',
+            description:
+              'Explore web design, branding, development, and digital marketing projects created by Massive Designs for businesses across Texas.',
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            about: { '@id': `${SITE_URL}/#organization` },
+            inLanguage: 'en-US',
+          },
+        ]}
       />
       <PageHeader title="Projects" crumb="our projects" />
 

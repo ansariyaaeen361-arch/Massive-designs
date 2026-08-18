@@ -1,11 +1,21 @@
 import { useState } from 'react';
 import Seo from '../components/layout/Seo';
 import PageHeader from '../components/layout/PageHeader';
+import { SITE_URL } from '../lib/schema';
 import ServiceShowcase from './services/ServiceShowcase';
 import ServiceSlider from './services/ServiceSlider';
 import ServiceTags from './services/ServiceTags';
 import ServiceFaq from './services/ServiceFaq';
 import OrderModal from '../components/forms/OrderModal';
+
+const SERVICE_LIST = [
+  { name: 'Web Design & Development', slug: 'web-design-development' },
+  { name: 'Branding & Logo Design', slug: 'branding-logo-design' },
+  { name: 'SEO Services', slug: 'seo-services' },
+  { name: 'App Development', slug: 'mobile-app-development' },
+  { name: 'Content Marketing', slug: 'content-marketing' },
+  { name: 'Social Media Marketing', slug: 'social-media-marketing' },
+];
 
 export default function Services() {
   const [orderOpen, setOrderOpen] = useState(false);
@@ -16,6 +26,33 @@ export default function Services() {
         title="Services - Massive Designs"
         description="Full digital solutions in North Richland Hills, TX: UI/UX design, branding, web & app development, SEO and social media to drive business growth."
         path="/services"
+        schemaGraph={[
+          {
+            '@type': 'CollectionPage',
+            '@id': `${SITE_URL}/services/#webpage`,
+            url: `${SITE_URL}/services/`,
+            name: 'Services | Massive Designs',
+            description:
+              'Explore web design, SEO, branding, app development, content marketing, and social media marketing services from Massive Designs for businesses across Texas.',
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            about: { '@id': `${SITE_URL}/#organization` },
+            mainEntity: { '@id': `${SITE_URL}/services/#services` },
+            inLanguage: 'en-US',
+          },
+          {
+            '@type': 'ItemList',
+            '@id': `${SITE_URL}/services/#services`,
+            name: 'Massive Designs Services',
+            itemListOrder: 'https://schema.org/ItemListOrderAscending',
+            numberOfItems: SERVICE_LIST.length,
+            itemListElement: SERVICE_LIST.map((service, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: service.name,
+              url: `${SITE_URL}/${service.slug}/`,
+            })),
+          },
+        ]}
       />
       <PageHeader
         title="Our Services"

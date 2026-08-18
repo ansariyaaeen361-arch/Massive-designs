@@ -6,6 +6,7 @@ import ProcessSteps from '../../components/service-page/ProcessSteps';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import Reveal from '../../components/motion/Reveal';
 import { brand } from '../../lib/brand';
+import { getServicePageNodes } from '../../lib/schema';
 
 import beforeAfter from '../../assets/img/home/dm-srv003.webp';
 import galleryClients from '../../assets/img/services/social-gallery/gallery-clients.webp';
@@ -25,6 +26,24 @@ export default function SocialMediaMarketing() {
         title="Social Media Marketing Services in Texas | Massive Designs"
         description="Boost your brand engagement and online presence with professional Social Media Marketing services in Texas. Massive Designs helps you grow across Facebook, Instagram, LinkedIn, and more through creative strategy and performance-driven campaigns."
         path="/social-media-marketing"
+        schemaGraph={getServicePageNodes({
+          slug: 'social-media-marketing',
+          serviceName: 'Social Media Marketing',
+          serviceDescription:
+            'Social media marketing services for businesses in Texas, helping brands build their online presence, engage target audiences, create strategic content, and grow through social media platforms.',
+          serviceTypes: [
+            'Social Media Marketing',
+            'Social Media Management',
+            'Social Media Strategy',
+            'Social Media Content Creation',
+            'Social Media Advertising',
+            'Audience Engagement',
+            'Brand Awareness',
+          ],
+          pageName: 'Social Media Marketing in Texas | Massive Designs',
+          pageDescription:
+            'Massive Designs provides social media marketing services for Texas businesses, helping brands build awareness, engage audiences, create strategic content, and strengthen their online presence.',
+        })}
       />
       <ServiceHero
         title="Social Media Marketing in Texas for Growing Local Brands"

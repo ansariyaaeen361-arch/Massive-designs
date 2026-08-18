@@ -6,6 +6,7 @@ import ProcessSteps from '../../components/service-page/ProcessSteps';
 import PortfolioHoverGrid from '../../components/service-page/PortfolioHoverGrid';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import { brand } from '../../lib/brand';
+import { getServicePageNodes } from '../../lib/schema';
 
 import web1 from '../../assets/img/web-projects/optimized/web-project-1.webp';
 import web7 from '../../assets/img/web-projects/optimized/web-project-7.webp';
@@ -34,6 +35,27 @@ export default function WebDesignDevelopment() {
         title="High-Converting Web Design Services for Small Businesses Texas"
         description="We don't just design websites, we build sales machines. Get a fast, modern website that turns visitors into customers. View our results."
         path="/web-design-development"
+        schemaGraph={getServicePageNodes({
+          slug: 'web-design-development',
+          serviceName: 'Web Design & Development',
+          serviceDescription:
+            'Custom web design and development services for businesses in Texas, including strategic website planning, responsive design, user experience, website development, SEO-friendly structure, performance optimization, security, and third-party integrations.',
+          serviceTypes: [
+            'Web Design',
+            'Website Development',
+            'Responsive Web Design',
+            'Custom Website Development',
+            'User Experience Design',
+            'Website Performance Optimization',
+            'Website SEO',
+            'CRM Integration',
+            'Payment Integration',
+            'Analytics Integration',
+          ],
+          pageName: 'Web Design & Development in Texas | Massive Designs',
+          pageDescription:
+            'Massive Designs provides custom web design and development services for Texas businesses, with a focus on responsive design, user experience, performance, SEO, security, and scalable website solutions.',
+        })}
       />
       <ServiceHero
         title="Web Design and Development for Texas Brands"

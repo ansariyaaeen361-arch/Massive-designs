@@ -6,6 +6,7 @@ import ProcessSteps from '../../components/service-page/ProcessSteps';
 import ServiceCta from '../../components/service-page/ServiceCta';
 import Reveal from '../../components/motion/Reveal';
 import { brand } from '../../lib/brand';
+import { getServicePageNodes } from '../../lib/schema';
 
 import beforeAfter from '../../assets/img/services/before-after-branding.webp';
 import logo1 from '../../assets/img/services/branding-logos/logo-1.webp';
@@ -29,6 +30,24 @@ export default function BrandingLogoDesign() {
         title="Branding & Logo Design North Richland Hills Texas – Massive Designs"
         description="Massive Designs offers professional branding and logo design in North Richland Hills, TX building strong, creative, and growth-focused brand identities."
         path="/branding-logo-design"
+        schemaGraph={getServicePageNodes({
+          slug: 'branding-logo-design',
+          serviceName: 'Branding & Logo Design',
+          serviceDescription:
+            'Strategic branding and logo design services for businesses in Texas, including custom logo design, brand identity, brand guidelines, business cards, brochures, flyers, and digital brand assets.',
+          serviceTypes: [
+            'Logo Design',
+            'Brand Identity Design',
+            'Brand Guidelines',
+            'Business Card Design',
+            'Brochure Design',
+            'Flyer Design',
+            'Digital Brand Asset Design',
+          ],
+          pageName: 'Branding & Logo Design in Texas | Massive Designs',
+          pageDescription:
+            'Massive Designs provides strategic branding and logo design services for Texas businesses, including custom logos, brand identity systems, brand guidelines, and digital and print assets.',
+        })}
       />
       <ServiceHero
         title="Creative Branding & Logo Design Texas"

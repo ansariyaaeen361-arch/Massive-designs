@@ -6,6 +6,7 @@ import AmbientGlow from '../components/motion/AmbientGlow';
 import ContactForm from '../components/forms/ContactForm';
 import SocialLinks from '../components/layout/SocialLinks';
 import { brand } from '../lib/brand';
+import { SITE_URL } from '../lib/schema';
 
 export default function Contact() {
   return (
@@ -14,6 +15,20 @@ export default function Contact() {
         title="Contact Us - Massive Designs"
         description="Have a project? Reach out to Massive Designs in Texas for custom websites, branding or marketing solutions that help your business shine online."
         path="/contact"
+        schemaGraph={[
+          {
+            '@type': 'ContactPage',
+            '@id': `${SITE_URL}/contact/#webpage`,
+            url: `${SITE_URL}/contact/`,
+            name: 'Contact Massive Designs',
+            description:
+              'Contact Massive Designs for web design, SEO, branding, content marketing, social media marketing, and mobile app development services in Texas.',
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            about: { '@id': `${SITE_URL}/#organization` },
+            mainEntity: { '@id': `${SITE_URL}/#organization` },
+            inLanguage: 'en-US',
+          },
+        ]}
       />
       <PageHeader title="Contact us" crumb="Contact us" />
 

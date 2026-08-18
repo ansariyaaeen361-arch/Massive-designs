@@ -1,4 +1,5 @@
 import Seo from '../components/layout/Seo';
+import { SITE_URL } from '../lib/schema';
 import Hero from './home/Hero';
 import Services from './home/Services';
 import WhyChooseUs from './home/WhyChooseUs';
@@ -16,6 +17,19 @@ export default function Home() {
         title="Web Design, SEO & Digital Marketing Agency in Texas"
         description="From websites to SEO, we build complete growth systems for Texas businesses. Increase traffic, generate leads, and scale faster with Massive Designs."
         path="/"
+        schemaGraph={[
+          {
+            '@type': 'WebPage',
+            '@id': `${SITE_URL}/#webpage`,
+            url: `${SITE_URL}/`,
+            name: 'Web Design, SEO & Digital Marketing Agency in Texas',
+            description:
+              'Massive Designs provides web design, SEO, branding, and digital marketing services for businesses across Texas.',
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            about: { '@id': `${SITE_URL}/#organization` },
+            inLanguage: 'en-US',
+          },
+        ]}
       />
       <Hero />
       <Services />
