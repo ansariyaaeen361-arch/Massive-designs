@@ -1,4 +1,5 @@
 import Seo from '../components/layout/Seo';
+import { getWebPageNode } from '../lib/schema';
 import PageHeader from '../components/layout/PageHeader';
 import Reveal from '../components/motion/Reveal';
 import { brand } from '../lib/brand';
@@ -45,6 +46,14 @@ export default function TermsConditions() {
         title="Terms & Conditions - Massive Designs"
         description="Review the Terms & Conditions of Massive Designs. Learn how our creative services—branding, web design, SEO and marketing—are governed, your obligations as a client, and the legal framework that applies."
         path="/terms-conditions"
+        schemaGraph={[
+          getWebPageNode({
+            slug: 'terms-conditions',
+            pageName: 'Terms & Conditions - Massive Designs',
+            pageDescription:
+              'Review the Terms & Conditions of Massive Designs. Learn how our creative services, branding, web design, SEO and marketing, are governed, your obligations as a client, and the legal framework that applies.',
+          }),
+        ]}
       />
       <PageHeader title="Terms & Conditions" crumb="Terms & Conditions" />
 

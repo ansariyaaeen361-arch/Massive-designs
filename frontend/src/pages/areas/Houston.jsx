@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Seo from '../../components/layout/Seo';
+import { getAreaPageNodes } from '../../lib/schema';
 import ServiceHero from '../../components/service-page/ServiceHero';
 import FeatureGrid from '../../components/service-page/FeatureGrid';
 import ProcessSteps from '../../components/service-page/ProcessSteps';
@@ -35,6 +36,12 @@ export default function Houston() {
         title="Web Design & Digital Marketing Agency in Houston, TX | Massive Designs"
         description="Massive Designs is a web design and digital marketing agency serving Houston, TX across energy, healthcare, and retail industries with SEO and web strategy built for scale."
         path="/areas-we-serve/houston"
+        schemaGraph={getAreaPageNodes({
+          slug: 'areas-we-serve/houston',
+          city: 'Houston',
+          pageName: 'Web Design & Digital Marketing Agency in Houston, TX | Massive Designs',
+          pageDescription: 'Massive Designs is a web design and digital marketing agency serving Houston, TX across energy, healthcare, and retail industries with SEO and web strategy built for scale.',
+        })}
       />
       <ServiceHero
         title="Web Design & Digital Marketing Services Houston, TX"

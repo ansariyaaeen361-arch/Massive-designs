@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../../components/layout/Seo';
+import { getAreaPageNodes } from '../../lib/schema';
 import ServiceHero from '../../components/service-page/ServiceHero';
 import FeatureGrid from '../../components/service-page/FeatureGrid';
 import ProcessSteps from '../../components/service-page/ProcessSteps';
@@ -31,6 +32,12 @@ export default function SanAntonio() {
         title="Web Design & Digital Marketing Agency in San Antonio, TX | Massive Designs"
         description="Massive Designs helps San Antonio businesses claim the search visibility their market size deserves, in one of Texas's most overlooked digital landscapes."
         path="/areas-we-serve/san-antonio"
+        schemaGraph={getAreaPageNodes({
+          slug: 'areas-we-serve/san-antonio',
+          city: 'San Antonio',
+          pageName: 'Web Design & Digital Marketing Agency in San Antonio, TX | Massive Designs',
+          pageDescription: "Massive Designs helps San Antonio businesses claim the search visibility their market size deserves, in one of Texas's most overlooked digital landscapes.",
+        })}
       />
       <ServiceHero
         title="Web Design & Digital Marketing Services San Antonio, TX"

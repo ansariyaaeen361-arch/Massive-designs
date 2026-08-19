@@ -64,6 +64,50 @@ export function getServicePageNodes({ slug, serviceName, serviceDescription, ser
   ];
 }
 
+export function getAreaPageNodes({ slug, city, pageName, pageDescription }) {
+  const serviceId = `${SITE_URL}/${slug}/#service`;
+  return [
+    {
+      '@type': 'Service',
+      '@id': serviceId,
+      name: `Web Design & Digital Marketing Services in ${city}, TX`,
+      url: `${SITE_URL}/${slug}/`,
+      provider: { '@id': `${SITE_URL}/#organization` },
+      areaServed: { '@type': 'City', name: city, containedInPlace: { '@type': 'State', name: 'Texas' } },
+      serviceType: [
+        'Web Design and Development',
+        'Search Engine Optimization',
+        'Digital Marketing',
+        'Branding and Logo Design',
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}/${slug}/#webpage`,
+      url: `${SITE_URL}/${slug}/`,
+      name: pageName,
+      description: pageDescription,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': serviceId },
+      mainEntity: { '@id': serviceId },
+      inLanguage: 'en-US',
+    },
+  ];
+}
+
+export function getWebPageNode({ slug, pageName, pageDescription, pageType = 'WebPage' }) {
+  return {
+    '@type': pageType,
+    '@id': `${SITE_URL}/${slug}/#webpage`,
+    url: `${SITE_URL}/${slug}/`,
+    name: pageName,
+    description: pageDescription,
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    about: { '@id': `${SITE_URL}/#organization` },
+    inLanguage: 'en-US',
+  };
+}
+
 export function getWebsiteNode() {
   return {
     '@type': 'WebSite',

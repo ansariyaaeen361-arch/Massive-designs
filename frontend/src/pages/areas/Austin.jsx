@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../../components/layout/Seo';
+import { getAreaPageNodes } from '../../lib/schema';
 import ServiceHero from '../../components/service-page/ServiceHero';
 import FeatureGrid from '../../components/service-page/FeatureGrid';
 import ProcessSteps from '../../components/service-page/ProcessSteps';
@@ -35,6 +36,12 @@ export default function Austin() {
         title="Web Design & Digital Marketing Agency in Austin, TX | Massive Designs"
         description="Massive Designs partners with Austin businesses that need marketing built to a higher bar, in a market where most buyers already know what good looks like."
         path="/areas-we-serve/austin"
+        schemaGraph={getAreaPageNodes({
+          slug: 'areas-we-serve/austin',
+          city: 'Austin',
+          pageName: 'Web Design & Digital Marketing Agency in Austin, TX | Massive Designs',
+          pageDescription: 'Massive Designs partners with Austin businesses that need marketing built to a higher bar, in a market where most buyers already know what good looks like.',
+        })}
       />
       <ServiceHero
         title="Web Design & Digital Marketing Services Austin, TX"

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Seo from '../components/layout/Seo';
+import { getWebPageNode } from '../lib/schema';
 import PageHeader from '../components/layout/PageHeader';
 import Reveal from '../components/motion/Reveal';
 import AmbientGlow from '../components/motion/AmbientGlow';
@@ -44,6 +45,14 @@ export default function AuditTool() {
         title="Free Website Audit Tool - Massive Designs"
         description="Get an instant, free audit of your website's performance, SEO, mobile-friendliness, security and accessibility from Massive Designs."
         path="/website-audit"
+        schemaGraph={[
+          getWebPageNode({
+            slug: 'website-audit',
+            pageName: 'Free Website Audit Tool - Massive Designs',
+            pageDescription:
+              "Get an instant, free audit of your website's performance, SEO, mobile-friendliness, security and accessibility from Massive Designs.",
+          }),
+        ]}
       />
       <PageHeader title="Free Website Audit" crumb="Website Audit" />
 

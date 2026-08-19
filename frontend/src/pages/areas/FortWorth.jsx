@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../../components/layout/Seo';
+import { getAreaPageNodes } from '../../lib/schema';
 import ServiceHero from '../../components/service-page/ServiceHero';
 import FeatureGrid from '../../components/service-page/FeatureGrid';
 import ProcessSteps from '../../components/service-page/ProcessSteps';
@@ -31,6 +32,12 @@ export default function FortWorth() {
         title="Web Design & Digital Marketing Agency in Fort Worth, TX | Massive Designs"
         description="Massive Designs designs, builds, and promotes websites for Fort Worth businesses competing in one of the fastest-growing markets in Texas."
         path="/areas-we-serve/fort-worth"
+        schemaGraph={getAreaPageNodes({
+          slug: 'areas-we-serve/fort-worth',
+          city: 'Fort Worth',
+          pageName: 'Web Design & Digital Marketing Agency in Fort Worth, TX | Massive Designs',
+          pageDescription: 'Massive Designs designs, builds, and promotes websites for Fort Worth businesses competing in one of the fastest-growing markets in Texas.',
+        })}
       />
       <ServiceHero
         title="Web Design & Digital Marketing Services Fort Worth, TX"

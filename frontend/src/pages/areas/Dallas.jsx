@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../../components/layout/Seo';
+import { getAreaPageNodes } from '../../lib/schema';
 import ServiceHero from '../../components/service-page/ServiceHero';
 import FeatureGrid from '../../components/service-page/FeatureGrid';
 import ProcessSteps from '../../components/service-page/ProcessSteps';
@@ -35,6 +36,12 @@ export default function Dallas() {
         title="Web Design & Digital Marketing Agency in Dallas, TX | Massive Designs"
         description="Massive Designs is a web design and digital marketing agency serving Dallas, TX with SEO, branding, and content built for the local market."
         path="/areas-we-serve/dallas"
+        schemaGraph={getAreaPageNodes({
+          slug: 'areas-we-serve/dallas',
+          city: 'Dallas',
+          pageName: 'Web Design & Digital Marketing Agency in Dallas, TX | Massive Designs',
+          pageDescription: 'Massive Designs is a web design and digital marketing agency serving Dallas, TX with SEO, branding, and content built for the local market.',
+        })}
       />
       <ServiceHero
         title="Web Design & Digital Marketing Services Dallas, TX"

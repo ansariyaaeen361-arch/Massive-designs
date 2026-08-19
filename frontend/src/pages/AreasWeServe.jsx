@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/layout/Seo';
+import { SITE_URL } from '../lib/schema';
 import PageHeader from '../components/layout/PageHeader';
 import Reveal from '../components/motion/Reveal';
 import AmbientGlow from '../components/motion/AmbientGlow';
@@ -17,6 +18,31 @@ export default function AreasWeServe() {
         title="Areas We Serve - Massive Designs"
         description="Massive Designs provides web design, SEO, branding and digital marketing services for businesses across Dallas, Fort Worth, Houston, Austin and San Antonio, Texas."
         path="/areas-we-serve"
+        schemaGraph={[
+          {
+            '@type': 'CollectionPage',
+            '@id': `${SITE_URL}/areas-we-serve/#webpage`,
+            url: `${SITE_URL}/areas-we-serve/`,
+            name: 'Areas We Serve - Massive Designs',
+            description:
+              'Massive Designs provides web design, SEO, branding and digital marketing services for businesses across Dallas, Fort Worth, Houston, Austin and San Antonio, Texas.',
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            about: { '@id': `${SITE_URL}/#organization` },
+            mainEntity: { '@id': `${SITE_URL}/areas-we-serve/#areas` },
+            inLanguage: 'en-US',
+          },
+          {
+            '@type': 'ItemList',
+            '@id': `${SITE_URL}/areas-we-serve/#areas`,
+            name: 'Massive Designs Service Areas',
+            itemListElement: areas.map((area, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: area.name,
+              url: `${SITE_URL}${area.href}/`,
+            })),
+          },
+        ]}
       />
       <PageHeader
         title="Areas We Serve"

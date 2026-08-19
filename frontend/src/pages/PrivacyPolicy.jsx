@@ -1,4 +1,5 @@
 import Seo from '../components/layout/Seo';
+import { getWebPageNode } from '../lib/schema';
 import PageHeader from '../components/layout/PageHeader';
 import Reveal from '../components/motion/Reveal';
 
@@ -52,6 +53,14 @@ export default function PrivacyPolicy() {
         title="Privacy Policy - Massive Designs"
         description="At Massive Designs, your privacy is our priority. Learn how we collect, use, and protect your personal information, no data selling, only secure service."
         path="/privacy-policy"
+        schemaGraph={[
+          getWebPageNode({
+            slug: 'privacy-policy',
+            pageName: 'Privacy Policy - Massive Designs',
+            pageDescription:
+              'At Massive Designs, your privacy is our priority. Learn how we collect, use, and protect your personal information, no data selling, only secure service.',
+          }),
+        ]}
       />
       <PageHeader title="Privacy Policy" crumb="Privacy Policy" />
 
