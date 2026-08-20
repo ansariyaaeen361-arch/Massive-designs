@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import Reveal from '../../components/motion/Reveal';
 import AmbientGlow from '../../components/motion/AmbientGlow';
-import aboutImg from '../../assets/img/home/about-img01.webp';
-import teamImg1 from '../../assets/img/home/hero-04.webp';
-import teamImg2 from '../../assets/img/home/hero-06.webp';
+import whyChooseOne from '../../assets/img/home/why-choose-one.png';
+import whyChooseTwo from '../../assets/img/home/why-choose-two.png';
+import whyChooseThree from '../../assets/img/home/why-choose-three.png';
 
 const points = [
   'Unparalleled development, marketing, UI design, and app design experience.',
@@ -52,19 +52,19 @@ export default function WhyChooseUs() {
 
         <Reveal delay={0.1} y={40} className="grid grid-cols-2 gap-4 lg:col-span-6">
           <img
-            src={aboutImg}
-            alt="Massive Designs team collaborating in a strategy meeting"
+            src={whyChooseOne}
+            alt="Massive Designs brand identity and logo design on screen"
             className="col-span-2 h-[320px] w-full rounded-[2rem] object-cover"
           />
           <img
-            src={teamImg1}
-            alt="Massive Designs branding shown on a laptop screen"
-            className="h-40 w-full rounded-2xl object-cover grayscale sm:h-48"
+            src={whyChooseTwo}
+            alt="Massive Designs developer working late on a project"
+            className="h-40 w-full rounded-2xl object-cover sm:h-48"
           />
           <img
-            src={teamImg2}
-            alt="A Massive Designs team member smiling behind a laptop"
-            className="h-40 w-full rounded-2xl object-cover grayscale sm:h-48"
+            src={whyChooseThree}
+            alt="Massive Designs website design mockups glowing on screen"
+            className="h-40 w-full rounded-2xl object-cover sm:h-48"
           />
         </Reveal>
       </div>

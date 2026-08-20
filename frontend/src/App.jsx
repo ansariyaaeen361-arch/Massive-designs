@@ -1,7 +1,10 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './components/layout/Layout';
+
+const IntroLoader = lazy(() => import('./components/loader/IntroLoader'));
+const INTRO_LOADER_SESSION_KEY = 'md_intro_loader_shown';
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -39,8 +42,17 @@ const route = (Component) => (
 );
 
 export default function App() {
+  const [showIntroLoader] = useState(
+    () => typeof window !== 'undefined' && !window.sessionStorage.getItem(INTRO_LOADER_SESSION_KEY)
+  );
+
   return (
     <HelmetProvider>
+      {showIntroLoader && (
+        <Suspense fallback={<div className="fixed inset-0 z-[999] bg-black" />}>
+          <IntroLoader />
+        </Suspense>
+      )}
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>

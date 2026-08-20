@@ -1,7 +1,14 @@
 import axios from 'axios';
 
 const PSI_ENDPOINT = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed';
-const MOBILE_FRIENDLY_AUDIT_IDS = ['viewport', 'tap-targets', 'font-size', 'content-width'];
+// Lighthouse renamed/replaced its old mobile-friendliness audits ('viewport',
+// 'tap-targets', 'font-size', 'content-width' no longer exist as of Lighthouse
+// 10+/13.x). Using the stale IDs meant every one of these lookups came back
+// undefined, so extractMobileFriendlyScore's "no data" branch silently
+// returned a hardcoded 100 for every single site, regardless of how mobile
+// friendly it actually was. Verified against a live PSI response (Lighthouse
+// 13.4.1) that these are the current working equivalents.
+const MOBILE_FRIENDLY_AUDIT_IDS = ['meta-viewport', 'target-size', 'viewport-insight'];
 
 async function fetchPageSpeed(url, strategy) {
   const params = new URLSearchParams();
