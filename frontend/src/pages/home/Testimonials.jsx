@@ -73,16 +73,28 @@ export default function Testimonials() {
           </Reveal>
 
           <Reveal delay={0.1} y={36}>
-            <div ref={cardRef} className="mx-auto w-full max-w-lg overflow-hidden rounded-2xl bg-white lg:mx-0 lg:ml-auto">
+            <div
+              ref={cardRef}
+              className="relative mx-auto h-[360px] w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-xl shadow-black/20 lg:mx-0 lg:ml-auto"
+            >
               <iframe
                 key={current.href}
                 src={embedSrc}
                 title={`Facebook review ${index + 1}`}
-                style={{ width: '100%', height: current.height, border: 'none', overflow: 'hidden' }}
+                style={{ width: '100%', height: 560, border: 'none' }}
                 scrolling="no"
                 loading="lazy"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
               />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white via-white/90 to-transparent" />
+              <a
+                href={current.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black px-5 py-2 text-xs font-medium uppercase tracking-wide text-white shadow-lg transition-colors hover:bg-primary hover:text-black"
+              >
+                View on Facebook
+              </a>
             </div>
           </Reveal>
         </div>
