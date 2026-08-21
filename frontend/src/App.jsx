@@ -27,6 +27,7 @@ const Dallas = lazy(() => import('./pages/areas/Dallas'));
 const FortWorth = lazy(() => import('./pages/areas/FortWorth'));
 const Austin = lazy(() => import('./pages/areas/Austin'));
 const SanAntonio = lazy(() => import('./pages/areas/SanAntonio'));
+const NorthRichlandHills = lazy(() => import('./pages/areas/NorthRichlandHills'));
 const Placeholder = lazy(() => import('./pages/Placeholder'));
 
 const page = (title) => (
@@ -77,6 +78,7 @@ export default function App() {
             <Route path="/areas-we-serve/fort-worth" element={route(FortWorth)} />
             <Route path="/areas-we-serve/austin" element={route(Austin)} />
             <Route path="/areas-we-serve/san-antonio" element={route(SanAntonio)} />
+            <Route path="/areas-we-serve/north-richland-hills" element={route(NorthRichlandHills)} />
             <Route path="*" element={page('404 - Not Found')} />
           </Route>
         </Routes>

@@ -67,21 +67,43 @@ export default function Header() {
                     </NavLink>
                   )}
 
-                  {item.children && (
-                    <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
-                      <ul className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b0c10] py-3 shadow-2xl">
-                        {item.children.map((child) => (
-                          <li key={child.label}>
-                            <Link
-                              to={child.href}
-                              className="block px-6 py-3 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-primary"
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                  {item.children && item.mega ? (
+                    <div className="invisible absolute left-1/2 top-full w-[420px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+                      <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b0c10] p-5 shadow-2xl">
+                        <p className="px-1 pb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-white/40">
+                          Texas Cities We Serve
+                        </p>
+                        <ul className="grid grid-cols-2 gap-1">
+                          {item.children.map((child) => (
+                            <li key={child.label}>
+                              <Link
+                                to={child.href}
+                                className="block rounded-xl px-4 py-3 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-primary"
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
+                  ) : (
+                    item.children && (
+                      <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+                        <ul className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b0c10] py-3 shadow-2xl">
+                          {item.children.map((child) => (
+                            <li key={child.label}>
+                              <Link
+                                to={child.href}
+                                className="block px-6 py-3 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-primary"
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )
                   )}
                 </li>
               ))}

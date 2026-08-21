@@ -34,4 +34,11 @@ export const areas = [
     blurb:
       "San Antonio's mix of long-running family businesses and newer companies moving in want the same basic thing: a site and a marketing plan that brings in customers, not just one that looks good sitting still. That's the bar for every San Antonio project we take on.",
   },
+  {
+    name: 'North Richland Hills, TX',
+    shortName: 'North Richland Hills',
+    href: '/areas-we-serve/north-richland-hills',
+    blurb:
+      "North Richland Hills is where our office actually is, not a market we work remotely. That proximity shapes everything from how fast we turn around a build to how closely we track local search for the roughly 1,200 businesses operating here.",
+  },
 ];

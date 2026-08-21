@@ -37,12 +37,14 @@ export const navLinks = [
   {
     label: 'Areas We Serve',
     href: '/areas-we-serve',
+    mega: true,
     children: [
       { label: 'Dallas', href: '/areas-we-serve/dallas' },
       { label: 'Fort Worth', href: '/areas-we-serve/fort-worth' },
       { label: 'Houston', href: '/areas-we-serve/houston' },
       { label: 'Austin', href: '/areas-we-serve/austin' },
       { label: 'San Antonio', href: '/areas-we-serve/san-antonio' },
+      { label: 'North Richland Hills', href: '/areas-we-serve/north-richland-hills' },
     ],
   },
   { label: 'Website Audit', href: '/website-audit' },
