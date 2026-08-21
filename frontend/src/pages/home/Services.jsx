@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { HiArrowRight } from 'react-icons/hi2';
 import { gsap } from '../../lib/gsap';
 import Reveal from '../../components/motion/Reveal';
 import useTilt from '../../hooks/useTilt';
@@ -129,7 +130,7 @@ export default function Services() {
                 to={current.href}
                 className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-primary transition-transform duration-300 hover:translate-x-1"
               >
-                Learn More &rarr;
+                Learn More <HiArrowRight className="inline text-base" aria-hidden="true" />
               </Link>
             </div>
           </div>

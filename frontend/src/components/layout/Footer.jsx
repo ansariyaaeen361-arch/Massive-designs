@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { HiArrowRight } from 'react-icons/hi2';
 import { brand, footerQuickLinks } from '../../lib/brand';
 import SocialLinks from './SocialLinks';
 import logo from '../../assets/img/logo/logo.png';
@@ -83,7 +84,7 @@ export default function Footer() {
                 type="submit"
                 className="shrink-0 text-sm font-medium text-primary transition-transform hover:translate-x-1"
               >
-                Send &rarr;
+                Send <HiArrowRight className="inline text-base" aria-hidden="true" />
               </button>
             </form>
             {submitted && <p className="mt-3 text-xs text-primary">Thanks for subscribing!</p>}

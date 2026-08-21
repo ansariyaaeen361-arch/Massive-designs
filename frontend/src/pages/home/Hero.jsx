@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { Link } from 'react-router-dom';
+import { HiArrowRight } from 'react-icons/hi2';
 import { gsap } from '../../lib/gsap';
 import AmbientGlow from '../../components/motion/AmbientGlow';
 import heroMain from '../../assets/img/home/banner-main.webp';
@@ -74,7 +75,9 @@ export default function Hero() {
               className="group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
             >
               Show Projects
-              <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+              <span className="inline-flex transition-transform duration-300 group-hover:translate-x-1">
+                <HiArrowRight className="text-base" aria-hidden="true" />
+              </span>
             </Link>
           </div>
         </div>

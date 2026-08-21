@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import Reveal from '../../components/motion/Reveal';
 import AmbientGlow from '../../components/motion/AmbientGlow';
-import whyChooseOne from '../../assets/img/home/why-choose-one.png';
-import whyChooseTwo from '../../assets/img/home/why-choose-two.png';
-import whyChooseThree from '../../assets/img/home/why-choose-three.png';
+import whyChooseOne from '../../assets/img/home/why-choose-one.webp';
+import whyChooseTwo from '../../assets/img/home/why-choose-two.webp';
+import whyChooseThree from '../../assets/img/home/why-choose-three.webp';
 
 const points = [
   'Unparalleled development, marketing, UI design, and app design experience.',

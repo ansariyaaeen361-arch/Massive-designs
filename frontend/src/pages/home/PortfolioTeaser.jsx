@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { HiArrowRight, HiArrowUpRight } from 'react-icons/hi2';
 import Reveal from '../../components/motion/Reveal';
 import portImg01 from '../../assets/img/home/port-img01.webp';
 import portImg02 from '../../assets/img/home/port-img02.webp';
@@ -37,7 +38,7 @@ export default function PortfolioTeaser() {
               to="/projects"
               className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-white transition-transform duration-300 hover:translate-x-1 hover:text-primary"
             >
-              See More Work &rarr;
+              See More Work <HiArrowRight className="inline text-base" aria-hidden="true" />
             </Link>
           </Reveal>
         </div>
@@ -45,7 +46,7 @@ export default function PortfolioTeaser() {
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {items.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.1} y={36} className="group relative">
-              <Link to="/projects" className="relative block aspect-[4/5] overflow-hidden rounded-3xl">
+              <Link to="/projects" className="relative block aspect-[1345/1170] overflow-hidden rounded-3xl">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -53,7 +54,7 @@ export default function PortfolioTeaser() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
                 <span className="absolute right-6 top-6 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-black opacity-0 transition-all duration-300 group-hover:opacity-100">
-                  &#8599;
+                  <HiArrowUpRight className="text-xl" aria-hidden="true" />
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-7">
                   <p className="text-xs uppercase tracking-wide text-primary">{item.category}</p>

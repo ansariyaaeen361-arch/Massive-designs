@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { HiXMark } from 'react-icons/hi2';
 import { gsap } from '../../lib/gsap';
 
 export default function Lightbox({ onClose, children }) {
@@ -34,7 +35,7 @@ export default function Lightbox({ onClose, children }) {
           aria-label="Close"
           className="absolute -top-10 right-0 text-2xl text-white/70 transition-colors hover:text-primary"
         >
-          ✕
+          <HiXMark aria-hidden="true" />
         </button>
         {children}
       </div>

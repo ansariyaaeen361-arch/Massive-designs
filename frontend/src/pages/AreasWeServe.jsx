@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { HiArrowRight } from 'react-icons/hi2';
 import Seo from '../components/layout/Seo';
 import { SITE_URL } from '../lib/schema';
 import PageHeader from '../components/layout/PageHeader';
@@ -94,7 +95,7 @@ export default function AreasWeServe() {
                   to={area.href}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-primary transition-transform duration-300 hover:translate-x-1"
                 >
-                  View services in {area.shortName} &rarr;
+                  View services in {area.shortName} <HiArrowRight className="inline text-base" aria-hidden="true" />
                 </Link>
               </Reveal>
             ))}
