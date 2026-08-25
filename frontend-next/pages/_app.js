@@ -27,7 +27,11 @@ export default function App({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      {phase === 'shield' && <div className="fixed inset-0 z-[999] bg-black" />}
+      {/* Stays mounted through 'loader' too: IntroLoader is a dynamic ssr:false
+          import, so its chunk takes a moment to fetch on a cold cache. Without
+          this, the gap between leaving 'shield' and IntroLoader actually
+          rendering exposes the page underneath. */}
+      {(phase === 'shield' || phase === 'loader') && <div className="fixed inset-0 z-[999] bg-black" />}
       {phase === 'loader' && <IntroLoader onComplete={handleIntroComplete} />}
       <Layout>
         <Component {...pageProps} />
