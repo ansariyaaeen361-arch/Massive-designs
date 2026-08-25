@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { serviceGroups } from '../../lib/serviceOptions';
 
 const RECAPTCHA_SITE_KEY = '6LejfA4sAAAAAIfWC1ZiojBIJX69nHSdFg7Thf0Z';
 
@@ -116,17 +117,29 @@ export default function ContactForm() {
         </div>
         <div>
           <label htmlFor="service" className="mb-2 block text-xs uppercase tracking-wide text-white/50">
-            Company
+            Select Service
           </label>
-          <input
+          <select
             id="service"
-            type="text"
             name="service"
-            placeholder="Digital Solutions"
             value={form.service}
             onChange={handleChange}
             className={fieldClass}
-          />
+            style={{ colorScheme: 'dark' }}
+          >
+            <option value="" className="bg-[#0b0c10] text-white">
+              Choose a service
+            </option>
+            {serviceGroups.map((group) => (
+              <optgroup key={group.label} label={group.label} className="bg-[#0b0c10] text-white">
+                {group.options.map((opt) => (
+                  <option key={opt} value={opt} className="bg-[#0b0c10] text-white">
+                    {opt}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="message" className="mb-2 block text-xs uppercase tracking-wide text-white/50">
