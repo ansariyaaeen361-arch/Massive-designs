@@ -14,7 +14,7 @@ export default function Contact() {
       <Seo
         title="Contact Us - Massive Designs"
         description="Have a project? Reach out to Massive Designs in Texas for custom websites, branding or marketing solutions that help your business shine online."
-        path="/contact"
+        path="/contact/"
         schemaGraph={[
           {
             '@type': 'ContactPage',

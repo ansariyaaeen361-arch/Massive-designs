@@ -31,7 +31,7 @@ export default function SanAntonio() {
       <Seo
         title="Web Design & Digital Marketing Agency in San Antonio, TX | Massive Designs"
         description="Massive Designs helps San Antonio businesses claim the search visibility their market size deserves, in one of Texas's most overlooked digital landscapes."
-        path="/areas-we-serve/san-antonio"
+        path="/areas-we-serve/san-antonio/"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/san-antonio',
           city: 'San Antonio',

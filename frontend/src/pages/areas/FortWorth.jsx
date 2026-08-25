@@ -31,7 +31,7 @@ export default function FortWorth() {
       <Seo
         title="Web Design & Digital Marketing Agency in Fort Worth, TX | Massive Designs"
         description="Massive Designs designs, builds, and promotes websites for Fort Worth businesses competing in one of the fastest-growing markets in Texas."
-        path="/areas-we-serve/fort-worth"
+        path="/areas-we-serve/fort-worth/"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/fort-worth',
           city: 'Fort Worth',

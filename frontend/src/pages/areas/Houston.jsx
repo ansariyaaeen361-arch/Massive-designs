@@ -35,7 +35,7 @@ export default function Houston() {
       <Seo
         title="Web Design & Digital Marketing Agency in Houston, TX | Massive Designs"
         description="Massive Designs is a web design and digital marketing agency serving Houston, TX across energy, healthcare, and retail industries with SEO and web strategy built for scale."
-        path="/areas-we-serve/houston"
+        path="/areas-we-serve/houston/"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/houston',
           city: 'Houston',

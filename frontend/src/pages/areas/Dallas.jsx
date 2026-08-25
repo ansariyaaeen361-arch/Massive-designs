@@ -35,7 +35,7 @@ export default function Dallas() {
       <Seo
         title="Web Design & Digital Marketing Agency in Dallas, TX | Massive Designs"
         description="Massive Designs is a web design and digital marketing agency serving Dallas, TX with SEO, branding, and content built for the local market."
-        path="/areas-we-serve/dallas"
+        path="/areas-we-serve/dallas/"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/dallas',
           city: 'Dallas',

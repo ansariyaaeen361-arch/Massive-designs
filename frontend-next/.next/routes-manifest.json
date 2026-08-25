@@ -1,0 +1,192 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:file((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+)/",
+      "destination": "/:file",
+      "internal": true,
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-nextjs-data"
+        }
+      ],
+      "statusCode": 308,
+      "regex": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+))/$"
+    },
+    {
+      "source": "/:notfile((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/\\.]+)",
+      "destination": "/:notfile/",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/\\.]+))$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/404",
+      "regex": "^/404(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/404(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/areas-we-serve",
+      "regex": "^/areas\\-we\\-serve(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/areas\\-we\\-serve(?:/)?$"
+    },
+    {
+      "page": "/areas-we-serve/austin",
+      "regex": "^/areas\\-we\\-serve/austin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/areas\\-we\\-serve/austin(?:/)?$"
+    },
+    {
+      "page": "/areas-we-serve/dallas",
+      "regex": "^/areas\\-we\\-serve/dallas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/areas\\-we\\-serve/dallas(?:/)?$"
+    },
+    {
+      "page": "/areas-we-serve/fort-worth",
+      "regex": "^/areas\\-we\\-serve/fort\\-worth(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/areas\\-we\\-serve/fort\\-worth(?:/)?$"
+    },
+    {
+      "page": "/areas-we-serve/houston",
+      "regex": "^/areas\\-we\\-serve/houston(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/areas\\-we\\-serve/houston(?:/)?$"
+    },
+    {
+      "page": "/areas-we-serve/north-richland-hills",
+      "regex": "^/areas\\-we\\-serve/north\\-richland\\-hills(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/areas\\-we\\-serve/north\\-richland\\-hills(?:/)?$"
+    },
+    {
+      "page": "/areas-we-serve/san-antonio",
+      "regex": "^/areas\\-we\\-serve/san\\-antonio(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/areas\\-we\\-serve/san\\-antonio(?:/)?$"
+    },
+    {
+      "page": "/branding-logo-design",
+      "regex": "^/branding\\-logo\\-design(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/branding\\-logo\\-design(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/content-marketing",
+      "regex": "^/content\\-marketing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/content\\-marketing(?:/)?$"
+    },
+    {
+      "page": "/mobile-app-development",
+      "regex": "^/mobile\\-app\\-development(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/mobile\\-app\\-development(?:/)?$"
+    },
+    {
+      "page": "/packages",
+      "regex": "^/packages(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/packages(?:/)?$"
+    },
+    {
+      "page": "/privacy-policy",
+      "regex": "^/privacy\\-policy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy\\-policy(?:/)?$"
+    },
+    {
+      "page": "/projects",
+      "regex": "^/projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/projects(?:/)?$"
+    },
+    {
+      "page": "/seo-services",
+      "regex": "^/seo\\-services(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/seo\\-services(?:/)?$"
+    },
+    {
+      "page": "/services",
+      "regex": "^/services(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services(?:/)?$"
+    },
+    {
+      "page": "/social-media-marketing",
+      "regex": "^/social\\-media\\-marketing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/social\\-media\\-marketing(?:/)?$"
+    },
+    {
+      "page": "/terms-conditions",
+      "regex": "^/terms\\-conditions(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms\\-conditions(?:/)?$"
+    },
+    {
+      "page": "/web-design-development",
+      "regex": "^/web\\-design\\-development(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/web\\-design\\-development(?:/)?$"
+    },
+    {
+      "page": "/website-audit",
+      "regex": "^/website\\-audit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/website\\-audit(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

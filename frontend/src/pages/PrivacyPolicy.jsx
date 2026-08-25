@@ -52,7 +52,7 @@ export default function PrivacyPolicy() {
       <Seo
         title="Privacy Policy - Massive Designs"
         description="At Massive Designs, your privacy is our priority. Learn how we collect, use, and protect your personal information, no data selling, only secure service."
-        path="/privacy-policy"
+        path="/privacy-policy/"
         schemaGraph={[
           getWebPageNode({
             slug: 'privacy-policy',

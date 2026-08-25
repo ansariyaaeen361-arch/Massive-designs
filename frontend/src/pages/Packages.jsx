@@ -38,7 +38,7 @@ export default function Packages() {
       <Seo
         title="Packages - Massive Designs"
         description="Massive Designs offers scalable packages in North Richland Hills, TX for web, e-commerce, branding and logo services designed for growth and impact."
-        path="/packages"
+        path="/packages/"
         schemaGraph={[
           {
             '@type': 'CollectionPage',

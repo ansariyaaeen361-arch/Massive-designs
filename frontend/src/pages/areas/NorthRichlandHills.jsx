@@ -31,7 +31,7 @@ export default function NorthRichlandHills() {
       <Seo
         title="Web Design & Digital Marketing Services North Richland Hills, TX | Massive Designs"
         description="Our office sits a few minutes from Iron Horse Boulevard, right in the middle of North Richland Hills. That proximity shapes how we build sites and handle local search for businesses across the city."
-        path="/areas-we-serve/north-richland-hills"
+        path="/areas-we-serve/north-richland-hills/"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/north-richland-hills',
           city: 'North Richland Hills',

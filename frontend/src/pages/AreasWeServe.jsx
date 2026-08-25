@@ -18,7 +18,7 @@ export default function AreasWeServe() {
       <Seo
         title="Areas We Serve - Massive Designs"
         description="Massive Designs provides web design, SEO, branding and digital marketing services for businesses across Dallas, Fort Worth, Houston, Austin and San Antonio, Texas."
-        path="/areas-we-serve"
+        path="/areas-we-serve/"
         schemaGraph={[
           {
             '@type': 'CollectionPage',

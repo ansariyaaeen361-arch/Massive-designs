@@ -29,7 +29,7 @@ export default function BrandingLogoDesign() {
       <Seo
         title="Branding & Logo Design North Richland Hills Texas – Massive Designs"
         description="Massive Designs offers professional branding and logo design in North Richland Hills, TX building strong, creative, and growth-focused brand identities."
-        path="/branding-logo-design"
+        path="/branding-logo-design/"
         schemaGraph={getServicePageNodes({
           slug: 'branding-logo-design',
           serviceName: 'Branding & Logo Design',

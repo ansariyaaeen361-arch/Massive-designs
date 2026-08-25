@@ -25,7 +25,7 @@ export default function SeoServices() {
       <Seo
         title="SEO Services in North Richland Hills Texas – Massive Designs"
         description="Expert SEO services in North Richland Hills, TX local SEO, technical optimisation, and content strategies to grow your business online."
-        path="/seo-services"
+        path="/seo-services/"
         schemaGraph={getServicePageNodes({
           slug: 'seo-services',
           serviceName: 'SEO Services',

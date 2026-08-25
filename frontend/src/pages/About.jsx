@@ -11,7 +11,7 @@ export default function About() {
       <Seo
         title="About Us - Massive Designs"
         description="Massive Designs delivers innovative web design and digital marketing in North Richland Hills, TX, where creativity meets strategy to drive real growth."
-        path="/about"
+        path="/about/"
         schemaGraph={[
           {
             '@type': 'AboutPage',

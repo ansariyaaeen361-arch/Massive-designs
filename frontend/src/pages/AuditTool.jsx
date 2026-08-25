@@ -44,7 +44,7 @@ export default function AuditTool() {
       <Seo
         title="Free Website Audit Tool - Massive Designs"
         description="Get an instant, free audit of your website's performance, SEO, mobile-friendliness, security and accessibility from Massive Designs."
-        path="/website-audit"
+        path="/website-audit/"
         schemaGraph={[
           getWebPageNode({
             slug: 'website-audit',

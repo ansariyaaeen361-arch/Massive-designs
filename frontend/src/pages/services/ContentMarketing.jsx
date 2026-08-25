@@ -25,7 +25,7 @@ export default function ContentMarketing() {
       <Seo
         title="Content Writing Services North Richland Hills TX – Massive Designs"
         description="Professional content writing services in North Richland Hills, TX. Massive Designs crafts compelling content to enhance your brand and online presence."
-        path="/content-marketing"
+        path="/content-marketing/"
         schemaGraph={getServicePageNodes({
           slug: 'content-marketing',
           serviceName: 'Content Marketing',

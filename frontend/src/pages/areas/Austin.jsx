@@ -35,7 +35,7 @@ export default function Austin() {
       <Seo
         title="Web Design & Digital Marketing Agency in Austin, TX | Massive Designs"
         description="Massive Designs partners with Austin businesses that need marketing built to a higher bar, in a market where most buyers already know what good looks like."
-        path="/areas-we-serve/austin"
+        path="/areas-we-serve/austin/"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/austin',
           city: 'Austin',

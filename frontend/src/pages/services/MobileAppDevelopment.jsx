@@ -25,7 +25,7 @@ export default function MobileAppDevelopment() {
       <Seo
         title="Mobile App Development North Richland Hills TX – Massive Designs"
         description="We create mobile apps in North Richland Hills, TX that combine creativity, strategy, and performance to drive growth and user engagement."
-        path="/mobile-app-development"
+        path="/mobile-app-development/"
         schemaGraph={getServicePageNodes({
           slug: 'mobile-app-development',
           serviceName: 'Mobile App Development',
