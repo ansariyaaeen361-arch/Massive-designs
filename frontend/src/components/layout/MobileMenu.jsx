@@ -137,7 +137,7 @@ export default function MobileMenu({ open, onClose }) {
         </nav>
 
         <Link
-          to="/contact"
+          to="/contact/"
           onClick={onClose}
           className="mt-8 rounded-full border border-primary px-6 py-3 text-center text-sm font-medium text-primary transition-all duration-300 hover:bg-primary hover:text-black"
         >

@@ -48,7 +48,7 @@ export default function Dallas() {
         lead="Dallas is one of Texas's most competitive marketing environments, which means generic websites and generic SEO simply don't cut through here. Our strategies are built for that pressure, turning Dallas searches into steady, measurable leads."
         crumb="Dallas"
         parent="Areas We Serve"
-        parentHref="/areas-we-serve"
+        parentHref="/areas-we-serve/"
         ctaLabel="Schedule a Discovery Call"
         onCtaClick={() => setContactOpen(true)}
       />
@@ -61,7 +61,7 @@ export default function Dallas() {
             up here. We work with small and growing businesses across the DFW metroplex, from Uptown startups to
             established firms out toward Las Colinas, building sites and campaigns around how people actually
             search rather than what looks good in a pitch deck. Every project starts with strategy and{' '}
-            <Link to="/seo-services" className="text-primary hover:underline">
+            <Link to="/seo-services/" className="text-primary hover:underline">
               SEO
             </Link>
             , not a template, so your site earns trust fast and turns visits into real inquiries.
@@ -180,7 +180,7 @@ export default function Dallas() {
         paragraphs={[
           <>
             If you&rsquo;re looking for a{' '}
-            <Link to="/services" className="text-primary hover:underline">
+            <Link to="/services/" className="text-primary hover:underline">
               web design and digital marketing
             </Link>{' '}
             agency in Dallas that understands the local market and builds with SEO in mind from day one, let&rsquo;s

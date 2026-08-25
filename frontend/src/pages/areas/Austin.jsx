@@ -48,7 +48,7 @@ export default function Austin() {
         lead="Austin's business community already knows what strong marketing looks like, so a polished website alone convinces no one here. What we bring instead is proof, real performance and results behind every claim we make."
         crumb="Austin"
         parent="Areas We Serve"
-        parentHref="/areas-we-serve"
+        parentHref="/areas-we-serve/"
         ctaLabel="Schedule a Discovery Call"
         onCtaClick={() => setContactOpen(true)}
       />
@@ -63,7 +63,7 @@ export default function Austin() {
             catching up on the basics. What earns attention here is evidence, real search performance, real
             conversion numbers, a strategy that holds together when someone with a marketing background starts
             asking pointed questions. Our{' '}
-            <Link to="/seo-services" className="text-primary hover:underline">
+            <Link to="/seo-services/" className="text-primary hover:underline">
               SEO methodology
             </Link>{' '}
             was built with exactly that kind of scrutiny in mind, because in this market, vague promises get noticed
@@ -186,7 +186,7 @@ export default function Austin() {
             If you&rsquo;re tired of marketing that sounds good on a call but falls apart under real questions,
             let&rsquo;s talk about what a straightforward, evidence-backed approach could look like for your
             business. Take a look at{' '}
-            <Link to="/services" className="text-primary hover:underline">
+            <Link to="/services/" className="text-primary hover:underline">
               what we offer
             </Link>{' '}
             and we&rsquo;ll go from there.

@@ -58,27 +58,27 @@ export default function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={route(Home)} />
-            <Route path="/about" element={route(About)} />
-            <Route path="/services" element={route(Services)} />
-            <Route path="/branding-logo-design" element={route(BrandingLogoDesign)} />
-            <Route path="/web-design-development" element={route(WebDesignDevelopment)} />
-            <Route path="/social-media-marketing" element={route(SocialMediaMarketing)} />
-            <Route path="/content-marketing" element={route(ContentMarketing)} />
-            <Route path="/seo-services" element={route(SeoServices)} />
-            <Route path="/mobile-app-development" element={route(MobileAppDevelopment)} />
-            <Route path="/projects" element={route(Projects)} />
-            <Route path="/packages" element={route(Packages)} />
-            <Route path="/contact" element={route(Contact)} />
-            <Route path="/website-audit" element={route(AuditTool)} />
-            <Route path="/privacy-policy" element={route(PrivacyPolicy)} />
-            <Route path="/terms-conditions" element={route(TermsConditions)} />
-            <Route path="/areas-we-serve" element={route(AreasWeServe)} />
-            <Route path="/areas-we-serve/houston" element={route(Houston)} />
-            <Route path="/areas-we-serve/dallas" element={route(Dallas)} />
-            <Route path="/areas-we-serve/fort-worth" element={route(FortWorth)} />
-            <Route path="/areas-we-serve/austin" element={route(Austin)} />
-            <Route path="/areas-we-serve/san-antonio" element={route(SanAntonio)} />
-            <Route path="/areas-we-serve/north-richland-hills" element={route(NorthRichlandHills)} />
+            <Route path="/about/" element={route(About)} />
+            <Route path="/services/" element={route(Services)} />
+            <Route path="/branding-logo-design/" element={route(BrandingLogoDesign)} />
+            <Route path="/web-design-development/" element={route(WebDesignDevelopment)} />
+            <Route path="/social-media-marketing/" element={route(SocialMediaMarketing)} />
+            <Route path="/content-marketing/" element={route(ContentMarketing)} />
+            <Route path="/seo-services/" element={route(SeoServices)} />
+            <Route path="/mobile-app-development/" element={route(MobileAppDevelopment)} />
+            <Route path="/projects/" element={route(Projects)} />
+            <Route path="/packages/" element={route(Packages)} />
+            <Route path="/contact/" element={route(Contact)} />
+            <Route path="/website-audit/" element={route(AuditTool)} />
+            <Route path="/privacy-policy/" element={route(PrivacyPolicy)} />
+            <Route path="/terms-conditions/" element={route(TermsConditions)} />
+            <Route path="/areas-we-serve/" element={route(AreasWeServe)} />
+            <Route path="/areas-we-serve/houston/" element={route(Houston)} />
+            <Route path="/areas-we-serve/dallas/" element={route(Dallas)} />
+            <Route path="/areas-we-serve/fort-worth/" element={route(FortWorth)} />
+            <Route path="/areas-we-serve/austin/" element={route(Austin)} />
+            <Route path="/areas-we-serve/san-antonio/" element={route(SanAntonio)} />
+            <Route path="/areas-we-serve/north-richland-hills/" element={route(NorthRichlandHills)} />
             <Route path="*" element={page('404 - Not Found')} />
           </Route>
         </Routes>

@@ -16,7 +16,7 @@ const services = [
   {
     number: '01',
     title: 'Web Design & Development',
-    href: '/web-design-development',
+    href: '/web-design-development/',
     image: srvWebDesign,
     description:
       'Your brand deserves more than conventional marketing. It merits a story that resonates, a design that inspires, and a strategy that succeeds. This is what we do at Massive Designs. If you’re ready to grow your business with a trusted creative marketing agency that Texas brands recommend, reach out to us today. Let us make your vision come true and make your next big idea happen.',
@@ -24,7 +24,7 @@ const services = [
   {
     number: '02',
     title: 'Branding Agency',
-    href: '/branding-logo-design',
+    href: '/branding-logo-design/',
     image: srvBranding,
     description:
       'A consistent brand helps clients recognize you across proposals, meetings, and campaigns. Massive design, as a branding agency, develops your logo, visual system, and core message into working guidelines, so your website, presentations, and marketing materials all support the same positioning and make follow‑up conversations easier.',
@@ -32,7 +32,7 @@ const services = [
   {
     number: '03',
     title: 'SEO Services',
-    href: '/seo-services',
+    href: '/seo-services/',
     image: srvSeo,
     description:
       'SEO services in Texas should help people find you when they are already looking for options. The work here reviews search intent, key pages, and technical basics, then makes measured updates that improve how you appear in results and support a steady flow of relevant visits over time.',
@@ -40,7 +40,7 @@ const services = [
   {
     number: '04',
     title: 'App Development',
-    href: '/mobile-app-development',
+    href: '/mobile-app-development/',
     image: srvApp,
     description:
       'Texas app development is approached as part of your wider operations, not as a stand‑alone product. Web and mobile apps are planned around your existing processes, then built for reliability and straightforward use, so staff and customers can complete routine tasks without extra training or confusion.',
@@ -48,7 +48,7 @@ const services = [
   {
     number: '05',
     title: 'Content Marketing',
-    href: '/content-marketing',
+    href: '/content-marketing/',
     image: srvContent,
     description:
       'Content marketing is used to answer real questions your buyers raise in calls and emails. Articles, landing pages, and supporting assets are planned around those topics, giving your sales team useful material to share and helping searchers understand your approach before they speak with you.',
@@ -56,7 +56,7 @@ const services = [
   {
     number: '06',
     title: 'Social Media Marketing',
-    href: '/social-media-marketing',
+    href: '/social-media-marketing/',
     image: srvSocial,
     description:
       'Social media marketing is treated as an extension of your main campaigns, not a separate activity. Posting schedules, formats, and messages are aligned with current offers and events, keeping your business present in local feeds and sending interested visitors back to key pages on your site.',

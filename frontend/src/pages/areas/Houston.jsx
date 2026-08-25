@@ -48,7 +48,7 @@ export default function Houston() {
         lead="Houston spans energy, healthcare, logistics, and retail all at once, so no single marketing template works citywide. We build websites and digital marketing strategies tailored to whichever part of Houston's economy your business competes in."
         crumb="Houston"
         parent="Areas We Serve"
-        parentHref="/areas-we-serve"
+        parentHref="/areas-we-serve/"
         ctaLabel="Schedule a Discovery Call"
         onCtaClick={() => setContactOpen(true)}
       />
@@ -63,7 +63,7 @@ export default function Houston() {
             country. A marketing plan that works for one of those doesn&rsquo;t automatically work for the rest,
             which is why our process starts with figuring out which part of Houston&rsquo;s economy you&rsquo;re
             actually in before we touch design or copy. We handle{' '}
-            <Link to="/seo-services" className="text-primary hover:underline">
+            <Link to="/seo-services/" className="text-primary hover:underline">
               SEO
             </Link>{' '}
             the same way, treating a Medical Center practice and an energy services company as two different
@@ -189,7 +189,7 @@ export default function Houston() {
             Whether you&rsquo;re in the Energy Corridor, the Medical Center, or somewhere else across the city, we
             build web design and digital marketing strategies suited to your specific corner of Houston. Take a
             look at our full{' '}
-            <Link to="/services" className="text-primary hover:underline">
+            <Link to="/services/" className="text-primary hover:underline">
               range of services
             </Link>{' '}
             to see what&rsquo;s included, then let&rsquo;s talk about your project.

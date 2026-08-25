@@ -24,7 +24,7 @@ function WebsiteTile({ project, threeUp }) {
   const wrapRef = useRef(null);
   const imgRef = useRef(null);
   const title = project.title?.rendered || '';
-  const href = project.acf?.project_link || '/contact';
+  const href = project.acf?.project_link || '/contact/';
   const isExternal = href.startsWith('http');
 
   const handleEnter = () => {
@@ -192,7 +192,7 @@ export default function Projects() {
       <Seo
         title="Projects - Massive Designs"
         description="Discover Massive Design's client work in Texas web, app, brand & marketing projects built to elevate businesses and drive results."
-        path="/projects"
+        path="/projects/"
         schemaGraph={[
           {
             '@type': 'CollectionPage',

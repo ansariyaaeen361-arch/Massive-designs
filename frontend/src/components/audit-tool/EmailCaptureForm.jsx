@@ -40,7 +40,7 @@ export default function EmailCaptureForm({ auditId }) {
           Check <span className="text-white">{email}</span> for your detailed PDF audit report.
         </p>
         <Link
-          to="/contact"
+          to="/contact/"
           className="mt-8 inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
         >
           Book a Free Consultation

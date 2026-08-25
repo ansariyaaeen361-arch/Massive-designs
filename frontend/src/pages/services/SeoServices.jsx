@@ -60,7 +60,7 @@ export default function SeoServices() {
             leads and revenue by following real search engine optimization best practices for websites, not
             shortcuts. Each SEO strategy is built on research, analytics, and technical fixes that make your site
             faster, clearer, and easier to find. When combined with our{' '}
-            <Link to="/content-marketing" className="text-primary hover:underline">
+            <Link to="/content-marketing/" className="text-primary hover:underline">
               Content Marketing Services
             </Link>
             , your SEO efforts work together to attract qualified visitors and convert more of them into paying

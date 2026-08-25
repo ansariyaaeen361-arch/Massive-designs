@@ -159,7 +159,7 @@ export default function ContactForm() {
           marketing, and general communication related to the projects from <strong className="text-white/60">Massive Designs</strong> about
           my inquiry. You may opt out by replying STOP or reply HELP for more information. Message frequency varies.
           Message and data rates may apply. You may review our{' '}
-          <a href="/privacy-policy" target="_blank" rel="noreferrer" className="text-primary hover:underline">
+          <a href="/privacy-policy/" target="_blank" rel="noreferrer" className="text-primary hover:underline">
             Privacy Policy
           </a>{' '}
           to learn how your data is used.

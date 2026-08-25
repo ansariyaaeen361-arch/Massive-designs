@@ -44,7 +44,7 @@ export default function SanAntonio() {
         lead="San Antonio is the seventh largest US city, yet it draws far less marketing attention than Austin or Dallas. We see that as an opportunity: visibility for San Antonio businesses willing to claim it first."
         crumb="San Antonio"
         parent="Areas We Serve"
-        parentHref="/areas-we-serve"
+        parentHref="/areas-we-serve/"
         ctaLabel="Schedule a Discovery Call"
         onCtaClick={() => setContactOpen(true)}
       />
@@ -59,7 +59,7 @@ export default function SanAntonio() {
             Alamo and the River Walk that draws visitors year-round. Add a population that&rsquo;s majority Hispanic
             and largely bilingual, and generic, one-size-fits-all messaging leaves real ground on the table. We
             treat that combination as an opportunity rather than a complication, and it shapes how we handle{' '}
-            <Link to="/seo-services" className="text-primary hover:underline">
+            <Link to="/seo-services/" className="text-primary hover:underline">
               search visibility
             </Link>{' '}
             here specifically, since the terms worth targeting in San Antonio aren&rsquo;t always the ones that work
@@ -182,7 +182,7 @@ export default function SanAntonio() {
           <>
             There&rsquo;s real room to build visibility here before your competitors catch up to it. Look through
             our full{' '}
-            <Link to="/services" className="text-primary hover:underline">
+            <Link to="/services/" className="text-primary hover:underline">
               services
             </Link>{' '}
             and let&rsquo;s map out where to start.

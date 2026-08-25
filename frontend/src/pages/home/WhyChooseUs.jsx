@@ -43,7 +43,7 @@ export default function WhyChooseUs() {
           </p>
 
           <Link
-            to="/about"
+            to="/about/"
             className="mt-10 inline-flex items-center gap-3 rounded-full border border-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-black"
           >
             Explore More

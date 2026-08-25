@@ -61,7 +61,7 @@ export default function MobileAppDevelopment() {
             works with Texas companies to plan, design, and launch custom mobile apps that tackle everyday
             operational problems and open up new digital revenue streams through expert mobile app development
             services. Each product is shaped to fit your brand and connected to your existing{' '}
-            <Link to="/web-design-development" className="text-primary hover:underline">
+            <Link to="/web-design-development/" className="text-primary hover:underline">
               web design and development
             </Link>{' '}
             presence, so customers move naturally between your website and app without friction.

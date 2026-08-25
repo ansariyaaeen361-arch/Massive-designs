@@ -25,7 +25,7 @@ export default function SocialMediaMarketing() {
       <Seo
         title="Social Media Marketing Services in Texas | Massive Designs"
         description="Boost your brand engagement and online presence with professional Social Media Marketing services in Texas. Massive Designs helps you grow across Facebook, Instagram, LinkedIn, and more through creative strategy and performance-driven campaigns."
-        path="/social-media-marketing"
+        path="/social-media-marketing/"
         schemaGraph={getServicePageNodes({
           slug: 'social-media-marketing',
           serviceName: 'Social Media Marketing',
@@ -58,7 +58,7 @@ export default function SocialMediaMarketing() {
             At Massive Designs, we build your social media campaigns around your specific Texas audience, industry,
             and growth goals. From content calendars and paid campaigns to community engagement, we align your
             social media with your broader digital presence, including{' '}
-            <Link to="/web-design-development" className="text-primary hover:underline">
+            <Link to="/web-design-development/" className="text-primary hover:underline">
               web design & development
             </Link>
             , logo & branding, so your brand feels consistent and trustworthy. With creative content, targeted ads,

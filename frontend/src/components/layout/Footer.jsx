@@ -97,12 +97,12 @@ export default function Footer() {
           <p>Copyright © 2020-2025 {brand.name}. All rights reserved.</p>
           <ul className="flex items-center gap-6">
             <li>
-              <Link to="/privacy-policy" className="transition-colors hover:text-primary">
+              <Link to="/privacy-policy/" className="transition-colors hover:text-primary">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link to="/terms-conditions" className="transition-colors hover:text-primary">
+              <Link to="/terms-conditions/" className="transition-colors hover:text-primary">
                 Terms and Conditions
               </Link>
             </li>

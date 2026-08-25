@@ -44,7 +44,7 @@ export default function FortWorth() {
         lead="Fort Worth now ranks as the 13th largest city in the country, growing faster than most Texas metros while marketing competition here lags behind. That gap is where we help Fort Worth businesses move first."
         crumb="Fort Worth"
         parent="Areas We Serve"
-        parentHref="/areas-we-serve"
+        parentHref="/areas-we-serve/"
         ctaLabel="Schedule a Discovery Call"
         onCtaClick={() => setContactOpen(true)}
       />
@@ -60,7 +60,7 @@ export default function FortWorth() {
             place where business still gets done on a handshake. We build for that mix: the aerospace supplier who
             needs to look established, and the small retailer counting on foot traffic and word of mouth. Our
             approach to{' '}
-            <Link to="/seo-services" className="text-primary hover:underline">
+            <Link to="/seo-services/" className="text-primary hover:underline">
               search visibility
             </Link>{' '}
             reflects that same range, tuned to a market where the competition is real but nowhere near as saturated
@@ -186,7 +186,7 @@ export default function FortWorth() {
         paragraphs={[
           <>
             Fort Worth isn&rsquo;t waiting around, and your marketing shouldn&rsquo;t either. Take a look at{' '}
-            <Link to="/services" className="text-primary hover:underline">
+            <Link to="/services/" className="text-primary hover:underline">
               everything we do
             </Link>{' '}
             and let&rsquo;s figure out where to start for your business specifically.

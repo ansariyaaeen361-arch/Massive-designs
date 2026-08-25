@@ -36,7 +36,7 @@ export default function AboutIntro() {
               move people. Over the past five years, our founder has helped local Texas brands compete with national
               names through strong creative direction. From a small studio, we've grown into a full-service creative
               marketing agency that Texas businesses rely on for strategy, storytelling, and design-driven results.{' '}
-              <Link to="/projects" className="text-primary hover:underline">
+              <Link to="/projects/" className="text-primary hover:underline">
                 Every project of ours
               </Link>{' '}
               is treated as a shared success story shaped by listening, collaboration, and purposeful creativity.

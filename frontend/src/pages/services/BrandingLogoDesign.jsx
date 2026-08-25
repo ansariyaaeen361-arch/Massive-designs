@@ -62,7 +62,7 @@ export default function BrandingLogoDesign() {
             Your logo should speak with purpose, not just style. Based in North Richland Hills, massive designs
             crafts brand identities that connect emotionally and perform commercially. Through creative logo design
             and{' '}
-            <Link to="/content-marketing" className="text-primary hover:underline">
+            <Link to="/content-marketing/" className="text-primary hover:underline">
               content marketing
             </Link>
             , we turn visuals into strategies that attract customers, strengthen credibility, and grow your brand

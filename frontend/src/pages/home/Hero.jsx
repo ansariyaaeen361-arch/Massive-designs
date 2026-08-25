@@ -71,7 +71,7 @@ export default function Hero() {
 
           <div className="hero-cta mt-9">
             <Link
-              to="/projects"
+              to="/projects/"
               className="group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
             >
               Show Projects

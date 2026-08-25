@@ -34,7 +34,7 @@ export default function WebDesignDevelopment() {
       <Seo
         title="High-Converting Web Design Services for Small Businesses Texas"
         description="We don't just design websites, we build sales machines. Get a fast, modern website that turns visitors into customers. View our results."
-        path="/web-design-development"
+        path="/web-design-development/"
         schemaGraph={getServicePageNodes({
           slug: 'web-design-development',
           serviceName: 'Web Design & Development',
@@ -82,7 +82,7 @@ export default function WebDesignDevelopment() {
             infrastructure, and modern security practices so your site stays reliable over time. As a dedicated web
             development team in Texas, we use up-to-date technologies and performance optimization techniques to
             keep your pages loading quickly and running smoothly. We then fine-tune everything for page speed and{' '}
-            <Link to="/seo-services" className="text-primary hover:underline">
+            <Link to="/seo-services/" className="text-primary hover:underline">
               search engine optimization
             </Link>{' '}
             so your content is easy to discover.

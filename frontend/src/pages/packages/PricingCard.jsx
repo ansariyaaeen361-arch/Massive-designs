@@ -38,7 +38,7 @@ export default function PricingCard({ badge, title, sub, oldPrice, price, featur
       </ul>
 
       <Link
-        to="/contact"
+        to="/contact/"
         className="mt-8 inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
       >
         Order Now

@@ -39,7 +39,7 @@ function HoverScrollTile({ src, alt, href }) {
       {box}
     </a>
   ) : (
-    <a href={href || '/contact'} className="block">
+    <a href={href || '/contact/'} className="block">
       {box}
     </a>
   );

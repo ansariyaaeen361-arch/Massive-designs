@@ -58,7 +58,7 @@ export default function ContentMarketing() {
             Turn every search, click, and scroll into a growth opportunity with bespoke content marketing services
             designed specifically for SMBs and startups across Texas from Dallas and Houston to cities across the
             state. From strategy and Search Engine Optimization (SEO) to publishing and{' '}
-            <Link to="/social-media-marketing" className="text-primary hover:underline">
+            <Link to="/social-media-marketing/" className="text-primary hover:underline">
               social media marketing
             </Link>
             , every piece of content is engineered to attract qualified traffic, generate leads, and move prospects

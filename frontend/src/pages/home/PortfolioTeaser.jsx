@@ -35,7 +35,7 @@ export default function PortfolioTeaser() {
               creative web design with 3D motion effects. These are always amazing and interesting to view.
             </p>
             <Link
-              to="/projects"
+              to="/projects/"
               className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-white transition-transform duration-300 hover:translate-x-1 hover:text-primary"
             >
               See More Work <HiArrowRight className="inline text-base" aria-hidden="true" />
@@ -46,7 +46,7 @@ export default function PortfolioTeaser() {
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {items.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.1} y={36} className="group relative">
-              <Link to="/projects" className="relative block aspect-[1345/1170] overflow-hidden rounded-3xl">
+              <Link to="/projects/" className="relative block aspect-[1345/1170] overflow-hidden rounded-3xl">
                 <img
                   src={item.image}
                   alt={item.title}

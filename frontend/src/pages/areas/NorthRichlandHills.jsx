@@ -44,7 +44,7 @@ export default function NorthRichlandHills() {
         lead="Our office sits a few minutes from Iron Horse Boulevard, right in the middle of North Richland Hills. That proximity shapes how we build sites and handle local search for businesses across the city."
         crumb="North Richland Hills"
         parent="Areas We Serve"
-        parentHref="/areas-we-serve"
+        parentHref="/areas-we-serve/"
         ctaLabel="Schedule a Discovery Call"
         onCtaClick={() => setContactOpen(true)}
       />
@@ -184,7 +184,7 @@ export default function NorthRichlandHills() {
           <>
             Tell us what isn&rsquo;t working on your current site, and we&rsquo;ll walk you through what a rebuild
             looks like before you commit to anything. Browse our past{' '}
-            <Link to="/projects" className="text-primary hover:underline">
+            <Link to="/projects/" className="text-primary hover:underline">
               projects
             </Link>{' '}
             first if you want to see the work.

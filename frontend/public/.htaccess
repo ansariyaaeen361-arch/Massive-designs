@@ -1,9 +1,41 @@
-# React Router (client-side routing) fallback: any request that isn't a
-# real file or folder on disk gets served index.html so routes like
-# /about or /contact don't 404 on a hard refresh or direct link.
 RewriteEngine On
 RewriteBase /
 
+# ==========================================================
+# Massive Designs - Redirect www to non-www
+# ==========================================================
+RewriteCond %{HTTP_HOST} ^www\.massive-designs\.com$ [NC]
+RewriteRule ^(.*)$ https://massive-designs.com/$1 [R=301,L]
+
+# ==========================================================
+# Massive Designs - Trailing Slash 301 Redirects
+# ==========================================================
+RewriteRule ^about$ /about/ [R=301,L]
+RewriteRule ^services$ /services/ [R=301,L]
+RewriteRule ^branding-logo-design$ /branding-logo-design/ [R=301,L]
+RewriteRule ^web-design-development$ /web-design-development/ [R=301,L]
+RewriteRule ^social-media-marketing$ /social-media-marketing/ [R=301,L]
+RewriteRule ^content-marketing$ /content-marketing/ [R=301,L]
+RewriteRule ^seo-services$ /seo-services/ [R=301,L]
+RewriteRule ^mobile-app-development$ /mobile-app-development/ [R=301,L]
+RewriteRule ^projects$ /projects/ [R=301,L]
+RewriteRule ^areas-we-serve$ /areas-we-serve/ [R=301,L]
+RewriteRule ^areas-we-serve/dallas$ /areas-we-serve/dallas/ [R=301,L]
+RewriteRule ^areas-we-serve/houston$ /areas-we-serve/houston/ [R=301,L]
+RewriteRule ^areas-we-serve/san-antonio$ /areas-we-serve/san-antonio/ [R=301,L]
+RewriteRule ^areas-we-serve/fort-worth$ /areas-we-serve/fort-worth/ [R=301,L]
+RewriteRule ^areas-we-serve/austin$ /areas-we-serve/austin/ [R=301,L]
+RewriteRule ^areas-we-serve/north-richland-hills$ /areas-we-serve/north-richland-hills/ [R=301,L]
+RewriteRule ^website-audit$ /website-audit/ [R=301,L]
+RewriteRule ^contact$ /contact/ [R=301,L]
+RewriteRule ^privacy-policy$ /privacy-policy/ [R=301,L]
+RewriteRule ^terms-conditions$ /terms-conditions/ [R=301,L]
+
+# ==========================================================
+# React Router (client-side routing) fallback: any request that isn't a
+# real file or folder on disk gets served index.html so routes like
+# /about/ or /contact/ don't 404 on a hard refresh or direct link.
+# ==========================================================
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
