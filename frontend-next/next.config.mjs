@@ -13,10 +13,6 @@ export default function nextConfig(phase) {
       unoptimized: true,
     },
     ...(isDev && {
-      // Without this, Next's own trailing-slash redirect (from `trailingSlash: true`
-      // below) intercepts /cms/* and /api/* requests before the rewrite proxy runs,
-      // 308-redirecting them to a slash-suffixed URL the CMS/backend don't expect.
-      skipTrailingSlashRedirect: true,
       async rewrites() {
         return [
           { source: '/cms/:path*', destination: 'https://massive-designs.com/cms/:path*' },
