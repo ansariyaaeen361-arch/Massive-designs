@@ -3,6 +3,8 @@ node_modules/
 
 # Build output
 frontend/dist/
+frontend-next/.next/
+frontend-next/out/
 
 # Environment secrets
 .env
