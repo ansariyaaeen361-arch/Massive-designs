@@ -21,12 +21,14 @@ export default function Hero() {
   useGSAP(
     () => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      // The hero image is the LCP element, so it must never be opacity: 0 waiting
+      // on this timeline (that delayed LCP by ~1-2s) — it stays visible and only
+      // gets the scroll parallax below.
       tl.fromTo('.hero-eyebrow', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 })
         .fromTo('.hero-line', { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 }, '-=0.3')
         .fromTo('.hero-sub', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.35')
         .fromTo('.hero-copy', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
-        .fromTo('.hero-cta', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.35')
-        .fromTo(imgRef.current, { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 1 }, '-=1.1');
+        .fromTo('.hero-cta', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.35');
 
       gsap.to(imgRef.current, {
         yPercent: 8,
@@ -86,6 +88,7 @@ export default function Hero() {
               src="/img/home/banner-main.webp"
               alt="Massive Designs strategy, design, development and growth showcase"
               className="aspect-[4/5] w-full object-cover"
+              fetchPriority="high"
             />
           </div>
         </div>
