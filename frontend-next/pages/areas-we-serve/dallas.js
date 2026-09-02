@@ -26,18 +26,18 @@ export default function Dallas() {
   return (
     <>
       <Seo
-        title="Web Design & Digital Marketing Agency in Dallas, TX | Massive Designs"
-        description="Massive Designs is a web design and digital marketing agency serving Dallas, TX with SEO, branding, and content built for the local market."
+        title="Web Design Company Dallas TX | Massive Designs"
+        description="Looking for a web design company in Dallas, TX? Massive Designs creates professional, SEO-friendly websites that help businesses improve their online presence and generate leads."
         path="/areas-we-serve/dallas"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/dallas',
           city: 'Dallas',
-          pageName: 'Web Design & Digital Marketing Agency in Dallas, TX | Massive Designs',
-          pageDescription: 'Massive Designs is a web design and digital marketing agency serving Dallas, TX with SEO, branding, and content built for the local market.',
+          pageName: 'Web Design Company Dallas TX | Massive Designs',
+          pageDescription: 'Looking for a web design company in Dallas, TX? Massive Designs creates professional, SEO-friendly websites that help businesses improve their online presence and generate leads.',
         })}
       />
       <ServiceHero
-        title="Web Design & Digital Marketing Services Dallas, TX"
+        title="Web Design Services in Dallas, TX"
         lead="Dallas is one of Texas's most competitive marketing environments, which means generic websites and generic SEO simply don't cut through here. Our strategies are built for that pressure, turning Dallas searches into steady, measurable leads."
         crumb="Dallas"
         parent="Areas We Serve"

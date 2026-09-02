@@ -24,18 +24,18 @@ export default function NorthRichlandHills() {
   return (
     <>
       <Seo
-        title="Web Design & Digital Marketing Services North Richland Hills, TX | Massive Designs"
-        description="Our office sits a few minutes from Iron Horse Boulevard, right in the middle of North Richland Hills. That proximity shapes how we build sites and handle local search for businesses across the city."
+        title="Web Design Company North Richland Hills TX | Massive Designs"
+        description="Massive Designs provides professional web design in North Richland Hills, TX, creating SEO-friendly websites that help local businesses attract visitors and generate leads."
         path="/areas-we-serve/north-richland-hills"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/north-richland-hills',
           city: 'North Richland Hills',
-          pageName: 'Web Design & Digital Marketing Services North Richland Hills, TX | Massive Designs',
-          pageDescription: 'Our office sits a few minutes from Iron Horse Boulevard, right in the middle of North Richland Hills. That proximity shapes how we build sites and handle local search for businesses across the city.',
+          pageName: 'Web Design Company North Richland Hills TX | Massive Designs',
+          pageDescription: 'Massive Designs provides professional web design in North Richland Hills, TX, creating SEO-friendly websites that help local businesses attract visitors and generate leads.',
         })}
       />
       <ServiceHero
-        title="Web Design & Digital Marketing Services North Richland Hills, TX"
+        title="Web Design Services in North Richland Hills, TX"
         lead="Our office sits a few minutes from Iron Horse Boulevard, right in the middle of North Richland Hills. That proximity shapes how we build sites and handle local search for businesses across the city."
         crumb="North Richland Hills"
         parent="Areas We Serve"

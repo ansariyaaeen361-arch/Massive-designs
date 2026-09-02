@@ -24,18 +24,18 @@ export default function FortWorth() {
   return (
     <>
       <Seo
-        title="Web Design & Digital Marketing Agency in Fort Worth, TX | Massive Designs"
-        description="Massive Designs designs, builds, and promotes websites for Fort Worth businesses competing in one of the fastest-growing markets in Texas."
+        title="Web Design Company Fort Worth TX | Massive Designs"
+        description="Need a web design company in Fort Worth, TX? Massive Designs builds professional, SEO-friendly websites designed to improve online visibility and help local businesses generate leads."
         path="/areas-we-serve/fort-worth"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/fort-worth',
           city: 'Fort Worth',
-          pageName: 'Web Design & Digital Marketing Agency in Fort Worth, TX | Massive Designs',
-          pageDescription: 'Massive Designs designs, builds, and promotes websites for Fort Worth businesses competing in one of the fastest-growing markets in Texas.',
+          pageName: 'Web Design Company Fort Worth TX | Massive Designs',
+          pageDescription: 'Need a web design company in Fort Worth, TX? Massive Designs builds professional, SEO-friendly websites designed to improve online visibility and help local businesses generate leads.',
         })}
       />
       <ServiceHero
-        title="Web Design & Digital Marketing Services Fort Worth, TX"
+        title="Web Design Services in Fort Worth, TX"
         lead="Fort Worth now ranks as the 13th largest city in the country, growing faster than most Texas metros while marketing competition here lags behind. That gap is where we help Fort Worth businesses move first."
         crumb="Fort Worth"
         parent="Areas We Serve"

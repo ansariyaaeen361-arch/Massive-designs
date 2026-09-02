@@ -26,18 +26,18 @@ export default function Austin() {
   return (
     <>
       <Seo
-        title="Web Design & Digital Marketing Agency in Austin, TX | Massive Designs"
-        description="Massive Designs partners with Austin businesses that need marketing built to a higher bar, in a market where most buyers already know what good looks like."
+        title="Web Design Company Austin TX | Massive Designs"
+        description="Grow your Austin business with professional web design from Massive Designs. We create modern, SEO-friendly websites built to improve visibility, engagement, and lead generation."
         path="/areas-we-serve/austin"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/austin',
           city: 'Austin',
-          pageName: 'Web Design & Digital Marketing Agency in Austin, TX | Massive Designs',
-          pageDescription: 'Massive Designs partners with Austin businesses that need marketing built to a higher bar, in a market where most buyers already know what good looks like.',
+          pageName: 'Web Design Company Austin TX | Massive Designs',
+          pageDescription: 'Grow your Austin business with professional web design from Massive Designs. We create modern, SEO-friendly websites built to improve visibility, engagement, and lead generation.',
         })}
       />
       <ServiceHero
-        title="Web Design & Digital Marketing Services Austin, TX"
+        title="Web Design Services in Austin, TX"
         lead="Austin's business community already knows what strong marketing looks like, so a polished website alone convinces no one here. What we bring instead is proof, real performance and results behind every claim we make."
         crumb="Austin"
         parent="Areas We Serve"

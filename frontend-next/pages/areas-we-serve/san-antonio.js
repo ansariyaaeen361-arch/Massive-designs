@@ -24,18 +24,18 @@ export default function SanAntonio() {
   return (
     <>
       <Seo
-        title="Web Design & Digital Marketing Agency in San Antonio, TX | Massive Designs"
-        description="Massive Designs helps San Antonio businesses claim the search visibility their market size deserves, in one of Texas's most overlooked digital landscapes."
+        title="Web Design Company San Antonio TX | Massive Designs"
+        description="Looking for a web design company in San Antonio, TX? Massive Designs creates modern, SEO-friendly websites that help local businesses build credibility, visibility, and leads."
         path="/areas-we-serve/san-antonio"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/san-antonio',
           city: 'San Antonio',
-          pageName: 'Web Design & Digital Marketing Agency in San Antonio, TX | Massive Designs',
-          pageDescription: "Massive Designs helps San Antonio businesses claim the search visibility their market size deserves, in one of Texas's most overlooked digital landscapes.",
+          pageName: 'Web Design Company San Antonio TX | Massive Designs',
+          pageDescription: 'Looking for a web design company in San Antonio, TX? Massive Designs creates modern, SEO-friendly websites that help local businesses build credibility, visibility, and leads.',
         })}
       />
       <ServiceHero
-        title="Web Design & Digital Marketing Services San Antonio, TX"
+        title="Web Design Services in San Antonio, TX"
         lead="San Antonio is the seventh largest US city, yet it draws far less marketing attention than Austin or Dallas. We see that as an opportunity: visibility for San Antonio businesses willing to claim it first."
         crumb="San Antonio"
         parent="Areas We Serve"

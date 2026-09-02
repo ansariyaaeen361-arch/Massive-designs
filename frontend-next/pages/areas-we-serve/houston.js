@@ -26,18 +26,18 @@ export default function Houston() {
   return (
     <>
       <Seo
-        title="Web Design & Digital Marketing Agency in Houston, TX | Massive Designs"
-        description="Massive Designs is a web design and digital marketing agency serving Houston, TX across energy, healthcare, and retail industries with SEO and web strategy built for scale."
+        title="Web Design Company Houston TX | Massive Designs"
+        description="Massive Designs is a web design company serving Houston, TX, creating modern, SEO-friendly websites that help businesses strengthen their online presence and attract customers."
         path="/areas-we-serve/houston"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/houston',
           city: 'Houston',
-          pageName: 'Web Design & Digital Marketing Agency in Houston, TX | Massive Designs',
-          pageDescription: 'Massive Designs is a web design and digital marketing agency serving Houston, TX across energy, healthcare, and retail industries with SEO and web strategy built for scale.',
+          pageName: 'Web Design Company Houston TX | Massive Designs',
+          pageDescription: 'Massive Designs is a web design company serving Houston, TX, creating modern, SEO-friendly websites that help businesses strengthen their online presence and attract customers.',
         })}
       />
       <ServiceHero
-        title="Web Design & Digital Marketing Services Houston, TX"
+        title="Web Design Services in Houston, TX"
         lead="Houston spans energy, healthcare, logistics, and retail all at once, so no single marketing template works citywide. We build websites and digital marketing strategies tailored to whichever part of Houston's economy your business competes in."
         crumb="Houston"
         parent="Areas We Serve"
