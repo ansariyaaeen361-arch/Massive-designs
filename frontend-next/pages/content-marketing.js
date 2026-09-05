@@ -177,7 +177,7 @@ export default function ContentMarketing() {
         paragraphs={[
           "If you're looking for a content marketing agency in Texas that genuinely understands local markets, modern SEO best practices, and conversion-focused strategy, a tailored content plan can help you compete and win in search.",
         ]}
-        buttonLabel="Schedule a Discovery Call"
+        buttonLabel="Experience Next-Gen Copywriting"
         buttonHref={brand.emailLink}
       />
     </>

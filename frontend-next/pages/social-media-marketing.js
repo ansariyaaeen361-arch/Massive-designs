@@ -183,7 +183,7 @@ export default function SocialMediaMarketing() {
           </>,
           "We'll help you create impactful strategies that bring visibility, credibility, and loyal followers to your brand.",
         ]}
-        buttonLabel="Request Free Consultation"
+        buttonLabel="Get More Customers from Social Media"
         buttonHref={brand.emailLink}
       />
     </>

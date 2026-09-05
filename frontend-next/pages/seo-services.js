@@ -175,7 +175,7 @@ export default function SeoServices() {
         paragraphs={[
           "It's time to secure more exposure, clients, and growth. Massive Designs provides proven SEO strategies that help Texas companies beat the competition and grow faster.",
         ]}
-        buttonLabel="Request Free Consultation"
+        buttonLabel="Rank Higher and Generate More Leads"
         buttonHref={brand.emailLink}
       />
     </>
