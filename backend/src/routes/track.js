@@ -4,6 +4,7 @@ import ClickEvent from '../models/ClickEvent.js';
 import { geoLookup } from '../lib/geoLookup.js';
 import { parseUserAgent } from '../lib/parseUserAgent.js';
 import { parseReferrer } from '../lib/parseReferrer.js';
+import { isBot } from '../lib/isBot.js';
 
 const router = Router();
 
@@ -49,6 +50,7 @@ router.post('/', trackLimiter, async (req, res) => {
       visitorId,
       isReturning,
       durationMs,
+      isBot: isBot(userAgent),
       ...geo,
     });
   } catch (err) {
@@ -58,9 +60,13 @@ router.post('/', trackLimiter, async (req, res) => {
   return res.json({ success: true });
 });
 
+// Excludes known bots/crawlers by default so they don't inflate visitor
+// counts. Pass ?includeBots=true to see everything (debugging only).
 function sinceFilter(req) {
   const since = parseInt(req.query.since, 10);
-  return since ? { createdAt: { $gte: new Date(since) } } : {};
+  const filter = since ? { createdAt: { $gte: new Date(since) } } : {};
+  if (req.query.includeBots !== 'true') filter.isBot = { $ne: true };
+  return filter;
 }
 
 router.get('/summary', requireDashboardKey, async (req, res) => {
