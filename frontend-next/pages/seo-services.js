@@ -45,6 +45,8 @@ export default function SeoServices() {
         title="SEO Services in North Richland Hills Texas"
         lead="Texas is crowded, but your business shouldn't be. Our SEO services mix affordable options with smart SEO optimization services to turn searches into real customers."
         crumb="SEO Services"
+        ctaLabel="Call +1 786 936 4483"
+        ctaHref="tel:+17869364483"
       />
 
       <FeatureGrid

@@ -62,7 +62,7 @@ export default function Services() {
             onClick={() => setOrderOpen(true)}
             className="inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
           >
-            Order Now
+            Get Started Today
           </button>
         }
       />

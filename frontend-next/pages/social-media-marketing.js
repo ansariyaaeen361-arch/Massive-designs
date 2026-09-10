@@ -44,6 +44,8 @@ export default function SocialMediaMarketing() {
         title="Social Media Marketing in Texas for Growing Local Brands"
         lead="Texas businesses get strategic social media marketing that builds awareness, engagement, and dependable leads through locally focused campaigns."
         crumb="Social Media Marketing"
+        ctaLabel="Call +1 786 936 4483"
+        ctaHref="tel:+17869364483"
       />
 
       <FeatureGrid

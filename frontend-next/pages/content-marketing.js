@@ -44,6 +44,8 @@ export default function ContentMarketing() {
         title="Content Writing Services North Richland Hills TX"
         lead="We provide strategic content marketing and writing services for Texas businesses and turn local searches into consistent leads, stronger visibility, and measurable revenue."
         crumb="Content Marketing"
+        ctaLabel="Call +1 786 936 4483"
+        ctaHref="tel:+17869364483"
       />
 
       <FeatureGrid

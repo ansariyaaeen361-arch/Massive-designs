@@ -2,7 +2,9 @@ import Link from 'next/link';
 import Reveal from '../motion/Reveal';
 import AmbientGlow from '../motion/AmbientGlow';
 
-export default function ServiceHero({ title, lead, crumb, parent, parentHref, ctaLabel, onCtaClick }) {
+export default function ServiceHero({ title, lead, crumb, parent, parentHref, ctaLabel, onCtaClick, ctaHref }) {
+  const ctaClassName =
+    'inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1';
   return (
     <section className="relative isolate border-b border-white/10 pb-14 pt-36 lg:pt-44">
       <AmbientGlow position="top-left" size="md" intensity="medium" />
@@ -15,13 +17,16 @@ export default function ServiceHero({ title, lead, crumb, parent, parentHref, ct
             {lead}
           </Reveal>
         )}
+        {ctaLabel && ctaHref && (
+          <Reveal delay={0.12} as="div" className="mt-8">
+            <a href={ctaHref} className={ctaClassName}>
+              {ctaLabel}
+            </a>
+          </Reveal>
+        )}
         {ctaLabel && onCtaClick && (
           <Reveal delay={0.12} as="div" className="mt-8">
-            <button
-              type="button"
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
-            >
+            <button type="button" onClick={onCtaClick} className={ctaClassName}>
               {ctaLabel}
             </button>
           </Reveal>

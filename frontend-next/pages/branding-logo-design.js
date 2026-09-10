@@ -46,6 +46,8 @@ export default function BrandingLogoDesign() {
         title="Creative Branding & Logo Design Texas"
         lead="We design strategic brand identities and custom logos that boost recognition and drive business growth statewide."
         crumb="Branding Logo Design"
+        ctaLabel="Call +1 786 936 4483"
+        ctaHref="tel:+17869364483"
       />
 
       <FeatureGrid

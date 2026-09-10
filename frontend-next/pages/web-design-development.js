@@ -52,6 +52,8 @@ export default function WebDesignDevelopment() {
         title="Web Design and Development for Texas Brands"
         lead="We help Texas companies strengthen their online presence through well-structured design and practical development."
         crumb="Web Design & Development"
+        ctaLabel="Call +1 786 936 4483"
+        ctaHref="tel:+17869364483"
       />
 
       <FeatureGrid

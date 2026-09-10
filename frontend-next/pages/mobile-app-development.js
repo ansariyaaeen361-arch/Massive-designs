@@ -44,6 +44,8 @@ export default function MobileAppDevelopment() {
         title="Texas Mobile App Development for Growing Businesses"
         lead="We provide end-to-end mobile app development services, designing secure iOS and Android apps that help Texas companies streamline operations and drive measurable growth."
         crumb="Mobile App Development"
+        ctaLabel="Call +1 786 936 4483"
+        ctaHref="tel:+17869364483"
       />
 
       <FeatureGrid
