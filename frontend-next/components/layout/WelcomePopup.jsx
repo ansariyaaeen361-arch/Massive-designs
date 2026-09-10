@@ -4,7 +4,7 @@ import { gsap } from '../../lib/gsap';
 import { brand } from '../../lib/brand';
 
 const SESSION_KEY = 'md_welcome_popup_shown';
-const SHOW_DELAY_MS = 1500;
+const SHOW_DELAY_MS = 2500;
 
 export default function WelcomePopup() {
   const [open, setOpen] = useState(false);
