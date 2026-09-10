@@ -15,6 +15,8 @@ const initialState = {
 
 export default function ContactForm() {
   const [form, setForm] = useState(initialState);
+  const [honeypot, setHoneypot] = useState('');
+  const [formLoadedAt] = useState(() => Date.now());
   const [recaptchaToken, setRecaptchaToken] = useState('');
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
@@ -49,7 +51,7 @@ export default function ContactForm() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, recaptchaToken }),
+        body: JSON.stringify({ ...form, recaptchaToken, website: honeypot, formLoadedAt }),
       });
       const data = await res.json();
 
@@ -72,6 +74,19 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mt-10">
+      {/* Honeypot: hidden from real visitors, so any value means a bot filled it in. */}
+      <div className="absolute left-[-9999px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="mb-2 block text-xs uppercase tracking-wide text-white/50">

@@ -10,6 +10,8 @@ const initialState = { name: '', mail: '', number: '', our_service: '', message:
 
 export default function OrderModal({ open, onClose }) {
   const [form, setForm] = useState(initialState);
+  const [honeypot, setHoneypot] = useState('');
+  const [formLoadedAt] = useState(() => Date.now());
   const [recaptchaToken, setRecaptchaToken] = useState('');
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
@@ -70,6 +72,8 @@ export default function OrderModal({ open, onClose }) {
           message: form.message,
           consent: form.consent,
           recaptchaToken,
+          website: honeypot,
+          formLoadedAt,
         }),
       });
       const data = await res.json();
@@ -108,6 +112,19 @@ export default function OrderModal({ open, onClose }) {
           <h3 className="text-2xl text-white sm:text-3xl">Place Your Order</h3>
 
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
+            {/* Honeypot: hidden from real visitors, so any value means a bot filled it in. */}
+            <div className="absolute left-[-9999px] h-px w-px overflow-hidden" aria-hidden="true">
+              <label htmlFor="order-website">Website</label>
+              <input
+                id="order-website"
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+              />
+            </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div>
                 <label htmlFor="order-name" className="mb-2 block text-xs uppercase tracking-wide text-white/50">

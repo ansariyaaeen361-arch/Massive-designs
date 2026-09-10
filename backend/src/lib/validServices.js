@@ -1,0 +1,35 @@
+// Mirrors frontend-next/lib/serviceOptions.js — kept in sync manually since the
+// two apps don't share a package. Used to reject contact submissions whose
+// `service` value wasn't actually offered by the dropdown (a sign the request
+// bypassed the site's UI entirely).
+export const VALID_SERVICES = new Set([
+  'Web Design',
+  'Web Development',
+  'E-Commerce Setup',
+  'WordPress Design',
+  'Landing Page Design',
+  'Website Maintenance',
+  'Website Redesign',
+  'Logo Design',
+  'Brand Identity Kit',
+  'Packaging Design',
+  'Business Cards & Stationery',
+  'Social Media Branding',
+  'Rebranding',
+  'Custom Apparel (T-Shirts, Hoodies, Caps)',
+  'Promotional Products',
+  'Printing & Fulfillment',
+  'Corporate Gifts',
+  '2D Animation',
+  '3D Animation',
+  'Motion Graphics',
+  'Logo Animation',
+  'Explainer Videos',
+  'Product Animation',
+  'On-Page Optimization',
+  'Off-Page Optimization',
+  'Local SEO',
+  'Technical SEO Audit',
+  'Keyword Research',
+  'Content Optimization',
+]);
