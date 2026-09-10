@@ -11,6 +11,7 @@ import { gsap, ScrollTrigger } from '../../lib/gsap';
 export default function Layout({ children }) {
   useSmoothScroll();
   const router = useRouter();
+  const isDashboard = router.pathname === '/dashboard';
 
   const rootRef = useRef(null);
   const curtainRef = useRef(null);
@@ -56,11 +57,11 @@ export default function Layout({ children }) {
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-[200] hidden bg-black"
       />
-      {router.pathname !== '/dashboard' && <GridSpotlight />}
-      <Header />
+      {!isDashboard && <GridSpotlight />}
+      {!isDashboard && <Header />}
       <main className="flex-1">{displayedChildren}</main>
-      <Footer />
-      <BackToTop />
+      {!isDashboard && <Footer />}
+      {!isDashboard && <BackToTop />}
     </div>
   );
 }
