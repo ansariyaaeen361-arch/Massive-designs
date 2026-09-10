@@ -13,6 +13,7 @@ export default function WelcomePopup() {
   const panelRef = useRef(null);
 
   useEffect(() => {
+    if (window.location.pathname.startsWith('/dashboard')) return;
     if (window.sessionStorage.getItem(SESSION_KEY)) return;
 
     const timer = setTimeout(() => {

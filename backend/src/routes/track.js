@@ -39,21 +39,42 @@ router.post('/', trackLimiter, async (req, res) => {
   return res.json({ success: true });
 });
 
+function sinceFilter(req) {
+  const since = parseInt(req.query.since, 10);
+  return since ? { createdAt: { $gte: new Date(since) } } : {};
+}
+
 router.get('/summary', requireDashboardKey, async (req, res) => {
-  const [byEvent, byPage, totalCount] = await Promise.all([
+  const match = sinceFilter(req);
+  const matchStage = Object.keys(match).length ? [{ $match: match }] : [];
+
+  const [byEvent, byPage, totalCount, distinctEvents, distinctPages, distinctSources] = await Promise.all([
     ClickEvent.aggregate([
-      { $group: { _id: { event: '$event', source: '$source' }, count: { $sum: 1 } } },
+      ...matchStage,
+      { $group: { _id: { event: '$event', source: '$source' }, count: { $sum: 1 }, last: { $max: '$createdAt' } } },
       { $sort: { count: -1 } },
     ]),
-    ClickEvent.aggregate([{ $group: { _id: '$page', count: { $sum: 1 } } }, { $sort: { count: -1 } }]),
-    ClickEvent.countDocuments(),
+    ClickEvent.aggregate([
+      ...matchStage,
+      { $group: { _id: '$page', count: { $sum: 1 }, last: { $max: '$createdAt' } } },
+      { $sort: { count: -1 } },
+    ]),
+    ClickEvent.countDocuments(match),
+    ClickEvent.distinct('event', match),
+    ClickEvent.distinct('page', match),
+    ClickEvent.distinct('source', match),
   ]);
 
   return res.json({
     success: true,
     total: totalCount,
-    byEvent: byEvent.map((r) => ({ event: r._id.event, source: r._id.source, count: r.count })),
-    byPage: byPage.map((r) => ({ page: r._id, count: r.count })),
+    byEvent: byEvent.map((r) => ({ event: r._id.event, source: r._id.source, count: r.count, last: r.last })),
+    byPage: byPage.map((r) => ({ page: r._id, count: r.count, last: r.last })),
+    filters: {
+      events: distinctEvents.filter(Boolean).sort(),
+      pages: distinctPages.filter(Boolean).sort(),
+      sources: distinctSources.filter(Boolean).sort(),
+    },
   });
 });
 
@@ -61,9 +82,14 @@ router.get('/events', requireDashboardKey, async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit, 10) || 50, 200);
   const skip = Math.max(parseInt(req.query.skip, 10) || 0, 0);
 
+  const match = sinceFilter(req);
+  if (req.query.event) match.event = req.query.event;
+  if (req.query.page) match.page = req.query.page;
+  if (req.query.source) match.source = req.query.source;
+
   const [events, total] = await Promise.all([
-    ClickEvent.find().sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
-    ClickEvent.countDocuments(),
+    ClickEvent.find(match).sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
+    ClickEvent.countDocuments(match),
   ]);
 
   return res.json({ success: true, total, events });

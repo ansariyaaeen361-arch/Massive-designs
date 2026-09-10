@@ -56,7 +56,7 @@ export default function Layout({ children }) {
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-[200] hidden bg-black"
       />
-      <GridSpotlight />
+      {router.pathname !== '/dashboard' && <GridSpotlight />}
       <Header />
       <main className="flex-1">{displayedChildren}</main>
       <Footer />
