@@ -93,7 +93,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 px-6 py-6 text-xs text-white/50 sm:flex-row lg:px-10">
-          <p>Copyright © 2020-2025 {brand.name}. All rights reserved.</p>
+          <p>Copyright © 2020-2026 {brand.name}. All rights reserved.</p>
           <ul className="flex items-center gap-6">
             <li>
               <Link href="/privacy-policy" className="transition-colors hover:text-primary">
