@@ -1,3 +1,5 @@
+import { getVisitor, getSessionId } from './visitor';
+
 // Fires a GA4 event (if gtag loaded — blocked by ad-blockers for a real
 // chunk of visitors) and logs the same event to our own backend with the
 // visitor's IP (GA4 never exposes raw IPs, so this is the only way to get
@@ -10,6 +12,8 @@ export function trackEvent(eventName, params = {}) {
     window.gtag('event', eventName, params);
   }
 
+  const { visitorId, isReturning } = getVisitor();
+
   fetch('/api/track', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -18,6 +22,9 @@ export function trackEvent(eventName, params = {}) {
       event: eventName,
       source: params.source ?? null,
       page: window.location.pathname,
+      sessionId: getSessionId(),
+      visitorId,
+      isReturning,
     }),
     keepalive: true,
   }).catch(() => {});

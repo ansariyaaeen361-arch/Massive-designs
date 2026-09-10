@@ -2,6 +2,7 @@ import Head from 'next/head';
 import '../styles/globals.css';
 import Layout from '../components/layout/Layout';
 import WelcomePopup from '../components/layout/WelcomePopup';
+import PageViewTracker from '../components/layout/PageViewTracker';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }) {
         <Component {...pageProps} />
       </Layout>
       <WelcomePopup />
+      <PageViewTracker />
     </>
   );
 }
