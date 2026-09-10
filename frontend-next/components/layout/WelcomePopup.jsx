@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { HiX } from 'react-icons/hi';
 import { gsap } from '../../lib/gsap';
 import { brand } from '../../lib/brand';
+import { trackEvent } from '../../lib/analytics';
 
 const SESSION_KEY = 'md_welcome_popup_shown';
 const SHOW_DELAY_MS = 2500;
@@ -24,6 +25,7 @@ export default function WelcomePopup() {
 
   useEffect(() => {
     if (open) {
+      trackEvent('welcome_popup_shown', { source: 'welcome_popup' });
       gsap.set(rootRef.current, { pointerEvents: 'auto' });
       gsap.to(rootRef.current, { opacity: 1, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
       gsap.fromTo(
@@ -35,15 +37,11 @@ export default function WelcomePopup() {
   }, [open]);
 
   const handleCtaClick = () => {
-    fetch('/api/popup-click', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ popup: 'welcome-offer', page: window.location.pathname }),
-      keepalive: true,
-    }).catch(() => {});
+    trackEvent('call_click', { source: 'welcome_popup' });
   };
 
-  const handleClose = () => {
+  const handleClose = (method) => {
+    trackEvent('welcome_popup_closed', { source: 'welcome_popup', method });
     gsap.to(rootRef.current, {
       opacity: 0,
       duration: 0.25,
@@ -60,7 +58,7 @@ export default function WelcomePopup() {
 
   return (
     <div ref={rootRef} className="pointer-events-none fixed inset-0 z-[80] opacity-0">
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={handleClose} />
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => handleClose('backdrop')} />
       <div className="relative flex h-full items-center justify-center overflow-y-auto p-4 py-10">
         <div
           ref={panelRef}
@@ -69,7 +67,7 @@ export default function WelcomePopup() {
           <button
             type="button"
             aria-label="Close popup"
-            onClick={handleClose}
+            onClick={() => handleClose('button')}
             className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-primary hover:text-primary"
           >
             <HiX className="text-lg" />

@@ -7,6 +7,7 @@ import ServiceSlider from '../components/service-page/ServiceSlider';
 import ServiceTags from '../components/service-page/ServiceTags';
 import ServiceFaq from '../components/service-page/ServiceFaq';
 import OrderModal from '../components/forms/OrderModal';
+import { trackEvent } from '../lib/analytics';
 
 const SERVICE_LIST = [
   { name: 'Web Design & Development', slug: 'web-design-development' },
@@ -59,7 +60,10 @@ export default function Services() {
         action={
           <button
             type="button"
-            onClick={() => setOrderOpen(true)}
+            onClick={() => {
+              trackEvent('cta_click', { source: 'services_page' });
+              setOrderOpen(true);
+            }}
             className="inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
           >
             Get Started Today

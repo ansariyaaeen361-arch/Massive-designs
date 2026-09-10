@@ -3,6 +3,7 @@ import { HiX } from 'react-icons/hi';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { gsap } from '../../lib/gsap';
 import { serviceGroups } from '../../lib/serviceOptions';
+import { trackEvent } from '../../lib/analytics';
 
 const RECAPTCHA_SITE_KEY = '6LejfA4sAAAAAIfWC1ZiojBIJX69nHSdFg7Thf0Z';
 
@@ -83,6 +84,7 @@ export default function OrderModal({ open, onClose }) {
       }
 
       setStatus('success');
+      trackEvent('generate_lead', { form: 'order_modal', service: form.our_service });
       resetForm();
     } catch (err) {
       setStatus('error');

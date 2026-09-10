@@ -1,7 +1,15 @@
 import Reveal from '../motion/Reveal';
 import AmbientGlow from '../motion/AmbientGlow';
+import { trackEvent } from '../../lib/analytics';
 
 export default function ServiceCta({ heading, paragraphs, buttonLabel, buttonHref }) {
+  const handleClick = () => {
+    trackEvent(buttonHref?.startsWith('mailto:') ? 'email_click' : 'cta_click', {
+      source: 'service_cta',
+      label: buttonLabel,
+    });
+  };
+
   return (
     <section className="relative isolate py-16 lg:py-24">
       <AmbientGlow position="bottom-right" size="md" intensity="medium" />
@@ -17,6 +25,7 @@ export default function ServiceCta({ heading, paragraphs, buttonLabel, buttonHre
           </div>
           <a
             href={buttonHref}
+            onClick={handleClick}
             className="mt-9 inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
           >
             {buttonLabel}

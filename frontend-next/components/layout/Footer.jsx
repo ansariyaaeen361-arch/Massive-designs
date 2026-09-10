@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { HiArrowRight } from 'react-icons/hi2';
 import { brand, footerQuickLinks } from '../../lib/brand';
+import { trackEvent } from '../../lib/analytics';
 import SocialLinks from './SocialLinks';
 
 export default function Footer() {
@@ -11,6 +12,7 @@ export default function Footer() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
+    trackEvent('newsletter_signup', { source: 'footer' });
   };
 
   return (
@@ -57,7 +59,11 @@ export default function Footer() {
             <h3 className="font-heading text-lg text-white">Contact Info</h3>
             <ul className="mt-6 flex flex-col gap-3">
               <li>
-                <a href={brand.phoneTel} className="text-sm text-white/50 transition-colors hover:text-primary">
+                <a
+                  href={brand.phoneTel}
+                  onClick={() => trackEvent('call_click', { source: 'footer' })}
+                  className="text-sm text-white/50 transition-colors hover:text-primary"
+                >
                   {brand.phoneDisplay}
                 </a>
               </li>

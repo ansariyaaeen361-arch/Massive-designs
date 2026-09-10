@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { serviceGroups } from '../../lib/serviceOptions';
+import { trackEvent } from '../../lib/analytics';
 
 const RECAPTCHA_SITE_KEY = '6LejfA4sAAAAAIfWC1ZiojBIJX69nHSdFg7Thf0Z';
 
@@ -60,6 +61,7 @@ export default function ContactForm() {
       }
 
       setStatus('success');
+      trackEvent('generate_lead', { form: 'contact_form', service: form.service });
       resetForm();
     } catch (err) {
       setStatus('error');

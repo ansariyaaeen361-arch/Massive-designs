@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { HiCheck } from 'react-icons/hi';
 import useTilt from '../../hooks/useTilt';
+import { trackEvent } from '../../lib/analytics';
 
 export default function PricingCard({ badge, title, sub, oldPrice, price, features, highlight }) {
   const cardRef = useRef(null);
@@ -39,6 +40,7 @@ export default function PricingCard({ badge, title, sub, oldPrice, price, featur
 
       <Link
         href="/contact"
+        onClick={() => trackEvent('cta_click', { source: 'pricing_card', package: title })}
         className="mt-8 inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
       >
         Order Now

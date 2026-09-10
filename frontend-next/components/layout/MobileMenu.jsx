@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { HiX, HiChevronDown } from 'react-icons/hi';
 import { gsap } from '../../lib/gsap';
 import { navLinks, brand } from '../../lib/brand';
+import { trackEvent } from '../../lib/analytics';
 import SocialLinks from './SocialLinks';
 
 export default function MobileMenu({ open, onClose }) {
@@ -148,10 +149,18 @@ export default function MobileMenu({ open, onClose }) {
 
         <div className="mt-auto pt-10">
           <div className="flex flex-col gap-2 text-sm">
-            <a href={brand.emailLink} className="text-white/70 transition-colors hover:text-primary">
+            <a
+              href={brand.emailLink}
+              onClick={() => trackEvent('email_click', { source: 'mobile_menu' })}
+              className="text-white/70 transition-colors hover:text-primary"
+            >
               {brand.email}
             </a>
-            <a href={brand.phoneTel} className="text-white/70 transition-colors hover:text-primary">
+            <a
+              href={brand.phoneTel}
+              onClick={() => trackEvent('call_click', { source: 'mobile_menu' })}
+              className="text-white/70 transition-colors hover:text-primary"
+            >
               {brand.phoneDisplay}
             </a>
           </div>

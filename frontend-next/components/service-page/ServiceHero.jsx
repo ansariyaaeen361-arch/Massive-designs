@@ -1,10 +1,15 @@
 import Link from 'next/link';
 import Reveal from '../motion/Reveal';
 import AmbientGlow from '../motion/AmbientGlow';
+import { trackEvent } from '../../lib/analytics';
 
 export default function ServiceHero({ title, lead, crumb, parent, parentHref, ctaLabel, onCtaClick, ctaHref }) {
   const ctaClassName =
     'inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1';
+  const handleCtaClick = () => {
+    trackEvent(ctaHref?.startsWith('tel:') ? 'call_click' : 'cta_click', { source: 'service_hero', label: crumb ?? title });
+    onCtaClick?.();
+  };
   return (
     <section className="relative isolate border-b border-white/10 pb-14 pt-36 lg:pt-44">
       <AmbientGlow position="top-left" size="md" intensity="medium" />
@@ -19,14 +24,14 @@ export default function ServiceHero({ title, lead, crumb, parent, parentHref, ct
         )}
         {ctaLabel && ctaHref && (
           <Reveal delay={0.12} as="div" className="mt-8">
-            <a href={ctaHref} className={ctaClassName}>
+            <a href={ctaHref} onClick={handleCtaClick} className={ctaClassName}>
               {ctaLabel}
             </a>
           </Reveal>
         )}
         {ctaLabel && onCtaClick && (
           <Reveal delay={0.12} as="div" className="mt-8">
-            <button type="button" onClick={onCtaClick} className={ctaClassName}>
+            <button type="button" onClick={handleCtaClick} className={ctaClassName}>
               {ctaLabel}
             </button>
           </Reveal>

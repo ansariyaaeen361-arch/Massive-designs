@@ -7,6 +7,7 @@ import AmbientGlow from '../components/motion/AmbientGlow';
 import AuditUrlForm from '../components/audit-tool/AuditUrlForm';
 import AuditLoading from '../components/audit-tool/AuditLoading';
 import AuditResults from '../components/audit-tool/AuditResults';
+import { trackEvent } from '../lib/analytics';
 
 export default function AuditTool() {
   const [status, setStatus] = useState('idle');
@@ -18,6 +19,7 @@ export default function AuditTool() {
     setError('');
     setPendingUrl(url);
     setStatus('loading');
+    trackEvent('audit_started', { url });
 
     try {
       const res = await fetch('/api/audit', {
@@ -33,6 +35,7 @@ export default function AuditTool() {
 
       setResult(data);
       setStatus('results');
+      trackEvent('audit_completed', { url });
     } catch (err) {
       setError(err.message);
       setStatus('idle');

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { HiOutlineMail, HiCheckCircle } from 'react-icons/hi';
+import { trackEvent } from '../../lib/analytics';
 
 export default function EmailCaptureForm({ auditId }) {
   const [email, setEmail] = useState('');
@@ -25,6 +26,7 @@ export default function EmailCaptureForm({ auditId }) {
       }
 
       setStatus('success');
+      trackEvent('generate_lead', { form: 'audit_report_email' });
     } catch (err) {
       setStatus('error');
       setError(err.message);
@@ -41,6 +43,7 @@ export default function EmailCaptureForm({ auditId }) {
         </p>
         <Link
           href="/contact"
+          onClick={() => trackEvent('cta_click', { source: 'audit_success' })}
           className="mt-8 inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
         >
           Book a Free Consultation
