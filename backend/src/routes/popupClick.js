@@ -27,4 +27,15 @@ router.post('/', clickLimiter, async (req, res) => {
   return res.json({ success: true });
 });
 
+router.get('/count', async (req, res) => {
+  if (!process.env.POPUP_STATS_KEY || req.query.key !== process.env.POPUP_STATS_KEY) {
+    return res.status(403).json({ success: false, error: 'Forbidden' });
+  }
+
+  const popup = typeof req.query.popup === 'string' ? req.query.popup : 'welcome-offer';
+  const count = await PopupClick.countDocuments({ popup });
+
+  return res.json({ success: true, popup, count });
+});
+
 export default router;
