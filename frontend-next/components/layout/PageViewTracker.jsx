@@ -17,6 +17,7 @@ function sendPageDuration(page, durationMs) {
     sessionId: getSessionId(),
     visitorId,
     isReturning,
+    isWebdriver: typeof navigator !== 'undefined' && Boolean(navigator.webdriver),
   });
   if (navigator.sendBeacon) {
     navigator.sendBeacon('/api/track', new Blob([body], { type: 'application/json' }));

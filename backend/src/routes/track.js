@@ -5,6 +5,7 @@ import { geoLookup } from '../lib/geoLookup.js';
 import { parseUserAgent } from '../lib/parseUserAgent.js';
 import { parseReferrer } from '../lib/parseReferrer.js';
 import { isBot } from '../lib/isBot.js';
+import { isSuspiciouslyFast } from '../lib/isSuspiciouslyFast.js';
 
 const router = Router();
 
@@ -23,7 +24,7 @@ function requireDashboardKey(req, res, next) {
 }
 
 router.post('/', trackLimiter, async (req, res) => {
-  const { event, source, page, referrer, sessionId, visitorId, isReturning, durationMs } = req.body ?? {};
+  const { event, source, page, referrer, sessionId, visitorId, isReturning, durationMs, isWebdriver } = req.body ?? {};
 
   if (!event || typeof event !== 'string') {
     return res.status(400).json({ success: false, error: 'event is required.' });
@@ -35,7 +36,10 @@ router.post('/', trackLimiter, async (req, res) => {
   const referrerLabel = referrer !== undefined ? parseReferrer(referrer, req.hostname) : undefined;
 
   try {
-    const geo = await geoLookup(ip);
+    const [geo, tooFast] = await Promise.all([
+      geoLookup(ip),
+      event === 'page_view' ? isSuspiciouslyFast(ip) : Promise.resolve(false),
+    ]);
     await ClickEvent.create({
       event,
       source,
@@ -50,7 +54,7 @@ router.post('/', trackLimiter, async (req, res) => {
       visitorId,
       isReturning,
       durationMs,
-      isBot: isBot(userAgent),
+      isBot: isBot(userAgent) || isWebdriver === true || tooFast,
       ...geo,
     });
   } catch (err) {
@@ -216,6 +220,30 @@ router.get('/bots', requireDashboardKey, async (req, res) => {
   ]);
 
   return res.json({ success: true, total, uniqueIpCount: uniqueIps.length, events });
+});
+
+// A link to this exists on every page, hidden from real visitors (off-screen,
+// aria-hidden, not keyboard-focusable). Nothing a human does can reach it, so
+// any request here is automatically a bot/scraper that parsed the raw HTML.
+router.get('/trap', trackLimiter, async (req, res) => {
+  const ip = req.ip;
+  const userAgent = req.headers['user-agent'];
+
+  try {
+    const geo = await geoLookup(ip);
+    await ClickEvent.create({
+      event: 'honeypot_hit',
+      page: req.query.from || null,
+      ip,
+      userAgent,
+      isBot: true,
+      ...geo,
+    });
+  } catch (err) {
+    console.error('Failed to log honeypot hit:', err);
+  }
+
+  res.status(204).end();
 });
 
 export default router;

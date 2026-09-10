@@ -62,6 +62,19 @@ export default function Layout({ children }) {
       <main className="flex-1">{displayedChildren}</main>
       {!isDashboard && <Footer />}
       {!isDashboard && <BackToTop />}
+      {!isDashboard && (
+        // Invisible to real visitors (off-screen, unreachable by keyboard/
+        // screen reader) so only something parsing the raw HTML would ever
+        // request this URL — any hit is logged as a bot.
+        <a
+          href={`/api/track/trap?from=${encodeURIComponent(router.asPath)}`}
+          tabIndex={-1}
+          aria-hidden="true"
+          className="absolute left-[-9999px] top-[-9999px] h-px w-px overflow-hidden"
+        >
+          Site Map
+        </a>
+      )}
     </div>
   );
 }

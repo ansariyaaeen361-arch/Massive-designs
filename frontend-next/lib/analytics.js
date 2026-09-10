@@ -25,6 +25,9 @@ export function trackEvent(eventName, params = {}) {
       sessionId: getSessionId(),
       visitorId,
       isReturning,
+      // Set by browser automation tools (Puppeteer/Selenium/Playwright) even
+      // when the User-Agent is faked to look like a normal browser.
+      isWebdriver: typeof navigator !== 'undefined' && Boolean(navigator.webdriver),
     }),
     keepalive: true,
   }).catch(() => {});
