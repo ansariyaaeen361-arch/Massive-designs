@@ -28,6 +28,7 @@ function sendPageDuration(page, durationMs) {
 export default function PageViewTracker() {
   const router = useRouter();
   const current = useRef({ page: null, enteredAt: null });
+  const isFirstLoad = useRef(true);
 
   useEffect(() => {
     if (window.location.pathname.startsWith('/dashboard')) return undefined;
@@ -38,6 +39,13 @@ export default function PageViewTracker() {
         sendPageDuration(current.current.page, Date.now() - current.current.enteredAt);
       }
       current.current = { page, enteredAt: Date.now() };
+      // _document.js already fires fbq PageView for the very first load of a
+      // fresh page request; only fire it here for subsequent SPA navigations.
+      if (isFirstLoad.current) {
+        isFirstLoad.current = false;
+      } else if (typeof window.fbq === 'function') {
+        window.fbq('track', 'PageView');
+      }
       trackEvent('page_view', { referrer: getSessionReferrer() });
     };
 
