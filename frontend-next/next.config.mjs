@@ -16,7 +16,7 @@ export default function nextConfig(phase) {
       async rewrites() {
         return [
           { source: '/cms/:path*', destination: 'https://massive-designs.com/cms/:path*' },
-          { source: '/api/:path*', destination: 'http://localhost:4000/:path*' },
+          { source: '/api/:path*', destination: 'http://localhost:4000/api/:path*' },
         ];
       },
     }),

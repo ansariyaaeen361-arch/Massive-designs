@@ -34,6 +34,15 @@ export default function WelcomePopup() {
     }
   }, [open]);
 
+  const handleCtaClick = () => {
+    fetch('/api/popup-click', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ popup: 'welcome-offer', page: window.location.pathname }),
+      keepalive: true,
+    }).catch(() => {});
+  };
+
   const handleClose = () => {
     gsap.to(rootRef.current, {
       opacity: 0,
@@ -74,6 +83,7 @@ export default function WelcomePopup() {
 
           <a
             href={brand.phoneTel}
+            onClick={handleCtaClick}
             className="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1"
           >
             Get My Free Design
