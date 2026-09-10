@@ -49,6 +49,31 @@ function friendlyLabel(event, source) {
   return LABELS[`${event}|${source ?? 'null'}`] || event.replace(/_/g, ' ');
 }
 
+const BOT_NAMES = [
+  { match: /googlebot/i, name: 'Google' },
+  { match: /bingbot/i, name: 'Bing' },
+  { match: /yandexbot/i, name: 'Yandex' },
+  { match: /duckduckbot/i, name: 'DuckDuckGo' },
+  { match: /baiduspider/i, name: 'Baidu' },
+  { match: /ahrefsbot/i, name: 'Ahrefs' },
+  { match: /semrushbot/i, name: 'Semrush' },
+  { match: /gptbot/i, name: 'ChatGPT' },
+  { match: /claudebot|anthropic-ai/i, name: 'Claude' },
+  { match: /perplexitybot/i, name: 'Perplexity' },
+  { match: /ccbot/i, name: 'Common Crawl' },
+  { match: /facebookexternalhit/i, name: 'Facebook' },
+  { match: /linkedinbot/i, name: 'LinkedIn' },
+  { match: /twitterbot/i, name: 'Twitter / X' },
+  { match: /pingdom|uptimerobot|statuscake/i, name: 'Uptime Monitor' },
+  { match: /headlesschrome|phantomjs|puppeteer|playwright/i, name: 'Automated Browser' },
+];
+
+function botName(userAgent) {
+  if (!userAgent) return 'Unknown Bot';
+  const found = BOT_NAMES.find((b) => b.match.test(userAgent));
+  return found ? found.name : 'Other Bot';
+}
+
 function timeAgo(iso) {
   const diff = Date.now() - new Date(iso).getTime();
   const min = Math.floor(diff / 60000);
@@ -146,6 +171,7 @@ export default function Dashboard() {
   const [filters, setFilters] = useState({ event: '', page: '', source: '' });
   const [newVisitorRows, setNewVisitorRows] = useState([]);
   const [sessions, setSessions] = useState([]);
+  const [bots, setBots] = useState({ total: 0, uniqueIpCount: 0, events: [] });
 
   const since = useMemo(() => {
     const ms = RANGES[rangeIdx].ms;
@@ -173,20 +199,24 @@ export default function Dashboard() {
     if (since) newVisitorParams.set('since', since);
     const sessionParams = new URLSearchParams({ key, limit: 15 });
     if (since) sessionParams.set('since', since);
+    const botParams = new URLSearchParams({ key, limit: 30 });
+    if (since) botParams.set('since', since);
 
     Promise.all([
       fetchJson(`/api/track/summary?${rangeParams.toString()}`),
       fetchJson(buildEventsUrl(0)),
       fetchJson(`/api/track/events?${newVisitorParams.toString()}`),
       fetchJson(`/api/track/sessions?${sessionParams.toString()}`),
+      fetchJson(`/api/track/bots?${botParams.toString()}`),
     ])
-      .then(([summaryData, eventsData, newVisitorData, sessionData]) => {
+      .then(([summaryData, eventsData, newVisitorData, sessionData, botData]) => {
         setSummary(summaryData);
         setEvents(eventsData.events);
         setTotal(eventsData.total);
         setSkip(0);
         setNewVisitorRows(newVisitorData.events);
         setSessions(sessionData.sessions);
+        setBots(botData);
         setStatus('ready');
       })
       .catch(() => setStatus('error'));
@@ -443,6 +473,53 @@ export default function Dashboard() {
                 </div>
               )}
             </Section>
+
+            <div className="mt-10 border-t border-white/10 pt-6">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/40">Separate from visitor numbers above</p>
+              <h2 className="mt-2 text-xl text-white">Bot Visits</h2>
+              <p className="mt-1 text-xs text-white/40">
+                Search engines, AI crawlers, and other automated traffic. These are never counted as visitors or clicks.
+              </p>
+
+              <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-2">
+                <StatTile label="Bot Visits" value={bots.total} />
+                <StatTile label="Unique Bot IPs" value={bots.uniqueIpCount} />
+              </div>
+
+              <Section title="Bot Activity">
+                {!bots.events.length && <p className="px-5 py-6 text-sm text-white/40">No bot visits recorded in this range.</p>}
+                {!!bots.events.length && (
+                  <div className="max-h-[360px] overflow-auto">
+                    <table className="w-full min-w-[850px] border-collapse text-left text-xs">
+                      <thead className="sticky top-0 bg-[#0f1013]">
+                        <tr className="text-white/40">
+                          <th className="px-5 py-2 font-normal">Time</th>
+                          <th className="px-3 py-2 font-normal">Bot</th>
+                          <th className="px-3 py-2 font-normal">Action</th>
+                          <th className="px-3 py-2 font-normal">Page</th>
+                          <th className="px-3 py-2 font-normal">IP</th>
+                          <th className="px-3 py-2 font-normal">Location</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {bots.events.map((ev) => (
+                          <tr key={ev._id} className="text-white/70 hover:bg-white/[0.03]">
+                            <td className="whitespace-nowrap px-5 py-2.5">{new Date(ev.createdAt).toLocaleString()}</td>
+                            <td className="px-3 py-2.5">{botName(ev.userAgent)}</td>
+                            <td className="px-3 py-2.5">{friendlyLabel(ev.event, ev.source)}</td>
+                            <td className="px-3 py-2.5">{ev.page || 'N/A'}</td>
+                            <td className="whitespace-nowrap px-3 py-2.5">{ev.ip || 'N/A'}</td>
+                            <td className="whitespace-nowrap px-3 py-2.5">
+                              {[ev.city, ev.region, ev.country].filter(Boolean).join(', ') || 'N/A'}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </Section>
+            </div>
           </>
         )}
       </div>

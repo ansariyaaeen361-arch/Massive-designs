@@ -195,4 +195,27 @@ router.get('/sessions', requireDashboardKey, async (req, res) => {
   return res.json({ success: true, total: totalSessions, sessions });
 });
 
+// Same shape as /events, but only bot/crawler traffic — kept fully separate
+// from the human visitor numbers everywhere else in this file.
+function botFilter(req) {
+  const since = parseInt(req.query.since, 10);
+  const filter = since ? { createdAt: { $gte: new Date(since) } } : {};
+  filter.isBot = true;
+  return filter;
+}
+
+router.get('/bots', requireDashboardKey, async (req, res) => {
+  const limit = Math.min(parseInt(req.query.limit, 10) || 50, 200);
+  const skip = Math.max(parseInt(req.query.skip, 10) || 0, 0);
+  const match = botFilter(req);
+
+  const [events, total, uniqueIps] = await Promise.all([
+    ClickEvent.find(match).sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
+    ClickEvent.countDocuments(match),
+    ClickEvent.distinct('ip', match),
+  ]);
+
+  return res.json({ success: true, total, uniqueIpCount: uniqueIps.length, events });
+});
+
 export default router;
