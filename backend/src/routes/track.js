@@ -40,6 +40,11 @@ router.post('/', trackLimiter, async (req, res) => {
       geoLookup(ip),
       event === 'page_view' ? isSuspiciouslyFast(ip) : Promise.resolve(false),
     ]);
+    const uaFlagged = isBot(userAgent);
+    const webdriverFlagged = isWebdriver === true;
+    const botFlagged = uaFlagged || webdriverFlagged || tooFast;
+    const botReason = uaFlagged ? 'user-agent' : webdriverFlagged ? 'webdriver' : tooFast ? 'speed' : undefined;
+
     await ClickEvent.create({
       event,
       source,
@@ -54,7 +59,8 @@ router.post('/', trackLimiter, async (req, res) => {
       visitorId,
       isReturning,
       durationMs,
-      isBot: isBot(userAgent) || isWebdriver === true || tooFast,
+      isBot: botFlagged,
+      botReason,
       ...geo,
     });
   } catch (err) {
@@ -237,6 +243,7 @@ router.get('/trap', trackLimiter, async (req, res) => {
       ip,
       userAgent,
       isBot: true,
+      botReason: 'honeypot',
       ...geo,
     });
   } catch (err) {

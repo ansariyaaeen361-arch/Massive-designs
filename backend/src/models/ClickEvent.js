@@ -20,6 +20,7 @@ const clickEventSchema = new mongoose.Schema(
     isReturning: { type: Boolean },
     durationMs: { type: Number },
     isBot: { type: Boolean, default: false },
+    botReason: { type: String, trim: true },
   },
   { timestamps: true },
 );
