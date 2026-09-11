@@ -3,5 +3,7 @@ Allow: /
 
 Disallow: /wp-admin/
 Disallow: /wp-includes/
+Disallow: /api/
+Disallow: /dashboard/
 
 Sitemap: https://massive-designs.com/sitemap.xml

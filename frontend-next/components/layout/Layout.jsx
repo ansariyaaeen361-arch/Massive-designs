@@ -70,6 +70,7 @@ export default function Layout({ children }) {
           href={`/api/track/trap?from=${encodeURIComponent(router.asPath)}`}
           tabIndex={-1}
           aria-hidden="true"
+          rel="nofollow noindex"
           className="absolute left-[-9999px] top-[-9999px] h-px w-px overflow-hidden"
         >
           Site Map
