@@ -26,6 +26,43 @@ async function fetchJson(url) {
   return data;
 }
 
+function csvCell(value) {
+  const str = value === null || value === undefined ? '' : String(value);
+  return /[",\n]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
+}
+
+function downloadCsv(filename, columns, rows) {
+  const lines = [
+    columns.map((c) => csvCell(c.header)).join(','),
+    ...rows.map((row) => columns.map((c) => csvCell(c.get(row))).join(',')),
+  ];
+  const blob = new Blob([lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+// Paginates through a /api/track/* list endpoint to collect every row
+// matching the current filters, not just what's currently loaded on screen.
+async function fetchAllPages(urlFor, listKey) {
+  const PAGE = 200;
+  let skip = 0;
+  let all = [];
+  for (;;) {
+    const data = await fetchJson(urlFor(skip, PAGE));
+    const page = data[listKey] ?? [];
+    all = all.concat(page);
+    if (page.length < PAGE || all.length >= (data.total ?? all.length)) break;
+    skip += PAGE;
+  }
+  return all;
+}
+
 const LABELS = {
   'welcome_popup_closed|welcome_popup': 'Popup Closed',
   'call_click|welcome_popup': 'Popup Call Button',
@@ -132,14 +169,28 @@ function Select({ value, onChange, options, placeholder }) {
   );
 }
 
-function Section({ title, children }) {
+function Section({ title, actions, children }) {
   return (
     <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-      <h2 className="border-b border-white/10 px-5 py-3 text-sm font-medium uppercase tracking-wide text-primary">
-        {title}
-      </h2>
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-3">
+        <h2 className="text-sm font-medium uppercase tracking-wide text-primary">{title}</h2>
+        {actions}
+      </div>
       {children}
     </div>
+  );
+}
+
+function DownloadCsvButton({ onClick, loading }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={loading}
+      className="rounded-lg border border-white/15 px-3 py-2 text-xs text-white/60 transition-colors hover:border-primary hover:text-primary disabled:opacity-50"
+    >
+      {loading ? 'Preparing CSV...' : 'Download CSV'}
+    </button>
   );
 }
 
@@ -261,6 +312,81 @@ export default function Dashboard() {
       setEvents((prev) => [...prev, ...data.events]);
       setSkip(nextSkip);
     });
+  };
+
+  const [exporting, setExporting] = useState({ activity: false, bots: false });
+
+  const exportActivityCsv = async () => {
+    setExporting((e) => ({ ...e, activity: true }));
+    try {
+      const rows = await fetchAllPages(
+        (skipVal, limitVal) => {
+          const params = new URLSearchParams({ key, limit: limitVal, skip: skipVal });
+          if (since) params.set('since', since);
+          if (filters.event) params.set('event', filters.event);
+          if (filters.page) params.set('page', filters.page);
+          if (filters.source) params.set('source', filters.source);
+          return `/api/track/events?${params.toString()}`;
+        },
+        'events',
+      );
+      downloadCsv(
+        `visitor-activity-${Date.now()}.csv`,
+        [
+          { header: 'Time', get: (r) => new Date(r.createdAt).toLocaleString() },
+          { header: 'Action', get: (r) => friendlyLabel(r.event, r.source) },
+          { header: 'Page', get: (r) => r.page },
+          { header: 'Device', get: (r) => r.device },
+          { header: 'Browser', get: (r) => r.browser },
+          { header: 'OS', get: (r) => r.os },
+          { header: 'IP', get: (r) => r.ip },
+          { header: 'City', get: (r) => r.city },
+          { header: 'Region', get: (r) => r.region },
+          { header: 'Country', get: (r) => r.country },
+          { header: 'ISP', get: (r) => r.isp },
+          { header: 'Referrer', get: (r) => r.referrer },
+          { header: 'New/Returning', get: (r) => (r.isReturning ? 'Returning' : 'New') },
+          { header: 'Duration (ms)', get: (r) => r.durationMs },
+          { header: 'Session ID', get: (r) => r.sessionId },
+          {
+            header: 'Where this visitor went',
+            get: (r) => (sessionPaths[r.sessionId] || []).map(stepLabel).join(' -> '),
+          },
+        ],
+        rows,
+      );
+    } finally {
+      setExporting((e) => ({ ...e, activity: false }));
+    }
+  };
+
+  const exportBotsCsv = async () => {
+    setExporting((e) => ({ ...e, bots: true }));
+    try {
+      const rows = await fetchAllPages((skipVal, limitVal) => {
+        const params = new URLSearchParams({ key, limit: limitVal, skip: skipVal });
+        if (since) params.set('since', since);
+        return `/api/track/bots?${params.toString()}`;
+      }, 'events');
+      downloadCsv(
+        `bot-activity-${Date.now()}.csv`,
+        [
+          { header: 'Time', get: (r) => new Date(r.createdAt).toLocaleString() },
+          { header: 'Bot', get: (r) => botName(r.botReason) },
+          { header: 'Action', get: (r) => friendlyLabel(r.event, r.source) },
+          { header: 'Page', get: (r) => r.page },
+          { header: 'IP', get: (r) => r.ip },
+          { header: 'City', get: (r) => r.city },
+          { header: 'Region', get: (r) => r.region },
+          { header: 'Country', get: (r) => r.country },
+          { header: 'ISP', get: (r) => r.isp },
+          { header: 'User Agent', get: (r) => r.userAgent },
+        ],
+        rows,
+      );
+    } finally {
+      setExporting((e) => ({ ...e, bots: false }));
+    }
   };
 
   const buttonRows = summary ? summary.byEvent.filter((r) => !NOT_A_CLICK.has(r.event)) : [];
@@ -409,7 +535,10 @@ export default function Dashboard() {
               </div>
             </Section>
 
-            <Section title="All Activity">
+            <Section
+              title="All Activity"
+              actions={<DownloadCsvButton onClick={exportActivityCsv} loading={exporting.activity} />}
+            >
               <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-3">
                 <span className="text-xs text-white/40">Filter the list below</span>
                 <div className="flex flex-wrap gap-2">
@@ -508,7 +637,10 @@ export default function Dashboard() {
                 <StatTile label="Unique Bot IPs" value={bots.uniqueIpCount} />
               </div>
 
-              <Section title="Bot Activity">
+              <Section
+                title="Bot Activity"
+                actions={<DownloadCsvButton onClick={exportBotsCsv} loading={exporting.bots} />}
+              >
                 {!bots.events.length && <p className="px-5 py-6 text-sm text-white/40">No bot visits recorded in this range.</p>}
                 {!!bots.events.length && (
                   <div className="max-h-[360px] overflow-auto">
