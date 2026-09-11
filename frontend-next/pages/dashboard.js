@@ -132,6 +132,28 @@ function formatDuration(ms) {
   return min > 0 ? `${min}m ${sec}s` : `${sec}s`;
 }
 
+function HeaderBar({ status, refreshing, onRefresh }) {
+  return (
+    <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 sm:py-5 lg:px-10">
+      <div>
+        <p className="text-xs uppercase tracking-[0.3em] text-primary">Analytics</p>
+        <h1 className="mt-2 text-xl text-white sm:text-2xl lg:text-3xl">Click Dashboard</h1>
+      </div>
+      {status === 'ready' && (
+        <button
+          type="button"
+          onClick={onRefresh}
+          disabled={refreshing}
+          className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white/80 transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-60 sm:px-6 sm:py-3"
+        >
+          <HiRefresh className={refreshing ? 'animate-spin text-lg' : 'text-lg'} />
+          Refresh
+        </button>
+      )}
+    </div>
+  );
+}
+
 function StatTile({ label, value }) {
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 px-5 py-4">
@@ -473,23 +495,13 @@ export default function Dashboard() {
         </div>
       )}
 
+      <div className="fixed inset-x-0 top-0 z-20 border-b border-white/10 bg-black/90 backdrop-blur-md">
+        <HeaderBar status={status} refreshing={refreshing} onRefresh={handleRefresh} />
+      </div>
+
       <div className="mx-auto max-w-[1200px] px-4 pb-12 sm:px-6 lg:px-10">
-        <div className="sticky top-0 z-20 -mx-4 flex flex-col items-start gap-3 border-b border-white/10 bg-black/90 px-4 py-4 backdrop-blur-md sm:-mx-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 sm:py-5 lg:-mx-10 lg:px-10">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-primary">Analytics</p>
-            <h1 className="mt-2 text-xl text-white sm:text-2xl lg:text-3xl">Click Dashboard</h1>
-          </div>
-          {status === 'ready' && (
-            <button
-              type="button"
-              onClick={handleRefresh}
-              disabled={refreshing}
-              className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white/80 transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-60 sm:px-6 sm:py-3"
-            >
-              <HiRefresh className={refreshing ? 'animate-spin text-lg' : 'text-lg'} />
-              Refresh
-            </button>
-          )}
+        <div aria-hidden="true" className="invisible">
+          <HeaderBar status={status} refreshing={false} onRefresh={() => {}} />
         </div>
 
         {status === 'loading' && !summary && <p className="mt-8 text-white/50">Loading...</p>}
