@@ -123,16 +123,6 @@ function botName(botReason) {
   return REASON_LABELS[botReason] || botReason;
 }
 
-function timeAgo(iso) {
-  const diff = Date.now() - new Date(iso).getTime();
-  const min = Math.floor(diff / 60000);
-  if (min < 1) return 'just now';
-  if (min < 60) return `${min}m ago`;
-  const hr = Math.floor(min / 60);
-  if (hr < 24) return `${hr}h ago`;
-  return `${Math.floor(hr / 24)}d ago`;
-}
-
 function formatDuration(ms) {
   if (!ms || ms < 1000) return '0s';
   const totalSec = Math.round(ms / 1000);
@@ -227,21 +217,48 @@ function DownloadCsvButton({ onClick, loading }) {
   );
 }
 
-function RankList({ rows, renderLabel }) {
-  if (!rows.length) return <p className="px-5 py-6 text-sm text-white/40">No data yet.</p>;
-  const max = rows[0]?.count || 1;
+function StatCard({ title, children }) {
   return (
-    <div className="max-h-[300px] overflow-y-auto">
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+      <h2 className="border-b border-white/10 px-4 py-2.5 text-xs font-medium uppercase tracking-wide text-primary">
+        {title}
+      </h2>
+      {children}
+    </div>
+  );
+}
+
+function RankList({ rows, renderLabel }) {
+  if (!rows.length) return <p className="px-4 py-6 text-xs text-white/40">No data yet.</p>;
+  const max = rows[0]?.count || 1;
+  const totalCount = rows.reduce((sum, r) => sum + r.count, 0) || 1;
+  return (
+    <div className="max-h-[240px] overflow-y-auto">
       {rows.map((row, i) => (
-        <div key={i} className="border-b border-white/5 px-5 py-3 last:border-0">
-          <div className="flex items-center justify-between gap-3 text-sm">
-            <span className="truncate text-white/80">{renderLabel(row)}</span>
-            <span className="shrink-0 font-medium text-primary">{row.count}</span>
+        <div key={i} className="flex items-center gap-2.5 border-b border-white/5 px-4 py-2 last:border-0">
+          <span
+            className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold ${
+              i === 0 ? 'bg-primary text-black' : 'bg-white/10 text-white/50'
+            }`}
+          >
+            {i + 1}
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2 text-xs">
+              <span className="truncate text-white/80" title={renderLabel(row)}>
+                {renderLabel(row)}
+              </span>
+              <span className="shrink-0 tabular-nums text-white/40">
+                {Math.round((row.count / totalCount) * 100)}%
+              </span>
+            </div>
+            <div className="mt-1 flex items-center gap-2">
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/5">
+                <div className="h-full rounded-full bg-primary" style={{ width: `${(row.count / max) * 100}%` }} />
+              </div>
+              <span className="shrink-0 text-[11px] font-medium tabular-nums text-primary">{row.count}</span>
+            </div>
           </div>
-          <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-white/5">
-            <div className="h-full rounded-full bg-primary" style={{ width: `${(row.count / max) * 100}%` }} />
-          </div>
-          {row.last && <p className="mt-1 text-[11px] text-white/30">Last: {timeAgo(row.last)}</p>}
         </div>
       ))}
     </div>
@@ -542,34 +559,19 @@ export default function Dashboard() {
               )}
             </Section>
 
-            <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-                <h2 className="border-b border-white/10 px-5 py-3 text-sm font-medium uppercase tracking-wide text-primary">
-                  Most Clicked Buttons
-                </h2>
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <StatCard title="Most Clicked Buttons">
                 <RankList rows={buttonRows} renderLabel={(row) => friendlyLabel(row.event, row.source)} />
-              </div>
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-                <h2 className="border-b border-white/10 px-5 py-3 text-sm font-medium uppercase tracking-wide text-primary">
-                  Most Visited Pages
-                </h2>
+              </StatCard>
+              <StatCard title="Most Visited Pages">
                 <RankList rows={pageRows} renderLabel={(row) => row.page} />
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-                <h2 className="border-b border-white/10 px-5 py-3 text-sm font-medium uppercase tracking-wide text-primary">
-                  Where Visitors Come From
-                </h2>
+              </StatCard>
+              <StatCard title="Where Visitors Come From">
                 <RankList rows={summary.byReferrer} renderLabel={(row) => row.referrer || 'Direct'} />
-              </div>
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-                <h2 className="border-b border-white/10 px-5 py-3 text-sm font-medium uppercase tracking-wide text-primary">
-                  Devices
-                </h2>
+              </StatCard>
+              <StatCard title="Devices">
                 <RankList rows={summary.byDevice} renderLabel={(row) => row.device || 'Unknown'} />
-              </div>
+              </StatCard>
             </div>
 
             <Section title="Visitor Paths (what pages each visitor viewed, in order)">
