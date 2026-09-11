@@ -181,6 +181,40 @@ function Section({ title, actions, children }) {
   );
 }
 
+function DateRangeInputs({ range, onChange }) {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <label className="flex items-center gap-1.5 text-xs text-white/40">
+        From
+        <input
+          type="date"
+          value={range.from}
+          onChange={(e) => onChange({ ...range, from: e.target.value })}
+          className="rounded-lg border border-white/15 bg-transparent px-2 py-1.5 text-xs text-white/80 [color-scheme:dark]"
+        />
+      </label>
+      <label className="flex items-center gap-1.5 text-xs text-white/40">
+        To
+        <input
+          type="date"
+          value={range.to}
+          onChange={(e) => onChange({ ...range, to: e.target.value })}
+          className="rounded-lg border border-white/15 bg-transparent px-2 py-1.5 text-xs text-white/80 [color-scheme:dark]"
+        />
+      </label>
+      {(range.from || range.to) && (
+        <button
+          type="button"
+          onClick={() => onChange({ from: '', to: '' })}
+          className="rounded-lg border border-white/15 px-3 py-1.5 text-xs text-white/60 transition-colors hover:border-primary hover:text-primary"
+        >
+          Clear dates
+        </button>
+      )}
+    </div>
+  );
+}
+
 function DownloadCsvButton({ onClick, loading }) {
   return (
     <button
@@ -237,10 +271,32 @@ export default function Dashboard() {
   const [sessions, setSessions] = useState([]);
   const [bots, setBots] = useState({ total: 0, uniqueIpCount: 0, events: [] });
 
+  // Per-section custom date range (From/To) — overrides the global range
+  // buttons above just for that one table, when set.
+  const [activityDateRange, setActivityDateRange] = useState({ from: '', to: '' });
+  const [botDateRange, setBotDateRange] = useState({ from: '', to: '' });
+
   const since = useMemo(() => {
     const ms = RANGES[rangeIdx].ms;
     return ms ? Date.now() - ms : null;
   }, [rangeIdx]);
+
+  const activitySince = useMemo(
+    () => (activityDateRange.from ? new Date(`${activityDateRange.from}T00:00:00`).getTime() : since),
+    [activityDateRange.from, since],
+  );
+  const activityUntil = useMemo(
+    () => (activityDateRange.to ? new Date(`${activityDateRange.to}T23:59:59.999`).getTime() : null),
+    [activityDateRange.to],
+  );
+  const botSince = useMemo(
+    () => (botDateRange.from ? new Date(`${botDateRange.from}T00:00:00`).getTime() : since),
+    [botDateRange.from, since],
+  );
+  const botUntil = useMemo(
+    () => (botDateRange.to ? new Date(`${botDateRange.to}T23:59:59.999`).getTime() : null),
+    [botDateRange.to],
+  );
 
   // sessionId -> that visitor's full path, so any single event row in "All
   // Activity" can show where that visitor came from and went next.
@@ -255,13 +311,24 @@ export default function Dashboard() {
   const buildEventsUrl = useCallback(
     (skipVal) => {
       const params = new URLSearchParams({ key, limit: LIMIT, skip: skipVal });
-      if (since) params.set('since', since);
+      if (activitySince) params.set('since', activitySince);
+      if (activityUntil) params.set('until', activityUntil);
       if (filters.event) params.set('event', filters.event);
       if (filters.page) params.set('page', filters.page);
       if (filters.source) params.set('source', filters.source);
       return `/api/track/events?${params.toString()}`;
     },
-    [key, since, filters],
+    [key, activitySince, activityUntil, filters],
+  );
+
+  const buildBotsUrl = useCallback(
+    (skipVal, limitVal) => {
+      const params = new URLSearchParams({ key, limit: limitVal, skip: skipVal });
+      if (botSince) params.set('since', botSince);
+      if (botUntil) params.set('until', botUntil);
+      return `/api/track/bots?${params.toString()}`;
+    },
+    [key, botSince, botUntil],
   );
 
   const load = useCallback(() => {
@@ -273,15 +340,13 @@ export default function Dashboard() {
     if (since) newVisitorParams.set('since', since);
     const sessionParams = new URLSearchParams({ key, limit: 100 });
     if (since) sessionParams.set('since', since);
-    const botParams = new URLSearchParams({ key, limit: 30 });
-    if (since) botParams.set('since', since);
 
     Promise.all([
       fetchJson(`/api/track/summary?${rangeParams.toString()}`),
       fetchJson(buildEventsUrl(0)),
       fetchJson(`/api/track/events?${newVisitorParams.toString()}`),
       fetchJson(`/api/track/sessions?${sessionParams.toString()}`),
-      fetchJson(`/api/track/bots?${botParams.toString()}`),
+      fetchJson(buildBotsUrl(0, 30)),
     ])
       .then(([summaryData, eventsData, newVisitorData, sessionData, botData]) => {
         setSummary(summaryData);
@@ -294,7 +359,7 @@ export default function Dashboard() {
         setStatus('ready');
       })
       .catch(() => setStatus('error'));
-  }, [key, since, buildEventsUrl]);
+  }, [key, since, buildEventsUrl, buildBotsUrl]);
 
   useEffect(() => {
     if (key === null) return;
@@ -304,7 +369,7 @@ export default function Dashboard() {
     }
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key, rangeIdx, filters]);
+  }, [key, rangeIdx, filters, activityDateRange, botDateRange]);
 
   const loadMore = () => {
     const nextSkip = skip + LIMIT;
@@ -322,7 +387,8 @@ export default function Dashboard() {
       const rows = await fetchAllPages(
         (skipVal, limitVal) => {
           const params = new URLSearchParams({ key, limit: limitVal, skip: skipVal });
-          if (since) params.set('since', since);
+          if (activitySince) params.set('since', activitySince);
+          if (activityUntil) params.set('until', activityUntil);
           if (filters.event) params.set('event', filters.event);
           if (filters.page) params.set('page', filters.page);
           if (filters.source) params.set('source', filters.source);
@@ -363,11 +429,7 @@ export default function Dashboard() {
   const exportBotsCsv = async () => {
     setExporting((e) => ({ ...e, bots: true }));
     try {
-      const rows = await fetchAllPages((skipVal, limitVal) => {
-        const params = new URLSearchParams({ key, limit: limitVal, skip: skipVal });
-        if (since) params.set('since', since);
-        return `/api/track/bots?${params.toString()}`;
-      }, 'events');
+      const rows = await fetchAllPages(buildBotsUrl, 'events');
       downloadCsv(
         `bot-activity-${Date.now()}.csv`,
         [
@@ -540,7 +602,7 @@ export default function Dashboard() {
               actions={<DownloadCsvButton onClick={exportActivityCsv} loading={exporting.activity} />}
             >
               <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-3">
-                <span className="text-xs text-white/40">Filter the list below</span>
+                <DateRangeInputs range={activityDateRange} onChange={setActivityDateRange} />
                 <div className="flex flex-wrap gap-2">
                   <Select
                     value={filters.event}
@@ -641,6 +703,9 @@ export default function Dashboard() {
                 title="Bot Activity"
                 actions={<DownloadCsvButton onClick={exportBotsCsv} loading={exporting.bots} />}
               >
+                <div className="border-b border-white/10 px-5 py-3">
+                  <DateRangeInputs range={botDateRange} onChange={setBotDateRange} />
+                </div>
                 {!bots.events.length && <p className="px-5 py-6 text-sm text-white/40">No bot visits recorded in this range.</p>}
                 {!!bots.events.length && (
                   <div className="max-h-[360px] overflow-auto">

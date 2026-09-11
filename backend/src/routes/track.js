@@ -134,9 +134,17 @@ router.post('/', trackLimiter, async (req, res) => {
 
 // Excludes known bots/crawlers by default so they don't inflate visitor
 // counts. Pass ?includeBots=true to see everything (debugging only).
-function sinceFilter(req) {
+function dateRange(req) {
   const since = parseInt(req.query.since, 10);
-  const filter = since ? { createdAt: { $gte: new Date(since) } } : {};
+  const until = parseInt(req.query.until, 10);
+  const range = {};
+  if (since) range.$gte = new Date(since);
+  if (until) range.$lte = new Date(until);
+  return Object.keys(range).length ? { createdAt: range } : {};
+}
+
+function sinceFilter(req) {
+  const filter = dateRange(req);
   if (req.query.includeBots !== 'true') filter.isBot = { $ne: true };
   return filter;
 }
@@ -270,8 +278,7 @@ router.get('/sessions', requireDashboardKey, async (req, res) => {
 // Same shape as /events, but only bot/crawler traffic — kept fully separate
 // from the human visitor numbers everywhere else in this file.
 function botFilter(req) {
-  const since = parseInt(req.query.since, 10);
-  const filter = since ? { createdAt: { $gte: new Date(since) } } : {};
+  const filter = dateRange(req);
   filter.isBot = true;
   return filter;
 }
