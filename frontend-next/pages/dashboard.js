@@ -463,18 +463,28 @@ export default function Dashboard() {
         <title>Dashboard</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <div className="mx-auto max-w-[1200px] px-6 pb-12 lg:px-10">
-        <div className="sticky top-0 z-20 -mx-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 bg-black/90 px-6 py-5 backdrop-blur-md lg:-mx-10 lg:px-10">
+
+      {refreshing && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="flex flex-col items-center gap-3">
+            <HiRefresh className="animate-spin text-4xl text-primary" />
+            <p className="text-sm text-white/60">Refreshing...</p>
+          </div>
+        </div>
+      )}
+
+      <div className="mx-auto max-w-[1200px] px-4 pb-12 sm:px-6 lg:px-10">
+        <div className="sticky top-0 z-20 -mx-4 flex flex-col items-start gap-3 border-b border-white/10 bg-black/90 px-4 py-4 backdrop-blur-md sm:-mx-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 sm:py-5 lg:-mx-10 lg:px-10">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-primary">Analytics</p>
-            <h1 className="mt-2 text-2xl text-white sm:text-3xl">Click Dashboard</h1>
+            <h1 className="mt-2 text-xl text-white sm:text-2xl lg:text-3xl">Click Dashboard</h1>
           </div>
           {status === 'ready' && (
             <button
               type="button"
               onClick={handleRefresh}
               disabled={refreshing}
-              className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium uppercase tracking-wide text-white/80 transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white/80 transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-60 sm:px-6 sm:py-3"
             >
               <HiRefresh className={refreshing ? 'animate-spin text-lg' : 'text-lg'} />
               Refresh
@@ -613,7 +623,7 @@ export default function Dashboard() {
               title="All Activity"
               actions={<DownloadCsvButton onClick={exportActivityCsv} loading={exporting.activity} />}
             >
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-3">
+              <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
                 <DateRangeInputs range={activityDateRange} onChange={setActivityDateRange} />
                 <div className="flex flex-wrap gap-2">
                   <Select
@@ -695,7 +705,7 @@ export default function Dashboard() {
                 Search engines, AI crawlers, and other automated traffic. These are never counted as visitors or clicks.
               </p>
 
-              <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-2">
+              <div className="mt-4 grid grid-cols-2 gap-4">
                 <StatTile label="Bot Visits" value={bots.total} />
                 <StatTile label="Unique Bot IPs" value={bots.uniqueIpCount} />
               </div>
