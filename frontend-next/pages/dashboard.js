@@ -53,6 +53,7 @@ const REASON_LABELS = {
   webdriver: 'Automated Browser (script-controlled)',
   speed: 'Fast Scraper (too many pages too fast)',
   honeypot: 'Hidden-Link Scraper',
+  'popup-bypass': 'Script (bypassed the popup overlay)',
 };
 
 // The backend already names User-Agent-matched bots at the moment it flags

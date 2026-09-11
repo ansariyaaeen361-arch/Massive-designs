@@ -6,6 +6,7 @@ import { parseUserAgent } from '../lib/parseUserAgent.js';
 import { parseReferrer } from '../lib/parseReferrer.js';
 import { detectBot } from '../lib/isBot.js';
 import { isSuspiciouslyFast } from '../lib/isSuspiciouslyFast.js';
+import { isPopupBypass } from '../lib/isPopupBypass.js';
 
 const router = Router();
 
@@ -70,16 +71,26 @@ router.post('/', trackLimiter, async (req, res) => {
   const referrerLabel = referrer !== undefined ? parseReferrer(referrer, req.hostname) : undefined;
 
   try {
-    const [geo, tooFast] = await Promise.all([
+    const createdAt = new Date();
+    const [geo, tooFast, popupBypassed] = await Promise.all([
       geoLookup(ip),
       event === 'page_view' ? isSuspiciouslyFast(ip) : Promise.resolve(false),
+      isPopupBypass(sessionId, page, event, source, createdAt),
     ]);
     const uaResult = detectBot(userAgent);
     const webdriverFlagged = isWebdriver === true;
-    const botFlagged = uaResult.isBot || webdriverFlagged || tooFast;
+    const botFlagged = uaResult.isBot || webdriverFlagged || tooFast || popupBypassed;
     // For UA-matched bots, botReason IS the bot's actual name (e.g.
     // "Googlebot") — no separate naming step needed downstream.
-    const botReason = uaResult.isBot ? uaResult.name : webdriverFlagged ? 'webdriver' : tooFast ? 'speed' : undefined;
+    const botReason = uaResult.isBot
+      ? uaResult.name
+      : webdriverFlagged
+        ? 'webdriver'
+        : tooFast
+          ? 'speed'
+          : popupBypassed
+            ? 'popup-bypass'
+            : undefined;
 
     await ClickEvent.create({
       event,
@@ -97,6 +108,7 @@ router.post('/', trackLimiter, async (req, res) => {
       durationMs,
       isBot: botFlagged,
       botReason,
+      createdAt,
       ...geo,
     });
   } catch (err) {
