@@ -49,6 +49,28 @@ function friendlyLabel(event, source) {
   return LABELS[`${event}|${source ?? 'null'}`] || event.replace(/_/g, ' ');
 }
 
+function stepLabel(st) {
+  return st.event === 'page_view' ? st.page : `${st.page || ''} (${friendlyLabel(st.event, st.source)})`;
+}
+
+// One visitor's path (what page, then what page, then what click) as a single
+// horizontally-scrollable line with arrows, instead of wrapping/stacking.
+function Journey({ steps }) {
+  if (!steps?.length) return <span className="text-white/30">N/A</span>;
+  return (
+    <div className="overflow-x-auto pb-1">
+      <div className="flex w-max items-center gap-2 whitespace-nowrap text-sm text-white/80">
+        {steps.map((st, i) => (
+          <span key={i} className="flex items-center gap-2">
+            {i > 0 && <span className="text-primary/60">&rarr;</span>}
+            {stepLabel(st)}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const REASON_LABELS = {
   webdriver: 'Automated Browser (script-controlled)',
   speed: 'Fast Scraper (too many pages too fast)',
@@ -169,6 +191,16 @@ export default function Dashboard() {
     return ms ? Date.now() - ms : null;
   }, [rangeIdx]);
 
+  // sessionId -> that visitor's full path, so any single event row in "All
+  // Activity" can show where that visitor came from and went next.
+  const sessionPaths = useMemo(() => {
+    const map = {};
+    sessions.forEach((s) => {
+      map[s._id] = s.steps.filter((st) => st.event !== 'page_view_duration');
+    });
+    return map;
+  }, [sessions]);
+
   const buildEventsUrl = useCallback(
     (skipVal) => {
       const params = new URLSearchParams({ key, limit: LIMIT, skip: skipVal });
@@ -188,7 +220,7 @@ export default function Dashboard() {
     if (since) rangeParams.set('since', since);
     const newVisitorParams = new URLSearchParams({ key, event: 'page_view', isReturning: 'false', limit: 10 });
     if (since) newVisitorParams.set('since', since);
-    const sessionParams = new URLSearchParams({ key, limit: 15 });
+    const sessionParams = new URLSearchParams({ key, limit: 100 });
     if (since) sessionParams.set('since', since);
     const botParams = new URLSearchParams({ key, limit: 30 });
     if (since) botParams.set('since', since);
@@ -368,15 +400,8 @@ export default function Dashboard() {
                         <span>{[s.city, s.country].filter(Boolean).join(', ') || 'N/A'}</span>
                         <span>{s.ip || 'N/A'}</span>
                       </div>
-                      <div className="mt-2 overflow-x-auto pb-1">
-                        <div className="flex w-max items-center gap-2 whitespace-nowrap text-sm text-white/80">
-                          {steps.map((st, i) => (
-                            <span key={i} className="flex items-center gap-2">
-                              {i > 0 && <span className="text-primary/60">&rarr;</span>}
-                              {st.event === 'page_view' ? st.page : `${st.page || ''} (${friendlyLabel(st.event, st.source)})`}
-                            </span>
-                          ))}
-                        </div>
+                      <div className="mt-2">
+                        <Journey steps={steps} />
                       </div>
                     </div>
                   );
@@ -419,7 +444,7 @@ export default function Dashboard() {
               </div>
 
               <div className="max-h-[420px] overflow-auto">
-                <table className="w-full min-w-[950px] border-collapse text-left text-xs">
+                <table className="w-full min-w-[1250px] border-collapse text-left text-xs">
                   <thead className="sticky top-0 bg-[#0f1013]">
                     <tr className="text-white/40">
                       <th className="px-5 py-2 font-normal">Time</th>
@@ -428,6 +453,7 @@ export default function Dashboard() {
                       <th className="px-3 py-2 font-normal">Device</th>
                       <th className="px-3 py-2 font-normal">IP</th>
                       <th className="px-3 py-2 font-normal">Location</th>
+                      <th className="px-3 py-2 font-normal">Where this visitor went</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/5">
@@ -441,11 +467,14 @@ export default function Dashboard() {
                         <td className="whitespace-nowrap px-3 py-2.5">
                           {[ev.city, ev.region, ev.country].filter(Boolean).join(', ') || 'N/A'}
                         </td>
+                        <td className="px-3 py-2.5">
+                          <Journey steps={sessionPaths[ev.sessionId]} />
+                        </td>
                       </tr>
                     ))}
                     {!events.length && (
                       <tr>
-                        <td colSpan={6} className="px-5 py-8 text-center text-white/40">
+                        <td colSpan={7} className="px-5 py-8 text-center text-white/40">
                           No activity matches these filters.
                         </td>
                       </tr>
