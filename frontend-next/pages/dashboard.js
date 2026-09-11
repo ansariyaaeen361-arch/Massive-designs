@@ -261,6 +261,7 @@ export default function Dashboard() {
 
   const key = useDashboardKey();
   const [status, setStatus] = useState('loading');
+  const [activeTab, setActiveTab] = useState('user');
   const [rangeIdx, setRangeIdx] = useState(3);
   const [summary, setSummary] = useState(null);
   const [events, setEvents] = useState([]);
@@ -483,6 +484,29 @@ export default function Dashboard() {
 
         {summary && (
           <>
+            <div className="mt-6 flex gap-2 border-b border-white/10">
+              <button
+                type="button"
+                onClick={() => setActiveTab('user')}
+                className={`px-4 py-2.5 text-xs uppercase tracking-wide transition-colors ${
+                  activeTab === 'user' ? 'border-b-2 border-primary text-primary' : 'text-white/50 hover:text-white/80'
+                }`}
+              >
+                User Visits
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('bot')}
+                className={`px-4 py-2.5 text-xs uppercase tracking-wide transition-colors ${
+                  activeTab === 'bot' ? 'border-b-2 border-primary text-primary' : 'text-white/50 hover:text-white/80'
+                }`}
+              >
+                Bot Visits
+              </button>
+            </div>
+
+            {activeTab === 'user' && (
+            <>
             <div className="mt-6 flex flex-wrap gap-2">
               {RANGES.map((r, i) => (
                 <button
@@ -686,11 +710,12 @@ export default function Dashboard() {
                 </div>
               )}
             </Section>
+            </>
+            )}
 
-            <div className="mt-10 border-t border-white/10 pt-6">
-              <p className="text-xs uppercase tracking-[0.3em] text-white/40">Separate from visitor numbers above</p>
-              <h2 className="mt-2 text-xl text-white">Bot Visits</h2>
-              <p className="mt-1 text-xs text-white/40">
+            {activeTab === 'bot' && (
+            <div className="mt-6">
+              <p className="text-xs text-white/40">
                 Search engines, AI crawlers, and other automated traffic. These are never counted as visitors or clicks.
               </p>
 
@@ -739,6 +764,7 @@ export default function Dashboard() {
                 )}
               </Section>
             </div>
+            )}
           </>
         )}
       </div>
