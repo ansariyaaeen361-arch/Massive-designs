@@ -72,6 +72,7 @@ const REASON_LABELS = {
   webdriver: 'Automated Browser (script-controlled)',
   speed: 'Fast Scraper (too many pages too fast)',
   honeypot: 'Hidden-Link Scraper',
+  'no-interaction': 'Silent Scraper (no mouse/scroll activity)',
 };
 
 // Tries to name the bot with real confidence instead of a vague fallback:
