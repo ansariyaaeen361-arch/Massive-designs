@@ -368,14 +368,16 @@ export default function Dashboard() {
                         <span>{[s.city, s.country].filter(Boolean).join(', ') || 'N/A'}</span>
                         <span>{s.ip || 'N/A'}</span>
                       </div>
-                      <p className="mt-2 text-sm leading-relaxed text-white/80">
-                        {steps.map((st, i) => (
-                          <span key={i}>
-                            {i > 0 && <span className="mx-1.5 text-white/30">then</span>}
-                            {st.event === 'page_view' ? st.page : `${st.page || ''} (${friendlyLabel(st.event, st.source)})`}
-                          </span>
-                        ))}
-                      </p>
+                      <div className="mt-2 overflow-x-auto pb-1">
+                        <div className="flex w-max items-center gap-2 whitespace-nowrap text-sm text-white/80">
+                          {steps.map((st, i) => (
+                            <span key={i} className="flex items-center gap-2">
+                              {i > 0 && <span className="text-primary/60">&rarr;</span>}
+                              {st.event === 'page_view' ? st.page : `${st.page || ''} (${friendlyLabel(st.event, st.source)})`}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
