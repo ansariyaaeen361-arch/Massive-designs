@@ -24,8 +24,7 @@ function requireDashboardKey(req, res, next) {
 }
 
 router.post('/', trackLimiter, async (req, res) => {
-  const { event, source, page, referrer, sessionId, visitorId, isReturning, durationMs, isWebdriver, hasInteracted } =
-    req.body ?? {};
+  const { event, source, page, referrer, sessionId, visitorId, isReturning, durationMs, isWebdriver } = req.body ?? {};
 
   if (!event || typeof event !== 'string') {
     return res.status(400).json({ success: false, error: 'event is required.' });
@@ -43,22 +42,8 @@ router.post('/', trackLimiter, async (req, res) => {
     ]);
     const uaFlagged = isBot(userAgent);
     const webdriverFlagged = isWebdriver === true;
-    // A real person almost always moves the mouse, scrolls, or types within a
-    // few seconds — even briefly. Only checked on page_view_duration (the
-    // event that actually carries a meaningful dwell time) and only once
-    // they've been on the page long enough that "hadn't gotten to it yet"
-    // isn't a fair explanation.
-    const noInteraction = event === 'page_view_duration' && hasInteracted === false && durationMs >= 3000;
-    const botFlagged = uaFlagged || webdriverFlagged || tooFast || noInteraction;
-    const botReason = uaFlagged
-      ? 'user-agent'
-      : webdriverFlagged
-        ? 'webdriver'
-        : tooFast
-          ? 'speed'
-          : noInteraction
-            ? 'no-interaction'
-            : undefined;
+    const botFlagged = uaFlagged || webdriverFlagged || tooFast;
+    const botReason = uaFlagged ? 'user-agent' : webdriverFlagged ? 'webdriver' : tooFast ? 'speed' : undefined;
 
     await ClickEvent.create({
       event,
