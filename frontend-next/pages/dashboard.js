@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
+import { HiRefresh } from 'react-icons/hi';
 
 const RANGES = [
   { label: 'Today', ms: 24 * 60 * 60 * 1000 },
@@ -278,6 +279,7 @@ export default function Dashboard() {
   const key = useDashboardKey();
   const [status, setStatus] = useState('loading');
   const [activeTab, setActiveTab] = useState('user');
+  const [refreshing, setRefreshing] = useState(false);
   const [rangeIdx, setRangeIdx] = useState(3);
   const [summary, setSummary] = useState(null);
   const [events, setEvents] = useState([]);
@@ -445,6 +447,12 @@ export default function Dashboard() {
     }
   };
 
+  const handleRefresh = () => {
+    setRefreshing(true);
+    load();
+    setTimeout(() => setRefreshing(false), 2000);
+  };
+
   const buttonRows = summary ? summary.byEvent.filter((r) => !NOT_A_CLICK.has(r.event)) : [];
   const totalClicks = buttonRows.reduce((sum, r) => sum + r.count, 0);
   const pageRows = summary ? summary.byPage.filter((r) => r.page) : [];
@@ -455,8 +463,8 @@ export default function Dashboard() {
         <title>Dashboard</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <div className="mx-auto max-w-[1200px] px-6 py-12 lg:px-10">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="mx-auto max-w-[1200px] px-6 pb-12 lg:px-10">
+        <div className="sticky top-0 z-20 -mx-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 bg-black/90 px-6 py-5 backdrop-blur-md lg:-mx-10 lg:px-10">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-primary">Analytics</p>
             <h1 className="mt-2 text-2xl text-white sm:text-3xl">Click Dashboard</h1>
@@ -464,9 +472,11 @@ export default function Dashboard() {
           {status === 'ready' && (
             <button
               type="button"
-              onClick={load}
-              className="rounded-full border border-white/15 px-5 py-2 text-xs uppercase tracking-wide text-white/70 transition-colors hover:border-primary hover:text-primary"
+              onClick={handleRefresh}
+              disabled={refreshing}
+              className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium uppercase tracking-wide text-white/80 transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-60"
             >
+              <HiRefresh className={refreshing ? 'animate-spin text-lg' : 'text-lg'} />
               Refresh
             </button>
           )}
