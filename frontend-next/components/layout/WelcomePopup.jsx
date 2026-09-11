@@ -26,6 +26,7 @@ export default function WelcomePopup() {
 
   useEffect(() => {
     if (open) {
+      document.body.classList.add('welcome-popup-open');
       trackEvent('welcome_popup_shown', { source: 'welcome_popup' });
       gsap.set(rootRef.current, { pointerEvents: 'auto' });
       gsap.to(rootRef.current, { opacity: 1, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
@@ -35,6 +36,7 @@ export default function WelcomePopup() {
         { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: 'power3.out', overwrite: 'auto' },
       );
     }
+    return () => document.body.classList.remove('welcome-popup-open');
   }, [open]);
 
   const handleCtaClick = () => {

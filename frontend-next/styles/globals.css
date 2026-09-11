@@ -118,3 +118,10 @@
     transform: translateX(-50%);
   }
 }
+
+/* The MentalForge chat widget auto-shows its own greeting bubble, which can
+   pop up on top of the welcome popup's full-screen overlay. Hide it for as
+   long as the popup is open so the two never overlap. */
+body.welcome-popup-open #mf-widget-host {
+  display: none !important;
+}
