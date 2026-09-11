@@ -156,9 +156,11 @@ function HeaderBar({ status, refreshing, onRefresh }) {
 
 function StatTile({ label, value }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 px-5 py-4">
+    <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5 px-5 py-4">
       <p className="text-xs uppercase tracking-wide text-white/40">{label}</p>
-      <p className="mt-1 text-2xl text-white">{value}</p>
+      <p className="mt-1 truncate text-2xl text-white" title={value}>
+        {value}
+      </p>
     </div>
   );
 }
@@ -479,6 +481,50 @@ export default function Dashboard() {
   const totalClicks = buttonRows.reduce((sum, r) => sum + r.count, 0);
   const pageRows = summary ? summary.byPage.filter((r) => r.page) : [];
 
+  // Every bot event is already loaded client-side (bots.events), so all of
+  // this — same breakdowns the user side gets — is computed here rather than
+  // needing new backend aggregation routes.
+  const botStats = useMemo(() => {
+    const tally = (key) => {
+      const counts = {};
+      bots.events.forEach((ev) => {
+        const label = key(ev);
+        if (!label) return;
+        counts[label] = (counts[label] || 0) + 1;
+      });
+      return Object.entries(counts)
+        .map(([label, count]) => ({ label, count }))
+        .sort((a, b) => b.count - a.count);
+    };
+
+    const sessionMap = {};
+    bots.events.forEach((ev) => {
+      if (!ev.sessionId) return;
+      if (!sessionMap[ev.sessionId]) {
+        sessionMap[ev.sessionId] = { _id: ev.sessionId, ip: ev.ip, botName: botName(ev.botReason), city: ev.city, country: ev.country, steps: [] };
+      }
+      sessionMap[ev.sessionId].steps.push(ev);
+    });
+    const botSessions = Object.values(sessionMap)
+      .map((s) => ({
+        ...s,
+        steps: s.steps.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).filter((st) => st.event !== 'page_view_duration'),
+        lastAt: s.steps[s.steps.length - 1].createdAt,
+      }))
+      .sort((a, b) => new Date(b.lastAt) - new Date(a.lastAt));
+
+    const byType = tally((ev) => botName(ev.botReason));
+    return {
+      byType,
+      byPage: tally((ev) => ev.page),
+      byCountry: tally((ev) => ev.country || 'Unknown'),
+      byAction: tally((ev) => friendlyLabel(ev.event, ev.source)),
+      botSessions,
+      typeCount: byType.length,
+      topType: byType[0]?.label || 'N/A',
+    };
+  }, [bots.events]);
+
   return (
     <>
       <Head>
@@ -717,10 +763,47 @@ export default function Dashboard() {
                 Search engines, AI crawlers, and other automated traffic. These are never counted as visitors or clicks.
               </p>
 
-              <div className="mt-4 grid grid-cols-2 gap-4">
+              <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <StatTile label="Bot Visits" value={bots.total} />
                 <StatTile label="Unique Bot IPs" value={bots.uniqueIpCount} />
+                <StatTile label="Bot Types Seen" value={botStats.typeCount} />
+                <StatTile label="Most Common Bot" value={botStats.topType} />
               </div>
+
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <StatCard title="Bots by Type">
+                  <RankList rows={botStats.byType} renderLabel={(row) => row.label} />
+                </StatCard>
+                <StatCard title="Most Targeted Pages">
+                  <RankList rows={botStats.byPage} renderLabel={(row) => row.label} />
+                </StatCard>
+                <StatCard title="Where Bots Come From">
+                  <RankList rows={botStats.byCountry} renderLabel={(row) => row.label} />
+                </StatCard>
+                <StatCard title="Bot Actions">
+                  <RankList rows={botStats.byAction} renderLabel={(row) => row.label} />
+                </StatCard>
+              </div>
+
+              <Section title="Bot Paths (what pages each bot visited, in order)">
+                {!botStats.botSessions.length && (
+                  <p className="px-5 py-6 text-sm text-white/40">No bot sessions with more than one step in this range.</p>
+                )}
+                <div className="max-h-[360px] overflow-y-auto divide-y divide-white/5">
+                  {botStats.botSessions.map((s) => (
+                    <div key={s._id} className="px-5 py-4">
+                      <div className="flex flex-wrap items-center gap-2 text-xs text-white/40">
+                        <span className="rounded-full bg-red-500/20 px-2 py-0.5 text-red-300">{s.botName}</span>
+                        <span>{[s.city, s.country].filter(Boolean).join(', ') || 'N/A'}</span>
+                        <span>{s.ip || 'N/A'}</span>
+                      </div>
+                      <div className="mt-2">
+                        <Journey steps={s.steps} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Section>
 
               <Section
                 title="Bot Activity"
