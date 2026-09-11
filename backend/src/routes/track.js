@@ -30,6 +30,13 @@ function requireDashboardKey(req, res, next) {
 // (the source of the "referrer spam" — fabricated referrer values claiming
 // Twitter/YouTube/random domains, all landing on the same page) has no
 // reason to bother setting either correctly.
+// Our reverse proxy (OLS) sometimes forwards Origin/Referer as a
+// comma-joined duplicate (e.g. "https://x.com, https://x.com") — Node
+// joins repeated headers this way. Only the first value matters here.
+function firstHeaderValue(value) {
+  return value ? value.split(',')[0].trim() : value;
+}
+
 function isFromOurSite(req) {
   const allowedHosts = [new URL(process.env.FRONTEND_URL || 'https://massive-designs.com').host];
   // Only relaxed outside production, for local dev testing — never on the
@@ -37,8 +44,8 @@ function isFromOurSite(req) {
   // client and "just claim localhost" would otherwise be a known bypass.
   if (process.env.NODE_ENV !== 'production') allowedHosts.push('localhost:3000', '127.0.0.1:3000');
 
-  const origin = req.headers.origin;
-  const referer = req.headers.referer;
+  const origin = firstHeaderValue(req.headers.origin);
+  const referer = firstHeaderValue(req.headers.referer);
   try {
     if (origin && allowedHosts.includes(new URL(origin).host)) return true;
   } catch {
