@@ -23,7 +23,41 @@ function requireDashboardKey(req, res, next) {
   next();
 }
 
+// A real browser always sets Origin (or at least Referer) to our own site on
+// a same-origin fetch() POST — that's enforced by the browser itself, not
+// something a page's JS can fake. A script hitting this endpoint directly
+// (the source of the "referrer spam" — fabricated referrer values claiming
+// Twitter/YouTube/random domains, all landing on the same page) has no
+// reason to bother setting either correctly.
+function isFromOurSite(req) {
+  const allowedHosts = [new URL(process.env.FRONTEND_URL || 'https://massive-designs.com').host];
+  // Only relaxed outside production, for local dev testing — never on the
+  // live server, since Origin is trivially fake-able by a non-browser
+  // client and "just claim localhost" would otherwise be a known bypass.
+  if (process.env.NODE_ENV !== 'production') allowedHosts.push('localhost:3000', '127.0.0.1:3000');
+
+  const origin = req.headers.origin;
+  const referer = req.headers.referer;
+  try {
+    if (origin && allowedHosts.includes(new URL(origin).host)) return true;
+  } catch {
+    // ignore malformed Origin
+  }
+  try {
+    if (referer && allowedHosts.includes(new URL(referer).host)) return true;
+  } catch {
+    // ignore malformed Referer
+  }
+  return false;
+}
+
 router.post('/', trackLimiter, async (req, res) => {
+  if (!isFromOurSite(req)) {
+    // Silently succeed (no error detail) so a spam script gets no signal
+    // that it was rejected rather than just dropped.
+    return res.json({ success: true });
+  }
+
   const { event, source, page, referrer, sessionId, visitorId, isReturning, durationMs, isWebdriver } = req.body ?? {};
 
   if (!event || typeof event !== 'string') {
