@@ -8,7 +8,6 @@ const RANGES = [
   { label: 'All Time', ms: null },
 ];
 
-const LIMIT = 30;
 const NOT_A_CLICK = new Set(['page_view', 'page_view_duration', 'welcome_popup_shown']);
 
 function useDashboardKey() {
@@ -265,8 +264,6 @@ export default function Dashboard() {
   const [rangeIdx, setRangeIdx] = useState(3);
   const [summary, setSummary] = useState(null);
   const [events, setEvents] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [skip, setSkip] = useState(0);
   const [filters, setFilters] = useState({ event: '', page: '', source: '' });
   const [newVisitorRows, setNewVisitorRows] = useState([]);
   const [sessions, setSessions] = useState([]);
@@ -310,8 +307,8 @@ export default function Dashboard() {
   }, [sessions]);
 
   const buildEventsUrl = useCallback(
-    (skipVal) => {
-      const params = new URLSearchParams({ key, limit: LIMIT, skip: skipVal });
+    (skipVal, limitVal) => {
+      const params = new URLSearchParams({ key, limit: limitVal, skip: skipVal });
       if (activitySince) params.set('since', activitySince);
       if (activityUntil) params.set('until', activityUntil);
       if (filters.event) params.set('event', filters.event);
@@ -344,19 +341,17 @@ export default function Dashboard() {
 
     Promise.all([
       fetchJson(`/api/track/summary?${rangeParams.toString()}`),
-      fetchJson(buildEventsUrl(0)),
+      fetchAllPages(buildEventsUrl, 'events'),
       fetchJson(`/api/track/events?${newVisitorParams.toString()}`),
       fetchJson(`/api/track/sessions?${sessionParams.toString()}`),
-      fetchJson(buildBotsUrl(0, 30)),
+      fetchAllPages(buildBotsUrl, 'events'),
     ])
-      .then(([summaryData, eventsData, newVisitorData, sessionData, botData]) => {
+      .then(([summaryData, eventRows, newVisitorData, sessionData, botRows]) => {
         setSummary(summaryData);
-        setEvents(eventsData.events);
-        setTotal(eventsData.total);
-        setSkip(0);
+        setEvents(eventRows);
         setNewVisitorRows(newVisitorData.events);
         setSessions(sessionData.sessions);
-        setBots(botData);
+        setBots({ total: botRows.length, uniqueIpCount: new Set(botRows.map((r) => r.ip)).size, events: botRows });
         setStatus('ready');
       })
       .catch(() => setStatus('error'));
@@ -372,31 +367,12 @@ export default function Dashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, rangeIdx, filters, activityDateRange, botDateRange]);
 
-  const loadMore = () => {
-    const nextSkip = skip + LIMIT;
-    fetchJson(buildEventsUrl(nextSkip)).then((data) => {
-      setEvents((prev) => [...prev, ...data.events]);
-      setSkip(nextSkip);
-    });
-  };
-
   const [exporting, setExporting] = useState({ activity: false, bots: false });
 
   const exportActivityCsv = async () => {
     setExporting((e) => ({ ...e, activity: true }));
     try {
-      const rows = await fetchAllPages(
-        (skipVal, limitVal) => {
-          const params = new URLSearchParams({ key, limit: limitVal, skip: skipVal });
-          if (activitySince) params.set('since', activitySince);
-          if (activityUntil) params.set('until', activityUntil);
-          if (filters.event) params.set('event', filters.event);
-          if (filters.page) params.set('page', filters.page);
-          if (filters.source) params.set('source', filters.source);
-          return `/api/track/events?${params.toString()}`;
-        },
-        'events',
-      );
+      const rows = events;
       downloadCsv(
         `visitor-activity-${Date.now()}.csv`,
         [
@@ -430,7 +406,7 @@ export default function Dashboard() {
   const exportBotsCsv = async () => {
     setExporting((e) => ({ ...e, bots: true }));
     try {
-      const rows = await fetchAllPages(buildBotsUrl, 'events');
+      const rows = bots.events;
       downloadCsv(
         `bot-activity-${Date.now()}.csv`,
         [
@@ -697,18 +673,6 @@ export default function Dashboard() {
                   </tbody>
                 </table>
               </div>
-
-              {events.length < total && (
-                <div className="border-t border-white/10 px-5 py-3">
-                  <button
-                    type="button"
-                    onClick={loadMore}
-                    className="rounded-full border border-white/15 px-6 py-2 text-xs uppercase tracking-wide text-white/70 transition-colors hover:border-primary hover:text-primary"
-                  >
-                    Load more
-                  </button>
-                </div>
-              )}
             </Section>
             </>
             )}

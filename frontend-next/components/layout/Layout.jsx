@@ -9,9 +9,11 @@ import useSmoothScroll from '../../hooks/useSmoothScroll';
 import { gsap, ScrollTrigger } from '../../lib/gsap';
 
 export default function Layout({ children }) {
-  useSmoothScroll();
   const router = useRouter();
   const isDashboard = router.pathname === '/dashboard';
+  // Lenis hijacks wheel events to drive its own smooth-scroll, which breaks
+  // native scrolling inside the dashboard's data tables — skip it there.
+  useSmoothScroll(!isDashboard);
 
   const rootRef = useRef(null);
   const curtainRef = useRef(null);

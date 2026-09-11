@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import Lenis from 'lenis';
 import { gsap, ScrollTrigger } from '../lib/gsap';
 
-export default function useSmoothScroll() {
+export default function useSmoothScroll(enabled = true) {
   useEffect(() => {
+    if (!enabled) return undefined;
+
     const lenis = new Lenis({
       duration: 1.1,
       smoothWheel: true,
@@ -20,5 +22,5 @@ export default function useSmoothScroll() {
       gsap.ticker.remove(tick);
       lenis.destroy();
     };
-  }, []);
+  }, [enabled]);
 }
