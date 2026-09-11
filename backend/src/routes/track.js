@@ -37,6 +37,13 @@ function firstHeaderValue(value) {
   return value ? value.split(',')[0].trim() : value;
 }
 
+// Now that Cloudflare proxies all traffic, req.ip would otherwise resolve to
+// Cloudflare's edge IP for every visitor. Cloudflare always sets this header
+// to the real client IP on requests it forwards, so prefer it when present.
+function getClientIp(req) {
+  return req.headers['cf-connecting-ip'] || req.ip;
+}
+
 function isFromOurSite(req) {
   const allowedHosts = [new URL(process.env.FRONTEND_URL || 'https://massive-designs.com').host];
   // Only relaxed outside production, for local dev testing — never on the
@@ -72,7 +79,7 @@ router.post('/', trackLimiter, async (req, res) => {
     return res.status(400).json({ success: false, error: 'event is required.' });
   }
 
-  const ip = req.ip;
+  const ip = getClientIp(req);
   const userAgent = req.headers['user-agent'];
   const { device, browser, os } = parseUserAgent(userAgent);
   const referrerLabel = referrer !== undefined ? parseReferrer(referrer, req.hostname) : undefined;
@@ -287,7 +294,7 @@ router.get('/bots', requireDashboardKey, async (req, res) => {
 // aria-hidden, not keyboard-focusable). Nothing a human does can reach it, so
 // any request here is automatically a bot/scraper that parsed the raw HTML.
 router.get('/trap', trackLimiter, async (req, res) => {
-  const ip = req.ip;
+  const ip = getClientIp(req);
   const userAgent = req.headers['user-agent'];
 
   try {
