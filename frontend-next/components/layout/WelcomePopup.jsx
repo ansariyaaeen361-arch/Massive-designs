@@ -63,15 +63,15 @@ export default function WelcomePopup() {
       <div className="relative flex h-full items-center justify-center overflow-y-auto p-4 py-10">
         <div
           ref={panelRef}
-          className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#0b0c10] p-8 text-center sm:p-10"
+          className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#0b0c10] p-8 pt-16 text-center sm:p-10 sm:pt-16"
         >
           <button
             type="button"
             aria-label="Close popup"
             onClick={() => handleClose('button')}
-            className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-primary hover:text-primary"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-lg transition-colors hover:border-primary hover:bg-primary/20 hover:text-primary"
           >
-            <HiX className="text-lg" />
+            <HiX className="text-xl" />
           </button>
 
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">Join the Massive Family</p>
