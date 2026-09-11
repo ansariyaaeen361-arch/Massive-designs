@@ -49,55 +49,19 @@ function friendlyLabel(event, source) {
   return LABELS[`${event}|${source ?? 'null'}`] || event.replace(/_/g, ' ');
 }
 
-const BOT_NAMES = [
-  { match: /googlebot/i, name: 'Google' },
-  { match: /bingbot/i, name: 'Bing' },
-  { match: /yandexbot/i, name: 'Yandex' },
-  { match: /duckduckbot/i, name: 'DuckDuckGo' },
-  { match: /baiduspider/i, name: 'Baidu' },
-  { match: /ahrefsbot/i, name: 'Ahrefs' },
-  { match: /semrushbot/i, name: 'Semrush' },
-  { match: /gptbot/i, name: 'ChatGPT' },
-  { match: /claudebot|anthropic-ai/i, name: 'Claude' },
-  { match: /perplexitybot/i, name: 'Perplexity' },
-  { match: /ccbot/i, name: 'Common Crawl' },
-  { match: /facebookexternalhit/i, name: 'Facebook' },
-  { match: /linkedinbot/i, name: 'LinkedIn' },
-  { match: /twitterbot/i, name: 'Twitter / X' },
-  { match: /pingdom|uptimerobot|statuscake/i, name: 'Uptime Monitor' },
-  { match: /headlesschrome|phantomjs|puppeteer|playwright/i, name: 'Automated Browser' },
-];
-
 const REASON_LABELS = {
   webdriver: 'Automated Browser (script-controlled)',
   speed: 'Fast Scraper (too many pages too fast)',
   honeypot: 'Hidden-Link Scraper',
 };
 
-// Tries to name the bot with real confidence instead of a vague fallback:
-// 1) check our curated list of well-known bots
-// 2) most bots that identify themselves put their own name right in the
-//    User-Agent (that's the whole point of "AhrefsBot", "SomeToolBot", etc.),
-//    so pull out whatever word contains "bot"/"crawler"/"spider"
-// 3) if the UA looks like a normal browser, name it by why we flagged it
-// 4) only truly unidentifiable traffic (very rare) falls through
-function botName(userAgent, botReason) {
-  if (userAgent) {
-    const known = BOT_NAMES.find((b) => b.match.test(userAgent));
-    if (known) return known.name;
-
-    const selfDeclared = userAgent.match(/([A-Za-z0-9_-]*(?:bot|crawler|spider)[A-Za-z0-9_-]*)/i);
-    if (selfDeclared) return selfDeclared[1];
-
-    // Scripting tools (curl, Scrapy, python-requests, axios...) name
-    // themselves as "ToolName/version" at the very start of the UA instead.
-    const toolName = userAgent.match(/^([A-Za-z][A-Za-z0-9_.-]*)\//);
-    if (toolName && !/^mozilla$/i.test(toolName[1])) return toolName[1];
-  }
-
-  if (botReason && REASON_LABELS[botReason]) return REASON_LABELS[botReason];
-  if (!userAgent) return 'Unidentified Bot (no browser signature)';
-  return 'Unnamed Bot';
+// The backend already names User-Agent-matched bots at the moment it flags
+// them (botReason holds the real name, e.g. "Googlebot" or "AhrefsBot") — no
+// separate guessing here. Only webdriver/speed/honeypot need a label lookup,
+// since those are flagged for a reason rather than a self-declared name.
+function botName(botReason) {
+  if (!botReason) return 'Unidentified Bot';
+  return REASON_LABELS[botReason] || botReason;
 }
 
 function timeAgo(iso) {
@@ -531,7 +495,7 @@ export default function Dashboard() {
                         {bots.events.map((ev) => (
                           <tr key={ev._id} className="text-white/70 hover:bg-white/[0.03]">
                             <td className="whitespace-nowrap px-5 py-2.5">{new Date(ev.createdAt).toLocaleString()}</td>
-                            <td className="px-3 py-2.5">{botName(ev.userAgent, ev.botReason)}</td>
+                            <td className="px-3 py-2.5">{botName(ev.botReason)}</td>
                             <td className="px-3 py-2.5">{friendlyLabel(ev.event, ev.source)}</td>
                             <td className="px-3 py-2.5">{ev.page || 'N/A'}</td>
                             <td className="whitespace-nowrap px-3 py-2.5">{ev.ip || 'N/A'}</td>

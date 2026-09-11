@@ -4,7 +4,7 @@ import ClickEvent from '../models/ClickEvent.js';
 import { geoLookup } from '../lib/geoLookup.js';
 import { parseUserAgent } from '../lib/parseUserAgent.js';
 import { parseReferrer } from '../lib/parseReferrer.js';
-import { isBot } from '../lib/isBot.js';
+import { detectBot } from '../lib/isBot.js';
 import { isSuspiciouslyFast } from '../lib/isSuspiciouslyFast.js';
 
 const router = Router();
@@ -40,10 +40,12 @@ router.post('/', trackLimiter, async (req, res) => {
       geoLookup(ip),
       event === 'page_view' ? isSuspiciouslyFast(ip) : Promise.resolve(false),
     ]);
-    const uaFlagged = isBot(userAgent);
+    const uaResult = detectBot(userAgent);
     const webdriverFlagged = isWebdriver === true;
-    const botFlagged = uaFlagged || webdriverFlagged || tooFast;
-    const botReason = uaFlagged ? 'user-agent' : webdriverFlagged ? 'webdriver' : tooFast ? 'speed' : undefined;
+    const botFlagged = uaResult.isBot || webdriverFlagged || tooFast;
+    // For UA-matched bots, botReason IS the bot's actual name (e.g.
+    // "Googlebot") — no separate naming step needed downstream.
+    const botReason = uaResult.isBot ? uaResult.name : webdriverFlagged ? 'webdriver' : tooFast ? 'speed' : undefined;
 
     await ClickEvent.create({
       event,
