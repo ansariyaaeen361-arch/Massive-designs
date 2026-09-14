@@ -3,12 +3,28 @@ import Reveal from '../motion/Reveal';
 import AmbientGlow from '../motion/AmbientGlow';
 import { trackEvent } from '../../lib/analytics';
 
-export default function ServiceHero({ title, lead, crumb, parent, parentHref, ctaLabel, onCtaClick, ctaHref }) {
+export default function ServiceHero({
+  title,
+  lead,
+  crumb,
+  parent,
+  parentHref,
+  ctaLabel,
+  onCtaClick,
+  ctaHref,
+  secondaryCtaLabel,
+  secondaryCtaHref,
+}) {
   const ctaClassName =
     'inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1';
+  const secondaryCtaClassName =
+    'inline-flex items-center gap-3 rounded-full border border-white/20 px-8 py-4 text-sm font-medium uppercase tracking-wide text-white transition-colors duration-300 hover:border-primary hover:text-primary';
   const handleCtaClick = () => {
     trackEvent(ctaHref?.startsWith('tel:') ? 'call_click' : 'cta_click', { source: 'service_hero', label: crumb ?? title });
     onCtaClick?.();
+  };
+  const handleSecondaryCtaClick = () => {
+    trackEvent('cta_click', { source: 'service_hero', label: secondaryCtaLabel });
   };
   return (
     <section className="relative isolate border-b border-white/10 pb-14 pt-36 lg:pt-44">
@@ -22,18 +38,22 @@ export default function ServiceHero({ title, lead, crumb, parent, parentHref, ct
             {lead}
           </Reveal>
         )}
-        {ctaLabel && ctaHref && (
-          <Reveal delay={0.12} as="div" className="mt-8">
-            <a href={ctaHref} onClick={handleCtaClick} className={ctaClassName}>
-              {ctaLabel}
-            </a>
-          </Reveal>
-        )}
-        {ctaLabel && onCtaClick && (
-          <Reveal delay={0.12} as="div" className="mt-8">
-            <button type="button" onClick={handleCtaClick} className={ctaClassName}>
-              {ctaLabel}
-            </button>
+        {ctaLabel && (ctaHref || onCtaClick) && (
+          <Reveal delay={0.12} as="div" className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            {ctaHref ? (
+              <a href={ctaHref} onClick={handleCtaClick} className={ctaClassName}>
+                {ctaLabel}
+              </a>
+            ) : (
+              <button type="button" onClick={handleCtaClick} className={ctaClassName}>
+                {ctaLabel}
+              </button>
+            )}
+            {secondaryCtaLabel && secondaryCtaHref && (
+              <Link href={secondaryCtaHref} onClick={handleSecondaryCtaClick} className={secondaryCtaClassName}>
+                {secondaryCtaLabel}
+              </Link>
+            )}
           </Reveal>
         )}
         <Reveal delay={0.15} as="nav" aria-label="Breadcrumb" className="mt-6">

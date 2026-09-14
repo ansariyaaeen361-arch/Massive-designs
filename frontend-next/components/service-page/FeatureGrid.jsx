@@ -1,7 +1,13 @@
 import Reveal from '../motion/Reveal';
 
+const COLS = {
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+  5: 'sm:grid-cols-2 lg:grid-cols-5',
+};
+
 export default function FeatureGrid({ heading, description, items, columns = 3 }) {
-  const cols = columns === 4 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-2 lg:grid-cols-3';
+  const cols = COLS[columns] ?? COLS[3];
 
   return (
     <section className="py-14 lg:py-20">

@@ -41,4 +41,11 @@ export const areas = [
     blurb:
       "North Richland Hills is where our office actually is, not a market we work remotely. That proximity shapes everything from how fast we turn around a build to how closely we track local search for the roughly 1,200 businesses operating here.",
   },
+  {
+    name: 'Grand Prairie, TX',
+    shortName: 'Grand Prairie',
+    href: '/areas-we-serve/grand-prairie',
+    blurb:
+      "Most Grand Prairie projects that land on our desk are modernizations, not first-time builds: a site that hasn't been touched in years and no longer reflects how the business actually runs. We rebuild those with a practical focus on speed, mobile, and local search.",
+  },
 ];
