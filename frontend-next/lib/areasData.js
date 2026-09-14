@@ -48,4 +48,11 @@ export const areas = [
     blurb:
       "Most Grand Prairie projects that land on our desk are modernizations, not first-time builds: a site that hasn't been touched in years and no longer reflects how the business actually runs. We rebuild those with a practical focus on speed, mobile, and local search.",
   },
+  {
+    name: 'Arlington, TX',
+    shortName: 'Arlington',
+    href: '/areas-we-serve/arlington',
+    blurb:
+      "Arlington's business base runs from manufacturing and logistics near I-20 to retail, healthcare, and professional services closer to downtown and the entertainment district. We build sites for that range, custom-designed, mobile-first, and structured around SEO from the first wireframe.",
+  },
 ];
