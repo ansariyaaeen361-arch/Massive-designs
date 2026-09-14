@@ -55,4 +55,11 @@ export const areas = [
     blurb:
       "Arlington's business base runs from manufacturing and logistics near I-20 to retail, healthcare, and professional services closer to downtown and the entertainment district. We build sites for that range, custom-designed, mobile-first, and structured around SEO from the first wireframe.",
   },
+  {
+    name: 'Irving, TX',
+    shortName: 'Irving',
+    href: '/areas-we-serve/irving',
+    blurb:
+      "Irving leans heavier toward corporate offices and professional services than some surrounding cities, and that changes what a website needs to do. We build professional, fast sites structured to convert a visitor into a lead, not just present information.",
+  },
 ];
