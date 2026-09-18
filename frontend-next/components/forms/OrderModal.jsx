@@ -112,11 +112,11 @@ export default function OrderModal({ open, onClose }) {
         <HiX className="text-xl" />
       </button>
 
-      <div className="relative flex h-full items-start justify-center overflow-y-auto p-4 pb-10 pt-20 sm:items-center sm:py-10">
-        <div ref={panelRef} className="relative max-h-full w-full max-w-2xl rounded-3xl border border-white/10 bg-[#0b0c10] p-6 sm:p-10">
-          <h3 className="text-2xl text-white sm:text-3xl">Place Your Order</h3>
+      <div className="relative flex h-full items-start justify-center overflow-y-auto p-3 pb-8 pt-20 sm:items-center sm:p-10">
+        <div ref={panelRef} className="relative max-h-full w-full max-w-2xl rounded-2xl border border-white/10 bg-[#0b0c10] p-5 sm:rounded-3xl sm:p-10">
+          <h3 className="text-xl text-white sm:text-3xl">Place Your Order</h3>
 
-          <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
+          <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4 sm:mt-8 sm:gap-5">
             {/* Honeypot: hidden from real visitors, so any value means a bot filled it in. */}
             <div className="absolute left-[-9999px] h-px w-px overflow-hidden" aria-hidden="true">
               <label htmlFor="order-website">Website</label>
@@ -130,7 +130,7 @@ export default function OrderModal({ open, onClose }) {
                 onChange={(e) => setHoneypot(e.target.value)}
               />
             </div>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
               <div>
                 <label htmlFor="order-name" className="mb-2 block text-xs uppercase tracking-wide text-white/50">
                   Your Name
@@ -207,14 +207,17 @@ export default function OrderModal({ open, onClose }) {
               </label>
             </div>
 
-            <div>
+            {/* The reCAPTCHA widget has a fixed ~304px width, wider than some phones'
+                available space inside this modal — scope any overflow to just this
+                box instead of letting it push the whole form sideways. */}
+            <div className="max-w-full overflow-x-auto">
               <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} onChange={setRecaptchaToken} theme="dark" />
             </div>
 
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="mt-2 inline-flex items-center justify-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+              className="mt-2 inline-flex w-full items-center justify-center gap-3 rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
             >
               {status === 'submitting' ? 'Sending...' : 'Send'}
             </button>

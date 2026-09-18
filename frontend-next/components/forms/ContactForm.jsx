@@ -196,14 +196,17 @@ export default function ContactForm() {
         </label>
       </div>
 
-      <div className="mt-6">
+      {/* The reCAPTCHA widget has a fixed ~304px width, wider than some phones'
+          available space — scope any overflow to just this box instead of
+          letting it push the whole form sideways. */}
+      <div className="mt-6 max-w-full overflow-x-auto">
         <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} onChange={setRecaptchaToken} theme="dark" />
       </div>
 
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="mt-8 inline-flex items-center gap-3 rounded-full bg-primary px-10 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+        className="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full bg-primary px-10 py-4 text-sm font-medium uppercase tracking-wide text-black transition-transform duration-300 hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
       >
         {status === 'submitting' ? 'Sending...' : 'Send'}
       </button>
