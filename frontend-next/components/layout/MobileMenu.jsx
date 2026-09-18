@@ -83,17 +83,26 @@ export default function MobileMenu({ open, onClose }) {
                 <li key={item.label} className="border-b border-white/5 py-1">
                   {item.children ? (
                     <>
-                      <button
-                        type="button"
-                        onClick={() => setOpenLabel((v) => (v === item.label ? null : item.label))}
-                        aria-expanded={openLabel === item.label}
-                        className="flex w-full items-center justify-between py-3 text-left text-base font-medium uppercase tracking-wide text-white/85"
-                      >
-                        {item.label}
-                        <HiChevronDown
-                          className={`transition-transform duration-300 ${openLabel === item.label ? 'rotate-180 text-primary' : ''}`}
-                        />
-                      </button>
+                      <div className="flex w-full items-center justify-between">
+                        <Link
+                          href={item.href}
+                          onClick={onClose}
+                          className="flex-1 py-3 text-left text-base font-medium uppercase tracking-wide text-white/85"
+                        >
+                          {item.label}
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => setOpenLabel((v) => (v === item.label ? null : item.label))}
+                          aria-expanded={openLabel === item.label}
+                          aria-label={`Toggle ${item.label} submenu`}
+                          className="flex h-10 w-10 shrink-0 items-center justify-center text-white/60"
+                        >
+                          <HiChevronDown
+                            className={`transition-transform duration-300 ${openLabel === item.label ? 'rotate-180 text-primary' : ''}`}
+                          />
+                        </button>
+                      </div>
                       <ul
                         ref={(el) => {
                           childRefs.current[item.label] = el;

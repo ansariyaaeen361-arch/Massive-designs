@@ -41,7 +41,7 @@ export default function NorthRichlandHills() {
         parent="Areas We Serve"
         parentHref="/areas-we-serve"
         ctaLabel="Schedule a Discovery Call"
-        onCtaClick={() => setContactOpen(true)}
+        ctaHref={brand.phoneTel}
       />
 
       <FeatureGrid
@@ -186,7 +186,7 @@ export default function NorthRichlandHills() {
           </>,
         ]}
         buttonLabel="Schedule a Discovery Call"
-        buttonHref={brand.emailLink}
+        onButtonClick={() => setContactOpen(true)}
       />
 
       <OrderModal open={contactOpen} onClose={() => setContactOpen(false)} />

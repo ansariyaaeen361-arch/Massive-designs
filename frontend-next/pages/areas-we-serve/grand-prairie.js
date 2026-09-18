@@ -154,7 +154,7 @@ export default function GrandPrairie() {
         parent="Areas We Serve"
         parentHref="/areas-we-serve"
         ctaLabel="Discuss Your Grand Prairie Website Project"
-        onCtaClick={() => setContactOpen(true)}
+        ctaHref={brand.phoneTel}
         secondaryCtaLabel="View Our Web Design Work"
         secondaryCtaHref="/projects"
       />
@@ -394,7 +394,7 @@ export default function GrandPrairie() {
           "If you're looking for a web design company in Grand Prairie that can modernize an existing site and rebuild local visibility, let's talk about what that could look like for you.",
         ]}
         buttonLabel="Schedule a Discovery Call"
-        buttonHref={brand.emailLink}
+        onButtonClick={() => setContactOpen(true)}
       />
 
       <OrderModal open={contactOpen} onClose={() => setContactOpen(false)} />

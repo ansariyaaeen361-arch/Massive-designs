@@ -100,17 +100,20 @@ export default function OrderModal({ open, onClose }) {
   return (
     <div ref={rootRef} className="pointer-events-none fixed inset-0 z-[70] opacity-0" style={{ opacity: 0 }}>
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative flex h-full items-center justify-center overflow-y-auto p-4 py-10">
-        <div ref={panelRef} className="relative w-full max-w-2xl rounded-3xl border border-white/10 bg-[#0b0c10] p-8 sm:p-10">
-          <button
-            type="button"
-            aria-label="Close order form"
-            onClick={onClose}
-            className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-primary hover:text-primary"
-          >
-            <HiX className="text-xl" />
-          </button>
 
+      {/* Fixed to the viewport (not inside the scrolling/animated panel below) so it
+          stays reachable no matter how far a long form scrolls on a small screen. */}
+      <button
+        type="button"
+        aria-label="Close order form"
+        onClick={onClose}
+        className="fixed right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-[#0b0c10] text-white transition-colors hover:border-primary hover:text-primary sm:right-6 sm:top-6"
+      >
+        <HiX className="text-xl" />
+      </button>
+
+      <div className="relative flex h-full items-start justify-center overflow-y-auto p-4 pb-10 pt-20 sm:items-center sm:py-10">
+        <div ref={panelRef} className="relative max-h-full w-full max-w-2xl rounded-3xl border border-white/10 bg-[#0b0c10] p-6 sm:p-10">
           <h3 className="text-2xl text-white sm:text-3xl">Place Your Order</h3>
 
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">

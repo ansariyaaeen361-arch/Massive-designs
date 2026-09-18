@@ -84,7 +84,7 @@ export default function Arlington() {
         parent="Areas We Serve"
         parentHref="/areas-we-serve"
         ctaLabel="Discuss Your Arlington Website Project"
-        onCtaClick={() => setContactOpen(true)}
+        ctaHref={brand.phoneTel}
         secondaryCtaLabel="View Our Web Design Work"
         secondaryCtaHref="/projects"
       />
@@ -342,7 +342,7 @@ export default function Arlington() {
           "If you're looking for a web design company in Arlington that builds with SEO and your business goals in mind from day one, let's talk about what that could look like for you.",
         ]}
         buttonLabel="Schedule a Discovery Call"
-        buttonHref={brand.emailLink}
+        onButtonClick={() => setContactOpen(true)}
       />
 
       <OrderModal open={contactOpen} onClose={() => setContactOpen(false)} />

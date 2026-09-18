@@ -186,7 +186,7 @@ export default function SocialMediaMarketing() {
           "We'll help you create impactful strategies that bring visibility, credibility, and loyal followers to your brand.",
         ]}
         buttonLabel="Get More Customers from Social Media"
-        buttonHref={brand.emailLink}
+        buttonHref={brand.phoneTel}
       />
     </>
   );

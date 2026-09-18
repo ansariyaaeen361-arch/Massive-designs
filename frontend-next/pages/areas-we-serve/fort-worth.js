@@ -166,7 +166,7 @@ export default function FortWorth() {
         parent="Areas We Serve"
         parentHref="/areas-we-serve"
         ctaLabel="Discuss Your Fort Worth Website Project"
-        onCtaClick={() => setContactOpen(true)}
+        ctaHref={brand.phoneTel}
         secondaryCtaLabel="View Our Web Design Work"
         secondaryCtaHref="/projects"
       />
@@ -394,7 +394,7 @@ export default function FortWorth() {
           "If you're looking for a web design company in Fort Worth that understands entrepreneurs and established businesses alike, let's talk about your project.",
         ]}
         buttonLabel="Schedule a Discovery Call"
-        buttonHref={brand.emailLink}
+        onButtonClick={() => setContactOpen(true)}
       />
 
       <OrderModal open={contactOpen} onClose={() => setContactOpen(false)} />

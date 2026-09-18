@@ -175,7 +175,7 @@ export default function BrandingLogoDesign() {
           'Begin the road to a stronger brand identity. Contact Massive Designs and get a free consultation.',
         ]}
         buttonLabel="Request Free Consultation"
-        buttonHref={brand.emailLink}
+        buttonHref={brand.phoneTel}
       />
     </>
   );

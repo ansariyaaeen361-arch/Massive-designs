@@ -180,7 +180,7 @@ export default function MobileAppDevelopment() {
           'Get in touch with us, and we will create an application to expand your business and make users happy.',
         ]}
         buttonLabel="Request Free Consultation"
-        buttonHref={brand.emailLink}
+        buttonHref={brand.phoneTel}
       />
     </>
   );

@@ -165,7 +165,7 @@ export default function Irving() {
         parent="Areas We Serve"
         parentHref="/areas-we-serve"
         ctaLabel="Discuss Your Irving Website Project"
-        onCtaClick={() => setContactOpen(true)}
+        ctaHref={brand.phoneTel}
         secondaryCtaLabel="View Our Web Design Work"
         secondaryCtaHref="/projects"
       />
@@ -419,7 +419,7 @@ export default function Irving() {
           "If you're looking for a web design company in Irving built around lead generation and conversion, let's talk about what that could look like for you.",
         ]}
         buttonLabel="Schedule a Discovery Call"
-        buttonHref={brand.emailLink}
+        onButtonClick={() => setContactOpen(true)}
       />
 
       <OrderModal open={contactOpen} onClose={() => setContactOpen(false)} />
