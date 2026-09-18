@@ -148,13 +148,16 @@ export default function MobileMenu({ open, onClose }) {
           </ul>
         </nav>
 
-        <Link
-          href="/contact"
-          onClick={onClose}
+        <a
+          href={brand.phoneTel}
+          onClick={() => {
+            trackEvent('call_click', { source: 'mobile_menu_cta' });
+            onClose();
+          }}
           className="mt-8 rounded-full border border-primary px-6 py-3 text-center text-sm font-medium text-primary transition-all duration-300 hover:bg-primary hover:text-black"
         >
-          Get In Touch
-        </Link>
+          Call {brand.phoneDisplay}
+        </a>
 
         <div className="mt-auto pt-10">
           <div className="flex flex-col gap-2 text-sm">

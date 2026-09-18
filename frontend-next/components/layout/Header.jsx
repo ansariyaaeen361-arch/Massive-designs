@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { HiMenu } from 'react-icons/hi';
 import { IoChevronDown } from 'react-icons/io5';
-import { navLinks } from '../../lib/brand';
+import { navLinks, brand } from '../../lib/brand';
+import { trackEvent } from '../../lib/analytics';
 import MobileMenu from './MobileMenu';
 
 export default function Header() {
@@ -113,12 +114,13 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-5">
-            <Link
-              href="/contact"
+            <a
+              href={brand.phoneTel}
+              onClick={() => trackEvent('call_click', { source: 'header' })}
               className="hidden rounded-full border border-primary px-6 py-2.5 text-sm font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-black lg:inline-block"
             >
-              Get In Touch
-            </Link>
+              Call {brand.phoneDisplay}
+            </a>
             <button
               type="button"
               aria-label="Open menu"
