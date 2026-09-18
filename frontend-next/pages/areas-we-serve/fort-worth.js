@@ -167,8 +167,6 @@ export default function FortWorth() {
         parentHref="/areas-we-serve"
         ctaLabel="Discuss Your Fort Worth Website Project"
         ctaHref={brand.phoneTel}
-        secondaryCtaLabel="View Our Web Design Work"
-        secondaryCtaHref="/projects"
       />
 
       <FeatureGrid

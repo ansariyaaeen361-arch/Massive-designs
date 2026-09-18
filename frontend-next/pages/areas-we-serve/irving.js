@@ -166,8 +166,6 @@ export default function Irving() {
         parentHref="/areas-we-serve"
         ctaLabel="Discuss Your Irving Website Project"
         ctaHref={brand.phoneTel}
-        secondaryCtaLabel="View Our Web Design Work"
-        secondaryCtaHref="/projects"
       />
 
       <FeatureGrid

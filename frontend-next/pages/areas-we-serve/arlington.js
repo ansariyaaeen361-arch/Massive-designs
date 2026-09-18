@@ -85,8 +85,6 @@ export default function Arlington() {
         parentHref="/areas-we-serve"
         ctaLabel="Discuss Your Arlington Website Project"
         ctaHref={brand.phoneTel}
-        secondaryCtaLabel="View Our Web Design Work"
-        secondaryCtaHref="/projects"
       />
 
       <FeatureGrid
