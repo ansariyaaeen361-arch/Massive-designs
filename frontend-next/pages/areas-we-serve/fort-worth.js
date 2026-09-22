@@ -28,28 +28,28 @@ const faqs = [
     a: 'It depends on scope: a straightforward business site costs less than a custom build with ecommerce or specialized integrations. We provide a clear quote after understanding what your project actually needs.',
   },
   {
-    q: 'How long does website development take?',
-    a: 'Most projects take a few weeks from approved design to launch, depending on page count, content readiness, and any custom functionality involved.',
+    q: 'How long does a Fort Worth web design project take?',
+    a: 'Most business sites launch within a few weeks of approved design. B2B projects for the aerospace or manufacturing supply chain take longer due to additional technical requirements and content review. We give you a realistic estimate before work starts.',
   },
   {
-    q: 'Do you work with startups and new businesses?',
-    a: 'Yes. We regularly build first websites for entrepreneurs and early-stage Fort Worth businesses, alongside redesigns for established companies.',
+    q: 'Should I redesign my site or build a new one?',
+    a: 'If the structure is sound and main problems are visual or mobile-related, a redesign is more efficient. If the platform is limiting performance or the business has changed substantially, starting fresh tends to produce better long-term results.',
   },
   {
-    q: 'Do you redesign existing websites?',
-    a: "Yes, redesign is one of our most common projects, whether that's a full rebuild or targeted fixes to design and usability.",
+    q: 'Can you build an ecommerce site for my Fort Worth business?',
+    a: 'Yes, including B2B ecommerce for the aerospace and manufacturing supply chain, with bulk order management, account-based pricing, and RFQ workflows alongside standard checkout.',
+  },
+  {
+    q: 'Is SEO included with web design?',
+    a: 'Yes. SEO is built into the site from the start and can continue as an ongoing service after launch.',
+  },
+  {
+    q: 'Do you understand the aerospace sector digital needs?',
+    a: "We work with businesses in Fort Worth's aerospace supply chain. The design priorities, content requirements, and conversion paths for a procurement-focused B2B site are different from those for a consumer-facing business. We build for what your specific audience is evaluating.",
   },
   {
     q: 'Do you build mobile-friendly websites?',
     a: "Every site is designed mobile-first, since that's where most local and search traffic begins.",
-  },
-  {
-    q: 'Do you provide SEO with web design?',
-    a: 'Yes. SEO is built into the site from the start and can continue as an ongoing service after launch.',
-  },
-  {
-    q: 'Can you build an e-commerce website?',
-    a: 'Yes, including product structure, checkout flow, and secure payment integration.',
   },
   {
     q: 'Can you support our business as we grow and add services?',
@@ -109,18 +109,18 @@ export default function FortWorth() {
   return (
     <>
       <Seo
-        title="Web Design Company in Fort Worth, TX | Massive Designs"
-        description="Massive Designs provides custom web design, development, SEO, branding, and digital marketing services for businesses in Fort Worth, TX."
+        title="Web Design & Development in Fort Worth, TX | Massive Designs"
+        description="Massive Designs builds custom, mobile-first websites for Fort Worth's aerospace and defense supply chain, hospitality, and healthcare businesses, with local SEO built in from the first wireframe."
         path={`/${slug}`}
         schemaGraph={[
           {
             '@type': 'WebPage',
             '@id': `${SITE_URL}/${slug}/#webpage`,
             url: `${SITE_URL}/${slug}/`,
-            name: 'Web Design Company in Fort Worth, TX | Massive Designs',
+            name: 'Web Design & Development in Fort Worth, TX | Massive Designs',
             headline: 'Web Design & Development in Fort Worth, TX',
             description:
-              'Massive Designs provides custom web design, website development, SEO, branding, and digital marketing services for businesses in Fort Worth, TX.',
+              "Massive Designs builds custom, mobile-first websites for Fort Worth's aerospace and defense supply chain, hospitality, and healthcare businesses, with local SEO built in from the first wireframe.",
             isPartOf: { '@id': `${SITE_URL}/#website` },
             about: { '@id': `${SITE_URL}/${slug}/#service` },
             breadcrumb: { '@id': `${SITE_URL}/${slug}/#breadcrumb` },
@@ -151,15 +151,15 @@ export default function FortWorth() {
         title="Web Design & Development in Fort Worth, TX"
         lead={
           <>
-            Fort Worth has built a lot of its recent growth around attracting entrepreneurs and creative companies,
-            alongside supporting the established small businesses that have operated here for years. Massive
-            Designs builds websites for both ends of that range: fast, custom-designed sites for founders launching
-            a new brand, and full rebuilds for established Fort Worth companies whose current site no longer
-            reflects where the business is today.
+            Fort Worth has a different economic foundation than Dallas. Lockheed Martin employs approximately
+            18,700 people in the metro producing the F-35. Bell Textron is investing $632 million in a new
+            manufacturing facility nearby. Over 600 aerospace and defense companies anchor the area. A B2B supplier
+            in that supply chain has completely different website needs than a restaurant near Sundance Square or a
+            healthcare provider in a growing Fort Worth suburb.
             <br />
             <br />
-            Every project is built mobile-first and structured around search from the start, so the site is working
-            for you the day it launches, not months later.
+            Massive Designs builds for that full range of Fort Worth businesses. Custom, mobile-first, with local
+            SEO built into the site from the first wireframe.
           </>
         }
         crumb="Fort Worth"
@@ -171,46 +171,52 @@ export default function FortWorth() {
 
       <FeatureGrid
         heading="Web Design for Fort Worth Businesses"
-        description="The businesses we hear from in Fort Worth tend to fall into a few groups: entrepreneurs and startups building their first real website, established local businesses whose site hasn't been touched in years, professional services firms that need to look credible to new clients, companies mid-rebrand who need a site that matches a new identity, and businesses expanding into new services or locations that need a site built to grow with them."
+        description="Fort Worth's growth has brought more businesses and more competition in most local search categories. The businesses that invested in search visibility earlier have measurable advantages today. Getting the technical foundations right from the beginning costs less than correcting problems later."
         items={[
           {
-            title: 'Custom Design & Development',
-            description: 'Responsive design and dependable development from the same team, start to finish.',
+            title: 'Custom Website Design',
+            description:
+              'Layouts built around how Fort Worth B2B buyers and local customers evaluate options. Procurement teams and consumers booking a service have different evaluation processes and the site design reflects that.',
           },
           {
-            title: 'Website Redesign',
-            description: "For sites that were fine years ago and haven't kept up with the business since.",
+            title: 'Website Development',
+            description:
+              'Scalable development with ERP connections, document management, booking systems, and payment integrations where the project needs them.',
           },
           {
-            title: 'Branding, Content & Social',
-            description: 'Consistent identity and marketing for businesses that are rebranding or scaling.',
+            title: 'SEO & Local Visibility',
+            description:
+              "Technical and local SEO from day one. Fort Worth's search competition has grown alongside its population, and national brands appear here alongside local businesses.",
           },
         ]}
       />
 
       <ProcessSteps
         heading="What a Fort Worth Growth Plan Looks Like"
-        description="Whether you're an early-stage founder or an established Fort Worth company, every project runs through the same four stages."
+        description="Every Fort Worth project follows four stages. A precision machining supplier needs a very different strategy than a Cultural District restaurant or a medical practice in a growing suburb."
         steps={[
           {
             number: '01',
-            title: 'Brand & Website Strategy',
-            description: 'We start with where your business is today, a new brand needing its first real site, or an established company whose site no longer fits, and plan around that.',
+            title: 'Business & Website Strategy',
+            description:
+              'We map how Fort Worth customers and B2B procurement teams search for what you offer, then build the site architecture around that specific behavior.',
           },
           {
             number: '02',
             title: 'Design & Development',
-            description: 'Sites are custom-designed and built mobile-first, with development that keeps pages fast and stable as the business grows.',
+            description:
+              'Fast, mobile-first, and visually appropriate to your market: industrial credibility for B2B suppliers, energy and character for hospitality businesses near the Stockyards.',
           },
           {
             number: '03',
             title: 'SEO & Local Search',
-            description: 'Technical and local SEO go in from the start, so the site is positioned to show up for Fort Worth searches from day one.',
+            description:
+              'On-page and technical SEO from launch. For businesses serving both Fort Worth and Dallas, we structure the site to support both markets from the start.',
           },
           {
             number: '04',
-            title: 'Content, Social & Growth',
-            description: 'We continue supporting the site with content and social media after launch, so early traction turns into steady growth.',
+            title: 'Content & Ongoing Growth',
+            description: 'After launch we build through content and social support.',
           },
         ]}
       />
@@ -218,81 +224,78 @@ export default function FortWorth() {
       <section className="py-14 lg:py-20">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-6 sm:grid-cols-2 lg:px-10">
           <Reveal>
-            <h3 className="text-lg text-primary">Custom Web Design & Development</h3>
+            <h3 className="text-lg text-primary">Custom Website Design in Fort Worth</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/50">
-              Every Fort Worth project starts with the same foundation: custom design based on the business and its
-              customers, not a reused template, paired with development that keeps pages fast and stable as the site
-              grows. That includes responsive design across devices, a navigation structure built around what
-              customers are looking for, clear calls to action, and back-end work, integrations, performance,
-              security, and scalability, handled by the same team that designed the site.
+              No single template works across Fort Worth&rsquo;s range of industries. A procurement-focused B2B
+              site needs to hold up to technical scrutiny. A Stockyards-area hospitality business needs to drive
+              reservations from mobile visitors. A medical practice needs a clear appointment path. Every site is
+              designed mobile-first, since Fort Worth&rsquo;s manufacturing and logistics workforce searches
+              heavily from phones during shift changes and commutes. For B2B businesses, that means a clear
+              capability verification path and RFQ form; for consumer businesses, service description and booking
+              in two clicks or fewer.
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h3 className="text-lg text-primary">Websites Built for Growing Fort Worth Businesses</h3>
+            <h3 className="text-lg text-primary">Website Development for Fort Worth Businesses</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/50">
-              A website for a five-person startup and a website for a company that&rsquo;s operated for fifteen
-              years need different things, even in the same industry. We build sites that match where a business
-              actually is: simple and fast for early-stage companies that need to launch quickly, and more
-              structured, content-heavy builds for established businesses that need to organize multiple services,
-              locations, or team members without the site turning into a maze. Either way, the site is built to grow
-              with the business instead of requiring a full rebuild every time something changes.
+              Sites built to load quickly and scale. For aerospace suppliers presenting technical documentation, we
+              build the back-end architecture to support that. Front-end speed, back-end functionality,
+              integrations, and SEO-ready architecture come standard, and for businesses also serving Dallas, the
+              multi-city structure is built in from day one.
             </p>
           </Reveal>
         </div>
       </section>
 
       <AreaMapHighlight
-        heading="Built to Perform in a Growing Fort Worth Market"
-        description="Fort Worth's mix of new companies and long-established businesses means the competition for attention looks different depending on your industry. We build sites that hold their own either way."
+        heading="Built to Perform in a Competitive Fort Worth Market"
+        description="National chains, large employers with marketing teams, and franchise operators appear in the same Fort Worth search results as local businesses. For B2B buyers in the aerospace supply chain, credibility and proven capability matter more than marketing language."
         mapQuery="Fort Worth, TX"
         highlightsTitle="What Changes With Us"
         highlights={[
-          'Faster, cleaner sites that load well on any connection',
-          'Search visibility for the terms Fort Worth customers use',
-          'A site structured to add services, locations, or content as you grow',
-          'Clear calls to action that turn visits into inquiries',
+          "Faster mobile-first design for Fort Worth's high proportion of mobile searchers, including workers searching from phones on shift",
+          'Search visibility for the terms Fort Worth customers use in the Alliance corridor, Cultural District, Medical District, and growing suburbs',
+          'A clearer path from homepage to RFQ, booking, or phone call',
+          'Site architecture ready to expand to Dallas, North Richland Hills, and other Texas markets',
         ]}
       />
 
       <section className="py-14 lg:py-20">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-6 sm:grid-cols-2 lg:px-10">
           <Reveal>
-            <h3 className="text-lg text-primary">Website Redesign for Fort Worth Businesses</h3>
+            <h3 className="text-lg text-primary">Website Redesign in Fort Worth</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/50">
-              Established Fort Worth businesses often come to us with a site that was fine five or ten years ago and
-              hasn&rsquo;t kept up since: outdated design, clunky navigation, slow load times, or a mobile
-              experience that was clearly an afterthought. Our redesign process starts by identifying what&rsquo;s
-              actually costing the business inquiries, then rebuilds the site&rsquo;s structure, design, and
-              technical foundation to fix that specific problem instead of just giving it a new coat of paint.
+              Common triggers: a site that looks dated compared to competitors who invested more recently, a mobile
+              experience that loses visitors before they reach the contact page, or navigation built around an old
+              version of the business. We audit what the current site is costing the business before touching
+              anything.
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h3 className="text-lg text-primary">E-Commerce Website Development</h3>
+            <h3 className="text-lg text-primary">E-Commerce Website Design in Fort Worth</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/50">
-              For Fort Worth businesses selling online, we build ecommerce sites around clear product presentation,
-              straightforward navigation, a mobile-friendly shopping experience, a simplified checkout, secure
-              payment integrations, and product and category structure that makes sense to a shopper. Analytics are
-              set up from launch, so the business can see what&rsquo;s actually selling.
+              For Fort Worth B2B ecommerce, we build bulk order management, account-based pricing, and RFQ
+              functionality alongside standard checkout. Consumer ecommerce gets mobile checkout, secure payments,
+              and analytics from day one.
             </p>
           </Reveal>
         </div>
       </section>
 
       <PortfolioHoverGrid
-        heading="Our Work Across Fort Worth and the DFW Metroplex"
-        description="A look at the kind of website, branding, and marketing work we've built for businesses across the Dallas-Fort Worth metroplex. We don't yet have a published Fort Worth case study, so rather than manufacture one, this section reflects the range and quality of work behind every project we take on."
+        heading="Our Work Across Fort Worth and Texas"
+        description="Website, branding, and digital marketing work for businesses across Texas. We don't yet have a published Fort Worth case study, so rather than manufacture one, this section reflects the range and quality of work behind every project we take on."
         items={portfolioItems}
       />
 
       <section className="py-14 lg:py-20">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-6 sm:grid-cols-2 lg:px-10">
           <Reveal>
-            <h3 className="text-lg text-primary">SEO & Local Search for Fort Worth Businesses</h3>
+            <h3 className="text-lg text-primary">SEO for Fort Worth Business Websites</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/50">
-              A new or redesigned site still needs to show up when Fort Worth customers search. We handle technical
-              SEO, on-page optimization, keyword research, local SEO and Google Business Profile setup, supporting
-              content, and internal linking, all built around the site rather than treated as a separate project.
-              For a closer look at how we approach that work, visit our{' '}
+              Technical SEO, on-page optimization, Google Business Profile management, and content targeting Fort
+              Worth search terms. SEO is part of the same project as web design, not a separate add-on. For a closer
+              look at how we approach that work, visit our{' '}
               <Link href="/seo-services" className="text-primary hover:underline">
                 SEO Services
               </Link>{' '}
@@ -300,12 +303,12 @@ export default function FortWorth() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h3 className="text-lg text-primary">Branding, Content & Social Media</h3>
+            <h3 className="text-lg text-primary">Branding and Content That Support Your Website</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/50">
-              A lot of the Fort Worth businesses we work with are mid-rebrand, or building a brand identity for the
-              first time as they scale. We handle branding, content marketing, and social media marketing alongside
-              web design and development, so the website, the visual identity, and the ongoing marketing all stay
-              consistent instead of being handled by three separate vendors with three separate opinions.
+              For aerospace and manufacturing suppliers, a visual identity that projects precision and reliability.
+              For Stockyards-area hospitality, one that feels genuine. We handle branding, content marketing, and
+              social media marketing alongside web design and development, so the website, the visual identity, and
+              the ongoing marketing all stay consistent.
             </p>
           </Reveal>
         </div>
@@ -313,54 +316,55 @@ export default function FortWorth() {
 
       <ProcessSteps
         heading="How We Work With Fort Worth Clients"
-        description="Every project follows the same basic process, adjusted for the business, plan, design, develop, launch, optimize."
+        description="Plan, design, develop, launch, optimize, adjusted for whether you're a B2B supplier or a consumer-facing business."
         steps={[
           {
             number: '01',
-            title: "Understand Where You're Starting",
-            description: 'We look at your current site (or lack of one), your goals, and your competition.',
+            title: 'Learn Your Business',
+            description:
+              "We start with your customers and your industry's purchasing or procurement process in Fort Worth. For B2B businesses, that includes understanding how procurement teams evaluate suppliers online before making contact.",
           },
           {
             number: '02',
-            title: 'Identify What Matters Most',
-            description: "We agree on which problems are actually costing you business and prioritize those first.",
+            title: 'Map the Priorities',
+            description: 'We identify what is limiting site performance and agree on what to address first. For most Fort Worth businesses, that starts with mobile performance.',
           },
           {
             number: '03',
-            title: 'Build in the Open',
-            description: 'Design and development happen together, with drafts and structure shared as we go.',
+            title: 'Design and Build Together',
+            description: 'You see real drafts early. Fort Worth businesses dealing with long procurement cycles value knowing exactly where the project stands at each stage.',
           },
           {
             number: '04',
-            title: 'Adjust Based on Results',
-            description: 'After launch, we track how the site performs and adjust the strategy based on real behavior.',
+            title: 'Launch and Adjust',
+            description: 'After launch we track Fort Worth traffic and adjust based on real data. We stay available for ongoing SEO, content, and development support.',
           },
         ]}
       />
 
       <FeatureGrid
-        heading="Why Fort Worth Businesses Work With Massive Designs"
+        heading="Why Fort Worth Businesses Choose Massive Designs"
         columns={5}
         items={[
           {
-            title: 'Strategy Comes First',
-            description: "Every project starts with the business's goals, not a template pulled off the shelf.",
+            title: 'Strategy Before Design',
+            description: "Your customers' search behavior and evaluation criteria come first. Design follows from that.",
           },
           {
-            title: 'One Team, Design to Development',
-            description: 'Design and development sit under one roof, so nothing gets lost between the two.',
+            title: 'Design and Development Under One Team',
+            description: 'The same team handles design and development. No handoff errors between disciplines.',
           },
           {
-            title: 'SEO-Friendly From Day One',
-            description: 'Sites are built on technical foundations that support search visibility instead of requiring rework later.',
+            title: 'SEO-Friendly Foundations',
+            description: 'Technical foundations supporting search visibility from day one, in a market that has grown more competitive as the city has grown.',
           },
           {
             title: 'Marketing Beyond Launch',
-            description: "We support SEO, content, and social media after the site is live, not just at delivery.",
+            description: 'SEO, content, and social support continue after launch.',
           },
           {
-            title: 'A Texas-Based Team',
-            description: "We work across the DFW metroplex, including Fort Worth, rather than managing the relationship remotely from out of state.",
+            title: 'Texas-Based Team',
+            description: 'Based at 8350 Davis Boulevard, North Richland Hills, TX, in the Mid-Cities area between Fort Worth and Dallas.',
           },
         ]}
       />
@@ -368,17 +372,29 @@ export default function FortWorth() {
       <section className="pb-14 lg:pb-20">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <Reveal className="max-w-3xl">
-            <h3 className="text-lg text-primary">Serving Fort Worth and the DFW Metroplex</h3>
+            <h3 className="text-lg text-primary">Serving Fort Worth and Nearby Texas Cities</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/50">
-              Beyond Fort Worth, we build and support websites for businesses across the metroplex, including{' '}
-              <Link href="/areas-we-serve/arlington" className="text-primary hover:underline">
-                Arlington
+              We also build and support websites for{' '}
+              <Link href="/areas-we-serve/dallas" className="text-primary hover:underline">
+                Dallas
               </Link>
               ,{' '}
               <Link href="/areas-we-serve/north-richland-hills" className="text-primary hover:underline">
                 North Richland Hills
               </Link>
-              , Keller, and Southlake.
+              ,{' '}
+              <Link href="/areas-we-serve/arlington" className="text-primary hover:underline">
+                Arlington
+              </Link>
+              ,{' '}
+              <Link href="/areas-we-serve/grand-prairie" className="text-primary hover:underline">
+                Grand Prairie
+              </Link>
+              , and{' '}
+              <Link href="/areas-we-serve/irving" className="text-primary hover:underline">
+                Irving
+              </Link>
+              .
             </p>
           </Reveal>
         </div>
@@ -389,7 +405,7 @@ export default function FortWorth() {
       <ServiceCta
         heading="Ready to grow your Fort Worth business?"
         paragraphs={[
-          "If you're looking for a web design company in Fort Worth that understands entrepreneurs and established businesses alike, let's talk about your project.",
+          "If you want a web design company in Fort Worth that builds with SEO in mind from day one, let's talk.",
         ]}
         buttonLabel="Schedule a Discovery Call"
         onButtonClick={() => setContactOpen(true)}

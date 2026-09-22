@@ -26,144 +26,140 @@ export default function Dallas() {
   return (
     <>
       <Seo
-        title="Web Design Company Dallas TX | Massive Designs"
-        description="Looking for a web design company in Dallas, TX? Massive Designs creates professional, SEO-friendly websites that help businesses improve their online presence and generate leads."
+        title="Web Design & Development in Dallas, TX | Massive Designs"
+        description="Massive Designs builds custom, mobile-first websites for Dallas businesses competing in one of the most Fortune-500-dense markets in Texas, with local SEO built in from the first wireframe."
         path="/areas-we-serve/dallas"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/dallas',
           city: 'Dallas',
-          pageName: 'Web Design Company Dallas TX | Massive Designs',
-          pageDescription: 'Looking for a web design company in Dallas, TX? Massive Designs creates professional, SEO-friendly websites that help businesses improve their online presence and generate leads.',
+          pageName: 'Web Design & Development in Dallas, TX | Massive Designs',
+          pageDescription: 'Massive Designs builds custom, mobile-first websites for Dallas businesses competing in one of the most Fortune-500-dense markets in Texas, with local SEO built in from the first wireframe.',
         })}
       />
       <ServiceHero
-        title="Web Design Services in Dallas, TX"
-        lead="Dallas is one of Texas's most competitive marketing environments, which means generic websites and generic SEO simply don't cut through here. Our strategies are built for that pressure, turning Dallas searches into steady, measurable leads."
+        title="Web Design & Development in Dallas, TX"
+        lead="Dallas has 19 Fortune 500 headquarters in its metro, and the businesses competing for customers here know it. A slow site or unclear service page doesn't just lose a visitor, it sends that prospect directly to whoever shows up next in the search results. Massive Designs builds websites for Dallas businesses that need to compete at that level: custom-designed, mobile-first, and built with local SEO from the first wireframe."
         crumb="Dallas"
         parent="Areas We Serve"
         parentHref="/areas-we-serve"
-        ctaLabel="Schedule a Discovery Call"
+        ctaLabel="Discuss Your Dallas Website Project"
         ctaHref={brand.phoneTel}
       />
 
       <FeatureGrid
-        heading="Digital marketing built for a crowded Dallas market"
+        heading="Web Design for Dallas Businesses"
         description={
           <>
-            Dallas is one of the toughest markets in Texas to stand out in, so generic marketing doesn&rsquo;t hold
-            up here. We work with small and growing businesses across the DFW metroplex, from Uptown startups to
-            established firms out toward Las Colinas, building sites and campaigns around how people actually
-            search rather than what looks good in a pitch deck. Every project starts with strategy and{' '}
-            <Link href="/seo-services" className="text-primary hover:underline">
-              SEO
-            </Link>
-            , not a template, so your site earns trust fast and turns visits into real inquiries.
+            Dallas businesses come to us at different stages. Some have strong offline reputations but websites that
+            generate no inquiries. Others are newer companies trying to compete in a market where competitors have
+            invested seriously online. The shared problem is that underinvestment in your site is visible to every
+            prospect who compares you to a competitor.
           </>
         }
         items={[
           {
-            title: 'Website Design & Development',
+            title: 'Custom Website Design',
             description:
-              'We design fast, conversion-focused sites for Dallas businesses that need to look sharp and load faster than the competition.',
+              'Layouts and conversion paths designed around how Dallas customers in your specific sector search and decide, not a template built for the average business.',
+          },
+          {
+            title: 'Website Development',
+            description:
+              'Fast, secure development with CRM connections, booking systems, and payment integrations built in where the project needs them.',
           },
           {
             title: 'SEO & Local Visibility',
             description:
-              "Our SEO work is built to rank for the searches that actually bring in Dallas customers, not just traffic for traffic's sake.",
-          },
-          {
-            title: 'Branding & Content',
-            description:
-              'From logos to landing pages, we give Dallas brands a consistent voice across every channel they show up on.',
+              'Technical and local SEO built into the site from day one. Dallas search results are competitive across virtually every commercial category.',
           },
         ]}
       />
 
       <ProcessSteps
-        heading="What a Dallas growth plan looks like"
-        description="Every Dallas project runs through the same four stages, adjusted to your industry and whoever you're competing against locally."
+        heading="What a Dallas Growth Plan Looks Like"
+        description="Every Dallas project follows the same four-stage process, adjusted for your industry and the part of the city you serve."
         steps={[
           {
             number: '01',
-            title: 'Website Strategy & Design',
-            description: 'We map your site around what Dallas customers actually search for first, then design around that.',
+            title: 'Business & Website Strategy',
+            description: 'We map how Dallas customers in your category search and evaluate options before any design work begins. That research shapes the site architecture.',
           },
           {
             number: '02',
-            title: 'SEO & Local Search',
-            description: 'Technical SEO, on-page work, and local search signals working together so you show up when Dallas buyers are ready.',
+            title: 'Design & Development',
+            description: 'Fast, mobile-first, and organized so visitors get to the right page in a click or two. Dallas audiences judge credibility quickly and the design has to earn that.',
           },
           {
             number: '03',
-            title: 'Branding & Identity',
-            description: 'Logo, messaging, and visual identity built to hold up in a market where first impressions decide a lot.',
+            title: 'SEO & Local Search',
+            description: 'Technical and on-page SEO go in from launch, targeted at the specific terms Dallas customers use. National brands compete here, so precision matters.',
           },
           {
             number: '04',
-            title: 'Content & Social Media',
-            description: 'Blog posts, service pages, and social content written for a Dallas audience, not recycled Texas boilerplate.',
+            title: 'Content & Ongoing Growth',
+            description: 'After launch we continue through content, branding refinements, and social support.',
           },
         ]}
       />
 
       <AreaMapHighlight
-        heading="Built to perform in a crowded Dallas market"
-        description="We turn slow, generic sites into fast, focused ones that convert the traffic Dallas already sends you."
+        heading="Built to Perform in a Competitive Dallas Market"
+        description="National brands, regional agencies with SEO programs, and franchise operators all appear in the same Dallas local search results as independently owned businesses. The businesses holding their positions have faster sites, cleaner architecture, and stronger on-page content."
         mapQuery="Dallas, TX"
         highlightsTitle="What Changes With Us"
         highlights={[
-          'Faster load times and cleaner design',
-          'Rankings for the terms that matter locally',
-          'More qualified inquiries from your website',
+          'Faster load times and mobile-first design that reduce bounce from slow-loading pages',
+          'Stronger visibility for the search terms Dallas customers actually use, whether in Uptown, Oak Lawn, Deep Ellum, or Las Colinas',
+          'A clearer path from homepage to phone call, quote request, or booked meeting',
         ]}
       />
 
       <PortfolioHoverGrid
-        heading="Our work across Dallas and DFW"
-        description="A look at the kind of design, branding, and marketing work we've built for businesses across the Dallas–Fort Worth area."
+        heading="Our Work Across Dallas and Texas"
+        description="Website, branding, and digital marketing work for businesses across Texas, including the Dallas-Fort Worth area."
         items={portfolioItems}
       />
 
       <ProcessSteps
-        heading="How we work with Dallas clients"
+        heading="How We Work With Dallas Clients"
         steps={[
           {
             number: '01',
-            title: 'Understand Your Market',
-            description: "We learn who your Dallas customers are, what they're searching for, and where your current site or strategy is falling short.",
+            title: 'Learn Your Business',
+            description: 'We start with your customers, your competitive position in Dallas, and what your current site is or is not doing, including which neighborhoods and search categories matter most.',
           },
           {
             number: '02',
-            title: 'Prioritize the Gaps',
-            description: 'We flag the pages, messaging, or SEO gaps costing you the most, then agree on what gets fixed first.',
+            title: 'Map the Priorities',
+            description: 'We identify what is actually costing the business inquiries and agree on what gets addressed first.',
           },
           {
             number: '03',
-            title: 'Build and Collaborate',
-            description: "We share drafts and structure early, so you're reviewing real work instead of guessing where things stand.",
+            title: 'Design and Build Together',
+            description: 'You see real drafts and site structure early, not a single reveal at the end. Regular check-ins and deliverables at each stage.',
           },
           {
             number: '04',
-            title: 'Track and Adjust',
-            description: 'We watch how your Dallas traffic actually behaves, then adjust strategy off real numbers instead of assumptions.',
+            title: 'Launch and Adjust',
+            description: 'After launch we track how Dallas traffic actually behaves and adjust based on real data. Optimization continues after the site goes live.',
           },
         ]}
       />
 
       <FeatureGrid
-        heading="Why Dallas businesses choose Massive Designs"
+        heading="Why Dallas Businesses Choose Massive Designs"
         items={[
           {
-            title: 'Search-First Approach',
-            description: 'Every page is built around what Dallas customers are typing into Google, not what sounds good in a meeting.',
+            title: 'Strategy Before Design',
+            description: 'Business goals and customer search behavior come first. Design follows from that.',
           },
           {
-            title: 'One Team, Start to Finish',
-            description: 'The same team handling your design also handles your SEO and content, so nothing gets lost between departments.',
+            title: 'Design and Development Under One Team',
+            description: 'The same team handles design and development. What gets designed gets built to spec with no handoff errors.',
           },
           {
-            title: 'Local Market Understanding',
-            description: 'We know what works in Dallas and what works two hours away, and we build accordingly.',
+            title: 'SEO-Friendly Foundations',
+            description: 'Technical foundations that support search visibility from launch, not rework required months later.',
           },
         ]}
       />
@@ -172,12 +168,12 @@ export default function Dallas() {
         heading="Ready to grow your Dallas business?"
         paragraphs={[
           <>
-            If you&rsquo;re looking for a{' '}
+            If you want a web design company in Dallas that builds with SEO in mind from day one, let&rsquo;s talk.
+            Take a look at our full{' '}
             <Link href="/services" className="text-primary hover:underline">
-              web design and digital marketing
+              range of services
             </Link>{' '}
-            agency in Dallas that understands the local market and builds with SEO in mind from day one, let&rsquo;s
-            talk about what that could look like for you.
+            and let&rsquo;s go from there.
           </>,
         ]}
         buttonLabel="Schedule a Discovery Call"

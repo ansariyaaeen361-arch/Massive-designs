@@ -26,106 +26,100 @@ export default function Houston() {
   return (
     <>
       <Seo
-        title="Web Design Company Houston TX | Massive Designs"
-        description="Massive Designs is a web design company serving Houston, TX, creating modern, SEO-friendly websites that help businesses strengthen their online presence and attract customers."
+        title="Web Design & Development in Houston, TX | Massive Designs"
+        description="Massive Designs builds custom, mobile-first websites for Houston businesses across the region's energy, medical, logistics, and retail sectors, with local SEO structured in from the first wireframe."
         path="/areas-we-serve/houston"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/houston',
           city: 'Houston',
-          pageName: 'Web Design Company Houston TX | Massive Designs',
-          pageDescription: 'Massive Designs is a web design company serving Houston, TX, creating modern, SEO-friendly websites that help businesses strengthen their online presence and attract customers.',
+          pageName: 'Web Design & Development in Houston, TX | Massive Designs',
+          pageDescription: 'Massive Designs builds custom, mobile-first websites for Houston businesses across the region\'s energy, medical, logistics, and retail sectors, with local SEO structured in from the first wireframe.',
         })}
       />
       <ServiceHero
-        title="Web Design Services in Houston, TX"
-        lead="Houston spans energy, healthcare, logistics, and retail all at once, so no single marketing template works citywide. We build websites and digital marketing strategies tailored to whichever part of Houston's economy your business competes in."
+        title="Web Design & Development in Houston, TX"
+        lead="Houston is the fourth-largest U.S. city, with a metro workforce of over 3.4 million. Twenty-four Fortune 500 companies are headquartered here, the Texas Medical Center is the world's largest medical campus, and the Port of Houston handles more total tonnage than any other U.S. port. In a market that large and that economically diverse, competing online means being specific about your sector, your location within the city, and who you actually serve. Massive Designs builds websites for Houston businesses across that full range, custom-designed, mobile-first, and structured around local SEO from the first wireframe."
         crumb="Houston"
         parent="Areas We Serve"
         parentHref="/areas-we-serve"
-        ctaLabel="Schedule a Discovery Call"
+        ctaLabel="Discuss Your Houston Website Project"
         ctaHref={brand.phoneTel}
       />
 
       <FeatureGrid
-        heading="Built for the Size and Range of Houston"
+        heading="Web Design for Houston Businesses"
         description={
           <>
-            Houston isn&rsquo;t just big, it&rsquo;s a collection of different economies running at the same time.
-            Energy companies in the Corridor, hospital systems around the Medical Center, logistics operations tied
-            to the Port, and a retail and restaurant scene that serves one of the most diverse populations in the
-            country. A marketing plan that works for one of those doesn&rsquo;t automatically work for the rest,
-            which is why our process starts with figuring out which part of Houston&rsquo;s economy you&rsquo;re
-            actually in before we touch design or copy. We handle{' '}
-            <Link href="/seo-services" className="text-primary hover:underline">
-              SEO
-            </Link>{' '}
-            the same way, treating a Medical Center practice and an energy services company as two different
-            ranking problems, because they are.
+            Houston&rsquo;s search environment is genuinely local within a very large city. A business in Katy
+            competes differently than one in Midtown or Pearland. Different customers, different competitors,
+            different conversion paths. We account for that when planning site architecture rather than treating
+            Houston as a single undifferentiated market.
           </>
         }
         items={[
           {
-            title: 'Website Design & Development',
+            title: 'Custom Website Design',
             description:
-              "Houston's business mix runs from energy startups to family medical practices, so we design around who's actually visiting your site, not a generic Texas template.",
+              'Layouts built around how Houston customers in your specific sector and neighborhood search and decide. Energy procurement teams evaluate very differently than patients booking a specialist.',
           },
           {
-            title: 'SEO & Local Search',
+            title: 'Website Development',
             description:
-              'Ranking in Houston means competing at a different scale than most Texas cities. Our SEO work is built around that, not scaled down from a smaller market.',
+              "Secure, scalable development with ERP, CRM, booking, and payment integrations. Houston's regulated industries need clean, reliable code.",
           },
           {
-            title: 'Branding & Content',
+            title: 'SEO & Local Visibility',
             description:
-              'A brand voice that reads clearly whether your customer is downtown, out in Katy, or across the bay in Clear Lake.',
+              "Technical and local SEO from day one. Houston's geographic size means local SEO has to account for multiple neighborhoods or suburbs to be effective.",
           },
         ]}
       />
 
       <ProcessSteps
         heading="What a Houston Growth Plan Looks Like"
-        description="Houston's economy doesn't move as one block, so neither does our process."
+        description="Every Houston project follows four stages shaped by your specific sector and position within this large, economically diverse city."
         steps={[
           {
             number: '01',
-            title: 'Website Strategy & Design',
+            title: 'Business & Website Strategy',
             description:
-              "We figure out which part of Houston's economy you're actually selling into first, then build the site around that specific audience.",
+              'We map who your Houston customers are and how they search. An energy procurement team searches differently than a patient in the Medical Center area or a logistics buyer comparing carriers.',
           },
           {
             number: '02',
-            title: 'SEO & Local Search',
+            title: 'Design & Development',
             description:
-              'Search competition in Houston shifts by neighborhood and industry, so keyword strategy gets built around your specific market instead of one citywide playbook.',
+              "Fast, mobile-first, and organized for your specific Houston audience. Houston's international population makes multilingual design a legitimate consideration for some businesses.",
           },
           {
             number: '03',
-            title: 'Branding & Identity',
-            description: 'Visual identity that holds up whether your customer is in the Energy Corridor or out near Sugar Land.',
+            title: 'SEO & Local Search',
+            description:
+              'We target at the right geographic level: Energy Corridor, Texas Medical Center area, Katy, Pearland, rather than just a broad Houston keyword that the largest competitors already dominate.',
           },
           {
             number: '04',
-            title: 'Content & Social Media',
-            description: "Content written with Houston's genuinely diverse audience in mind, not copy that assumes one kind of reader.",
+            title: 'Content & Ongoing Growth',
+            description: 'After launch we continue building through content and social support.',
           },
         ]}
       />
 
       <AreaMapHighlight
-        heading="Built for a Market That Doesn't Sit Still"
-        description="Houston moves fast and covers a lot of ground. We build sites that keep pace with both."
+        heading="Built to Perform in a Competitive Houston Market"
+        description="Large healthcare systems, national franchise chains, and energy companies with in-house SEO all appear in the same Houston search results as independently owned businesses. Houston's constant flow of new residents and relocating companies has also intensified competition in categories that had limited competition just a few years ago."
         mapQuery="Houston, TX"
         highlightsTitle="What Changes With Us"
         highlights={[
-          'Messaging shaped around your specific industry',
-          "SEO strategy that accounts for Houston's scale",
-          'A site that holds up across every device your customers use',
+          "Faster mobile-first design built for Houston's high-proportion mobile audience",
+          'Search visibility at the right geographic level: Energy Corridor, Katy, The Woodlands, Pearland, Midtown',
+          'A clearer path from homepage to phone call, quote request, appointment, or purchase',
         ]}
       />
 
       <PortfolioHoverGrid
-        heading="Our Work Across Houston and Southeast Texas"
-        description="A look at the kind of design, branding, and marketing work we've built for businesses operating across Houston's range of industries."
+        heading="Our Work Across Houston and Texas"
+        description="Website, branding, and digital marketing work for businesses across Texas, including projects for businesses operating across Houston's range of industries."
         items={portfolioItems}
       />
 
@@ -134,23 +128,27 @@ export default function Houston() {
         steps={[
           {
             number: '01',
-            title: 'Understand Your Industry',
-            description: "We learn which part of Houston's economy you compete in first, since that changes nearly everything downstream.",
+            title: 'Learn Your Business',
+            description:
+              "We start with your customers and your competitive position within Houston's specific industry segments. Houston's diversity means the specifics vary considerably from project to project.",
           },
           {
             number: '02',
-            title: 'Prioritize the Gaps',
-            description: 'We identify which pages or search terms are costing you the most business, then agree on what gets fixed first.',
+            title: 'Map the Priorities',
+            description:
+              'For Houston businesses in healthcare or energy services, that often starts with content quality and technical SEO rather than visual design.',
           },
           {
             number: '03',
-            title: 'Build and Collaborate',
-            description: 'You see real drafts as we go instead of one reveal at the end.',
+            title: 'Design and Build Together',
+            description:
+              'You see real drafts early. Houston businesses in regulated industries need to review specific content at each stage, and we build that review into the process.',
           },
           {
             number: '04',
-            title: 'Track and Adjust',
-            description: 'We watch how your Houston traffic behaves specifically, then adjust based on what the data actually shows.',
+            title: 'Launch and Adjust',
+            description:
+              'After launch we track how Houston traffic behaves and adjust. Businesses with energy market cycles or seasonal patterns benefit from optimization adjustments that account for those cycles.',
           },
         ]}
       />
@@ -159,29 +157,26 @@ export default function Houston() {
         heading="Why Houston Businesses Choose Massive Designs"
         items={[
           {
-            title: 'Industry-Aware Strategy',
-            description:
-              "We don't run the same plan for an energy company that we'd run for a medical practice, and you shouldn't want us to.",
+            title: 'Strategy Before Design',
+            description: "Your customers' search and evaluation behavior comes first. Design follows.",
           },
           {
-            title: 'One Team, Every Step',
-            description:
-              'The same people who design your site handle your SEO, your content, and your brand, so nothing gets lost in translation.',
+            title: 'Design and Development Under One Team',
+            description: 'The same team handles design and development. No translation errors between disciplines.',
           },
           {
-            title: "Built for Houston's Scale",
-            description: "Houston isn't a small market, and our research, SEO, and design work all reflect that from day one.",
+            title: 'SEO-Friendly Foundations',
+            description: "Technical foundations supporting search visibility from launch, essential in Houston's competitive environment.",
           },
         ]}
       />
 
       <ServiceCta
-        heading="Ready to Grow Your Houston Business?"
+        heading="Ready to grow your Houston business?"
         paragraphs={[
           <>
-            Whether you&rsquo;re in the Energy Corridor, the Medical Center, or somewhere else across the city, we
-            build web design and digital marketing strategies suited to your specific corner of Houston. Take a
-            look at our full{' '}
+            If you want a web design company that understands Houston&rsquo;s scale and builds with SEO in mind
+            from day one, let&rsquo;s talk. Take a look at our full{' '}
             <Link href="/services" className="text-primary hover:underline">
               range of services
             </Link>{' '}

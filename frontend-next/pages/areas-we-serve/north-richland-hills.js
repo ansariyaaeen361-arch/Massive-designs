@@ -24,103 +24,102 @@ export default function NorthRichlandHills() {
   return (
     <>
       <Seo
-        title="Web Design Company North Richland Hills TX | Massive Designs"
-        description="Massive Designs provides professional web design in North Richland Hills, TX, creating SEO-friendly websites that help local businesses attract visitors and generate leads."
+        title="Web Design & Development in North Richland Hills, TX | Massive Designs"
+        description="Massive Designs is headquartered at 8350 Davis Boulevard, North Richland Hills, TX, building SEO-friendly websites for businesses across the Davis Boulevard corridor and the wider Mid-Cities market."
         path="/areas-we-serve/north-richland-hills"
         schemaGraph={getAreaPageNodes({
           slug: 'areas-we-serve/north-richland-hills',
           city: 'North Richland Hills',
-          pageName: 'Web Design Company North Richland Hills TX | Massive Designs',
-          pageDescription: 'Massive Designs provides professional web design in North Richland Hills, TX, creating SEO-friendly websites that help local businesses attract visitors and generate leads.',
+          pageName: 'Web Design & Development in North Richland Hills, TX | Massive Designs',
+          pageDescription: 'Massive Designs is headquartered at 8350 Davis Boulevard, North Richland Hills, TX, building SEO-friendly websites for businesses across the Davis Boulevard corridor and the wider Mid-Cities market.',
         })}
       />
       <ServiceHero
-        title="Web Design Services in North Richland Hills, TX"
-        lead="Our office sits a few minutes from Iron Horse Boulevard, right in the middle of North Richland Hills. That proximity shapes how we build sites and handle local search for businesses across the city."
+        title="Web Design & Development in North Richland Hills, TX"
+        lead="Massive Designs is headquartered at 8350 Davis Boulevard, North Richland Hills, TX. This is where our team works, not a service area we list from a distance. For an NRH business, that means a web design partner who can meet in person, knows the Davis Boulevard corridor by name, and has a genuine stake in the community's success."
         crumb="North Richland Hills"
         parent="Areas We Serve"
         parentHref="/areas-we-serve"
-        ctaLabel="Schedule a Discovery Call"
+        ctaLabel="Discuss Your North Richland Hills Website Project"
         ctaHref={brand.phoneTel}
       />
 
       <FeatureGrid
-        heading="A digital marketing team that actually lives in North Richland Hills"
+        heading="Web Design for North Richland Hills Businesses"
         description={
           <>
-            North Richland Hills is where we drive to work every morning, not a project we fly in for. Roughly
-            1,200 businesses now operate inside the city limits, and new ones pick up their certificate of
-            occupancy on a regular basis. That kind of growth means plenty of new websites competing for the same
-            searches within a few square miles. We help shops, contractors, clinics and startups from Boulevard 26
-            to the Iron Horse and Smithfield rail stops get found before a customer decides to drive toward Fort
-            Worth or Southlake instead.
+            NRH customers comparison-shop across city lines. A retail business on Davis Boulevard is compared
+            against Southlake Town Square. A service business in NRH competes with providers in Hurst, Euless,
+            Bedford, Colleyville, and Keller. The comparison set is sophisticated and the alternatives are close. A
+            site that looks like it belongs in a less demanding market costs the business before a prospect reads a
+            single word.
           </>
         }
         items={[
           {
-            title: 'Sites that load before someone taps away',
+            title: 'Custom Website Design',
             description:
-              'New storefronts and offices are opening around Boulevard 26 and Grapevine Highway on a regular basis. We build mobile-first sites fast enough to beat that competition, and simple enough for you to update yourself once we hand it over.',
+              'Layouts built around how NRH customers and Mid-Cities residents search, compare, and decide, reflecting the quality this market expects.',
           },
           {
-            title: 'Found by neighbors before they drive to Southlake',
+            title: 'Website Development',
             description:
-              'Local searches decide who gets the first call. We tune your Google Business profile, service pages and map listings so North Richland Hills customers find you before they widen the search to a bigger, pricier suburb.',
+              'Fast, secure development with booking, payment, and CRM integrations built in where the project requires them.',
           },
           {
-            title: "A brand that sounds like this city, not a template",
+            title: 'SEO & Local Visibility',
             description:
-              "Your logo, site copy and social posts should read like a business actually run from here, not boilerplate pulled from an agency's back catalog. We build voice and visuals around what makes your business specific.",
+              'Technical and local SEO from day one, targeting NRH and the surrounding communities: Keller, Colleyville, Hurst, Euless, Bedford, and Watauga.',
           },
         ]}
       />
 
       <ProcessSteps
-        heading="How a North Richland Hills project actually moves"
-        description="No two businesses here are chasing the same customer, so we start by mapping what yours actually searches for before a single page gets designed."
+        heading="What a North Richland Hills Growth Plan Looks Like"
+        description="Every NRH project follows four stages. Being based in NRH means the strategy work for a local business draws on direct familiarity with the Davis Boulevard corridor and the surrounding Mid-Cities competitive landscape."
         steps={[
           {
             number: '01',
-            title: 'Find the real search terms',
+            title: 'Business & Website Strategy',
             description:
-              'We look at what NRH customers actually type into Google, not a generic keyword list, before deciding on site structure or content.',
+              'We map how NRH customers search for what you offer and what competitors in the Mid-Cities corridor are presenting. Local knowledge here is direct, not researched from afar.',
           },
           {
             number: '02',
-            title: 'Build around local behavior',
+            title: 'Design & Development',
             description:
-              'Pages, navigation and calls to action get built around how people here shop, whether that means a same-day service call or a slower buying decision.',
+              'Fast, mobile-first, and structured so NRH residents and Mid-Cities customers move from search to inquiry without friction. The design reflects the quality this market expects.',
           },
           {
             number: '03',
-            title: 'Layer in trust signals',
+            title: 'SEO & Local Search',
             description:
-              'Reviews, licensing, service areas and local photography go in during the build, not bolted on after launch, so the site reads as credible on day one.',
+              'We structure content and local signals to support visibility in Keller, Colleyville, Hurst, Euless, Bedford, and Watauga, not just within NRH city limits, because your customers search across city lines.',
           },
           {
             number: '04',
-            title: 'Keep publishing after launch',
+            title: 'Content & Ongoing Growth',
             description:
-              "Rankings move when new content keeps landing. We keep adding pages, posts and local updates well after the site goes live, not just for the first month.",
+              'After launch we build through content and social support. NRH businesses with strong community ties can extend that reach digitally.',
           },
         ]}
       />
 
       <AreaMapHighlight
-        heading="What actually changes on your website"
-        description="Most of the sites we inherit in North Richland Hills load slowly on phones and rank for almost nothing local. We fix the technical foundation first, then layer in the content and local signals that get you found."
+        heading="Built to Perform in a Competitive North Richland Hills Market"
+        description="NRH businesses do not compete only against other NRH businesses. Service providers from Hurst, Euless, Bedford, Colleyville, and Keller all appear in the same local search results. The site architecture and content need to support visibility across the full Mid-Cities corridor where customers are actually searching."
         mapQuery="North Richland Hills, TX"
-        highlightsTitle="What you'll notice first"
+        highlightsTitle="What Changes With Us"
         highlights={[
-          'Pages that load in under three seconds',
-          'Map pack visibility for NRH searches',
-          'Leads from people ready to buy',
+          "Faster mobile-first design for the Mid-Cities corridor's suburban commuter audience",
+          'Search visibility across NRH and surrounding communities: Keller, Colleyville, Hurst, Euless, Bedford, Watauga',
+          'A clearer path from homepage to phone call, quote, appointment, or purchase',
         ]}
       />
 
       <PortfolioHoverGrid
-        heading="Recent builds around North Richland Hills and Tarrant County"
-        description="A sample of the design, SEO and content work we've shipped for businesses in this part of DFW, most of it within a short drive of our own office."
+        heading="Our Work Across North Richland Hills and DFW"
+        description="Website, branding, and digital marketing work for businesses in NRH, the DFW Mid-Cities area, and across Texas. Our work here reflects genuine local familiarity because we are based in this community."
         items={portfolioItems}
       />
 
@@ -129,25 +128,27 @@ export default function NorthRichlandHills() {
         steps={[
           {
             number: '01',
-            title: 'Understand Your Business',
+            title: 'Learn Your Business',
             description:
-              "We learn what you actually sell and who's already buying it locally before recommending anything, whether that's a service call near Boulevard 26 or foot traffic off Grapevine Highway.",
+              'We start with your customers and competitive position in the NRH and Mid-Cities market. Being based here means we bring direct local knowledge, not research from a distance.',
           },
           {
             number: '02',
-            title: 'Prioritize the Gaps',
+            title: 'Map the Priorities',
             description:
-              'We identify which pages or search terms are sending customers toward Southlake or Fort Worth instead of you, then agree on what gets fixed first.',
+              'For NRH businesses competing across the Mid-Cities corridor, that often starts with local search visibility and mobile performance.',
           },
           {
             number: '03',
-            title: 'Build and Collaborate',
-            description: "You see real drafts as we go, and since our office is a few minutes away, that conversation can happen in person, not just over email.",
+            title: 'Design and Build Together',
+            description:
+              'For NRH businesses that want in-person design reviews, we are available because our office is here in the community. You do not have to schedule a remote call when meeting in person is simpler.',
           },
           {
             number: '04',
-            title: 'Track and Adjust',
-            description: 'We watch how your North Richland Hills traffic behaves specifically, then adjust based on what the data actually shows.',
+            title: 'Launch and Adjust',
+            description:
+              'After launch we track NRH and Mid-Cities traffic and adjust based on real data. Ongoing support is local support, not a help-desk relationship from another city.',
           },
         ]}
       />
@@ -156,29 +157,28 @@ export default function NorthRichlandHills() {
         heading="Why North Richland Hills Businesses Choose Massive Designs"
         items={[
           {
-            title: 'An Agency You Can Actually Drive To',
+            title: 'Local Presence, Not Remote Service',
             description:
-              "We're not a remote team guessing at what this city needs. Our office sits minutes from Iron Horse Boulevard, so meetings happen in person when you want them to.",
+              'We are based at 8350 Davis Boulevard in North Richland Hills, not a regional office listing NRH as a service area. In-person collaboration, genuine local market knowledge, and a long-term relationship with a provider invested in the community.',
           },
           {
-            title: 'One Team, Every Step',
+            title: 'Strategy Before Design',
             description:
-              'The same people who design your site handle your SEO, your content, and your brand, so nothing gets lost in translation.',
+              'NRH and Mid-Cities customer search behavior comes first. Design follows from that specific local context.',
           },
           {
-            title: 'Built for a City Still Filling In',
-            description:
-              "With roughly 1,200 businesses already operating here and new ones opening regularly, we build sites and SEO strategy that account for how fast this market is moving.",
+            title: 'Design and Development Under One Team',
+            description: 'The same team handles design and development. What gets designed gets built to spec.',
           },
         ]}
       />
 
       <ServiceCta
-        heading="Ready to see what a North Richland Hills site should actually look like?"
+        heading="Ready to grow your North Richland Hills business?"
         paragraphs={[
           <>
-            Tell us what isn&rsquo;t working on your current site, and we&rsquo;ll walk you through what a rebuild
-            looks like before you commit to anything. Browse our past{' '}
+            If you want a local web design company in North Richland Hills that builds with SEO in mind from day
+            one and that you can meet with in person, let&rsquo;s talk. Browse our past{' '}
             <Link href="/projects" className="text-primary hover:underline">
               projects
             </Link>{' '}

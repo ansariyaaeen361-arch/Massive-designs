@@ -203,7 +203,25 @@ export default function Projects() {
               'Explore web design, branding, development, and digital marketing projects created by Massive Designs for businesses across Texas.',
             isPartOf: { '@id': `${SITE_URL}/#website` },
             about: { '@id': `${SITE_URL}/#organization` },
+            mainEntity: { '@id': `${SITE_URL}/projects/#projects` },
             inLanguage: 'en-US',
+          },
+          {
+            '@type': 'ItemList',
+            '@id': `${SITE_URL}/projects/#projects`,
+            name: 'Massive Designs Projects',
+            itemListOrder: 'https://schema.org/ItemListOrderAscending',
+            numberOfItems: 8,
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Mental Forge' },
+              { '@type': 'ListItem', position: 2, name: 'ABC' },
+              { '@type': 'ListItem', position: 3, name: 'Nickolas Shymar' },
+              { '@type': 'ListItem', position: 4, name: 'Enhanced Bears' },
+              { '@type': 'ListItem', position: 5, name: 'Crazy Strong Arms' },
+              { '@type': 'ListItem', position: 6, name: "Kendra's Meals" },
+              { '@type': 'ListItem', position: 7, name: 'SR Realty Brokerage' },
+              { '@type': 'ListItem', position: 8, name: 'Bonney Building' },
+            ],
           },
         ]}
       />
