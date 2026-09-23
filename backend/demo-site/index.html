@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Demo Plumbing Co. - Home</title>
+<meta name="description" content="A demo local business site used to show the analytics platform live." />
+<style>
+  body { font-family: -apple-system, Segoe UI, sans-serif; margin: 0; color: #1e293b; }
+  header { background: #0f172a; color: #fff; padding: 60px 24px; text-align: center; }
+  header h1 { margin: 0 0 12px; font-size: 32px; }
+  header p { color: #94a3b8; margin: 0; }
+  nav { display: flex; justify-content: center; gap: 16px; padding: 16px; background: #1e293b; }
+  nav a { color: #cbd5e1; text-decoration: none; font-size: 14px; }
+  .cta-row { display: flex; justify-content: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+  .btn { padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; }
+  .btn-primary { background: #4f46e5; color: #fff; }
+  .btn-secondary { background: transparent; color: #fff; border: 1px solid #475569; }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 24px; }
+  section { margin-bottom: 40px; }
+  h2 { font-size: 20px; }
+  form { display: grid; gap: 10px; max-width: 360px; }
+  input, textarea { padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; }
+  button[type=submit] { padding: 10px; border: none; border-radius: 6px; background: #4f46e5; color: #fff; font-weight: 600; cursor: pointer; }
+  footer { text-align: center; padding: 24px; color: #94a3b8; font-size: 13px; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Demo Plumbing Co.</h1>
+    <p>This is a sample business site used only to demo the analytics platform.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="tel:+15551234567">Call Us Now</a>
+      <a class="btn btn-secondary" href="/pricing.html">View Pricing</a>
+    </div>
+  </header>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+  <main>
+    <section>
+      <h2>Why choose us</h2>
+      <p>24/7 emergency plumbing, licensed technicians, upfront pricing. Click around this demo site — every click here shows up live in the analytics dashboard.</p>
+    </section>
+    <section>
+      <h2>Get a quick quote</h2>
+      <form id="quote-form" data-ma-event="quote_request" onsubmit="event.preventDefault(); document.getElementById('form-msg').textContent='Thanks — we will call you back.';">
+        <input type="text" placeholder="Your name" required />
+        <input type="tel" placeholder="Phone number" required />
+        <button type="submit">Request a Quote</button>
+      </form>
+      <p id="form-msg"></p>
+    </section>
+    <section>
+      <h2>Other ways to reach us</h2>
+      <p><a href="mailto:hello@demoplumbing.example">hello@demoplumbing.example</a></p>
+      <p><a href="https://wa.me/15551234567">Message us on WhatsApp</a></p>
+    </section>
+  </main>
+  <footer>Demo site for the analytics platform — not a real business.</footer>
+  <script src="http://localhost:4000/track.js" data-site="b0b3871d79e92288d3021e06"></script>
+</body>
+</html>

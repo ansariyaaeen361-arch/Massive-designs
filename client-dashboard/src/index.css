@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #4f46e5;
+  --color-accent: #22c55e;
+}
+
+.recharts-cartesian-grid line {
+  stroke: rgb(148 163 184 / 0.2);
+}

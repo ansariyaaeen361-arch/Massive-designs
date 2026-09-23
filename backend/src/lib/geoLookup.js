@@ -8,13 +8,23 @@ export async function geoLookup(ip) {
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 3000);
-    const res = await fetch(`http://ip-api.com/json/${encodeURIComponent(ip)}?fields=status,country,regionName,city,isp`, {
+    // proxy/hosting are real fields ip-api's free tier returns (not
+    // inferred by us) — a genuine signal for the traffic-quality engine,
+    // not a guess.
+    const res = await fetch(`http://ip-api.com/json/${encodeURIComponent(ip)}?fields=status,country,regionName,city,isp,proxy,hosting`, {
       signal: controller.signal,
     });
     clearTimeout(timeout);
     const data = await res.json();
     if (data.status !== 'success') return {};
-    return { city: data.city, region: data.regionName, country: data.country, isp: data.isp };
+    return {
+      city: data.city,
+      region: data.regionName,
+      country: data.country,
+      isp: data.isp,
+      isProxy: Boolean(data.proxy),
+      isHosting: Boolean(data.hosting),
+    };
   } catch {
     return {};
   }

@@ -1,12 +1,20 @@
 import { Router } from 'express';
 import rateLimit from 'express-rate-limit';
 import ClickEvent from '../models/ClickEvent.js';
+import Site from '../models/Site.js';
 import { geoLookup } from '../lib/geoLookup.js';
 import { parseUserAgent } from '../lib/parseUserAgent.js';
 import { parseReferrer } from '../lib/parseReferrer.js';
 import { detectBot } from '../lib/isBot.js';
 import { isSuspiciouslyFast } from '../lib/isSuspiciouslyFast.js';
 import { isPopupBypass } from '../lib/isPopupBypass.js';
+import { isSessionFlood } from '../lib/isSessionFlood.js';
+import { classifyChannel } from '../lib/classifyChannel.js';
+import { classifyTrafficQuality } from '../lib/trafficQuality.js';
+import { sanitizeMetadata } from '../lib/sanitizeMetadata.js';
+import { anonymizeIp } from '../lib/anonymizeIp.js';
+import { dateRange } from '../lib/dateRangeFilter.js';
+import { requireAuth } from '../middleware/requireAuth.js';
 
 const router = Router();
 
@@ -17,19 +25,6 @@ const trackLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-function requireDashboardKey(req, res, next) {
-  if (!process.env.TRACK_DASHBOARD_KEY || req.query.key !== process.env.TRACK_DASHBOARD_KEY) {
-    return res.status(403).json({ success: false, error: 'Forbidden' });
-  }
-  next();
-}
-
-// A real browser always sets Origin (or at least Referer) to our own site on
-// a same-origin fetch() POST — that's enforced by the browser itself, not
-// something a page's JS can fake. A script hitting this endpoint directly
-// (the source of the "referrer spam" — fabricated referrer values claiming
-// Twitter/YouTube/random domains, all landing on the same page) has no
-// reason to bother setting either correctly.
 // Our reverse proxy (OLS) sometimes forwards Origin/Referer as a
 // comma-joined duplicate (e.g. "https://x.com, https://x.com") — Node
 // joins repeated headers this way. Only the first value matters here.
@@ -44,52 +39,88 @@ function getClientIp(req) {
   return req.headers['cf-connecting-ip'] || req.ip;
 }
 
-function isFromOurSite(req) {
-  const allowedHosts = [new URL(process.env.FRONTEND_URL || 'https://massive-designs.com').host];
-  // Only relaxed outside production, for local dev testing — never on the
-  // live server, since Origin is trivially fake-able by a non-browser
-  // client and "just claim localhost" would otherwise be a known bypass.
-  if (process.env.NODE_ENV !== 'production') allowedHosts.push('localhost:3000', '127.0.0.1:3000');
+function normalizeHost(host) {
+  return host.replace(/^www\./, '');
+}
 
-  const origin = firstHeaderValue(req.headers.origin);
-  const referer = firstHeaderValue(req.headers.referer);
-  try {
-    if (origin && allowedHosts.includes(new URL(origin).host)) return true;
-  } catch {
-    // ignore malformed Origin
-  }
-  try {
-    if (referer && allowedHosts.includes(new URL(referer).host)) return true;
-  } catch {
-    // ignore malformed Referer
-  }
-  return false;
+// A real browser always sets Origin (or at least Referer) to the site it's
+// actually running on — that's enforced by the browser itself, not
+// something a page's JS can fake. A script hitting this endpoint directly
+// (with a stolen/guessed siteKey) has no reason to bother setting either to
+// that specific tenant's own registered domain.
+function isFromDomain(req, domain) {
+  const isDev = process.env.NODE_ENV !== 'production';
+
+  const matches = (value) => {
+    if (!value) return false;
+    try {
+      const host = normalizeHost(new URL(value).host);
+      if (host === domain) return true;
+      // Only relaxed outside production, for local dev testing — never on
+      // the live server, since Origin is trivially fake-able by a
+      // non-browser client and "just claim localhost" would otherwise be a
+      // known bypass.
+      if (isDev && (host.startsWith('localhost') || host.startsWith('127.0.0.1'))) return true;
+      return false;
+    } catch {
+      return false;
+    }
+  };
+
+  return matches(firstHeaderValue(req.headers.origin)) || matches(firstHeaderValue(req.headers.referer));
 }
 
 router.post('/', trackLimiter, async (req, res) => {
-  if (!isFromOurSite(req)) {
-    // Silently succeed (no error detail) so a spam script gets no signal
-    // that it was rejected rather than just dropped.
+  const body = req.body ?? {};
+  const {
+    siteKey,
+    event,
+    source,
+    page,
+    referrer,
+    sessionId,
+    visitorId,
+    isReturning,
+    durationMs,
+    isWebdriver,
+    utmSource,
+    utmMedium,
+    utmCampaign,
+    utmTerm,
+    utmContent,
+    metadata,
+  } = body;
+
+  const site = siteKey ? await Site.findOne({ siteKey }) : null;
+
+  if (!site || !isFromDomain(req, site.domain)) {
+    // Silently succeed (no error detail) so a spam script — or one probing
+    // for valid siteKeys — gets no signal whether the key exists or the
+    // origin was rejected, rather than just dropped.
     return res.json({ success: true });
   }
-
-  const { event, source, page, referrer, sessionId, visitorId, isReturning, durationMs, isWebdriver } = req.body ?? {};
 
   if (!event || typeof event !== 'string') {
     return res.status(400).json({ success: false, error: 'event is required.' });
   }
 
   const ip = getClientIp(req);
+  // geoLookup() below runs on the real IP for accuracy — this is only what
+  // gets persisted (and, so the too-fast check below still matches this
+  // site's own past rows, what gets queried against too).
+  const storedIp = site.privacySettings?.anonymizeIp ? anonymizeIp(ip) : ip;
   const userAgent = req.headers['user-agent'];
   const { device, browser, os } = parseUserAgent(userAgent);
   const referrerLabel = referrer !== undefined ? parseReferrer(referrer, req.hostname) : undefined;
+  const channel = classifyChannel({ referrerLabel, utmMedium });
 
   try {
     const createdAt = new Date();
-    const [geo, tooFast, popupBypassed] = await Promise.all([
+    const [geo, tooFast, popupBypassed, sessionFlood] = await Promise.all([
       geoLookup(ip),
-      event === 'page_view' ? isSuspiciouslyFast(ip) : Promise.resolve(false),
+      event === 'page_view' ? isSuspiciouslyFast(storedIp) : Promise.resolve(false),
       isPopupBypass(sessionId, page, event, source, createdAt),
+      event === 'page_view' ? isSessionFlood(site._id, visitorId) : Promise.resolve(false),
     ]);
     const uaResult = detectBot(userAgent);
     const webdriverFlagged = isWebdriver === true;
@@ -106,16 +137,36 @@ router.post('/', trackLimiter, async (req, res) => {
             ? 'popup-bypass'
             : undefined;
 
+    // A separate, additive signal layer on top of the existing bot flag —
+    // e.g. a VPN user is "suspicious" for quality reporting but is NOT
+    // excluded from human stats the way a confirmed bot is, so this never
+    // changes isBot/botReason above.
+    const trafficQuality = classifyTrafficQuality({
+      // isBot.js flags "no UA" as its own kind of bot match — keep that as
+      // exactly one reason (hasNoUserAgent) instead of also reporting it as
+      // a separate "known bot pattern" match.
+      isKnownBot: uaResult.isBot && Boolean(userAgent),
+      hasNoUserAgent: !userAgent,
+      isWebdriver: webdriverFlagged,
+      isTooFast: tooFast,
+      isSessionFlood: sessionFlood,
+      isHosting: geo.isHosting,
+      isProxy: geo.isProxy,
+    });
+
     await ClickEvent.create({
+      siteId: site._id,
       event,
       source,
       page,
-      ip,
+      ip: storedIp,
       userAgent,
       device,
       browser,
       os,
       referrer: referrerLabel,
+      channel,
+      utm: { source: utmSource, medium: utmMedium, campaign: utmCampaign, term: utmTerm, content: utmContent },
       sessionId,
       visitorId,
       isReturning,
@@ -123,7 +174,11 @@ router.post('/', trackLimiter, async (req, res) => {
       isBot: botFlagged,
       botReason,
       createdAt,
-      ...geo,
+      city: geo.city,
+      region: geo.region,
+      country: geo.country,
+      isp: geo.isp,
+      metadata: { trafficQuality, ...sanitizeMetadata(event, metadata) },
     });
   } catch (err) {
     console.error('Failed to log click event:', err);
@@ -134,30 +189,25 @@ router.post('/', trackLimiter, async (req, res) => {
 
 // Excludes known bots/crawlers by default so they don't inflate visitor
 // counts. Pass ?includeBots=true to see everything (debugging only).
-function dateRange(req) {
-  const since = parseInt(req.query.since, 10);
-  const until = parseInt(req.query.until, 10);
-  const range = {};
-  if (since) range.$gte = new Date(since);
-  if (until) range.$lte = new Date(until);
-  return Object.keys(range).length ? { createdAt: range } : {};
-}
-
 function sinceFilter(req) {
   const filter = dateRange(req);
   if (req.query.includeBots !== 'true') filter.isBot = { $ne: true };
   return filter;
 }
 
-router.get('/summary', requireDashboardKey, async (req, res) => {
+router.get('/summary', requireAuth, async (req, res) => {
   const match = sinceFilter(req);
-  const matchStage = Object.keys(match).length ? [{ $match: match }] : [];
+  const matchStage = [{ $match: match }];
 
   const [
     byEvent,
     byPage,
     byReferrer,
     byDevice,
+    byOs,
+    byCountry,
+    byChannel,
+    byDay,
     totalCount,
     distinctEvents,
     distinctPages,
@@ -165,6 +215,7 @@ router.get('/summary', requireDashboardKey, async (req, res) => {
     newVisitorCount,
     returningVisitorCount,
     avgDurationResult,
+    bounceStats,
   ] = await Promise.all([
     ClickEvent.aggregate([
       ...matchStage,
@@ -186,6 +237,33 @@ router.get('/summary', requireDashboardKey, async (req, res) => {
       { $group: { _id: '$device', count: { $sum: 1 } } },
       { $sort: { count: -1 } },
     ]),
+    ClickEvent.aggregate([
+      { $match: { ...match, event: 'page_view' } },
+      { $group: { _id: '$os', count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+    ]),
+    ClickEvent.aggregate([
+      { $match: { ...match, event: 'page_view' } },
+      { $group: { _id: '$country', count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+    ]),
+    ClickEvent.aggregate([
+      { $match: { ...match, event: 'page_view' } },
+      { $group: { _id: '$channel', count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+    ]),
+    ClickEvent.aggregate([
+      { $match: { ...match, event: 'page_view' } },
+      {
+        $group: {
+          _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
+          visits: { $addToSet: '$sessionId' },
+          pageViews: { $sum: 1 },
+        },
+      },
+      { $project: { _id: 1, pageViews: 1, visits: { $size: '$visits' } } },
+      { $sort: { _id: 1 } },
+    ]),
     ClickEvent.countDocuments(match),
     ClickEvent.distinct('event', match),
     ClickEvent.distinct('page', match),
@@ -196,18 +274,32 @@ router.get('/summary', requireDashboardKey, async (req, res) => {
       { $match: { ...match, event: 'page_view_duration' } },
       { $group: { _id: null, avg: { $avg: '$durationMs' } } },
     ]),
+    // A session "bounced" if it has exactly one page_view and no other
+    // non-duration event — i.e. the visitor left without interacting further.
+    ClickEvent.aggregate([
+      { $match: { ...match, sessionId: { $ne: null, $exists: true }, event: { $ne: 'page_view_duration' } } },
+      { $group: { _id: '$sessionId', eventCount: { $sum: 1 } } },
+      { $group: { _id: null, totalSessions: { $sum: 1 }, bounced: { $sum: { $cond: [{ $eq: ['$eventCount', 1] }, 1, 0] } } } },
+    ]),
   ]);
 
   const avgDurationMs = avgDurationResult[0]?.avg ?? null;
+  const bounce = bounceStats[0] ?? { totalSessions: 0, bounced: 0 };
+  const bounceRate = bounce.totalSessions ? bounce.bounced / bounce.totalSessions : null;
 
   return res.json({
     success: true,
     avgDurationMs,
+    bounceRate,
     total: totalCount,
     byEvent: byEvent.map((r) => ({ event: r._id.event, source: r._id.source, count: r.count, last: r.last })),
     byPage: byPage.map((r) => ({ page: r._id, count: r.count, last: r.last })),
     byReferrer: byReferrer.map((r) => ({ referrer: r._id, count: r.count })),
     byDevice: byDevice.map((r) => ({ device: r._id, count: r.count })),
+    byOs: byOs.map((r) => ({ os: r._id, count: r.count })),
+    byCountry: byCountry.map((r) => ({ country: r._id, count: r.count })),
+    byChannel: byChannel.map((r) => ({ channel: r._id, count: r.count })),
+    byDay: byDay.map((r) => ({ date: r._id, visits: r.visits, pageViews: r.pageViews })),
     newVisitors: newVisitorCount.length,
     returningVisitors: returningVisitorCount.length,
     filters: {
@@ -218,7 +310,50 @@ router.get('/summary', requireDashboardKey, async (req, res) => {
   });
 });
 
-router.get('/events', requireDashboardKey, async (req, res) => {
+// Traffic-quality breakdown for page_view traffic — deliberately runs
+// against dateRange(req) (siteId + date only), NOT sinceFilter's isBot
+// exclusion, since the whole point here is to classify the full population
+// (human/likely_human/suspicious/bot), not just the pre-filtered "human" set.
+router.get('/quality', requireAuth, async (req, res) => {
+  const match = { ...dateRange(req), event: 'page_view' };
+
+  const [byClassification, avgScoreResult, topReasons] = await Promise.all([
+    ClickEvent.aggregate([
+      { $match: match },
+      { $group: { _id: '$metadata.trafficQuality.classification', count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+    ]),
+    ClickEvent.aggregate([
+      { $match: match },
+      { $group: { _id: null, avg: { $avg: '$metadata.trafficQuality.score' } } },
+    ]),
+    ClickEvent.aggregate([
+      { $match: match },
+      { $unwind: '$metadata.trafficQuality.reasons' },
+      { $group: { _id: '$metadata.trafficQuality.reasons', count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 10 },
+    ]),
+  ]);
+
+  // Excludes the null bucket (page views from before this feature existed,
+  // or any future case where classification failed to run) so percentages
+  // below always add up to 100% of classified traffic — an unclassified
+  // remainder folded into the denominator would silently understate every
+  // percentage without explaining why.
+  const classified = byClassification.filter((r) => r._id);
+  const total = classified.reduce((sum, r) => sum + r.count, 0);
+
+  return res.json({
+    success: true,
+    total,
+    averageScore: avgScoreResult[0]?.avg ?? null,
+    byClassification: classified.map((r) => ({ classification: r._id, count: r.count, pct: total ? r.count / total : 0 })),
+    topReasons: topReasons.map((r) => ({ reason: r._id, count: r.count })),
+  });
+});
+
+router.get('/events', requireAuth, async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit, 10) || 50, 200);
   const skip = Math.max(parseInt(req.query.skip, 10) || 0, 0);
 
@@ -239,7 +374,7 @@ router.get('/events', requireDashboardKey, async (req, res) => {
 
 // Groups events by visitor session so the dashboard can show each
 // visitor's path through the site (which pages, in what order).
-router.get('/sessions', requireDashboardKey, async (req, res) => {
+router.get('/sessions', requireAuth, async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit, 10) || 20, 100);
   const skip = Math.max(parseInt(req.query.skip, 10) || 0, 0);
   const match = { ...sinceFilter(req), sessionId: { $ne: null, $exists: true } };
@@ -283,7 +418,7 @@ function botFilter(req) {
   return filter;
 }
 
-router.get('/bots', requireDashboardKey, async (req, res) => {
+router.get('/bots', requireAuth, async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit, 10) || 50, 200);
   const skip = Math.max(parseInt(req.query.skip, 10) || 0, 0);
   const match = botFilter(req);
@@ -301,12 +436,18 @@ router.get('/bots', requireDashboardKey, async (req, res) => {
 // aria-hidden, not keyboard-focusable). Nothing a human does can reach it, so
 // any request here is automatically a bot/scraper that parsed the raw HTML.
 router.get('/trap', trackLimiter, async (req, res) => {
+  const site = req.query.site ? await Site.findOne({ siteKey: req.query.site }) : null;
+  if (!site) {
+    return res.status(204).end();
+  }
+
   const ip = getClientIp(req);
   const userAgent = req.headers['user-agent'];
 
   try {
     const geo = await geoLookup(ip);
     await ClickEvent.create({
+      siteId: site._id,
       event: 'honeypot_hit',
       page: req.query.from || null,
       ip,
