@@ -25,19 +25,19 @@ export function getOrganizationNode() {
       addressCountry: 'US',
     },
     areaServed: { '@type': 'State', name: 'Texas' },
-    serviceType: [
-      'Web Design and Development',
-      'Search Engine Optimization',
-      'Branding and Logo Design',
-      'Content Marketing',
-      'Social Media Marketing',
-      'Mobile App Development',
+    makesOffer: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Web Design and Development', url: `${SITE_URL}/web-design-development/` } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Search Engine Optimization', url: `${SITE_URL}/seo-services/` } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Branding and Logo Design', url: `${SITE_URL}/branding-logo-design/` } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Content Marketing', url: `${SITE_URL}/content-marketing/` } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Social Media Marketing', url: `${SITE_URL}/social-media-marketing/` } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mobile App Development', url: `${SITE_URL}/mobile-app-development/` } },
     ],
     sameAs: socialLinks.map((s) => s.url),
   };
 }
 
-export function getServicePageNodes({ slug, serviceName, serviceDescription, serviceTypes, pageName, pageDescription }) {
+export function getServicePageNodes({ slug, serviceName, serviceDescription, pageName, pageDescription }) {
   const serviceId = `${SITE_URL}/${slug}/#service`;
   return [
     {
@@ -48,7 +48,6 @@ export function getServicePageNodes({ slug, serviceName, serviceDescription, ser
       description: serviceDescription,
       provider: { '@id': `${SITE_URL}/#organization` },
       areaServed: { '@type': 'State', name: 'Texas' },
-      serviceType: serviceTypes,
     },
     {
       '@type': 'WebPage',
