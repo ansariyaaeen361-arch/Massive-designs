@@ -22,7 +22,7 @@ export default function NorthRichlandHills() {
   return (
     <>
       <Seo
-        title="Web Design & Development in North Richland Hills, TX | Massive Designs"
+        title="Web Design Company North Richland Hills TX"
         description="Massive Designs is headquartered at 8350 Davis Boulevard, North Richland Hills, TX, building SEO-friendly websites for businesses across the Davis Boulevard corridor and the wider Mid-Cities market."
         path="/areas-we-serve/north-richland-hills"
         schemaGraph={getAreaPageNodes({

@@ -23,7 +23,7 @@ export default function Austin() {
   return (
     <>
       <Seo
-        title="Web Design & Development in Austin, TX | Massive Designs"
+        title="Web Design Company Austin TX"
         description="Massive Designs builds custom, mobile-first websites for Austin businesses competing in one of the most tech-dense, digitally competitive markets in Texas, with SEO built into the architecture from the start."
         path="/areas-we-serve/austin"
         schemaGraph={getAreaPageNodes({

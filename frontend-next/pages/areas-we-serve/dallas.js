@@ -23,7 +23,7 @@ export default function Dallas() {
   return (
     <>
       <Seo
-        title="Web Design & Development in Dallas, TX | Massive Designs"
+        title="Web Design Company Dallas TX"
         description="Massive Designs builds custom, mobile-first websites for Dallas businesses competing in one of the most Fortune-500-dense markets in Texas, with local SEO built in from the first wireframe."
         path="/areas-we-serve/dallas"
         schemaGraph={getAreaPageNodes({

@@ -106,7 +106,7 @@ export default function FortWorth() {
   return (
     <>
       <Seo
-        title="Web Design & Development in Fort Worth, TX | Massive Designs"
+        title="Web Design Agency in Fort Worth TX"
         description="Massive Designs builds custom, mobile-first websites for Fort Worth's aerospace and defense supply chain, hospitality, and healthcare businesses, with local SEO built in from the first wireframe."
         path={`/${slug}`}
         schemaGraph={[

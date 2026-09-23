@@ -23,7 +23,7 @@ export default function SanAntonio() {
   return (
     <>
       <Seo
-        title="Web Design & Development in San Antonio, TX | Massive Designs"
+        title="Web Design Company San Antonio TX"
         description="Massive Designs builds custom, mobile-first websites for San Antonio businesses across military, medical, tourism, and local service audiences, with local SEO built in from the start."
         path="/areas-we-serve/san-antonio"
         schemaGraph={getAreaPageNodes({

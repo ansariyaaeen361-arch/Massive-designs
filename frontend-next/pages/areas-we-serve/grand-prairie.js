@@ -106,7 +106,7 @@ export default function GrandPrairie() {
   return (
     <>
       <Seo
-        title="Web Design Company in Grand Prairie, TX | Massive Designs"
+        title="Web Design Company in Grand Prairie TX"
         description="Massive Designs provides custom web design, development, SEO, branding, and digital marketing services for businesses in Grand Prairie, TX."
         path={`/${slug}`}
         schemaGraph={[

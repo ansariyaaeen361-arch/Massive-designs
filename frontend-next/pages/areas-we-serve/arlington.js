@@ -26,7 +26,7 @@ export default function Arlington() {
   return (
     <>
       <Seo
-        title="Web Design Company in Arlington, TX | Massive Designs"
+        title="Web Design Company Arlington TX"
         description="Massive Designs provides custom web design, development, SEO, branding, and digital marketing services for businesses in Arlington, TX."
         path={`/${slug}`}
         schemaGraph={[

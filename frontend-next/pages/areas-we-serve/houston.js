@@ -23,7 +23,7 @@ export default function Houston() {
   return (
     <>
       <Seo
-        title="Web Design & Development in Houston, TX | Massive Designs"
+        title="Web Design Company Houston TX"
         description="Massive Designs builds custom, mobile-first websites for Houston businesses across the region's energy, medical, logistics, and retail sectors, with local SEO structured in from the first wireframe."
         path="/areas-we-serve/houston"
         schemaGraph={getAreaPageNodes({
