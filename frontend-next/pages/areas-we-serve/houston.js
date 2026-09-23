@@ -12,12 +12,9 @@ import OrderModal from '../../components/forms/OrderModal';
 import { brand } from '../../lib/brand';
 
 const portfolioItems = [
-  { src: '/img/web-projects/optimized/web-project-13.webp', alt: 'Global Desk News' },
-  { src: '/img/web-projects/optimized/web-project-14.webp', alt: 'Elevate VR' },
-  { src: '/img/web-projects/optimized/web-project-15.webp', alt: 'Carpet Repair Nevada' },
-  { src: '/img/web-projects/optimized/web-project-16.webp', alt: 'Baldovinos General Construction' },
-  { src: '/img/web-projects/optimized/web-project-17.webp', alt: 'Dana McGuffin CPA' },
-  { src: '/img/web-projects/optimized/web-project-19.webp', alt: 'AtlasLearners', href: 'https://atlaslearners.com/' },
+  { src: '/img/arias-portfolio-images/houston/optimized/houston-website-1.webp', alt: 'Houston Business Website Design' },
+  { src: '/img/arias-portfolio-images/houston/optimized/houston-website-2.webp', alt: 'Houston Business Website Design 2' },
+  { src: '/img/arias-portfolio-images/houston/optimized/houston-website-3.webp', alt: 'Houston Business Website Design 3' },
 ];
 
 export default function Houston() {

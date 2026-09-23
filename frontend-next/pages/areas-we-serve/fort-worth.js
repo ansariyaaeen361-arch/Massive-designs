@@ -14,12 +14,9 @@ import OrderModal from '../../components/forms/OrderModal';
 import { brand } from '../../lib/brand';
 
 const portfolioItems = [
-  { src: '/img/web-projects/optimized/web-project-7.webp', alt: 'Dumpster Rentals in Eagle, Idaho' },
-  { src: '/img/web-projects/optimized/web-project-8.webp', alt: "Denver's Go-To Yard Care and Landscaping" },
-  { src: '/img/web-projects/optimized/web-project-9.webp', alt: 'Custom Comic Book Illustration & Manga Art Services' },
-  { src: '/img/web-projects/optimized/web-project-10.webp', alt: 'AI Automation Systems for North Texas Businesses' },
-  { src: '/img/web-projects/optimized/web-project-11.webp', alt: 'Jedi Atlantis' },
-  { src: '/img/web-projects/optimized/web-project-12.webp', alt: 'Happy Homes Lath, Plaster, and Roofing' },
+  { src: '/img/arias-portfolio-images/fort-worth/optimized/fort-worth-website-1.webp', alt: 'Fort Worth Business Website Design' },
+  { src: '/img/arias-portfolio-images/fort-worth/optimized/fort-worth-website-2.webp', alt: 'Fort Worth Business Website Design 2' },
+  { src: '/img/arias-portfolio-images/fort-worth/optimized/fort-worth-website-3.webp', alt: 'Fort Worth Business Website Design 3' },
 ];
 
 const faqs = [
@@ -284,7 +281,7 @@ export default function FortWorth() {
 
       <PortfolioHoverGrid
         heading="Our Work Across Fort Worth and Texas"
-        description="Website, branding, and digital marketing work for businesses across Texas. We don't yet have a published Fort Worth case study, so rather than manufacture one, this section reflects the range and quality of work behind every project we take on."
+        description="A look at recent website design and development work for Fort Worth businesses."
         items={portfolioItems}
       />
 

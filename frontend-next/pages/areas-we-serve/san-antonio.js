@@ -12,10 +12,9 @@ import OrderModal from '../../components/forms/OrderModal';
 import { brand } from '../../lib/brand';
 
 const portfolioItems = [
-  { src: '/img/web-projects/optimized/web-project-24.webp', alt: 'FitRoutine' },
-  { src: '/img/web-projects/optimized/web-project-25.webp', alt: 'Glynn Associates' },
-  { src: '/img/web-projects/optimized/web-project-26.webp', alt: 'Bonney Building', href: 'https://bonneybuilding.com/' },
-  { src: '/img/web-projects/optimized/web-project-27.webp', alt: 'Mevteck' },
+  { src: '/img/arias-portfolio-images/san-antonio/optimized/san-antonio-website-1.webp', alt: 'San Antonio Business Website Design' },
+  { src: '/img/arias-portfolio-images/san-antonio/optimized/san-antonio-website-2.webp', alt: 'San Antonio Business Website Design 2' },
+  { src: '/img/arias-portfolio-images/san-antonio/optimized/san-antonio-website-3.webp', alt: 'San Antonio Business Website Design 3' },
 ];
 
 export default function SanAntonio() {

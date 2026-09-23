@@ -12,12 +12,9 @@ import OrderModal from '../../components/forms/OrderModal';
 import { brand } from '../../lib/brand';
 
 const portfolioItems = [
-  { src: '/img/web-projects/optimized/web-project-1.webp', alt: "Aguilera's Home Repair" },
-  { src: '/img/web-projects/optimized/web-project-2.webp', alt: 'Yates Services of Memphis' },
-  { src: '/img/web-projects/optimized/web-project-3.webp', alt: 'Santos Landscape' },
-  { src: '/img/web-projects/optimized/web-project-4.webp', alt: 'Top Notch Drywall and Painting' },
-  { src: '/img/web-projects/optimized/web-project-5.webp', alt: 'VIP Renovation' },
-  { src: '/img/web-projects/optimized/web-project-6.webp', alt: 'Rima Beauty Spa' },
+  { src: '/img/arias-portfolio-images/austin/optimized/austin-website-1.webp', alt: 'Austin Business Website Design' },
+  { src: '/img/arias-portfolio-images/austin/optimized/austin-website-2.webp', alt: 'Austin Business Website Design 2' },
+  { src: '/img/arias-portfolio-images/austin/optimized/austin-website-3.webp', alt: 'Austin Business Website Design 3' },
 ];
 
 export default function Austin() {

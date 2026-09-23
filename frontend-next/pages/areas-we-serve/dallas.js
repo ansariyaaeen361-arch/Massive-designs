@@ -12,12 +12,9 @@ import OrderModal from '../../components/forms/OrderModal';
 import { brand } from '../../lib/brand';
 
 const portfolioItems = [
-  { src: '/img/web-projects/optimized/web-project-7.webp', alt: "Pete's Dumpster Rentals" },
-  { src: '/img/web-projects/optimized/web-project-8.webp', alt: 'Mustard Seed Yard Care' },
-  { src: '/img/web-projects/optimized/web-project-9.webp', alt: 'MFM Designs' },
-  { src: '/img/web-projects/optimized/web-project-10.webp', alt: 'Mental Forge AI Automation' },
-  { src: '/img/web-projects/optimized/web-project-11.webp', alt: 'Jedi Atlantis' },
-  { src: '/img/web-projects/optimized/web-project-12.webp', alt: 'Happy Homes LLP' },
+  { src: '/img/arias-portfolio-images/Dallas/optimized/dallas-website-1.webp', alt: 'Dallas Business Website Design' },
+  { src: '/img/arias-portfolio-images/Dallas/optimized/dallas-website-2.webp', alt: 'Dallas Business Website Design 2' },
+  { src: '/img/arias-portfolio-images/Dallas/optimized/dallas-website-3.webp', alt: 'Dallas Business Website Design 3' },
 ];
 
 export default function Dallas() {

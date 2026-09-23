@@ -12,10 +12,8 @@ import OrderModal from '../../components/forms/OrderModal';
 import { brand } from '../../lib/brand';
 
 const portfolioItems = [
-  { src: '/img/web-projects/optimized/web-project-18.webp', alt: 'Carpet Repair Nevada' },
-  { src: '/img/web-projects/optimized/web-project-9.webp', alt: 'MFM Designs' },
-  { src: '/img/web-projects/optimized/web-project-10.webp', alt: 'Mental Forge AI Automation' },
-  { src: '/img/web-projects/optimized/web-project-24.webp', alt: 'FitRoutine' },
+  { src: '/img/arias-portfolio-images/north-richland-hills/optimized/nrh-website-1.webp', alt: 'North Richland Hills Business Website Design' },
+  { src: '/img/arias-portfolio-images/north-richland-hills/optimized/nrh-website-2.webp', alt: 'North Richland Hills Business Website Design 2' },
 ];
 
 export default function NorthRichlandHills() {
