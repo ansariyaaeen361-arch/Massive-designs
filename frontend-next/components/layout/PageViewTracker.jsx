@@ -11,6 +11,7 @@ function sendPageDuration(page, durationMs) {
   if (!page || durationMs < 500) return;
   const { visitorId, isReturning } = getVisitor();
   const body = JSON.stringify({
+    siteKey: 'cd5372d1c2dd19f660d1cda1',
     event: 'page_view_duration',
     page,
     durationMs,

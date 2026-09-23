@@ -19,6 +19,7 @@ export function trackEvent(eventName, params = {}) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       ...params,
+      siteKey: 'cd5372d1c2dd19f660d1cda1',
       event: eventName,
       source: params.source ?? null,
       page: window.location.pathname,
