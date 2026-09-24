@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { trackEvent } from '../../lib/analytics';
 import { getVisitor, getSessionId, getSessionReferrer } from '../../lib/visitor';
+import { initSiteMonitoring } from '../../lib/siteMonitoring';
 
 // Sends how long someone stayed on a page. Bypasses trackEvent() directly
 // (rather than going through it) because the "page" here is the page they
@@ -34,6 +35,8 @@ export default function PageViewTracker() {
 
   useEffect(() => {
     if (window.location.pathname.startsWith('/dashboard')) return undefined;
+
+    initSiteMonitoring();
 
     const trackPageView = (page) => {
       if (page.startsWith('/dashboard')) return;
