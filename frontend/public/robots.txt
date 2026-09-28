@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-
-Sitemap: https://massive-designs.com/sitemap.xml
