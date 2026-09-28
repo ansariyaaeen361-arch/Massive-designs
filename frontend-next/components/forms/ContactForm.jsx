@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { serviceGroups } from '../../lib/serviceOptions';
 import { trackEvent } from '../../lib/analytics';
@@ -21,7 +21,25 @@ export default function ContactForm() {
   const [recaptchaToken, setRecaptchaToken] = useState('');
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
+  const [showRecaptcha, setShowRecaptcha] = useState(false);
   const recaptchaRef = useRef(null);
+  const recaptchaBoxRef = useRef(null);
+
+  useEffect(() => {
+    const el = recaptchaBoxRef.current;
+    if (!el) return undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowRecaptcha(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -199,8 +217,10 @@ export default function ContactForm() {
       {/* The reCAPTCHA widget has a fixed ~304px width, wider than some phones'
           available space — scope any overflow to just this box instead of
           letting it push the whole form sideways. */}
-      <div className="mt-6 max-w-full overflow-x-auto">
-        <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} onChange={setRecaptchaToken} theme="dark" />
+      <div ref={recaptchaBoxRef} className="mt-6 max-w-full overflow-x-auto">
+        {showRecaptcha && (
+          <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} onChange={setRecaptchaToken} theme="dark" />
+        )}
       </div>
 
       <button

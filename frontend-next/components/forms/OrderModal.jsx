@@ -211,7 +211,7 @@ export default function OrderModal({ open, onClose }) {
                 available space inside this modal — scope any overflow to just this
                 box instead of letting it push the whole form sideways. */}
             <div className="max-w-full overflow-x-auto">
-              <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} onChange={setRecaptchaToken} theme="dark" />
+              {open && <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} onChange={setRecaptchaToken} theme="dark" />}
             </div>
 
             <button
