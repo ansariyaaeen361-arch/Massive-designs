@@ -5,7 +5,6 @@ import { HiX, HiChevronDown } from 'react-icons/hi';
 import { gsap } from '../../lib/gsap';
 import { navLinks, brand } from '../../lib/brand';
 import { trackEvent } from '../../lib/analytics';
-import { useTheme } from '../../context/ThemeContext';
 import SocialLinks from './SocialLinks';
 
 export default function MobileMenu({ open, onClose }) {
@@ -15,8 +14,6 @@ export default function MobileMenu({ open, onClose }) {
   const panelRef = useRef(null);
   const childRefs = useRef({});
   const router = useRouter();
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
 
   useLayoutEffect(() => {
     gsap.set(panelRef.current, { xPercent: 100 });
@@ -62,17 +59,17 @@ export default function MobileMenu({ open, onClose }) {
 
       <div
         ref={panelRef}
-        className={`absolute right-0 top-0 flex h-full w-full max-w-sm flex-col overflow-y-auto px-7 py-7 ${isLight ? 'bg-white' : 'bg-[#0b0c10]'}`}
+        className="absolute right-0 top-0 flex h-full w-full max-w-sm flex-col overflow-y-auto bg-[#0b0c10] px-7 py-7"
       >
         <div className="flex items-center justify-between">
           <Link href="/" onClick={onClose}>
-            <img src="/img/logo/logo.png" alt="Massive Designs" className={`h-9 w-auto ${isLight ? 'invert' : ''}`} />
+            <img src="/img/logo/logo.png" alt="Massive Designs" className="h-9 w-auto" />
           </Link>
           <button
             type="button"
             aria-label="Close menu"
             onClick={onClose}
-            className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors hover:border-primary hover:text-primary ${isLight ? 'border-black/15 text-black/70' : 'border-white/15 text-white'}`}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-primary hover:text-primary"
           >
             <HiX className="text-xl" />
           </button>
@@ -83,14 +80,14 @@ export default function MobileMenu({ open, onClose }) {
             {navLinks.map((item) => {
               const isActive = router.pathname === item.href;
               return (
-                <li key={item.label} className={`border-b py-1 ${isLight ? 'border-black/5' : 'border-white/5'}`}>
+                <li key={item.label} className="border-b border-white/5 py-1">
                   {item.children ? (
                     <>
                       <div className="flex w-full items-center justify-between">
                         <Link
                           href={item.href}
                           onClick={onClose}
-                          className={`flex-1 py-3 text-left text-base font-medium uppercase tracking-wide ${isLight ? 'text-black/80' : 'text-white/85'}`}
+                          className="flex-1 py-3 text-left text-base font-medium uppercase tracking-wide text-white/85"
                         >
                           {item.label}
                         </Link>
@@ -99,7 +96,7 @@ export default function MobileMenu({ open, onClose }) {
                           onClick={() => setOpenLabel((v) => (v === item.label ? null : item.label))}
                           aria-expanded={openLabel === item.label}
                           aria-label={`Toggle ${item.label} submenu`}
-                          className={`flex h-10 w-10 shrink-0 items-center justify-center ${isLight ? 'text-black/50' : 'text-white/60'}`}
+                          className="flex h-10 w-10 shrink-0 items-center justify-center text-white/60"
                         >
                           <HiChevronDown
                             className={`transition-transform duration-300 ${openLabel === item.label ? 'rotate-180 text-primary' : ''}`}
@@ -117,7 +114,7 @@ export default function MobileMenu({ open, onClose }) {
                             <Link
                               href={child.href}
                               onClick={onClose}
-                              className={`block py-2.5 text-sm transition-colors hover:text-primary ${isLight ? 'text-black/50' : 'text-white/60'}`}
+                              className="block py-2.5 text-sm text-white/60 transition-colors hover:text-primary"
                             >
                               {child.label}
                             </Link>
@@ -130,7 +127,7 @@ export default function MobileMenu({ open, onClose }) {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`block py-3 text-base font-medium uppercase tracking-wide transition-colors hover:text-primary ${isLight ? 'text-black/80' : 'text-white/85'}`}
+                      className="block py-3 text-base font-medium uppercase tracking-wide text-white/85 transition-colors hover:text-primary"
                     >
                       {item.label}
                     </a>
@@ -139,7 +136,7 @@ export default function MobileMenu({ open, onClose }) {
                       href={item.href}
                       onClick={onClose}
                       className={`block py-3 text-base font-medium uppercase tracking-wide transition-colors hover:text-primary ${
-                        isActive ? 'text-primary' : isLight ? 'text-black/80' : 'text-white/85'
+                        isActive ? 'text-primary' : 'text-white/85'
                       }`}
                     >
                       {item.label}
@@ -167,14 +164,14 @@ export default function MobileMenu({ open, onClose }) {
             <a
               href={brand.emailLink}
               onClick={() => trackEvent('email_click', { source: 'mobile_menu' })}
-              className={`transition-colors hover:text-primary ${isLight ? 'text-black/60' : 'text-white/70'}`}
+              className="text-white/70 transition-colors hover:text-primary"
             >
               {brand.email}
             </a>
             <a
               href={brand.phoneTel}
               onClick={() => trackEvent('call_click', { source: 'mobile_menu' })}
-              className={`transition-colors hover:text-primary ${isLight ? 'text-black/60' : 'text-white/70'}`}
+              className="text-white/70 transition-colors hover:text-primary"
             >
               {brand.phoneDisplay}
             </a>

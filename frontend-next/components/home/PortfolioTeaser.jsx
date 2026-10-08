@@ -44,7 +44,7 @@ export default function PortfolioTeaser() {
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {items.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.1} y={36} className="group relative">
-              <Link href="/projects" className="relative block aspect-[1345/1170] overflow-hidden rounded-3xl">
+              <Link href="/projects" className="keep-dark relative block aspect-[1345/1170] overflow-hidden rounded-3xl">
                 <img
                   src={item.image}
                   alt={item.title}

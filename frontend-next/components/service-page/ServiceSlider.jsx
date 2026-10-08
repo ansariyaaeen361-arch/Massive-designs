@@ -23,7 +23,7 @@ export default function ServiceSlider() {
             <Link
               key={item.title}
               href={item.href}
-              className="group relative aspect-[3/4] w-64 shrink-0 overflow-hidden rounded-3xl sm:w-72"
+              className="keep-dark group relative aspect-[3/4] w-64 shrink-0 overflow-hidden rounded-3xl sm:w-72"
             >
               <img
                 src={item.image}

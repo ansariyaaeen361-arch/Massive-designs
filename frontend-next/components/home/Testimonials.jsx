@@ -74,7 +74,7 @@ export default function Testimonials() {
           <Reveal delay={0.1} y={36}>
             <div
               ref={cardRef}
-              className="relative mx-auto h-[360px] w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-xl shadow-black/20 lg:mx-0 lg:ml-auto"
+              className="keep-dark relative mx-auto h-[360px] w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-xl shadow-black/20 lg:mx-0 lg:ml-auto"
             >
               <iframe
                 key={current.href}
