@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { HiMenu } from 'react-icons/hi';
+import { HiMenu, HiSun, HiMoon } from 'react-icons/hi';
 import { IoChevronDown } from 'react-icons/io5';
 import { navLinks, brand } from '../../lib/brand';
 import { trackEvent } from '../../lib/analytics';
+import { useTheme } from '../../context/ThemeContext';
 import MobileMenu from './MobileMenu';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
+  const { theme, toggleTheme } = useTheme();
+  const isLight = theme === 'light';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -31,7 +34,9 @@ export default function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'border-b border-white/10 bg-black/80 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-md'
+            ? isLight
+              ? 'border-b border-black/10 bg-white/90 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.1)] backdrop-blur-md'
+              : 'border-b border-white/10 bg-black/80 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-md'
             : 'border-b border-transparent bg-transparent py-6'
         }`}
       >
@@ -51,7 +56,7 @@ export default function Header() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-medium uppercase tracking-wide text-white/80 transition-colors hover:text-primary"
+                        className={`text-sm font-medium uppercase tracking-wide transition-colors hover:text-primary ${isLight ? 'text-black/70' : 'text-white/80'}`}
                       >
                         {item.label}
                       </a>
@@ -59,7 +64,7 @@ export default function Header() {
                       <Link
                         href={item.href}
                         className={`flex items-center gap-1 text-sm font-medium uppercase tracking-wide transition-colors hover:text-primary ${
-                          isActive ? 'text-primary' : 'text-white/80'
+                          isActive ? 'text-primary' : isLight ? 'text-black/70' : 'text-white/80'
                         }`}
                       >
                         {item.label}
@@ -71,8 +76,8 @@ export default function Header() {
 
                     {item.children && item.mega ? (
                       <div className="invisible absolute left-1/2 top-full w-[420px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
-                        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b0c10] p-5 shadow-2xl">
-                          <p className="px-1 pb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-white/40">
+                        <div className={`overflow-hidden rounded-2xl border p-5 shadow-2xl ${isLight ? 'border-black/10 bg-white' : 'border-white/10 bg-[#0b0c10]'}`}>
+                          <p className={`px-1 pb-3 text-[11px] font-medium uppercase tracking-[0.2em] ${isLight ? 'text-black/40' : 'text-white/40'}`}>
                             Texas Cities We Serve
                           </p>
                           <ul className="grid grid-cols-2 gap-1">
@@ -80,7 +85,7 @@ export default function Header() {
                               <li key={child.label}>
                                 <Link
                                   href={child.href}
-                                  className="block rounded-xl px-4 py-3 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-primary"
+                                  className={`block rounded-xl px-4 py-3 text-sm transition-colors hover:text-primary ${isLight ? 'text-black/60 hover:bg-black/5' : 'text-white/70 hover:bg-white/5'}`}
                                 >
                                   {child.label}
                                 </Link>
@@ -92,12 +97,12 @@ export default function Header() {
                     ) : (
                       item.children && (
                         <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
-                          <ul className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b0c10] py-3 shadow-2xl">
+                          <ul className={`overflow-hidden rounded-2xl border py-3 shadow-2xl ${isLight ? 'border-black/10 bg-white' : 'border-white/10 bg-[#0b0c10]'}`}>
                             {item.children.map((child) => (
                               <li key={child.label}>
                                 <Link
                                   href={child.href}
-                                  className="block px-6 py-3 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-primary"
+                                  className={`block px-6 py-3 text-sm transition-colors hover:text-primary ${isLight ? 'text-black/60 hover:bg-black/5' : 'text-white/70 hover:bg-white/5'}`}
                                 >
                                   {child.label}
                                 </Link>
@@ -113,7 +118,19 @@ export default function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
+              onClick={toggleTheme}
+              className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-300 ${
+                isLight
+                  ? 'border-black/15 text-black/60 hover:border-primary hover:text-primary'
+                  : 'border-white/15 text-white/60 hover:border-primary hover:text-primary'
+              }`}
+            >
+              {isLight ? <HiMoon className="text-base" /> : <HiSun className="text-base" />}
+            </button>
             <a
               href={brand.phoneTel}
               onClick={() => trackEvent('call_click', { source: 'header' })}
@@ -125,7 +142,9 @@ export default function Header() {
               type="button"
               aria-label="Open menu"
               onClick={() => setMobileOpen(true)}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-primary hover:text-primary lg:hidden"
+              className={`flex h-11 w-11 items-center justify-center rounded-full border transition-colors hover:border-primary hover:text-primary lg:hidden ${
+                isLight ? 'border-black/15 text-black/70' : 'border-white/15 text-white'
+              }`}
             >
               <HiMenu className="text-xl" />
             </button>

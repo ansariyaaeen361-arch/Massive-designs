@@ -5,6 +5,7 @@ import '../styles/globals.css';
 import Layout from '../components/layout/Layout';
 import WelcomePopup from '../components/layout/WelcomePopup';
 import PageViewTracker from '../components/layout/PageViewTracker';
+import { ThemeProvider } from '../context/ThemeContext';
 
 const marcellus = Marcellus({
   subsets: ['latin'],
@@ -29,13 +30,15 @@ export default function App({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <div className={`${marcellus.variable} ${outfit.variable}`}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-        <WelcomePopup />
-        <PageViewTracker />
-      </div>
+      <ThemeProvider>
+        <div className={`${marcellus.variable} ${outfit.variable}`}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          <WelcomePopup />
+          <PageViewTracker />
+        </div>
+      </ThemeProvider>
 
       {FB_PIXEL_ID && (
         <Script id="fb-pixel" strategy="lazyOnload">
