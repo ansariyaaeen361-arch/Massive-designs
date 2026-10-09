@@ -157,16 +157,16 @@ export default function ContentMarketing() {
         heading="How We Work on Your Content"
         description="We keep the process simple and transparent so your team always knows what is happening and why."
         items={[
-          { title: '01 — Understand Your Reality', description: 'We learn how your buyers search, what they struggle with, and which touchpoints already influence their decisions.' },
-          { title: '02 — Prioritize Content Gaps', description: 'We highlight missing answers, weak pages, and unclear messages, then agree on which problems to solve first together.' },
-          { title: '03 — Collaborate on Drafts', description: 'We share structured outlines and drafts in stages, making feedback easier and keeping approvals moving without delays.' },
-          { title: '04 — Learn from Behaviour', description: 'We review how people interact with your content, then adjust topics, angles, and depth based on real usage.' },
+          { title: '01. Understand Your Reality', description: 'We learn how your buyers search, what they struggle with, and which touchpoints already influence their decisions.' },
+          { title: '02. Prioritize Content Gaps', description: 'We highlight missing answers, weak pages, and unclear messages, then agree on which problems to solve first together.' },
+          { title: '03. Collaborate on Drafts', description: 'We share structured outlines and drafts in stages, making feedback easier and keeping approvals moving without delays.' },
+          { title: '04. Learn from Behaviour', description: 'We review how people interact with your content, then adjust topics, angles, and depth based on real usage.' },
         ]}
       />
 
       <FeatureGrid
         heading="Why Teams Choose Our Content Marketing Services"
-        description="We focus on intent, performance, and local insight so your content supports real growth—not just more pages."
+        description="We focus on intent, performance, and local insight so your content supports real growth, not just more pages."
         items={[
           { title: 'Search-First Approach', description: 'Content aligns with real queries, helping the right people find you when they actively need solutions.' },
           { title: 'Integrated Support Model', description: 'Strategy, writing, and optimization work together, reducing guesswork and keeping campaigns aligned across channels.' },

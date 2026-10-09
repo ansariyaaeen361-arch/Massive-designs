@@ -44,7 +44,7 @@ export default function TermsConditions() {
     <>
       <Seo
         title="Terms & Conditions - Massive Designs"
-        description="Review the Terms & Conditions of Massive Designs. Learn how our creative services—branding, web design, SEO and marketing—are governed, your obligations as a client, and the legal framework that applies."
+        description="Review the Terms & Conditions of Massive Designs. Learn how our creative services (branding, web design, SEO and marketing) are governed, your obligations as a client, and the legal framework that applies."
         path="/terms-conditions"
         schemaGraph={[
           getWebPageNode({

@@ -86,7 +86,7 @@ export default function SocialMediaMarketing() {
           <Reveal className="max-w-3xl">
             <h2 className="text-3xl sm:text-4xl">Transform Your Brand&rsquo;s Social Media Presence</h2>
             <p className="mt-5 text-sm leading-relaxed text-white/50">
-              From low engagement to powerful brand awareness — our social media strategies help businesses grow
+              From low engagement to powerful brand awareness, our social media strategies help businesses grow
               followers, reach, and conversions.
             </p>
           </Reveal>

@@ -24,7 +24,7 @@ export default function Footer() {
               <img src="/img/logo/logo.png" alt="Massive Designs" className="h-16 w-auto lg:h-20" />
             </Link>
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/50">
-              Where Creativity Meets Strategy — Design, Development, and Marketing for Impactful Growth.
+              Where Creativity Meets Strategy: Design, Development, and Marketing for Impactful Growth.
             </p>
             <SocialLinks className="mt-8" />
           </div>

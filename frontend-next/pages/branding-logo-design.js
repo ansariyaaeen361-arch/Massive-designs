@@ -65,7 +65,7 @@ export default function BrandingLogoDesign() {
           </>
         }
         items={[
-          { title: 'Research-first Approach', description: 'Every detail of your logo design will contribute — the psychology of colors, typography, and positioning.' },
+          { title: 'Research-first Approach', description: 'Every detail of your logo design will contribute: the psychology of colors, typography, and positioning.' },
           { title: 'Cross-platform Ready', description: 'We create visuals that scale perfectly across web, print, and social platforms.' },
           { title: 'Strategic Visuals', description: 'Designs that communicate brand values and convert visitors into customers.' },
         ]}
@@ -85,7 +85,7 @@ export default function BrandingLogoDesign() {
       <section className="py-14 lg:py-20">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <Reveal className="max-w-3xl">
-            <h2 className="text-3xl sm:text-4xl">Before and After — A Visual Transformation</h2>
+            <h2 className="text-3xl sm:text-4xl">Before and After: A Visual Transformation</h2>
             <p className="mt-5 text-sm leading-relaxed text-white/50">
               See how professional design transforms business perception and increases recognition.
             </p>
@@ -104,7 +104,7 @@ export default function BrandingLogoDesign() {
             <Reveal delay={0.1} className="rounded-3xl border border-white/10 bg-white/5 p-7">
               <h3 className="text-lg text-primary">Rebranding Impact</h3>
               <p className="mt-3 text-sm leading-relaxed text-white/50">
-                A refreshed identity signals quality, trust, and innovation — converting more viewers into customers.
+                A refreshed identity signals quality, trust, and innovation, converting more viewers into customers.
               </p>
               <ul className="mt-5 space-y-2 text-sm text-white/50">
                 <li className="flex items-start gap-2">
@@ -161,7 +161,7 @@ export default function BrandingLogoDesign() {
 
       <FeatureGrid
         heading="Why Choose Massive Designs?"
-        description="We combine strategy and creativity so your brand is remembered locally across Texas and online. No templates — custom work that fits your goals and budget."
+        description="We combine strategy and creativity so your brand is remembered locally across Texas and online. No templates, just custom work that fits your goals and budget."
         items={[
           { title: 'Creative + Strategic', description: 'Designs that are beautiful and purposeful.' },
           { title: 'Affordable Packages', description: 'Premium work without wasting budget.' },

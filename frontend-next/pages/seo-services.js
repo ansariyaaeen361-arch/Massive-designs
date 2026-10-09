@@ -168,7 +168,7 @@ export default function SeoServices() {
         items={[
           { title: 'Affordable Packages', description: 'Get premium results at competitive prices with full transparency.' },
           { title: 'Proven Local Expertise', description: "We've delivered measurable SEO growth for businesses across Texas." },
-          { title: 'Result-Driven Approach', description: 'We focus on leads, conversions, and ROI — not just rankings.' },
+          { title: 'Result-Driven Approach', description: 'We focus on leads, conversions, and ROI, not just rankings.' },
         ]}
       />
 

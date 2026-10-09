@@ -77,7 +77,7 @@ export default function MobileAppDevelopment() {
         steps={[
           { number: '01', title: 'Discovery', description: 'We run focused sessions to understand your idea, users and business goals.' },
           { number: '02', title: 'Planning & Design', description: 'UI/UX wireframes, prototypes and user flows are created to validate the experience.' },
-          { number: '03', title: 'Development', description: 'We implement the app using the right stack — Swift, Kotlin, React Native or Flutter — with emphasis on stability and performance.' },
+          { number: '03', title: 'Development', description: 'We implement the app using the right stack (Swift, Kotlin, React Native or Flutter) with emphasis on stability and performance.' },
           { number: '04', title: 'QA & Launch', description: 'Thorough testing, app store submission support, and post-launch monitoring ensure a smooth release.' },
         ]}
       />
@@ -87,7 +87,7 @@ export default function MobileAppDevelopment() {
           <Reveal className="max-w-3xl">
             <h2 className="text-3xl sm:text-4xl">Mobile Experiences That Improve Business Efficiency</h2>
             <p className="mt-5 text-sm leading-relaxed text-white/50">
-              We build business apps that automate workflows, reduce manual tasks, and increase productivity — from
+              We build business apps that automate workflows, reduce manual tasks, and increase productivity, from
               sales tracking to inventory management.
             </p>
           </Reveal>
@@ -105,7 +105,7 @@ export default function MobileAppDevelopment() {
             <Reveal delay={0.1} className="rounded-3xl border border-white/10 bg-white/5 p-7">
               <h3 className="text-lg text-primary">Custom Business Apps</h3>
               <p className="mt-3 text-sm leading-relaxed text-white/50">
-                We build workflow-oriented apps tailored to your operations — saving time and reducing errors through
+                We build workflow-oriented apps tailored to your operations, saving time and reducing errors through
                 smart automation.
               </p>
               <ul className="mt-5 space-y-2 text-sm text-white/50">
@@ -165,7 +165,7 @@ export default function MobileAppDevelopment() {
 
       <FeatureGrid
         heading="Why Choose Massive Designs for App Development?"
-        description="We are your technology partners — delivering research-driven, dependable mobile products. Our team has experience with startups, local businesses and enterprises across Texas, providing speed, quality and results."
+        description="We are your technology partners, delivering research-driven, dependable mobile products. Our team has experience with startups, local businesses and enterprises across Texas, providing speed, quality and results."
         items={[
           { title: 'Experienced Team', description: 'Developers and designers who build production-ready apps.' },
           { title: 'Affordable Packages', description: 'Transparent pricing and flexible engagement models without compromising quality.' },
@@ -174,7 +174,7 @@ export default function MobileAppDevelopment() {
       />
 
       <ServiceCta
-        heading="Your Success Is Our Priority — Let's Build Something Great Together"
+        heading="Your Success Is Our Priority: Let's Build Something Great Together"
         paragraphs={[
           'Willing to make your vision come true? Collaborate with Massive Designs and get the best mobile app development in Texas. Our team will take you through the initial idea to launch with effective communication and professional assistance.',
           'Get in touch with us, and we will create an application to expand your business and make users happy.',
