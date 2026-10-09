@@ -1,6 +1,7 @@
 import Seo from '../components/layout/Seo';
 import { SITE_URL } from '../lib/schema';
 import Hero from '../components/home/Hero';
+import Stats from '../components/home/Stats';
 import Services from '../components/home/Services';
 import WhyChooseUs from '../components/home/WhyChooseUs';
 import PortfolioTeaser from '../components/home/PortfolioTeaser';
@@ -32,6 +33,7 @@ export default function Home() {
         ]}
       />
       <Hero />
+      <Stats />
       <Services />
       <WhyChooseUs />
       <PortfolioTeaser />

@@ -4,7 +4,9 @@ import { useGSAP } from '@gsap/react';
 import Header from './Header';
 import Footer from './Footer';
 import BackToTop from './BackToTop';
-import GridSpotlight from '../motion/GridSpotlight';
+import AuroraBackground from '../motion/AuroraBackground';
+import PointerFX from '../motion/PointerFX';
+import useWordReveal from '../../hooks/useWordReveal';
 import useSmoothScroll from '../../hooks/useSmoothScroll';
 import { gsap, ScrollTrigger } from '../../lib/gsap';
 
@@ -17,6 +19,7 @@ export default function Layout({ children }) {
 
   const rootRef = useRef(null);
   const curtainRef = useRef(null);
+  const curtain2Ref = useRef(null);
   const isFirstRender = useRef(true);
 
   const [displayedChildren, setDisplayedChildren] = useState(children);
@@ -25,7 +28,7 @@ export default function Layout({ children }) {
     () => {
       if (isFirstRender.current) {
         isFirstRender.current = false;
-        gsap.set(curtainRef.current, { yPercent: 100 });
+        gsap.set([curtainRef.current, curtain2Ref.current], { yPercent: 100 });
         return;
       }
 
@@ -40,26 +43,39 @@ export default function Layout({ children }) {
         return;
       }
 
-      const curtain = curtainRef.current;
+      const lime = curtainRef.current;
+      const ink = curtain2Ref.current;
       gsap
         .timeline()
-        .set(curtain, { display: 'block' })
-        .fromTo(curtain, { yPercent: 100 }, { yPercent: 0, duration: 0.5, ease: 'power3.inOut' })
+        .set([lime, ink], { display: 'block' })
+        .fromTo(lime, { yPercent: 100 }, { yPercent: 0, duration: 0.55, ease: 'power3.inOut' })
+        .fromTo(ink, { yPercent: 100 }, { yPercent: 0, duration: 0.55, ease: 'power3.inOut' }, '-=0.38')
         .add(swap)
-        .to(curtain, { yPercent: -100, duration: 0.5, ease: 'power3.inOut', delay: 0.05 })
-        .set(curtain, { display: 'none', yPercent: 100 });
+        .to(ink, { yPercent: -100, duration: 0.6, ease: 'power3.inOut' }, '+=0.05')
+        .to(lime, { yPercent: -100, duration: 0.6, ease: 'power3.inOut' }, '-=0.42')
+        .set([lime, ink], { display: 'none', yPercent: 100 });
     },
     { scope: rootRef, dependencies: [router.asPath] },
   );
 
+  useWordReveal(!isDashboard, displayedChildren);
+
   return (
-    <div ref={rootRef} className="flex min-h-screen flex-col overflow-x-hidden">
+    <div ref={rootRef} className={`flex min-h-screen flex-col overflow-x-hidden ${isDashboard ? '' : 'bold-theme'}`}>
       <div
         ref={curtainRef}
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[200] hidden bg-black"
+        className="pointer-events-none fixed inset-0 z-[200] hidden"
+        style={{ background: '#b5f652' }}
       />
-      {!isDashboard && <GridSpotlight />}
+      <div
+        ref={curtain2Ref}
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-[201] hidden"
+        style={{ background: '#0b0c10' }}
+      />
+      {!isDashboard && <PointerFX />}
+      {!isDashboard && <AuroraBackground />}
       {!isDashboard && <Header />}
       <main className="flex-1">{displayedChildren}</main>
       {!isDashboard && <Footer />}

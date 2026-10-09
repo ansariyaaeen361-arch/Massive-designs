@@ -1,9 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { HiArrowRight } from 'react-icons/hi2';
-import { gsap } from '../../lib/gsap';
+import { HiArrowUpRight } from 'react-icons/hi2';
 import Reveal from '../motion/Reveal';
-import useTilt from '../../hooks/useTilt';
 
 const services = [
   {
@@ -12,7 +9,9 @@ const services = [
     href: '/web-design-development',
     image: '/img/home/dm-srv08.webp',
     description:
-      'Your brand deserves more than conventional marketing. It merits a story that resonates, a design that inspires, and a strategy that succeeds. This is what we do at Massive Designs. If you’re ready to grow your business with a trusted creative marketing agency that Texas brands recommend, reach out to us today. Let us make your vision come true and make your next big idea happen.',
+      'Your brand deserves more than conventional marketing. It merits a story that resonates, a design that inspires, and a strategy that succeeds. If you’re ready to grow your business with a trusted creative marketing agency that Texas brands recommend, reach out to us today.',
+    span: 'md:col-span-2 lg:col-span-7 lg:row-span-2',
+    big: true,
   },
   {
     number: '02',
@@ -20,7 +19,8 @@ const services = [
     href: '/branding-logo-design',
     image: '/img/home/dm-srv05.webp',
     description:
-      'A consistent brand helps clients recognize you across proposals, meetings, and campaigns. Massive design, as a branding agency, develops your logo, visual system, and core message into working guidelines, so your website, presentations, and marketing materials all support the same positioning and make follow‑up conversations easier.',
+      'A consistent brand helps clients recognize you across proposals, meetings, and campaigns. We turn your logo, visual system, and core message into working guidelines.',
+    span: 'lg:col-span-5',
   },
   {
     number: '03',
@@ -28,49 +28,33 @@ const services = [
     href: '/seo-services',
     image: '/img/home/dm-srv-old-08.webp',
     description:
-      'SEO services in Texas should help people find you when they are already looking for options. The work here reviews search intent, key pages, and technical basics, then makes measured updates that improve how you appear in results and support a steady flow of relevant visits over time.',
+      'SEO that helps people find you when they are already looking for options, with measured updates that bring a steady flow of relevant visits.',
+    span: 'lg:col-span-5',
   },
   {
     number: '04',
     title: 'App Development',
     href: '/mobile-app-development',
     image: '/img/home/dm-srv07.webp',
-    description:
-      'Texas app development is approached as part of your wider operations, not as a stand‑alone product. Web and mobile apps are planned around your existing processes, then built for reliability and straightforward use, so staff and customers can complete routine tasks without extra training or confusion.',
+    span: 'lg:col-span-4',
   },
   {
     number: '05',
     title: 'Content Marketing',
     href: '/content-marketing',
     image: '/img/home/dm-srv02.webp',
-    description:
-      'Content marketing is used to answer real questions your buyers raise in calls and emails. Articles, landing pages, and supporting assets are planned around those topics, giving your sales team useful material to share and helping searchers understand your approach before they speak with you.',
+    span: 'lg:col-span-4',
   },
   {
     number: '06',
     title: 'Social Media Marketing',
     href: '/social-media-marketing',
     image: '/img/home/dm-srv003.webp',
-    description:
-      'Social media marketing is treated as an extension of your main campaigns, not a separate activity. Posting schedules, formats, and messages are aligned with current offers and events, keeping your business present in local feeds and sending interested visitors back to key pages on your site.',
+    span: 'md:col-span-2 lg:col-span-4',
   },
 ];
 
 export default function Services() {
-  const [active, setActive] = useState(0);
-  const current = services[active];
-  const panelRef = useRef(null);
-  const imgWrapRef = useRef(null);
-  useTilt(imgWrapRef);
-
-  useEffect(() => {
-    gsap.fromTo(
-      panelRef.current,
-      { opacity: 0, y: 14 },
-      { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', overwrite: 'auto' },
-    );
-  }, [active]);
-
   return (
     <section className="py-16 lg:py-24">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
@@ -81,52 +65,55 @@ export default function Services() {
           </h3>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-8">
-          <Reveal delay={0.1} className="lg:col-span-6">
-            <ul>
-              {services.map((service, i) => (
-                <li key={service.title} className="border-b border-white/10">
-                  <button
-                    type="button"
-                    onMouseEnter={() => setActive(i)}
-                    onFocus={() => setActive(i)}
-                    onClick={() => setActive(i)}
-                    className="flex w-full items-center gap-6 py-5 text-left"
-                  >
-                    <span
-                      className={`font-heading text-sm transition-colors duration-300 ${
-                        active === i ? 'text-primary' : 'text-white/30'
-                      }`}
-                    >
-                      .{service.number}
-                    </span>
-                    <span
-                      className={`text-xl transition-colors duration-300 sm:text-2xl ${
-                        active === i ? 'text-primary' : 'text-white'
-                      }`}
-                    >
-                      {service.title}
-                    </span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <div className="lg:col-span-6">
-            <div ref={panelRef}>
-              <div ref={imgWrapRef} className="overflow-hidden rounded-3xl">
-                <img src={current.image} alt={current.title} className="aspect-[4/3] w-full object-cover" />
-              </div>
-              <p className="mt-6 text-sm leading-relaxed text-white/50">{current.description}</p>
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[minmax(250px,auto)]">
+          {services.map((service, i) => (
+            <Reveal key={service.title} delay={i * 0.06} y={40} className={`${service.span} h-full`}>
               <Link
-                href={current.href}
-                className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-primary transition-transform duration-300 hover:translate-x-1"
+                href={service.href}
+                className={`keep-dark glass-tile group relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] p-7 sm:p-9 ${
+                  service.big ? 'min-h-[420px] lg:min-h-[560px]' : 'min-h-[260px]'
+                }`}
+                style={{ background: 'linear-gradient(150deg, #11161c 0%, #070a0d 100%)' }}
               >
-                Learn More <HiArrowRight className="inline text-base" aria-hidden="true" />
+                <img
+                  src={service.image}
+                  alt=""
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                  className="absolute inset-0 h-full w-full object-cover opacity-55 transition-transform duration-[900ms] ease-out group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
+
+                <div className="relative flex items-start justify-between">
+                  <span className="font-heading text-sm tracking-widest text-primary">.{service.number}</span>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 text-white transition-all duration-500 group-hover:rotate-45 group-hover:border-primary group-hover:bg-primary group-hover:text-black">
+                    <HiArrowUpRight className="text-xl" aria-hidden="true" />
+                  </span>
+                </div>
+
+                <div className="relative">
+                  <h4
+                    className={`font-body font-semibold leading-tight tracking-tight text-white ${
+                      service.big ? 'text-3xl sm:text-4xl lg:text-5xl' : 'text-2xl sm:text-3xl'
+                    }`}
+                  >
+                    {service.title}
+                  </h4>
+                  {service.description && (
+                    <p
+                      className={`mt-4 text-white/70 ${
+                        service.big ? 'max-w-xl text-sm sm:text-base' : 'line-clamp-3 max-w-md text-sm'
+                      }`}
+                    >
+                      {service.description}
+                    </p>
+                  )}
+                </div>
               </Link>
-            </div>
-          </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

@@ -43,12 +43,12 @@ export default function Hero() {
     <section ref={rootRef} className="relative isolate overflow-hidden">
       <AmbientGlow position="top-left" size="xl" intensity="medium" />
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-14 px-6 pb-14 pt-32 lg:grid-cols-12 lg:gap-8 lg:px-10 lg:pt-40">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-8">
           <p className="hero-eyebrow text-xs font-medium uppercase tracking-[0.35em] text-primary">
             Full-Service Digital Marketing Agency Texas
           </p>
 
-          <h1 className="mt-6 text-4xl leading-[1.1] sm:text-6xl lg:text-7xl">
+          <h1 className="hero-title mt-6 text-4xl leading-[1.1] sm:text-6xl lg:text-7xl">
             <span className="hero-line block overflow-hidden">
               Texas Web Design <span className="text-primary">&amp;</span>
             </span>
@@ -82,7 +82,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative lg:col-span-5">
+        <div className="relative lg:col-span-4">
           <div ref={imgRef} className="relative overflow-hidden rounded-[2rem]">
             <img
               src="/img/home/banner-main.webp"
