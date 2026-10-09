@@ -247,32 +247,12 @@ html[data-theme="light"] .bg-primary.h-1 {
   box-shadow: none;
 }
 
-/* Dark footer for contrast against the light page */
+/* Light footer: frosted, tinted surface that blends with the page */
 html[data-theme="light"] footer {
-  --color-white: #ffffff;
-  --color-black: #0b0c10;
-  --color-primary: #b5f652;
-  background-color: #0b0c10;
-}
-
-html[data-theme="light"] footer img[alt="Massive Designs"] {
-  filter: none;
-}
-
-html[data-theme="light"] footer .bg-white\/5,
-html[data-theme="light"] footer .bg-white\/10 {
-  background-color: rgba(255, 255, 255, 0.06);
-  box-shadow: none;
-}
-
-html[data-theme="light"] footer :is(h1, h2, h3, h4, h5, h6) {
-  color: #ffffff;
-}
-
-html[data-theme="light"] footer .border-white\/10,
-html[data-theme="light"] footer .border-white\/15,
-html[data-theme="light"] footer .border-white\/20 {
-  border-color: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(232, 241, 218, 0.92));
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(20, 30, 10, 0.1);
 }
 
 /* ─── Aurora background (replaces the old grid) ──────────────────────────────
