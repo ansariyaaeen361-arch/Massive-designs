@@ -24,13 +24,21 @@ export default function PointerFX() {
     const ringY = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
 
     let magnet = null;
+    let magnetRect = null;
+    let glowEl = null;
+    let glowRect = null;
     let last = null;
     let frame = 0;
+    let dirty = true;
+    const markDirty = () => {
+      dirty = true;
+    };
 
     const releaseMagnet = () => {
       if (!magnet) return;
       gsap.to(magnet, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)', overwrite: 'auto' });
       magnet = null;
+      magnetRect = null;
     };
 
     const process = () => {
@@ -38,6 +46,8 @@ export default function PointerFX() {
       const e = last;
       if (!e) return;
       const target = e.target instanceof Element ? e.target : null;
+      let refresh = dirty;
+      dirty = false;
 
       gsap.set(dot, { x: e.clientX, y: e.clientY });
       ringX(e.clientX);
@@ -50,9 +60,12 @@ export default function PointerFX() {
 
       const glowCard = target?.closest(GLOW);
       if (glowCard) {
-        const r = glowCard.getBoundingClientRect();
-        glowCard.style.setProperty('--gx', `${e.clientX - r.left}px`);
-        glowCard.style.setProperty('--gy', `${e.clientY - r.top}px`);
+        if (glowCard !== glowEl || refresh) {
+          glowEl = glowCard;
+          glowRect = glowCard.getBoundingClientRect();
+        }
+        glowCard.style.setProperty('--gx', `${e.clientX - glowRect.left}px`);
+        glowCard.style.setProperty('--gy', `${e.clientY - glowRect.top}px`);
       }
 
       if (reduceMotion) return;
@@ -60,9 +73,11 @@ export default function PointerFX() {
       if (m !== magnet) {
         releaseMagnet();
         magnet = m;
+        refresh = true;
       }
       if (magnet) {
-        const r = magnet.getBoundingClientRect();
+        if (!magnetRect || refresh) magnetRect = magnet.getBoundingClientRect();
+        const r = magnetRect;
         const dx = (e.clientX - (r.left + r.width / 2)) * 0.3;
         const dy = (e.clientY - (r.top + r.height / 2)) * 0.4;
         gsap.to(magnet, { x: dx, y: dy, duration: 0.35, ease: 'power3.out', overwrite: 'auto' });
@@ -84,6 +99,8 @@ export default function PointerFX() {
     };
 
     window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('scroll', markDirty, { passive: true });
+    window.addEventListener('resize', markDirty);
     window.addEventListener('mousedown', onDown);
     window.addEventListener('mouseup', onUp);
     document.addEventListener('mouseleave', onLeave);
@@ -91,6 +108,8 @@ export default function PointerFX() {
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('scroll', markDirty);
+      window.removeEventListener('resize', markDirty);
       window.removeEventListener('mousedown', onDown);
       window.removeEventListener('mouseup', onUp);
       document.removeEventListener('mouseleave', onLeave);

@@ -7,7 +7,7 @@ export default function useSmoothScroll(enabled = true) {
     if (!enabled) return undefined;
 
     const lenis = new Lenis({
-      duration: 1.1,
+      lerp: 0.12,
       smoothWheel: true,
       touchMultiplier: 1.2,
     });

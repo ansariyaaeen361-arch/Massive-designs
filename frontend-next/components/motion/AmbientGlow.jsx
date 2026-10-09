@@ -12,17 +12,19 @@ const POSITION = {
   center: 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
 };
 
+// Soft radial gradients instead of CSS blur(): same look, no per-frame
+// filter cost while scrolling.
 const SIZE = {
-  sm: 'h-[240px] w-[240px] blur-[90px]',
-  md: 'h-[380px] w-[380px] blur-[120px]',
-  lg: 'h-[520px] w-[520px] blur-[140px]',
-  xl: 'h-[680px] w-[680px] blur-[160px]',
+  sm: 'h-[420px] w-[420px]',
+  md: 'h-[640px] w-[640px]',
+  lg: 'h-[860px] w-[860px]',
+  xl: 'h-[1100px] w-[1100px]',
 };
 
 const INTENSITY = {
-  low: 'bg-primary/5',
-  medium: 'bg-primary/10',
-  high: 'bg-primary/15',
+  low: 0.07,
+  medium: 0.14,
+  high: 0.2,
 };
 
 export default function AmbientGlow({
@@ -55,7 +57,11 @@ export default function AmbientGlow({
     <div
       ref={ref}
       aria-hidden="true"
-      className={`pointer-events-none absolute -z-10 rounded-full ${POSITION[position]} ${SIZE[size]} ${INTENSITY[intensity]} ${className}`}
+      className={`pointer-events-none absolute -z-10 rounded-full ${POSITION[position]} ${SIZE[size]} ${className}`}
+      style={{
+        background: `radial-gradient(circle, rgb(181 246 82 / ${INTENSITY[intensity]}) 0%, transparent 68%)`,
+        willChange: 'transform, opacity',
+      }}
     />
   );
 }

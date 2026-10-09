@@ -4,6 +4,8 @@ import { gsap } from '../../lib/gsap';
 
 export default function AuroraBackground() {
   const rootRef = useRef(null);
+  const haloRef = useRef(null);
+  const litRef = useRef(null);
 
   useGSAP(
     () => {
@@ -19,9 +21,14 @@ export default function AuroraBackground() {
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const pos = { x: window.innerWidth / 2, y: window.innerHeight / 3 };
 
+      const halo = haloRef.current;
+      const lit = litRef.current;
+      const wrap = (v) => ((v % 28) + 28) % 28;
       const apply = () => {
-        root.style.setProperty('--mx', `${pos.x}px`);
-        root.style.setProperty('--my', `${pos.y}px`);
+        const move = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
+        halo.style.transform = move;
+        lit.style.transform = move;
+        lit.style.backgroundPosition = `${-wrap(pos.x - 240)}px ${-wrap(pos.y - 240)}px`;
       };
       apply();
 
@@ -52,7 +59,6 @@ export default function AuroraBackground() {
       ref={rootRef}
       aria-hidden="true"
       className="aurora pointer-events-none fixed inset-0 z-[-1] overflow-hidden"
-      style={{ '--mx': '50%', '--my': '30%' }}
     >
       <div className="aurora-blob aurora-blob-1" />
       <div className="aurora-blob aurora-blob-2" />
@@ -60,8 +66,8 @@ export default function AuroraBackground() {
       <div className="aurora-blob aurora-blob-4" />
       <div className="aurora-beam" />
       <div className="aurora-dots" />
-      <div className="aurora-dots-lit" />
-      <div className="aurora-halo" />
+      <div ref={litRef} className="aurora-dots-lit" />
+      <div ref={haloRef} className="aurora-halo" />
       <div className="aurora-vignette" />
     </div>
   );

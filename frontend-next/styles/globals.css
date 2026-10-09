@@ -250,8 +250,6 @@ html[data-theme="light"] .bg-primary.h-1 {
 /* Light footer: frosted, tinted surface that blends with the page */
 html[data-theme="light"] footer {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(232, 241, 218, 0.92));
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
   border-top: 1px solid rgba(20, 30, 10, 0.1);
 }
 
@@ -286,8 +284,8 @@ html[data-theme="light"] {
 .aurora-blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(110px);
   will-change: transform;
+  transform: translateZ(0);
 }
 
 .aurora-blob-1 {
@@ -342,12 +340,10 @@ html[data-theme="light"] {
   height: 70%;
   transform: translateX(-50%);
   background: radial-gradient(ellipse 50% 60% at 50% 0%, var(--au-beam), transparent 70%);
-  filter: blur(20px);
   opacity: 0.9;
 }
 
-.aurora-dots,
-.aurora-dots-lit {
+.aurora-dots {
   position: absolute;
   inset: 0;
   background-size: 28px 28px;
@@ -360,15 +356,28 @@ html[data-theme="light"] {
 }
 
 .aurora-dots-lit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 480px;
+  height: 480px;
+  margin: -240px 0 0 -240px;
   background-image: radial-gradient(circle at center, var(--au-dot-lit) 1.6px, transparent 2.2px);
-  -webkit-mask-image: radial-gradient(circle 230px at var(--mx, 50%) var(--my, 30%), black 0%, transparent 72%);
-  mask-image: radial-gradient(circle 230px at var(--mx, 50%) var(--my, 30%), black 0%, transparent 72%);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+  mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+  will-change: transform;
 }
 
 .aurora-halo {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(circle 460px at var(--mx, 50%) var(--my, 30%), var(--au-halo), transparent 70%);
+  top: 0;
+  left: 0;
+  width: 920px;
+  height: 920px;
+  margin: -460px 0 0 -460px;
+  background: radial-gradient(circle, var(--au-halo), transparent 70%);
+  will-change: transform;
 }
 
 .aurora-vignette {
@@ -401,8 +410,7 @@ html[data-theme="light"] {
 }
 
 @media (max-width: 768px) {
-  .aurora-blob { filter: blur(70px); }
-  .aurora-dots, .aurora-dots-lit { background-size: 22px 22px; }
+  .aurora-dots { background-size: 22px 22px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -533,14 +541,14 @@ html[data-theme="light"] {
    spotlight that follows the pointer (--gx / --gy are set by PointerFX). */
 
 :root {
-  --glass-bg: linear-gradient(150deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025));
+  --glass-bg: linear-gradient(150deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03)), rgba(12, 16, 20, 0.55);
   --glass-ring: linear-gradient(135deg, rgba(181, 246, 82, 0.7), rgba(181, 246, 82, 0.05) 38%, rgba(45, 212, 191, 0.05) 62%, rgba(45, 212, 191, 0.55));
   --glass-glow: rgba(181, 246, 82, 0.42);
   --glass-spot: rgba(181, 246, 82, 0.16);
 }
 
 html[data-theme="light"] {
-  --glass-bg: linear-gradient(150deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.5));
+  --glass-bg: linear-gradient(150deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.72));
   --glass-ring: linear-gradient(135deg, rgba(77, 124, 15, 0.65), rgba(77, 124, 15, 0.06) 38%, rgba(13, 148, 136, 0.06) 62%, rgba(13, 148, 136, 0.5));
   --glass-glow: rgba(90, 160, 20, 0.32);
   --glass-spot: rgba(120, 200, 30, 0.2);
@@ -558,8 +566,6 @@ html[data-theme="light"] {
   .glass-tile
 ) {
   background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
-  backdrop-filter: blur(18px) saturate(150%);
   border-color: transparent;
   transition: translate 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease;
 }
@@ -620,11 +626,6 @@ html[data-theme="light"] {
   opacity: 1;
 }
 
-/* Services bento tiles: no frosted fill, the photo is the surface */
-.glass-tile {
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
 
 /* ─── Word-by-word heading reveal ────────────────────────────────────────── */
 
@@ -638,7 +639,6 @@ html[data-theme="light"] {
 
 .w-inner {
   display: inline-block;
-  will-change: transform;
   transform-origin: 0 100%;
 }
 
@@ -676,7 +676,6 @@ html.has-custom-cursor :is(input:not([type="checkbox"]):not([type="radio"]):not(
   z-index: 400;
   pointer-events: none;
   border-radius: 9999px;
-  mix-blend-mode: difference;
   display: none;
 }
 
@@ -688,7 +687,7 @@ html.has-custom-cursor .fx-dot {
 .fx-ring {
   width: 38px;
   height: 38px;
-  border: 1.5px solid #ffffff;
+  border: 1.5px solid var(--color-primary);
   transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
     background-color 0.3s ease, opacity 0.25s ease;
 }
@@ -696,14 +695,14 @@ html.has-custom-cursor .fx-dot {
 .fx-dot {
   width: 6px;
   height: 6px;
-  background: #ffffff;
+  background: var(--color-primary);
   transition: opacity 0.25s ease;
 }
 
 .fx-ring.is-hover {
   width: 74px;
   height: 74px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
 }
 
 .fx-ring.is-down {
