@@ -63,7 +63,7 @@ export default function MobileMenu({ open, onClose }) {
       >
         <div className="flex items-center justify-between">
           <Link href="/" onClick={onClose}>
-            <img src="/img/logo/logo.png" alt="Massive Designs" className="h-9 w-auto" />
+            <img src="/img/logo/logo.png" alt="Massive Designs" className="h-12 w-auto" />
           </Link>
           <button
             type="button"

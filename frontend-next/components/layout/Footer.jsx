@@ -21,7 +21,7 @@ export default function Footer() {
         <div className="flex flex-wrap items-start gap-x-8 gap-y-14">
           <div className="w-full md:basis-[38%] lg:basis-[30%]">
             <Link href="/">
-              <img src="/img/logo/logo.png" alt="Massive Designs" className="h-12 w-auto" />
+              <img src="/img/logo/logo.png" alt="Massive Designs" className="h-16 w-auto lg:h-20" />
             </Link>
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/50">
               Where Creativity Meets Strategy — Design, Development, and Marketing for Impactful Growth.

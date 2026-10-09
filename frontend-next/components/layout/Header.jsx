@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { HiMenu, HiSun, HiMoon } from 'react-icons/hi';
+import { HiMenu } from 'react-icons/hi';
 import { IoChevronDown } from 'react-icons/io5';
 import { navLinks, brand } from '../../lib/brand';
 import { trackEvent } from '../../lib/analytics';
-import { useTheme } from '../../context/ThemeContext';
+import ThemeToggle from './ThemeToggle';
 import MobileMenu from './MobileMenu';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
-  const { theme, toggleTheme } = useTheme();
-  const isLight = theme === 'light';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -40,11 +38,11 @@ export default function Header() {
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 lg:px-10">
           <Link href="/" className="shrink-0" aria-label="Massive Designs home">
-            <img src="/img/logo/logo.png" alt="Massive Designs" className="h-9 w-auto lg:h-10" />
+            <img src="/img/logo/logo.png" alt="Massive Designs" className="h-12 w-auto lg:h-14" />
           </Link>
 
           <nav className="hidden lg:block">
-            <ul className="flex items-center gap-9">
+            <ul className="flex items-center gap-4 xl:gap-7 2xl:gap-9">
               {navLinks.map((item) => {
                 const isActive = router.pathname === item.href;
                 return (
@@ -117,18 +115,11 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-3 lg:gap-5">
-            <button
-              type="button"
-              aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
-              onClick={toggleTheme}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-primary hover:text-primary"
-            >
-              {isLight ? <HiMoon className="text-lg" /> : <HiSun className="text-lg" />}
-            </button>
+            <ThemeToggle />
             <a
               href={brand.phoneTel}
               onClick={() => trackEvent('call_click', { source: 'header' })}
-              className="hidden rounded-full border border-primary px-6 py-2.5 text-sm font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-black lg:inline-block"
+              className="hidden rounded-full border border-primary px-6 py-2.5 text-sm font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-black xl:inline-block"
             >
               Call {brand.phoneDisplay}
             </a>
