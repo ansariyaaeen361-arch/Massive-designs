@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from '../../lib/gsap';
+import { isHalloweenSeason } from '../../lib/season';
 
 const MAGNETIC = 'a.rounded-full, button.rounded-full, [data-magnetic]';
 const INTERACTIVE = 'a, button, [role="button"], summary, select, input[type="checkbox"], input[type="radio"], input[type="submit"], label';
@@ -9,19 +10,29 @@ const GLOW = '[class*="bg-white/5"], .glass-tile';
 export default function PointerFX() {
   const dotRef = useRef(null);
   const ringRef = useRef(null);
+  const threadRefs = useRef([]);
 
   useEffect(() => {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return undefined;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const halloween = isHalloweenSeason() && !reduceMotion;
 
     const dot = dotRef.current;
     const ring = ringRef.current;
+    const threads = threadRefs.current.filter(Boolean);
     const html = document.documentElement;
     html.classList.add('has-custom-cursor');
+    if (halloween) html.classList.add('halloween-season');
 
-    gsap.set([dot, ring], { xPercent: -50, yPercent: -50, x: -200, y: -200 });
+    gsap.set([dot, ring, ...threads], { xPercent: -50, yPercent: -50, x: -200, y: -200 });
     const ringX = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
     const ringY = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+    const threadMoves = halloween
+      ? threads.map((el, i) => ({
+          x: gsap.quickTo(el, 'x', { duration: 0.3 + i * 0.14, ease: 'power2.out' }),
+          y: gsap.quickTo(el, 'y', { duration: 0.3 + i * 0.14, ease: 'power2.out' }),
+        }))
+      : [];
 
     let magnet = null;
     let magnetRect = null;
@@ -52,6 +63,10 @@ export default function PointerFX() {
       gsap.set(dot, { x: e.clientX, y: e.clientY });
       ringX(e.clientX);
       ringY(e.clientY);
+      threadMoves.forEach((t) => {
+        t.x(e.clientX);
+        t.y(e.clientY);
+      });
 
       ring.classList.toggle('is-hover', !!target?.closest(INTERACTIVE));
       const isText = !!target?.closest(TEXT_FIELD);
@@ -87,6 +102,9 @@ export default function PointerFX() {
     const onMove = (e) => {
       ring.style.opacity = '';
       dot.style.opacity = '';
+      threads.forEach((el) => {
+        el.style.opacity = '';
+      });
       last = e;
       if (!frame) frame = requestAnimationFrame(process);
     };
@@ -95,6 +113,9 @@ export default function PointerFX() {
     const onLeave = () => {
       ring.style.opacity = '0';
       dot.style.opacity = '0';
+      threads.forEach((el) => {
+        el.style.opacity = '0';
+      });
       releaseMagnet();
     };
 
@@ -114,7 +135,7 @@ export default function PointerFX() {
       window.removeEventListener('mouseup', onUp);
       document.removeEventListener('mouseleave', onLeave);
       releaseMagnet();
-      html.classList.remove('has-custom-cursor');
+      html.classList.remove('has-custom-cursor', 'halloween-season');
     };
   }, []);
 
@@ -122,6 +143,17 @@ export default function PointerFX() {
     <>
       <div ref={ringRef} aria-hidden="true" className="fx-ring" />
       <div ref={dotRef} aria-hidden="true" className="fx-dot" />
+      {[0, 1, 2].map((i) => (
+        <div
+          key={i}
+          ref={(el) => {
+            threadRefs.current[i] = el;
+          }}
+          aria-hidden="true"
+          className="fx-thread"
+          style={{ '--thread-i': i }}
+        />
+      ))}
     </>
   );
 }

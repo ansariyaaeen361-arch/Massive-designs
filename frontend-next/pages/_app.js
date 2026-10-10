@@ -4,6 +4,7 @@ import { Marcellus, Outfit } from 'next/font/google';
 import '../styles/globals.css';
 import Layout from '../components/layout/Layout';
 import WelcomePopup from '../components/layout/WelcomePopup';
+import HalloweenIntro from '../components/layout/HalloweenIntro';
 import PageViewTracker from '../components/layout/PageViewTracker';
 import { ThemeProvider } from '../context/ThemeContext';
 
@@ -36,6 +37,7 @@ export default function App({ Component, pageProps }) {
             <Component {...pageProps} />
           </Layout>
           <WelcomePopup />
+          <HalloweenIntro />
           <PageViewTracker />
         </div>
       </ThemeProvider>

@@ -837,3 +837,173 @@ html[data-theme="light"] .tt-moon {
   opacity: 0;
   transform: rotate(90deg) scale(0.4);
 }
+
+/* ─── Halloween season (auto: October only) ──────────────────────────────── */
+
+.hw-root {
+  height: 46vh;
+  color: var(--color-white);
+}
+
+.hw-web {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 150px;
+  height: 150px;
+  opacity: 0.16;
+}
+
+.hw-bat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  opacity: 0.22;
+  animation: hw-fly linear infinite;
+  animation-duration: 28s;
+}
+
+.hw-bat-1 {
+  top: 10%;
+  animation-duration: 26s;
+  width: 30px;
+}
+
+.hw-bat-2 {
+  top: 22%;
+  animation-duration: 34s;
+  width: 22px;
+  opacity: 0.16;
+}
+
+.hw-bat-3 {
+  top: 6%;
+  animation-duration: 31s;
+  width: 26px;
+  opacity: 0.18;
+}
+
+.hw-bat-wings {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: hw-flap 0.6s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes hw-fly {
+  0% { transform: translate(-10vw, 6vh); }
+  25% { transform: translate(32vw, 1vh); }
+  50% { transform: translate(62vw, 9vh); }
+  75% { transform: translate(90vw, 3vh); }
+  100% { transform: translate(118vw, 7vh); }
+}
+
+@keyframes hw-flap {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hw-bat,
+  .hw-bat-wings {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hw-root { height: 32vh; }
+  .hw-web { width: 100px; height: 100px; }
+}
+
+/* Halloween cursor: pumpkin-orange ring + a short lagging thread trail */
+html.halloween-season .fx-ring {
+  border-color: #ff8a2b;
+}
+
+html.halloween-season .fx-ring.is-hover {
+  background-color: rgba(255, 138, 43, 0.22);
+}
+
+html.halloween-season .fx-dot {
+  background: #ff8a2b;
+}
+
+.fx-thread {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 399;
+  pointer-events: none;
+  display: none;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: #ff8a2b;
+  opacity: 0;
+}
+
+html.halloween-season .fx-thread {
+  display: block;
+  opacity: calc(0.5 - var(--thread-i) * 0.15);
+}
+
+/* ─── Halloween intro sequence (spider drop + pumpkin crack reveal) ──────── */
+
+.hwi-spider-wrap {
+  display: none;
+  will-change: transform;
+}
+
+.hwi-thread {
+  width: 1.5px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.65));
+  transform-origin: top center;
+  transform: scaleY(0);
+  margin: 0 auto;
+}
+
+.hwi-spider {
+  transform-origin: 50% 20%;
+}
+
+.hwi-leg {
+  transform-box: fill-box;
+}
+
+.hwi-pumpkin-svg {
+  display: block;
+  width: 320px;
+  height: auto;
+}
+
+.hwi-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  pointer-events: none;
+  opacity: 0;
+  display: none;
+}
+
+.hwi-overlay-blur {
+  background: rgba(4, 6, 5, 0.55);
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+}
+
+.hwi-overlay-soft {
+  background: radial-gradient(ellipse 60% 55% at 50% 38%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.4) 75%);
+}
+
+@media (max-width: 640px) {
+  .hwi-spider {
+    width: 108px;
+    height: 95px;
+  }
+
+  .hwi-pumpkin-svg {
+    width: 220px;
+  }
+}

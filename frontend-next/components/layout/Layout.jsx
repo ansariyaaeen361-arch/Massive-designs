@@ -6,6 +6,7 @@ import Footer from './Footer';
 import BackToTop from './BackToTop';
 import AuroraBackground from '../motion/AuroraBackground';
 import PointerFX from '../motion/PointerFX';
+import HalloweenFX from '../motion/HalloweenFX';
 import useWordReveal from '../../hooks/useWordReveal';
 import useSmoothScroll from '../../hooks/useSmoothScroll';
 import { gsap, ScrollTrigger } from '../../lib/gsap';
@@ -76,6 +77,7 @@ export default function Layout({ children }) {
       />
       {!isDashboard && <PointerFX />}
       {!isDashboard && <AuroraBackground />}
+      {!isDashboard && <HalloweenFX />}
       {!isDashboard && <Header />}
       <main className="flex-1">{displayedChildren}</main>
       {!isDashboard && <Footer />}
