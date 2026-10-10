@@ -951,25 +951,9 @@ html.halloween-season .fx-thread {
 
 /* ─── Halloween intro sequence (spider drop + pumpkin crack reveal) ──────── */
 
-.hwi-spider-wrap {
-  display: none;
-  will-change: transform;
-}
-
-.hwi-thread {
-  width: 1.5px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.65));
-  transform-origin: top center;
-  transform: scaleY(0);
-  margin: 0 auto;
-}
-
-.hwi-spider {
-  transform-origin: 50% 20%;
-}
-
 .hwi-leg {
   transform-box: fill-box;
+  will-change: transform;
 }
 
 .hwi-pumpkin-svg {
@@ -998,12 +982,178 @@ html.halloween-season .fx-thread {
 }
 
 @media (max-width: 640px) {
-  .hwi-spider {
-    width: 108px;
-    height: 95px;
-  }
-
   .hwi-pumpkin-svg {
     width: 220px;
+  }
+}
+
+/* ─── Halloween offer ticker ─────────────────────────────────────────────── */
+
+.hwt-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  height: 38px;
+  background: linear-gradient(90deg, #0b0c10 0%, #1a0f06 50%, #0b0c10 100%);
+  border-top: 1px solid rgba(255, 157, 46, 0.35);
+  box-shadow: 0 -8px 24px -12px rgba(255, 140, 20, 0.35);
+  overflow: hidden;
+}
+
+.hwt-mascot-btn {
+  position: fixed;
+  left: 10px;
+  bottom: calc(38px + 6px);
+  z-index: 71;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
+}
+
+.hwt-pumpkin {
+  display: block;
+  width: 88px;
+  height: 84px;
+  animation: hwt-hop 5.8s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+.hwt-arm {
+  transform-box: view-box;
+  animation: hwt-wave 5.8s ease-in-out infinite;
+}
+
+@keyframes hwt-hop {
+  0%, 32%, 100% { transform: translateY(0); }
+  8% { transform: translateY(-3px); }
+  15% { transform: translateY(0); }
+  22% { transform: translateY(-2px); }
+  29% { transform: translateY(0); }
+}
+
+@keyframes hwt-wave {
+  0%, 32%, 100% { transform: rotate(0deg); }
+  6% { transform: rotate(-20deg); }
+  13% { transform: rotate(5deg); }
+  20% { transform: rotate(-16deg); }
+  27% { transform: rotate(3deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hwt-pumpkin,
+  .hwt-arm {
+    animation: none;
+  }
+}
+
+.hwt-track {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+}
+
+.hwt-track-inner {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  animation: hwt-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+@keyframes hwt-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.hwt-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #ffe3bd;
+}
+
+.hwt-dot {
+  margin-left: 1.25rem;
+  color: #ff9d2e;
+}
+
+@media (max-width: 640px) {
+  .hwt-bar { height: 42px; }
+  .hwt-mascot-btn { bottom: calc(42px + 4px); left: 6px; }
+  .hwt-pumpkin { width: 66px; height: 63px; }
+  .hwt-item { font-size: 0.7rem; padding: 0 0.9rem; }
+  .hwt-dot { margin-left: 0.9rem; }
+}
+
+html.has-hw-ticker [aria-label="Back to top"] {
+  bottom: calc(2rem + 38px);
+}
+
+@media (max-width: 640px) {
+  html.has-hw-ticker [aria-label="Back to top"] {
+    bottom: calc(2rem + 42px);
+  }
+}
+
+/* ─── Header logo spider ─────────────────────────────────────────────────── */
+
+.hls-wrap {
+  position: absolute;
+  inset: -16px -22px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.hls-spider {
+  position: absolute;
+  width: 20px;
+  height: 17px;
+  offset-path: path('M87,28 C87,47.9 64.6,64 37,64 C9.4,64 -13,47.9 -13,28 C-13,8.1 9.4,-8 37,-8 C64.6,-8 87,8.1 87,28 Z');
+  offset-rotate: auto 90deg;
+  animation: hls-crawl 10s linear infinite;
+}
+
+@keyframes hls-crawl {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+.hls-leg {
+  transform-box: fill-box;
+  animation: hls-wiggle 0.28s ease-in-out infinite alternate;
+}
+
+.hls-leg-b {
+  animation-delay: 0.14s;
+}
+
+@keyframes hls-wiggle {
+  from { transform: rotate(-7deg); }
+  to { transform: rotate(7deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hls-spider { animation: none; offset-distance: 0%; }
+  .hls-leg { animation: none; }
+}
+
+@media (max-width: 640px) {
+  .hls-wrap { inset: -12px -16px; }
+  .hls-spider {
+    width: 15px;
+    height: 13px;
+    offset-path: path('M73,24 C73,40.6 54.2,54 31,54 C7.8,54 -11,40.6 -11,24 C-11,7.4 7.8,-6 31,-6 C54.2,-6 73,7.4 73,24 Z');
   }
 }

@@ -7,6 +7,7 @@ import { navLinks, brand } from '../../lib/brand';
 import { trackEvent } from '../../lib/analytics';
 import ThemeToggle from './ThemeToggle';
 import MobileMenu from './MobileMenu';
+import HeaderSpider from './HeaderSpider';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,8 +38,9 @@ export default function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 lg:px-10">
-          <Link href="/" className="shrink-0" aria-label="Massive Designs home">
+          <Link href="/" className="relative shrink-0" aria-label="Massive Designs home">
             <img src="/img/logo/logo.png" alt="Massive Designs" className="h-12 w-auto lg:h-14" />
+            <HeaderSpider />
           </Link>
 
           <nav className="hidden lg:block">

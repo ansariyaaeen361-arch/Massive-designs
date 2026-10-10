@@ -7,6 +7,8 @@ import BackToTop from './BackToTop';
 import AuroraBackground from '../motion/AuroraBackground';
 import PointerFX from '../motion/PointerFX';
 import HalloweenFX from '../motion/HalloweenFX';
+import HalloweenTicker from './HalloweenTicker';
+import HalloweenOfferModal from './HalloweenOfferModal';
 import useWordReveal from '../../hooks/useWordReveal';
 import useSmoothScroll from '../../hooks/useSmoothScroll';
 import { gsap, ScrollTrigger } from '../../lib/gsap';
@@ -82,6 +84,8 @@ export default function Layout({ children }) {
       <main className="flex-1">{displayedChildren}</main>
       {!isDashboard && <Footer />}
       {!isDashboard && <BackToTop />}
+      {!isDashboard && <HalloweenTicker />}
+      {!isDashboard && <HalloweenOfferModal />}
       {!isDashboard && (
         // Invisible to real visitors (off-screen, unreachable by keyboard/
         // screen reader) so only something parsing the raw HTML would ever
