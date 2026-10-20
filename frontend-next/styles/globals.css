@@ -355,40 +355,10 @@ html[data-theme="light"] {
   mask-image: radial-gradient(ellipse 95% 85% at 50% 35%, black 25%, transparent 95%);
 }
 
-.aurora-dots-lit {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 480px;
-  height: 480px;
-  margin: -240px 0 0 -240px;
-  background-image: radial-gradient(circle at center, var(--au-dot-lit) 1.6px, transparent 2.2px);
-  background-size: 28px 28px;
-  -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
-  mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
-  will-change: transform;
-}
-
-.aurora-halo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 920px;
-  height: 920px;
-  margin: -460px 0 0 -460px;
-  background: radial-gradient(circle, var(--au-halo), transparent 70%);
-  will-change: transform;
-}
-
 .aurora-vignette {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 120% 90% at 50% 40%, transparent 55%, var(--au-vignette) 100%);
-}
-
-.aurora-no-cursor .aurora-dots-lit,
-.aurora-no-cursor .aurora-halo {
-  display: none;
 }
 
 @keyframes aurora-drift-a {
