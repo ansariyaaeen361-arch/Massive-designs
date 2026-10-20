@@ -3,7 +3,6 @@ import { HiX } from 'react-icons/hi';
 import { gsap } from '../../lib/gsap';
 import { brand } from '../../lib/brand';
 import { trackEvent } from '../../lib/analytics';
-import { isHalloweenSeason } from '../../lib/season';
 
 const SESSION_KEY = 'md_welcome_popup_shown';
 const SHOW_DELAY_MS = 2500;
@@ -15,9 +14,6 @@ export default function WelcomePopup() {
 
   useEffect(() => {
     if (window.location.pathname.startsWith('/dashboard')) return;
-    // A themed Halloween intro (spider + pumpkin reveal) replaces this
-    // generic popup for the month of October — avoid showing both.
-    if (isHalloweenSeason()) return;
     if (window.sessionStorage.getItem(SESSION_KEY)) return;
 
     const timer = setTimeout(() => {
