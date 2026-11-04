@@ -29,7 +29,7 @@ export const pricingTabs = [
         badge: 'Popular',
         title: 'Professional Website Package',
         oldPrice: '$1000 ONLY',
-        price: '$699.00',
+        price: '$799.00',
         highlight: true,
         features: [
           '5 to 8 Pages Website Design',
