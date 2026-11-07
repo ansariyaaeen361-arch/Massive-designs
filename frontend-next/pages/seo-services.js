@@ -53,7 +53,7 @@ export default function SeoServices() {
         heading="Search Engine Optimization Best Practices for Websites"
         description={
           <>
-            Over the past decade, our SEO services have helped Texas businesses turn stagnant websites into steady
+            Since 2020, our SEO services have helped Texas businesses turn stagnant websites into steady
             leads and revenue by following real search engine optimization best practices for websites, not
             shortcuts. Each SEO strategy is built on research, analytics, and technical fixes that make your site
             faster, clearer, and easier to find. When combined with our{' '}

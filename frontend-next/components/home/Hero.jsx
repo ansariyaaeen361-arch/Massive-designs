@@ -65,7 +65,7 @@ export default function Hero() {
 
           <p className="hero-copy mt-5 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
             Massive Designs creates new solutions, assisting the future of brands in Texas. Our agency is based in
-            North Richland Hills and has more than <span className="text-white">200 creative professionals</span>{' '}
+            North Richland Hills and has served more than <span className="text-white">88 happy clients</span>{' '}
             valuing strategy and results based on design.
           </p>
 
