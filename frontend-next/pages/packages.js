@@ -6,6 +6,7 @@ import StatBadge from '../components/motion/StatBadge';
 import AmbientGlow from '../components/motion/AmbientGlow';
 import ContactForm from '../components/forms/ContactForm';
 import PricingCard from '../components/packages/PricingCard';
+import LogoPricingTable from '../components/packages/LogoPricingTable';
 import { pricingTabs } from '../components/packages/packagesData';
 import { brand } from '../lib/brand';
 import { gsap } from '../lib/gsap';
@@ -113,10 +114,16 @@ export default function Packages() {
             ))}
           </div>
 
-          <div ref={gridRef} className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {activeCards.map((card) => (
-              <PricingCard key={card.title} {...card} />
-            ))}
+          <div ref={gridRef} className="mt-12">
+            {activeTab === 'logo' ? (
+              <LogoPricingTable />
+            ) : (
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                {activeCards.map((card) => (
+                  <PricingCard key={card.title} {...card} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
