@@ -22,15 +22,14 @@ export default function PortfolioTeaser() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">Portfolio</p>
-            <h3 className="mt-4 text-4xl sm:text-5xl">
+            <h2 className="mt-4 text-4xl sm:text-5xl">
               Our Recent Web <span className="text-primary">Design Projects</span>
-            </h3>
+            </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-5">
             <p className="text-sm leading-relaxed text-white/50">
-              We have several projects, and this is shown in our portfolio across Texas and beyond. We have
-              undertaken innovative brand design projects involving designing, developing, brand identity and
-              creative web design with 3D motion effects. These are always amazing and interesting to view.
+              Our portfolio covers brand design, development, brand identity and creative web design with 3D motion
+              effects for clients across Texas and beyond.
             </p>
             <Link
               href="/projects"

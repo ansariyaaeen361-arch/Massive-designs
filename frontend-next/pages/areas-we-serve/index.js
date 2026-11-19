@@ -17,7 +17,7 @@ export default function AreasWeServe() {
     <>
       <Seo
         title="Areas We Serve - Massive Designs"
-        description="Massive Designs provides web design, SEO, branding and digital marketing services for businesses across Dallas, Fort Worth, Houston, Austin and San Antonio, Texas."
+        description="Local website designers and SEO for Texas businesses in Dallas, Fort Worth, Houston, Austin, San Antonio, North Richland Hills and nearby DFW cities."
         path="/areas-we-serve"
         schemaGraph={[
           {
@@ -69,9 +69,12 @@ export default function AreasWeServe() {
             <p className="mt-6 max-w-2xl text-sm leading-relaxed text-white/50">
               Texas is too big for a single playbook. A logistics company in Fort Worth isn&rsquo;t chasing the same
               customer as a boutique in Austin, and a restaurant in San Antonio has different competitors than a law
-              firm in Houston. We&rsquo;re a web design and digital marketing agency serving Texas businesses in
-              Dallas, Fort Worth, Houston, Austin and San Antonio, and the reason we can say that with a straight
-              face is that we don&rsquo;t treat those five cities as interchangeable.
+              firm in Houston. We&rsquo;re a Texas web design and{' '}
+              <Link href="/" className="text-primary hover:underline">
+                digital marketing agency
+              </Link>{' '}
+              serving businesses in Dallas, Fort Worth, Houston, Austin and San Antonio, and the reason we can say
+              that with a straight face is that we don&rsquo;t treat those five cities as interchangeable.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/50">
               Every market on this page gets its own research before we touch a single page of code. What works for
@@ -103,6 +106,21 @@ export default function AreasWeServe() {
         </div>
       </section>
 
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <Reveal className="max-w-3xl">
+            <h2 className="text-4xl sm:text-5xl">
+              Contractor Website Design and Local SEO in <span className="text-primary">North Richland Hills</span>
+            </h2>
+            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-white/50">
+              From our North Richland Hills office, we build contractor websites and run local SEO for service
+              businesses in the city. Keller, Colleyville, Richland Hills and Bedford are a short drive away, so
+              businesses there get the same in-person access.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       <FeatureGrid
         heading="Why Massive Designs"
         columns={4}
@@ -110,12 +128,12 @@ export default function AreasWeServe() {
           {
             title: 'Local knowledge, not a template',
             description:
-              'We research each market before we build in it. What ranks in Houston and what ranks in Fort Worth aren’t the same list of decisions.',
+              'As local website designers, we research each market before we build in it. What ranks in Houston and what ranks in Fort Worth aren’t the same list of decisions.',
           },
           {
             title: 'One team, every city',
             description:
-              'The people who design your site are the same people who handle your SEO and your brand, no matter which of these five markets you’re in.',
+              'The people who design your site are the same people who handle your SEO and your brand, no matter which of these cities you’re in.',
           },
           {
             title: 'Results in plain language',

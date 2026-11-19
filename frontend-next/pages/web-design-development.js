@@ -108,14 +108,14 @@ export default function WebDesignDevelopment() {
         heading="Why Texas Businesses Choose Massive Designs?"
         description={
           <>
+            Massive Designs builds websites that help Texas companies manage their online presence with confidence.
+            We plan and develop every site around real business needs, clear structure, dependable performance, and
+            easy upkeep. Our team has worked with businesses in Austin, North Richland Hills, and San Antonio,
+            combining design and development to keep their websites practical and consistent. As a Texas{' '}
             <Link href="/" className="text-primary hover:underline">
-              Massive Designs
-            </Link>{' '}
-            builds websites that help Texas companies manage their online presence with confidence. We plan and
-            develop every site around real business needs, clear structure, dependable performance, and easy
-            upkeep. Our team has worked with businesses in Austin, North Richland Hills, and San Antonio, combining
-            design and development to keep their websites practical and consistent. As a Texas web design company,
-            we focus on straightforward solutions built to last and support ongoing growth.
+              web design company
+            </Link>
+            , we focus on straightforward solutions built to last and support ongoing growth.
           </>
         }
         items={[

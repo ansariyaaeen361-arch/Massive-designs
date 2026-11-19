@@ -363,7 +363,15 @@ export default function Irving() {
           },
           {
             title: 'Texas-Based Team',
-            description: 'Working across Irving and the broader DFW area.',
+            description: (
+              <>
+                A{' '}
+                <Link href="/" className="text-primary hover:underline">
+                  web design company
+                </Link>{' '}
+                working across Irving and the broader DFW area.
+              </>
+            ),
           },
           {
             title: 'One Team, One Project',

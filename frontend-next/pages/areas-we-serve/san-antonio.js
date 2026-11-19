@@ -35,7 +35,19 @@ export default function SanAntonio() {
       />
       <ServiceHero
         title="Web Design & Development in San Antonio, TX"
-        lead="San Antonio is Texas's second-largest city, with over 1.5 million residents and a metro area of approximately 2.5 million. Joint Base San Antonio brings over 80,000 active-duty military personnel and their families to the area, the South Texas Medical Center is one of the state's largest medical complexes, and Valero Energy and USAA are headquartered here. Massive Designs builds for San Antonio businesses across all of those contexts, custom and mobile-first, with local SEO built into the site from the start."
+        lead={
+          <>
+            San Antonio is Texas&rsquo;s second-largest city, with over 1.5 million residents and a metro area of
+            approximately 2.5 million. Joint Base San Antonio brings over 80,000 active-duty military personnel and
+            their families to the area, the South Texas Medical Center is one of the state&rsquo;s largest medical
+            complexes, and Valero Energy and USAA are headquartered here. Massive Designs, a Texas-based{' '}
+            <Link href="/" className="text-primary hover:underline">
+              web design agency
+            </Link>
+            , builds for San Antonio businesses across all of those contexts, custom and mobile-first, with local
+            SEO built into the site from the start.
+          </>
+        }
         crumb="San Antonio"
         parent="Areas We Serve"
         parentHref="/areas-we-serve"

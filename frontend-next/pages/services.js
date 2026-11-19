@@ -25,7 +25,7 @@ export default function Services() {
     <>
       <Seo
         title="Services - Massive Designs"
-        description="Full digital solutions in North Richland Hills, TX: UI/UX design, branding, web & app development, SEO and social media to drive business growth."
+        description="Custom website design, local SEO, content creation, branding and app development from a North Richland Hills, TX team serving businesses statewide."
         path="/services"
         schemaGraph={[
           {

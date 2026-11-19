@@ -35,7 +35,20 @@ export default function Austin() {
       />
       <ServiceHero
         title="Web Design & Development in Austin, TX"
-        lead="Austin ranked fifth in CBRE's 2024 Scoring Tech Talent report, with a tech workforce that grew 29.1 percent between 2018 and 2023, the highest growth rate of any U.S. tech market. Apple's North Austin campus employs approximately 15,000 people, and Tesla's Gigafactory has more than 22,000. That density of technology employers has raised the bar for what Austin customers expect from any business website, not just tech companies. Massive Designs builds for Austin businesses that need to compete in that environment, custom and mobile-first, with SEO built into the site architecture from the start."
+        lead={
+          <>
+            Austin ranked fifth in CBRE&rsquo;s 2024 Scoring Tech Talent report, with a tech workforce that grew 29.1
+            percent between 2018 and 2023, the highest growth rate of any U.S. tech market. Apple&rsquo;s North
+            Austin campus employs approximately 15,000 people, and Tesla&rsquo;s Gigafactory has more than 22,000.
+            That density of technology employers has raised the bar for what Austin customers expect from any
+            business website, not just tech companies. Massive Designs, a{' '}
+            <Link href="/" className="text-primary hover:underline">
+              web design firm
+            </Link>{' '}
+            based in Texas, builds for Austin businesses that need to compete in that environment, custom and
+            mobile-first, with SEO built into the site architecture from the start.
+          </>
+        }
         crumb="Austin"
         parent="Areas We Serve"
         parentHref="/areas-we-serve"

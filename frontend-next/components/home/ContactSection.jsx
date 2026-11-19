@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { HiOutlineClock, HiOutlineLocationMarker, HiOutlineMail, HiOutlinePhone } from 'react-icons/hi';
 import Reveal from '../motion/Reveal';
 import AmbientGlow from '../motion/AmbientGlow';
@@ -19,12 +20,19 @@ export default function ContactSection() {
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-7">
-            <h3 className="text-4xl sm:text-5xl">
+            <h2 className="text-4xl sm:text-5xl">
               Let&apos;s Build Something <span className="text-primary">Great Together</span>
-            </h3>
+            </h2>
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/50">
               Submit your creative ideas and get a response on appealing and inspiring designs. Our plan combines
               design, development, and marketing to enhance successful business expansion.
+            </p>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/50">
+              Not sure what your site needs yet? Run a{' '}
+              <Link href="/website-audit" className="text-primary hover:underline">
+                free website audit
+              </Link>{' '}
+              first.
             </p>
             <ContactForm />
           </Reveal>

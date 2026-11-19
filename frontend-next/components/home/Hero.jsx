@@ -57,16 +57,23 @@ export default function Hero() {
           </h1>
 
           <div className="hero-sub mt-8 flex items-center gap-4">
-            <img src="/img/home/dm-hero.png" alt="" className="h-9 w-9 shrink-0" />
+            <img
+              src="/img/home/dm-hero.png"
+              alt="Massive Designs web design and digital marketing team in Texas"
+              className="h-9 w-9 shrink-0"
+            />
             <h2 className="text-lg text-white sm:text-xl">
               Custom Websites <span className="text-primary">Powerful Branding - Measurable Growth</span>
             </h2>
           </div>
 
           <p className="hero-copy mt-5 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
-            Massive Designs creates new solutions, assisting the future of brands in Texas. Our agency is based in
-            North Richland Hills and has served more than <span className="text-white">88 happy clients</span>{' '}
-            valuing strategy and results based on design.
+            Massive Designs creates new solutions, assisting the future of brands in Texas. Our agency is based in{' '}
+            <Link href="/areas-we-serve/north-richland-hills" className="text-primary hover:underline">
+              North Richland Hills
+            </Link>{' '}
+            and has served more than <span className="text-white">200 happy clients</span> valuing strategy and
+            results based on design.
           </p>
 
           <div className="hero-cta mt-9">

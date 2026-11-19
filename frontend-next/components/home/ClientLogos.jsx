@@ -32,7 +32,8 @@ export default function ClientLogos() {
               >
                 <img
                   src={logo}
-                  alt=""
+                  alt={i < logos.length ? `Massive Designs client ${i + 1} logo` : ''}
+                  aria-hidden={i >= logos.length}
                   className="h-full w-full rounded-xl object-cover opacity-80 grayscale transition-opacity duration-300 hover:opacity-100 hover:grayscale-0"
                 />
               </button>

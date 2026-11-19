@@ -349,7 +349,15 @@ export default function GrandPrairie() {
           },
           {
             title: 'Texas-Based Team',
-            description: 'Working across Grand Prairie and the DFW area.',
+            description: (
+              <>
+                A{' '}
+                <Link href="/" className="text-primary hover:underline">
+                  web design agency
+                </Link>{' '}
+                working across Grand Prairie and the DFW area.
+              </>
+            ),
           },
           {
             title: 'Built to Support Growth',

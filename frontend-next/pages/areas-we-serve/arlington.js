@@ -302,7 +302,16 @@ export default function Arlington() {
           },
           {
             title: 'Texas-Based Team',
-            description: "We're based in North Richland Hills and work with businesses across the DFW area, including Arlington, in person and remotely.",
+            description: (
+              <>
+                We&rsquo;re a{' '}
+                <Link href="/" className="text-primary hover:underline">
+                  Texas web design agency
+                </Link>{' '}
+                based in North Richland Hills, working with businesses across the DFW area, including Arlington, in
+                person and remotely.
+              </>
+            ),
           },
         ]}
       />

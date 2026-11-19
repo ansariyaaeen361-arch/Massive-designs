@@ -9,13 +9,13 @@ const services = [
     href: '/web-design-development',
     image: '/img/home/dm-srv08.webp',
     description:
-      'Your brand deserves more than conventional marketing. It merits a story that resonates, a design that inspires, and a strategy that succeeds. If you’re ready to grow your business with a trusted creative marketing agency that Texas brands recommend, reach out to us today.',
+      'We plan, design and develop custom websites for Texas businesses, built around clear navigation, fast pages and mobile usability so visitors move from browsing to contacting you.',
     span: 'md:col-span-2 lg:col-span-7 lg:row-span-2',
     big: true,
   },
   {
     number: '02',
-    title: 'Branding Agency',
+    title: 'Branding & Logo Design',
     href: '/branding-logo-design',
     image: '/img/home/dm-srv05.webp',
     description:
@@ -33,16 +33,20 @@ const services = [
   },
   {
     number: '04',
-    title: 'App Development',
+    title: 'Mobile App Development',
     href: '/mobile-app-development',
     image: '/img/home/dm-srv07.webp',
+    description:
+      'Custom iOS and Android apps for Texas companies, designed to fit your brand and connect smoothly with your website.',
     span: 'lg:col-span-4',
   },
   {
     number: '05',
-    title: 'Content Marketing',
+    title: 'Content Writing Services',
     href: '/content-marketing',
     image: '/img/home/dm-srv02.webp',
+    description:
+      'SEO content and content strategy for Texas businesses, written to rank, attract the right buyers and turn visits into enquiries.',
     span: 'lg:col-span-4',
   },
   {
@@ -50,6 +54,8 @@ const services = [
     title: 'Social Media Marketing',
     href: '/social-media-marketing',
     image: '/img/home/dm-srv003.webp',
+    description:
+      'Content calendars, paid campaigns and community engagement across Facebook, Instagram and LinkedIn, kept consistent with your brand.',
     span: 'md:col-span-2 lg:col-span-4',
   },
 ];
@@ -60,9 +66,9 @@ export default function Services() {
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <Reveal>
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">Services</p>
-          <h3 className="mt-4 max-w-2xl text-4xl sm:text-5xl">
+          <h2 className="mt-4 max-w-2xl text-4xl sm:text-5xl">
             Web Design &amp; Digital Marketing <span className="text-primary">Services in Texas</span>
-          </h3>
+          </h2>
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[minmax(250px,auto)]">
@@ -77,7 +83,7 @@ export default function Services() {
               >
                 <img
                   src={service.image}
-                  alt=""
+                  alt={service.title}
                   loading="lazy"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
@@ -94,13 +100,13 @@ export default function Services() {
                 </div>
 
                 <div className="relative">
-                  <h4
+                  <h3
                     className={`font-body font-semibold leading-tight tracking-tight text-white ${
                       service.big ? 'text-3xl sm:text-4xl lg:text-5xl' : 'text-2xl sm:text-3xl'
                     }`}
                   >
                     {service.title}
-                  </h4>
+                  </h3>
                   {service.description && (
                     <p
                       className={`mt-4 text-white/70 ${
@@ -115,6 +121,14 @@ export default function Services() {
             </Reveal>
           ))}
         </div>
+
+        <p className="mt-10 text-sm text-white/50">
+          Want to compare pricing first? See our{' '}
+          <Link href="/packages" className="text-primary hover:underline">
+            web design and branding packages
+          </Link>
+          .
+        </p>
       </div>
     </section>
   );

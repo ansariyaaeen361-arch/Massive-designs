@@ -13,10 +13,14 @@ export default function ServiceShowcase() {
             Digital Experience <span className="text-primary">&amp; Strategy</span>
           </h2>
           <p className="mt-5 text-sm leading-relaxed text-white/50">
-            Massive Designs is a digital agency in Texas that helps brands turn ideas into digital experiences
-            people actually want to use. We bring strategy, design, and technology together so that your website,
-            app, and content feel connected and intentional. The focus is simple in order to reach the right
-            people, keep them interested, and give them a good enough experience that they choose to come back.
+            Massive Designs is a{' '}
+            <Link href="/" className="text-primary hover:underline">
+              web design agency
+            </Link>{' '}
+            in Texas that helps brands turn ideas into digital experiences people actually want to use. We bring
+            strategy, design, and technology together so that your website, app, and content feel connected and
+            intentional. The focus is simple: reach the right people, keep them interested, and give them a good
+            enough experience that they choose to come back.
           </p>
         </Reveal>
 

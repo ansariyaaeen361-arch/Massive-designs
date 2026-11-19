@@ -35,7 +35,20 @@ export default function Houston() {
       />
       <ServiceHero
         title="Web Design & Development in Houston, TX"
-        lead="Houston is the fourth-largest U.S. city, with a metro workforce of over 3.4 million. Twenty-four Fortune 500 companies are headquartered here, the Texas Medical Center is the world's largest medical campus, and the Port of Houston handles more total tonnage than any other U.S. port. In a market that large and that economically diverse, competing online means being specific about your sector, your location within the city, and who you actually serve. Massive Designs builds websites for Houston businesses across that full range, custom-designed, mobile-first, and structured around local SEO from the first wireframe."
+        lead={
+          <>
+            Houston is the fourth-largest U.S. city, with a metro workforce of over 3.4 million. Twenty-four Fortune
+            500 companies are headquartered here, the Texas Medical Center is the world&rsquo;s largest medical
+            campus, and the Port of Houston handles more total tonnage than any other U.S. port. In a market that
+            large and that economically diverse, competing online means being specific about your sector, your
+            location within the city, and who you actually serve. Massive Designs, a{' '}
+            <Link href="/" className="text-primary hover:underline">
+              Texas web design company
+            </Link>
+            , builds websites for Houston businesses across that full range, custom-designed, mobile-first, and
+            structured around local SEO from the first wireframe.
+          </>
+        }
         crumb="Houston"
         parent="Areas We Serve"
         parentHref="/areas-we-serve"

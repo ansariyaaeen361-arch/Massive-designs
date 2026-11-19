@@ -169,7 +169,18 @@ export default function ContentMarketing() {
         description="We focus on intent, performance, and local insight so your content supports real growth, not just more pages."
         items={[
           { title: 'Search-First Approach', description: 'Content aligns with real queries, helping the right people find you when they actively need solutions.' },
-          { title: 'Integrated Support Model', description: 'Strategy, writing, and optimization work together, reducing guesswork and keeping campaigns aligned across channels.' },
+          {
+            title: 'Integrated Support Model',
+            description: (
+              <>
+                Strategy, writing, and optimization work together under one{' '}
+                <Link href="/" className="text-primary hover:underline">
+                  digital marketing agency
+                </Link>
+                , reducing guesswork and keeping campaigns aligned across channels.
+              </>
+            ),
+          },
           { title: 'Local Market Understanding', description: 'Experience with Texas markets means messaging, examples, and topics feel relevant to your regional audience.' },
         ]}
       />

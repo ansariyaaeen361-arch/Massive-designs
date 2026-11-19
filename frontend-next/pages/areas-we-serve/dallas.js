@@ -35,7 +35,18 @@ export default function Dallas() {
       />
       <ServiceHero
         title="Web Design & Development in Dallas, TX"
-        lead="Dallas has 19 Fortune 500 headquarters in its metro, and the businesses competing for customers here know it. A slow site or unclear service page doesn't just lose a visitor, it sends that prospect directly to whoever shows up next in the search results. Massive Designs builds websites for Dallas businesses that need to compete at that level: custom-designed, mobile-first, and built with local SEO from the first wireframe."
+        lead={
+          <>
+            Dallas has 19 Fortune 500 headquarters in its metro, and the businesses competing for customers here know
+            it. A slow site or unclear service page doesn&rsquo;t just lose a visitor, it sends that prospect
+            directly to whoever shows up next in the search results. Massive Designs, a{' '}
+            <Link href="/" className="text-primary hover:underline">
+              web design agency
+            </Link>{' '}
+            in Texas, builds websites for Dallas businesses that need to compete at that level: custom-designed,
+            mobile-first, and built with local SEO from the first wireframe.
+          </>
+        }
         crumb="Dallas"
         parent="Areas We Serve"
         parentHref="/areas-we-serve"

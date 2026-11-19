@@ -54,9 +54,12 @@ export default function BrandingLogoDesign() {
         heading="Strategic Brand Identity and Design Solutions"
         description={
           <>
-            Your logo should speak with purpose, not just style. Based in North Richland Hills, massive designs
-            crafts brand identities that connect emotionally and perform commercially. Through creative logo design
-            and{' '}
+            Your logo should speak with purpose, not just style. Based in North Richland Hills, Massive Designs is a{' '}
+            <Link href="/" className="text-primary hover:underline">
+              web design firm
+            </Link>{' '}
+            that also crafts brand identities that connect emotionally and perform commercially. Through creative
+            logo design and{' '}
             <Link href="/content-marketing" className="text-primary hover:underline">
               content marketing
             </Link>

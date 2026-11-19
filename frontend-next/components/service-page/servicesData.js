@@ -5,7 +5,7 @@ export const services = [
     title: 'Social Media Marketing',
     href: '/social-media-marketing',
     description:
-      'We devise intriguing social media strategies to revive your growth through our Social Media Marketing services. Massive Design crafts resonating content, reach maximization, and converting campaigns for clients. We guarantee audience understanding, brand power, and visibility by monitoring audience preferences and trends, turning simple social interactions into big corporate results.',
+      'We devise intriguing social media strategies to revive your growth through our Social Media Marketing services. Massive Designs crafts resonating content, reach maximization, and converting campaigns for clients. We guarantee audience understanding, brand power, and visibility by monitoring audience preferences and trends, turning simple social interactions into big corporate results.',
   },
   {
     icon: '/img/services/icon-content.svg',
@@ -21,7 +21,7 @@ export const services = [
     title: 'SEO Services',
     href: '/seo-services',
     description:
-      'Massive Designs enhances your web presence to be more accessible to the desired audience. Our Texas SEO services are powered by data attracting organic visitors and improving search engine rankings. Keyword research, link building, and on page optimization are key techniques to make the website perform efficiently, attract users, and maximize growth through clear, measurable metrics.',
+      'Massive Designs enhances your web presence to be more accessible to the desired audience. Our Texas SEO services are powered by data attracting organic visitors and improving search engine rankings. Local SEO services, keyword research, link building and on-page optimization are the key techniques we use to make the website perform efficiently, attract users, and maximize growth through clear, measurable metrics.',
   },
   {
     icon: '/img/services/icon-web.svg',
@@ -29,7 +29,7 @@ export const services = [
     title: 'Branding & Identity',
     href: '/branding-logo-design',
     description:
-      "A logo alone isn't enough to carry a brand. Your customers remember the whole picture of how your brand looks, feels, and shows up across different channels. At Massive Designs, our Texas logo services and brand identity design pull all of that together into a clear, consistent identity that actually feels like you. We help you choose colors that match your message that fits your tone and design graphical elements that replicate your personality. Over time, these details work together to make your brand instantly recognizable.",
+      "A logo alone isn't enough to carry a brand. Your customers remember the whole picture of how your brand looks, feels, and shows up across different channels. At Massive Designs, our Texas logo services and brand identity design pull all of that together into a clear, consistent identity that actually feels like you. We help you choose colors that match your message and tone, and create graphic design elements that reflect your personality. Over time, these details work together to make your brand instantly recognizable.",
   },
   {
     icon: '/img/services/icon-web.svg',
@@ -37,7 +37,7 @@ export const services = [
     title: 'Web Design & Development',
     href: '/web-design-development',
     description:
-      'Your website is usually where people decide if they want to do business with you, so it has to pull its weight. At Massive Designs, our web design & development work is about building sites that are quick to load, easy to use, and solid enough to grow with you. Instead of starting with fancy features, our team start with your goals. From there, they put together a responsive layout that works smoothly on phones, tablets, and desktops. The code stays clean, the structure is SEO-friendly, and the focus is always on giving visitors a simple, straightforward experience that feels reliable.',
+      'Your website is usually where people decide if they want to do business with you, so it has to pull its weight. At Massive Designs, our web design & development work is about building sites that are quick to load, easy to use, and solid enough to grow with you. Instead of starting with fancy features, our team starts with your goals. That goes for custom website design, WordPress builds, ecommerce stores and single landing pages. From there, they put together a responsive layout that works smoothly on phones, tablets, and desktops. The code stays clean, the structure is SEO-friendly, and the focus is always on giving visitors a simple, straightforward experience that feels reliable.',
   },
   {
     icon: '/img/services/icon-web.svg',
@@ -54,6 +54,6 @@ export const sliderItems = [
   { image: '/img/services/slider-branding.webp', title: 'Branding Logo Design', href: '/branding-logo-design' },
   { image: '/img/services/slider-content.webp', title: 'Content Writing', href: '/content-marketing' },
   { image: '/img/services/slider-mobile.webp', title: 'Mobile App Development', href: '/mobile-app-development' },
-  { image: '/img/services/slider-seo.webp', title: 'Seo Services', href: '/seo-services' },
+  { image: '/img/services/slider-seo.webp', title: 'SEO Services', href: '/seo-services' },
   { image: '/img/services/slider-social.webp', title: 'Social Media Marketing', href: '/social-media-marketing' },
 ];

@@ -28,9 +28,9 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-10">
           <Reveal>
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">Testimonials</p>
-            <h3 className="mt-4 text-4xl sm:text-5xl">
+            <h2 className="mt-4 text-4xl sm:text-5xl">
               What Our <span className="text-primary">Clients Say</span>
-            </h3>
+            </h2>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-white/50">
               Our clients have their way to tell everything about our approach. Their words speak of our commitment
               to excellence and how we make their visions come true.
@@ -42,7 +42,7 @@ export default function Testimonials() {
               rel="noopener noreferrer"
               className="mt-8 flex max-w-sm items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-colors hover:border-primary/40"
             >
-              <img src="/img/home/trust-pilot.webp" alt="" className="h-10 w-auto shrink-0" />
+              <img src="/img/home/trust-pilot.webp" alt="Trustpilot" className="h-10 w-auto shrink-0" />
               <span className="text-xs leading-relaxed text-white/50">
                 See our verified reviews on <span className="text-white">Trustpilot</span>
               </span>

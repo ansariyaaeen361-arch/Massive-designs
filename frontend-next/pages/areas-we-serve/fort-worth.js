@@ -361,7 +361,16 @@ export default function FortWorth() {
           },
           {
             title: 'Texas-Based Team',
-            description: 'Based at 8350 Davis Boulevard, North Richland Hills, TX, in the Mid-Cities area between Fort Worth and Dallas.',
+            description: (
+              <>
+                We&rsquo;re a{' '}
+                <Link href="/" className="text-primary hover:underline">
+                  web design firm
+                </Link>{' '}
+                based at 8350 Davis Boulevard, North Richland Hills, TX, in the Mid-Cities area between Fort Worth
+                and Dallas.
+              </>
+            ),
           },
         ]}
       />

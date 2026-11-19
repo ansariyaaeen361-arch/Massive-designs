@@ -175,7 +175,14 @@ export default function SeoServices() {
       <ServiceCta
         heading="Ready to Grow? Let's Build Your SEO Success"
         paragraphs={[
-          "It's time to secure more exposure, clients, and growth. Massive Designs provides proven SEO strategies that help Texas companies beat the competition and grow faster.",
+          <>
+            It&rsquo;s time to secure more exposure, clients, and growth. As a full-service{' '}
+            <Link href="/" className="text-primary hover:underline">
+              web design company
+            </Link>{' '}
+            in Texas, Massive Designs provides proven SEO strategies that help Texas companies beat the competition
+            and grow faster.
+          </>,
         ]}
         buttonLabel="Rank Higher and Generate More Leads"
         buttonHref={brand.phoneTel}

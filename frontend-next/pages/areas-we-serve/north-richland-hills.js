@@ -34,7 +34,18 @@ export default function NorthRichlandHills() {
       />
       <ServiceHero
         title="Web Design & Development in North Richland Hills, TX"
-        lead="Massive Designs is headquartered at 8350 Davis Boulevard, North Richland Hills, TX. This is where our team works, not a service area we list from a distance. For an NRH business, that means a web design partner who can meet in person, knows the Davis Boulevard corridor by name, and has a genuine stake in the community's success."
+        lead={
+          <>
+            Massive Designs is a{' '}
+            <Link href="/" className="text-primary hover:underline">
+              web design company
+            </Link>{' '}
+            headquartered at 8350 Davis Boulevard, North Richland Hills, TX. This is where our team works, not a
+            service area we list from a distance. For an NRH business, that means a web design partner who can meet
+            in person, knows the Davis Boulevard corridor by name, and has a genuine stake in the community&rsquo;s
+            success.
+          </>
+        }
         crumb="North Richland Hills"
         parent="Areas We Serve"
         parentHref="/areas-we-serve"

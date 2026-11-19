@@ -4,7 +4,7 @@ import AmbientGlow from '../motion/AmbientGlow';
 
 const points = [
   'Unparalleled development, marketing, UI design, and app design experience.',
-  'Established reputation of more than 200 content customers.',
+  'Established reputation with more than 200 satisfied customers.',
   'A holistic strategy, branding, web design, and marketing.',
   'A full-time team of experts focused on achieving success.',
 ];
@@ -16,9 +16,9 @@ export default function WhyChooseUs() {
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-12 lg:gap-8 lg:px-10">
         <Reveal className="lg:col-span-6">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">Why Choose Us</p>
-          <h3 className="mt-4 text-4xl sm:text-5xl">
+          <h2 className="mt-4 text-4xl sm:text-5xl">
             Why Choose <span className="text-primary">Massive Designs</span>
-          </h3>
+          </h2>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/50">
             Massive Designs has been a pioneering web design and development company since 2020. Our reputation is
             based on excellence, integrity, and customer satisfaction. We possess a pool of strategic and creative

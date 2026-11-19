@@ -11,7 +11,7 @@ export const areas = [
     shortName: 'Fort Worth',
     href: '/areas-we-serve/fort-worth',
     blurb:
-      "Fort Worth carries a reputation as North Texas's entrepreneurship hub, and most of the work we do there backs that up. Whether it's a first website or a rebrand three years in, our Fort Worth clients want something that looks established without an established-agency price tag.",
+      "Fort Worth carries a reputation as North Texas's entrepreneurship hub, and most of the work we do there backs that up. Whether it's a first website or a rebrand three years in, Fort Worth businesses that bring us in as their website designer want something that looks established without an established-agency price tag.",
   },
   {
     name: 'Houston, TX',
@@ -46,20 +46,20 @@ export const areas = [
     shortName: 'Grand Prairie',
     href: '/areas-we-serve/grand-prairie',
     blurb:
-      "Most Grand Prairie projects that land on our desk are modernizations, not first-time builds: a site that hasn't been touched in years and no longer reflects how the business actually runs. We rebuild those with a practical focus on speed, mobile, and local search.",
+      "Most Grand Prairie website design projects that land on our desk are modernizations, not first-time builds: a site that hasn't been touched in years and no longer reflects how the business actually runs. We rebuild those with a practical focus on speed, mobile, and local search.",
   },
   {
     name: 'Arlington, TX',
     shortName: 'Arlington',
     href: '/areas-we-serve/arlington',
     blurb:
-      "Arlington's business base runs from manufacturing and logistics near I-20 to retail, healthcare, and professional services closer to downtown and the entertainment district. We build sites for that range, custom-designed, mobile-first, and structured around SEO from the first wireframe.",
+      "Arlington's business base runs from manufacturing and logistics near I-20 to retail, healthcare, and professional services closer to downtown and the entertainment district. We build custom website design for that range: mobile-first and structured around SEO from the first wireframe.",
   },
   {
     name: 'Irving, TX',
     shortName: 'Irving',
     href: '/areas-we-serve/irving',
     blurb:
-      "Irving leans heavier toward corporate offices and professional services than some surrounding cities, and that changes what a website needs to do. We build professional, fast sites structured to convert a visitor into a lead, not just present information.",
+      "Irving leans heavier toward corporate offices and professional services than some surrounding cities, and that changes what a website needs to do. We build professional website design that loads fast and is structured to convert a visitor into a lead, not just present information.",
   },
 ];
