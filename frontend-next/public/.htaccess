@@ -2,10 +2,24 @@ RewriteEngine On
 RewriteBase /
 
 # ==========================================================
+# Massive Designs - Force HTTPS
+# ==========================================================
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://massive-designs.com/$1 [R=301,L]
+
+# ==========================================================
 # Massive Designs - Redirect www to non-www
 # ==========================================================
 RewriteCond %{HTTP_HOST} ^www\.massive-designs\.com$ [NC]
 RewriteRule ^(.*)$ https://massive-designs.com/$1 [R=301,L]
+
+# ==========================================================
+# Massive Designs - Canonicalize /index.html (and any nested
+# .../index.html) to its clean directory URL, so the homepage and every
+# page only exist at one URL instead of two (duplicate-content/SEO fix).
+# ==========================================================
+RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
+RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 
 # ==========================================================
 # Massive Designs - Trailing Slash 301 Redirects
