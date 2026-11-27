@@ -119,15 +119,53 @@ function ProjectLightbox({ project, onClose }) {
   );
 }
 
-export default function Projects() {
-  const [status, setStatus] = useState('loading');
-  const [categories, setCategories] = useState([]);
-  const [projects, setProjects] = useState([]);
+function sortCategories(cats) {
+  return Array.isArray(cats)
+    ? [...cats].sort((a, b) => {
+        const ia = CATEGORY_ORDER.indexOf(a.slug);
+        const ib = CATEGORY_ORDER.indexOf(b.slug);
+        return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+      })
+    : [];
+}
+
+export async function getStaticProps() {
+  try {
+    const [catsRes, projRes] = await Promise.all([
+      fetch(`${SITE_URL}/cms/wp-json/wp/v2/project_category?per_page=100&_fields=id,name,slug`),
+      fetch(
+        `${SITE_URL}/cms/wp-json/wp/v2/projects?per_page=500&orderby=menu_order&order=asc&_fields=id,title,featured_image_url,project_categories,acf`,
+      ),
+    ]);
+    if (!catsRes.ok || !projRes.ok) throw new Error('Request failed');
+    const [cats, projs] = await Promise.all([catsRes.json(), projRes.json()]);
+    return {
+      props: {
+        initialCategories: sortCategories(cats),
+        initialProjects: Array.isArray(projs) ? projs : [],
+      },
+    };
+  } catch {
+    // Build-time fetch failed (e.g. WP briefly unreachable); the page still
+    // builds, and the client-side fallback fetch below fills it in.
+    return { props: { initialCategories: [], initialProjects: [] } };
+  }
+}
+
+export default function Projects({ initialProjects, initialCategories }) {
+  const hasInitialData = initialProjects.length > 0;
+  const [status, setStatus] = useState(hasInitialData ? 'ready' : 'loading');
+  const [categories, setCategories] = useState(initialCategories);
+  const [projects, setProjects] = useState(initialProjects);
   const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxProject, setLightboxProject] = useState(null);
   const gridRef = useRef(null);
 
   useEffect(() => {
+    // The static build already has the project list baked into the HTML.
+    // Only hit the live API client-side as a fallback for the rare case
+    // where the build-time fetch above came back empty.
+    if (hasInitialData) return;
     let cancelled = false;
 
     async function load() {
@@ -141,14 +179,7 @@ export default function Projects() {
         if (!catsRes.ok || !projRes.ok) throw new Error('Request failed');
         const [cats, projs] = await Promise.all([catsRes.json(), projRes.json()]);
         if (cancelled) return;
-        const sortedCats = Array.isArray(cats)
-          ? [...cats].sort((a, b) => {
-              const ia = CATEGORY_ORDER.indexOf(a.slug);
-              const ib = CATEGORY_ORDER.indexOf(b.slug);
-              return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
-            })
-          : [];
-        setCategories(sortedCats);
+        setCategories(sortCategories(cats));
         setProjects(Array.isArray(projs) ? projs : []);
         setStatus('ready');
       } catch {
@@ -160,7 +191,7 @@ export default function Projects() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [hasInitialData]);
 
   useEffect(() => {
     if (status !== 'ready' || !gridRef.current) return;

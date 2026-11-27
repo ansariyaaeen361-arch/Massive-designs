@@ -1,14 +1,13 @@
 import Link from 'next/link';
 import Reveal from '../motion/Reveal';
 import Counter from '../motion/Counter';
-import StatBadge from '../motion/StatBadge';
 import AmbientGlow from '../motion/AmbientGlow';
 import { brand } from '../../lib/brand';
 
 const stats = [
   { value: 100, suffix: '+', label: 'Projects Delivered' },
   { value: 5, suffix: '+', label: 'Years Experience' },
-  { value: 88, suffix: '+', label: 'Happy Clients' },
+  { value: 200, suffix: '+', label: 'Happy Clients' },
 ];
 
 export default function AboutIntro() {
@@ -59,7 +58,6 @@ export default function AboutIntro() {
               alt="Massive Designs team working across development and design tools"
               className="aspect-[3/4] w-full rounded-[2rem] object-cover"
             />
-            <StatBadge value={5} suffix="+" label="Year of Experience" className="-bottom-6 -left-6 sm:-left-10" />
           </Reveal>
         </div>
       </div>

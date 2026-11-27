@@ -1,12 +1,17 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap, ScrollTrigger } from '../../lib/gsap';
 
 export default function Counter({ to, suffix = '', className = '' }) {
   const ref = useRef(null);
+  // Static/first-paint markup ships the real number so it reads correctly
+  // without JavaScript (SEO, crawlers, no-JS). The animation resets to 0
+  // and counts back up only once this hook runs on the client.
+  const [display, setDisplay] = useState(to);
 
   useGSAP(
     () => {
+      setDisplay(0);
       const obj = { value: 0 };
       gsap.to(obj, {
         value: to,
@@ -28,7 +33,7 @@ export default function Counter({ to, suffix = '', className = '' }) {
 
   return (
     <span className={className}>
-      <span ref={ref}>0</span>
+      <span ref={ref}>{display}</span>
       {suffix}
     </span>
   );
